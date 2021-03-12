@@ -20,8 +20,8 @@
 | One or more functions from itertools module        |   N   |
 | The enumerate function                             |   N   |
 | The filter or map function                         |   N   |
-| The   |   N   |
-
+| The random module                                  |   N   |
+| Function annotations                               |       |
 
 
 ### Game Specifications
