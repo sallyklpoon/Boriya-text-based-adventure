@@ -7,7 +7,7 @@ def make_character():
 
     :return: A dictionary that contains a playable character's information.
     """
-    hero_name = input("What is your name prisoner?\n")
+    hero_name = input("What is your name Prisoner?\n")
     hero_character = {"name": hero_name, "level": 1, "EXP": 0, "location": (0, 0)}
     hero_class = choose_class()
     hero_character.update(hero_class)
