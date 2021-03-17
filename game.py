@@ -139,7 +139,7 @@ def MOVE_OPTIONS():
     return "go North", "go South", "go West", "go East", "Quit Game"
 
 
-def COMBAT_OPTIONS():
+def ENGAGE_OPTIONS():
     """Return combat options as a tuple of string options.
 
     :precondition: COMBAT_OPTIONS() is called
@@ -148,10 +148,18 @@ def COMBAT_OPTIONS():
                     "Not today, Satan! (flee)"
     :return: tuple of directions, strings "I can do this! (fight)", "Not today, Satan! (flee)"
 
-    >>> COMBAT_OPTIONS()
+    >>> ENGAGE_OPTIONS()
     ("'I can do this!' (fight)", "'Not today, Satan!' (flee)")
     """
     return "'I can do this!' (fight)", "'Not today, Satan!' (flee)"
+
+
+def COMBAT_OPTIONS():
+    return "Continue Combat", "Flee"
+
+
+def CLASS_OPTIONS():
+    return "Sorcerer", "Rogue", "Ranger", "Fighter"
 
 
 # ===== CHARACTER CONSTANTS ============================================================================================
@@ -447,19 +455,70 @@ def get_menu(menu_type):
     [3] go West
     [4] go East
     [5] Quit Game
-    >>> get_menu("combat")
+    >>> get_menu("engage")
     [1] 'I can do this!' (fight)
     [2] 'Not today, Satan!' (flee)
+    >>> get_menu("combat")
+    [1] Continue Combat
+    [2] Flee
+    >>> get_menu("class")
+    [1] Sorcerer
+    [2] Rogue
+    [3] Ranger
+    [4] Fighter
     """
     if menu_type == "move":
         menu = MOVE_OPTIONS()
-    else:
+    elif menu_type == "engage":
+        menu = ENGAGE_OPTIONS()
+    elif menu_type == "combat":
         menu = COMBAT_OPTIONS()
+    else:
+        menu = CLASS_OPTIONS()
     for number, option in enumerate(menu, 1):
         print(f"[{number}] {option}")
 
 
+def valid_menu_input(selected_option, menu_type):
+    return int(selected_option) not in range(1, len(menu_type) + 1)
+
+
 # ===== START GAME =====================================================================================================
+
+def get_class():
+    valid_input = False
+
+    while not valid_input:
+        print("What kind of adventurer are you?")
+        get_menu("class")
+        class_choice = input("Enter the number of your class choice: ")
+        if valid_menu_input(class_choice, CLASS_OPTIONS()):
+            return class_choice
+        else:
+            print("That was an invalid option adventurer. Please choose a correct number.")
+
+
+def choose_class():
+    chosen_class = get_class()
+    if chosen_class == "1":
+        return {"class": "Sorcerer",
+                "AC": 12,
+                "HP": 6,
+                "atk_modifier": 4,
+                "damage": (1, 12),
+                "dmg_modifier": 12}
+    elif chosen_class == "2":
+        return {"class": "Rogue",
+                "AC": 14,
+                "HP": 8,
+                "atk_modifier": 12,
+                "damage": (2, 4),
+                "dmg_modifier": 4}
+    elif chosen_class == "3":
+        return {"class": "Ranger", "AC": 16, "HP": 8, "atk_modifier": 10, "damage": (1, 6), "dmg_modifier": 6}
+    elif chosen_class == "4":
+        return {"class": "Fighter", "AC": 18, "HP": 12, "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 10}
+
 
 
 def get_name():
@@ -488,16 +547,16 @@ def make_character():
 
     No doctests, input is required
     """
-    return {"name": get_name(),
-            "HP": CHARACTER_MAX_HP(),
-            "x-location": START_X(),
-            "y-location": START_Y(),
-            "damage": CHARACTER_DAMAGE_DIE(),
-            "attacks": CHARACTER_ATTACKS(),
-            "XP": 0,
-            "level": CHARACTER_START_LEVEL(),
-            "bonus damage": 0,
-            "quit": False}
+    character = {"name": get_name(),
+                 "HP": CHARACTER_MAX_HP(),
+                 "x-location": START_X(),
+                 "y-location": START_Y(),
+                 "attacks": CHARACTER_ATTACKS(),
+                 "XP": 0,
+                 "level": CHARACTER_START_LEVEL(),
+                 "quit": False}
+    character.update(choose_class())
+    return character
 
 
 def make_board():
@@ -564,10 +623,9 @@ def make_board():
              "besssst...', as it slithered by?!"}
     """
     map_script = itertools.cycle(MAP_SCRIPTS())
-    coordinates = [(x_location, y_location)
-                   for x_location in range(MAX_MAP_X())
-                   for y_location in range(MAX_MAP_Y())]
-    return {coordinate: next(map_script) for coordinate in coordinates}
+    return {(x_location, y_location): next(map_script)
+            for x_location in range(MAX_MAP_X())
+            for y_location in range(MAX_MAP_Y())}
 
 
 def print_map(character):
@@ -906,7 +964,7 @@ def engage(foe_name):
     No doctests, user input required
     """
     print(f"\n A {foe_name} has showed up!\n")
-    get_menu("combat")
+    get_menu("engage")
     character_decision = get_decision()
     time.sleep(2)
     return character_decision == "1"
