@@ -327,14 +327,6 @@ def FOE_MAX_HP():
 def FOE_DAMAGE_DIE():
     """Return the foe damage die as a tuple, 1d10 = (1, 10)
 
-    A protective function for the foe's damage die.
-
-    :precondition: FOE_DAMAGE_DIE() is called
-    :postcondition: returns a foe's damage die as a tuple,
-                    using specified values in description above
-    :postcondition: first and second element in the tuple are integers > 0
-    :postcondition: first element of the returned tuple is the specified number of times to roll
-    :postcondition: second element of the returned tuple is the number of sides on the die
     :return: a foe's damage die as a tuple (rolls, number_of_sides)
 
     >>> FOE_DAMAGE_DIE()
@@ -349,8 +341,6 @@ def FOE_DAMAGE_DIE():
 def DAMAGE_RESPONSE():
     """Return a tuple of possible damage responses.
 
-    :precondition: DAMAGE_RESPONSE() is called
-    :postcondition: returns a tuple containing string elements of possible responses to damage
     :return: a tuple of possible damage responses
     """
     return ("Stumbles", "Curls Up in Fetal Position", "Screams in Binary",
@@ -360,14 +350,6 @@ def DAMAGE_RESPONSE():
 def INITIATIVE_DIE():
     """Return the initiative die, 1d100 = (1, 100)
 
-    A protective function for the initiative die constant.
-
-    :precondition: INITIATIVE_DIE() is called
-    :postcondition: returns the initiative die as a tuple,
-                    using specified values in description above
-    :postcondition: first and second element in the tuple are integers > 0
-    :postcondition: first element of the returned tuple is the specified number of times to roll
-    :postcondition: second element of the returned tuple is the number of sides on the die
     :return: an initiative die as a tuple (rolls, number_of_sides)
 
     >>> INITIATIVE_DIE()
@@ -486,39 +468,25 @@ def valid_menu_input(selected_option, menu_type):
 # ===== START GAME =====================================================================================================
 
 def get_class():
-    valid_input = False
-
-    while not valid_input:
-        print("What kind of adventurer are you?")
-        get_menu("class")
-        class_choice = input("Enter the number of your class choice: ")
-        if valid_menu_input(class_choice, CLASS_OPTIONS()):
-            return class_choice
-        else:
-            print("That was an invalid option adventurer. Please choose a correct number.")
+    return input("Enter the number of your class choice: ")
 
 
 def choose_class():
+    print("What kind of adventurer are you?")
+    get_menu("class")
     chosen_class = get_class()
     if chosen_class == "1":
-        return {"class": "Sorcerer",
-                "AC": 12,
-                "HP": 6,
-                "atk_modifier": 4,
-                "damage": (1, 12),
-                "dmg_modifier": 12}
+        return {"class": "Sorcerer", "AC": 12,
+                "atk_modifier": 4, "damage": (1, 12), "dmg_modifier": 12}
     elif chosen_class == "2":
-        return {"class": "Rogue",
-                "AC": 14,
-                "HP": 8,
-                "atk_modifier": 12,
-                "damage": (2, 4),
-                "dmg_modifier": 4}
+        return {"class": "Rogue", "AC": 14,
+                "atk_modifier": 12, "damage": (2, 4), "dmg_modifier": 4}
     elif chosen_class == "3":
-        return {"class": "Ranger", "AC": 16, "HP": 8, "atk_modifier": 10, "damage": (1, 6), "dmg_modifier": 6}
+        return {"class": "Ranger", "AC": 16,
+                "atk_modifier": 10, "damage": (1, 6), "dmg_modifier": 6}
     elif chosen_class == "4":
-        return {"class": "Fighter", "AC": 18, "HP": 12, "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 10}
-
+        return {"class": "Fighter", "AC": 18,
+                "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 10}
 
 
 def get_name():
@@ -552,7 +520,7 @@ def make_character():
                  "x-location": START_X(),
                  "y-location": START_Y(),
                  "attacks": CHARACTER_ATTACKS(),
-                 "XP": 0,
+                 "EXP": 0,
                  "level": CHARACTER_START_LEVEL(),
                  "quit": False}
     character.update(choose_class())
