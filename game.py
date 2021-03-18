@@ -494,23 +494,13 @@ def print_map(character):
                    and less than the MAX_MAP_X and MAX_MAP_Y values, respectively
     :postcondition: print out a visual map with the correct location as to where the character is on a board
     :return: printed map
-
-    >>> sample_character = {"x-location": 1, "y-location": 2}
-    >>> print_map(sample_character)
-    ['[  ]', '[  ]', '[  ]', '[  ]', '[  ]']
-    ['[  ]', '[  ]', '[  ]', '[  ]', '[  ]']
-    ['[  ]', '[웃]', '[  ]', '[  ]', '[  ]']
-    ['[  ]', '[  ]', '[  ]', '[  ]', '[  ]']
-    ['[  ]', '[  ]', '[  ]', '[  ]', '[  ]']
     """
-    grid_row = ["[  ]" for _ in range(MAX_MAP_X())]
     for row in range(MAX_MAP_Y()):
-        if row == character["y-location"]:
-            character_row = grid_row.copy()
-            character_row[character["x-location"]] = "[웃]"
-            print(character_row)
-        else:
-            print(grid_row)
+        for column in range(MAX_MAP_X()):
+            print(f"[{hero_colour('웃')}]", end="") \
+                if (column, row) == (character["x-location"], character["y-location"])\
+                else print("[  ]", end="")
+        print("")
 
 
 def start_game():
@@ -1179,7 +1169,7 @@ def game():
     board, character = start_game()
     achieved_goal = False
     while not achieved_goal and character["HP"] > 0:
-        print(f"You're now at block ({character['x-location']}, {character['y-location']}) \n"
+        print(f"\nYou're now at ({character['x-location']}, {character['y-location']}) \n"
               f"{board[(character['x-location'], character['y-location'])]} \n")
         print_map(character)
         time.sleep(1)
