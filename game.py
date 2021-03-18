@@ -109,7 +109,7 @@ def CLASS_OPTIONS():
 
     :return: tuple of class options
     """
-    return "Sorcerer", "Rogue", "Ranger", "Fighter"
+    return "Illusionist", "Rogue", "Ranger", "Paladin"
 
 
 # ===== CHARACTER CONSTANTS ============================================================================================
@@ -356,19 +356,19 @@ def choose_class():
     get_menu("class")
     chosen_class = get_class()
     if chosen_class == "1":
-        return {"class": "Sorcerer", "AC": 12,
+        return {"class": "Illusionist", "level_name": "Trickster", "AC": 12,
                 "attacks": ["Fire Bolt", "Shocking Grasp", "Chromatic Orb"],
                 "atk_modifier": 4, "damage": (1, 12), "dmg_modifier": 12}
     elif chosen_class == "2":
-        return {"class": "Rogue", "AC": 14,
+        return {"class": "Rogue", "level_name": "Cutpurse", "AC": 14,
                 "attacks": ["Sneak Attack", "their Longsword", "their Crossbow"],
                 "atk_modifier": 12, "damage": (2, 4), "dmg_modifier": 4}
     elif chosen_class == "3":
-        return {"class": "Ranger", "AC": 16,
+        return {"class": "Ranger", "level_name": "Scout", "AC": 16,
                 "attacks": ["Strike", "their Longbow", "Thorn Whip"],
                 "atk_modifier": 10, "damage": (1, 6), "dmg_modifier": 6}
     elif chosen_class == "4":
-        return {"class": "Fighter", "AC": 18,
+        return {"class": "Paladin", "level_name": "Protector", "AC": 18,
                 "attacks": ["their Hand-axe", "their Crossbow", "a Powerful Punch"],
                 "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 10}
 
