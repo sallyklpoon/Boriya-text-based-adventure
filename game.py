@@ -22,15 +22,7 @@ import time
 def MAX_MAP_X():
     """Return maximum map x-dimension = 5.
 
-    A protective function for the map constant.
-
-    :precondition: MAX_MAP_X() is called
-    :postcondition: returns maximum x-dimension of a map as an integer >=0,
-                    as declared in docstring description above
     :return: MAX_MAP_X dimensions as an integer
-
-    >>> MAX_MAP_X()
-    5
     """
     return 5
 
@@ -38,15 +30,7 @@ def MAX_MAP_X():
 def MAX_MAP_Y():
     """Return maximum map y-dimension = 5.
 
-    A protective function for the map constant.
-
-    :precondition: MAX_MAP_Y() is called
-    :postcondition: returns maximum y-dimension of a map as an integer >=0,
-                    as declared in docstring description above
     :return: MAX_MAP_Y dimensions as an integer
-
-    >>> MAX_MAP_Y()
-    5
     """
     return 5
 
@@ -54,13 +38,7 @@ def MAX_MAP_Y():
 def MAP_SCRIPTS():
     """Return a tuple of map scripts.
 
-    :precondition: MAP_SCRIPTS() is called
-    :postcondition: returns a tuple of map descriptions
-    :postcondition: all elements in returned tuple (the descriptions) are strings
     :return: a tuple of map scripts
-
-    >>> type(MAP_SCRIPTS())
-    <class 'tuple'>
     """
     map_scripts = \
         ("The sun is beaming and birds are chirping -- finally getting some Vitamin D!",
@@ -78,15 +56,7 @@ def MAP_SCRIPTS():
 def START_X():
     """Return character's starting x-location = 0.
 
-    A protective function for the starting x-location constant.
-
-    :precondition: START_X() is called
-    :postcondition: returns starting x-location of the character, an integer >= 0,
-                    as declared in docstring description above
     :return: START_X location as an integer
-
-    >>> START_X()
-    0
     """
     return 0
 
@@ -94,15 +64,7 @@ def START_X():
 def START_Y():
     """Return character's starting y-location = 0.
 
-    A protective function for the starting y-location constant.
-
-    :precondition: START_Y() is called
-    :postcondition: returns starting y-location of the character, an integer >= 0,
-                    as declared in docstring description above
     :return: START_Y location as an integer
-
-    >>> START_Y()
-    0
     """
     return 0
 
@@ -110,14 +72,7 @@ def START_Y():
 def GOAL_LOCATION():
     """Return goal coordinates = (4, 4)
 
-    :precondition: GOAL() is called
-    :postcondition: returns the goal x, y, coordinates for a player to attain,
-                    as declared in docstring description above
-    :postcondition: x and y are integers >= 0
     :return: GOAL() coordinates as a tuple (x, y)
-
-    >>> GOAL_LOCATION()
-    (4, 4)
     """
     return 4, 4
 
@@ -128,37 +83,32 @@ def GOAL_LOCATION():
 def MOVE_OPTIONS():
     """Return tuple of move options as a list of string directions.
 
-    :precondition: MOVE_OPTIONS() is called
-    :postcondition: returns a tuple of valid directions as strings
-    :postcondition: elements in the tuple are "north", "south", "west", "east"
-    :return: tuple of directions, strings "north", "south", "west", "east"
-
-    >>> MOVE_OPTIONS()
-    ('go North', 'go South', 'go West', 'go East', 'Quit Game')
+    :return: tuple of direction options
     """
     return "go North", "go South", "go West", "go East", "Quit Game"
 
 
 def ENGAGE_OPTIONS():
-    """Return combat options as a tuple of string options.
+    """Return engage options as a tuple of strings.
 
-    :precondition: COMBAT_OPTIONS() is called
-    :postcondition: returns a tuple of valid combat options as strings
-    :postcondition: elements in the tuple are "I can do this! (fight)" and
-                    "Not today, Satan! (flee)"
-    :return: tuple of directions, strings "I can do this! (fight)", "Not today, Satan! (flee)"
-
-    >>> ENGAGE_OPTIONS()
-    ("'I can do this!' (fight)", "'Not today, Satan!' (flee)")
+    :return: tuple of engagement options
     """
-    return "'I can do this!' (fight)", "'Not today, Satan!' (flee)"
+    return "Fight", "Flee"
 
 
 def COMBAT_OPTIONS():
+    """Return combat options as a tuple of strings.
+
+    :return: tuple of combat options
+    """
     return "Continue Combat", "Flee"
 
 
 def CLASS_OPTIONS():
+    """Return class options as a tuple of strings.
+
+    :return: tuple of class options
+    """
     return "Sorcerer", "Rogue", "Ranger", "Fighter"
 
 
@@ -168,15 +118,7 @@ def CLASS_OPTIONS():
 def CHARACTER_MAX_HP():
     """Return the maximum character HP = 20.
 
-    A protective function for the character's maximum HP constant.
-
-    :precondition: MAX_CHARACTER_HP() is called
-    :postcondition: returns a character's maximum HP as an integer > 0,
-                    as declared in docstring description above
     :return: MAX_CHARACTER_HP, an integer of character's max HP
-
-    >>> CHARACTER_MAX_HP()
-    20
     """
     return 20
 
@@ -184,18 +126,7 @@ def CHARACTER_MAX_HP():
 def CHARACTER_DAMAGE_DIE():
     """Return the character damage die as a tuple, 1d10 = (1, 10).
 
-    A protective function for the character's damage die.
-
-    :precondition: CHARACTER_DAMAGE_DIE() is called
-    :postcondition: returns a character's damage die as a tuple,
-                    using specified values in description above
-    :postcondition: first and second element in the tuple are integers > 0
-    :postcondition: first element of the returned tuple is the specified number of times to roll
-    :postcondition: second element of the returned tuple is the number of sides on the die
     :return: a character's damage die as a tuple (rolls, number_of_sides)
-
-    >>> CHARACTER_DAMAGE_DIE()
-    (1, 10)
     """
     return 1, 10
 
@@ -203,15 +134,7 @@ def CHARACTER_DAMAGE_DIE():
 def CHARACTER_ATTACKS():
     """Return a tuple of a character's available attack types.
 
-    A protective function for the character's different attack types.
-
-    :precondition: CHARACTER_ATTACKS() is called
-    :postcondition: returns a tuple of character's available attack types
-    :postcondition: all elements in returned tuple (the descriptions) are strings
     :return: a tuple of character's attack types
-
-    >>> CHARACTER_ATTACKS()
-    ('Perseverance', 'Patience', 'Setting Healthy Boundaries', 'Empowerment', 'Integrity', 'Authenticity')
     """
     return ("Perseverance", "Patience", "Setting Healthy Boundaries",
             "Empowerment", "Integrity", "Authenticity")
@@ -220,14 +143,7 @@ def CHARACTER_ATTACKS():
 def CHARACTER_HEAL():
     """Return the maximum heal for HP if monster not encountered = 4.
 
-    A protective function for the character's maximum healing points.
-
-    :precondition: MAX_HEAL() is called
-    :postcondition: return value is accurate to the max_heal amount indicated in docstring description above
-    :postcondition: return value is an integer > 0
-
-    >>> CHARACTER_HEAL()
-    4
+    :return: an integer, the amount a character heals
     """
     return 4
 
@@ -235,8 +151,6 @@ def CHARACTER_HEAL():
 def CHARACTER_START_LEVEL():
     """Return the character's starting level = 1.
 
-    :precondition: CHARACTER_START_LEVEL is called
-    :postcondition: return the default level that a character begins at
     :return: an integer, representing the starting level of a character as defined above
     """
     return 1
@@ -245,8 +159,6 @@ def CHARACTER_START_LEVEL():
 def LEVEL_UP_THRESHOLD():
     """Return the threshold at which characters can level up = 500
 
-    :precondition: LEVEL_UP_THRESHOLD is called
-    :postcondition: return the threshold at which character is able to level up, an integer >= 0
     :return: an integer value of the threshold at which character can level up, as defined above
     """
     return 500
@@ -255,8 +167,6 @@ def LEVEL_UP_THRESHOLD():
 def LEVEL_DAMAGE_MODIFIER():
     """Return the bonus damage modifier for a character, 2
 
-    :precondition: LEVEL_DAMAGE_MODIFIER is called
-    :postcondition: returns the bonus damage modifier value as indicated in description above
     :return: integer of bonus damage modifier as indicated in description above
     """
     return 2
@@ -271,8 +181,6 @@ def FOE_NAMES():
     Recommend to use in conjunction with FOE_ATTACKS() which consists of Foe Attacks associated
     with each foe in this tuple.
 
-    :precondition: FOE_NAMES() is called
-    :postcondition: a tuple containing string foe names is returned
     :return: a tuple containing names of foes
     """
     all_foe_names = ("Coffee Shop Barista",
@@ -291,8 +199,6 @@ def FOE_ATTACKS():
     Recommend to use in conjunction with FOE_NAMES() which consists of Foe Names associated
     with each foe attack list in this tuple.
 
-    :precondition: FOE_ATTACKS() is called
-    :postcondition: a tuple containing foe attacks as strings is returned
     :return: a tuple containing foes attacks
     """
     all_foe_attacks = (
@@ -313,13 +219,7 @@ def FOE_MAX_HP():
 
     A protective function for the foe's maximum HP constant.
 
-    :precondition: MAX_FOE_HP() is called
-    :postcondition: returns a foe's maximum HP as an integer > 0,
-                    as declared in docstring description above
     :return: MAX_CHARACTER_HP, an integer of foe's max HP
-
-    >>> FOE_MAX_HP()
-    10
     """
     return 10
 
@@ -328,9 +228,6 @@ def FOE_DAMAGE_DIE():
     """Return the foe damage die as a tuple, 1d10 = (1, 10)
 
     :return: a foe's damage die as a tuple (rolls, number_of_sides)
-
-    >>> FOE_DAMAGE_DIE()
-    (1, 10)
     """
     return 1, 10
 
@@ -351,9 +248,6 @@ def INITIATIVE_DIE():
     """Return the initiative die, 1d100 = (1, 100)
 
     :return: an initiative die as a tuple (rolls, number_of_sides)
-
-    >>> INITIATIVE_DIE()
-    (1, 100)
     """
     return 1, 100
 
@@ -362,9 +256,6 @@ def ENCOUNTER_FOE_DIE():
     """Return the summon foe die, 1d10 = (1, 10)
 
     :return: an encounter foe die as a tuple (rolls, number_of_sides)
-
-    >>> ENCOUNTER_FOE_DIE()
-    (1, 10)
     """
     return 1, 10
 
@@ -373,9 +264,6 @@ def FLEE_DAMAGE_DIE():
     """Return the foe damage die when a character flees as a tuple, 1d4 = (1, 4)
 
     :return: a foe's damage die when a character flees unsuccessfully as a tuple (rolls, number_of_sides)
-
-    >>> FLEE_DAMAGE_DIE()
-    (1, 4)
     """
     return 1, 4
 
@@ -384,9 +272,6 @@ def ATTACK_DIE():
     """Return the attack roll die, 1d20 = (1, 20)
 
     :return: the attack roll die as a tuple, (rolls, number_of_sides)
-
-    >>> ATTACK_DIE()
-    (1, 20)
     """
     return 1, 20
 
@@ -491,7 +376,6 @@ def choose_class():
 def get_name():
     """Ask user for their character name.
 
-    :precondition: get_name is called
     :postcondition: return the user's input name as a string
     :return: string of character name
     """
@@ -532,10 +416,9 @@ def make_board():
 
     For key:value pairs in the dictionary, coordinates will be keys and descriptions will be values.
 
-    :precondition: make_board() has been called
     :postcondition: returns a dictionary data structure of the game's board
     :postcondition: the key values in the dictionary are coordinates represented in tuples (x, y)
-    :return:
+    :return: a dictionary of the game board
 
     >>> board = make_board()
     >>> type(board)
@@ -627,7 +510,6 @@ def print_map(character):
 def start_game():
     """Start up the game by returning map and character information.
 
-    :precondition: start_game() is called
     :postcondition: collects result of the map as a dictionary
     :postcondition: collects result of the character as a dictionary
     :postcondition: produces a tuple of both map and character data structures in the order (map, character)
@@ -744,7 +626,6 @@ def move_character(direction, character):
 def get_direction():
     """Ask user for the direction they want to go.
 
-    :precondition: get_direction is called
     :postcondition: return the user's input name as a string containing an integer [1, 5]
     :return: string of direction they'd like to go [1, 5]
     """
@@ -852,7 +733,6 @@ def heal(character):
 def summon_foe():
     """Summon a random foe.
 
-    :precondition: summon_foe() is called
     :postcondition: a random foe is summoned
     :postcondition: the return is a dictionary of foe's stats
     :postcondition: foe is randomly selected from FOE_LIBRARY()
@@ -914,7 +794,6 @@ def check_for_foe(character, achieved_goal):
 def get_engage_decision():
     """Ask user for the combat decision.
 
-    :precondition: get_direction is called
     :postcondition: return the user's input as a string containing an integer [1, 2]
     :return: string of combat decision [1, 2]
     """
@@ -985,7 +864,6 @@ def stay_in_combat():
 def initiative():
     """Determine if character has initiative in battle.
 
-    :precondition: initiative() is called
     :postcondition: determine if character has initiative first in a combat round by comparing character
                     and foe rolls for initiative
     :postcondition: returns True if character initiative roll > foe's initiative roll using INITIATIVE_DIE()
