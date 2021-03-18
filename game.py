@@ -949,6 +949,8 @@ def enter_combat(character, foe):
             else:
                 attacker, opposition = foe, character
             combat_round(attacker, opposition)
+            if opposition["HP"] > 0:
+                combat_round(opposition, attacker)
         else:
             return flee(character, foe)
 
@@ -1111,7 +1113,7 @@ def game():
 
 def main():
     """Execute doctest."""
-    doctest.testmod(verbose=True)
+    game()
 
 
 if __name__ == '__main__':
