@@ -283,6 +283,13 @@ def ATTACK_DIE():
 
 # ===== COMMON FUNCTIONS ===============================================================================================
 
+def hero_colour(string):
+    return f"\033[36m{string}\033[0m"
+
+
+def foe_colour(string):
+    return f"\033[33m{string}\033[0m"
+
 
 def roll(die):
     """Roll a die with the specified number of sides the specified number of times.
@@ -398,16 +405,15 @@ def make_character():
 
     No doctests, input is required
     """
-    character = {"name": get_name(),
+    character = {"name": hero_colour(get_name()),
                  "HP": CHARACTER_MAX_HP(),
                  "x-location": START_X(),
                  "y-location": START_Y(),
-                 "attacks": CHARACTER_ATTACKS(),
+                 "attacks": map(hero_colour, CHARACTER_ATTACKS()),
                  "EXP": 0,
                  "level": CHARACTER_START_LEVEL(),
                  "quit": False}
     character.update(choose_class())
-    print(character)
     return character
 
 
@@ -497,14 +503,14 @@ def print_map(character):
     ['[  ]', '[  ]', '[  ]', '[  ]', '[  ]']
     ['[  ]', '[  ]', '[  ]', '[  ]', '[  ]']
     """
-    map_row = ["[  ]" for _ in range(MAX_MAP_X())]
+    grid_row = ["[  ]" for _ in range(MAX_MAP_X())]
     for row in range(MAX_MAP_Y()):
         if row == character["y-location"]:
-            character_row = map_row.copy()
+            character_row = grid_row.copy()
             character_row[character["x-location"]] = "[웃]"
             print(character_row)
         else:
-            print(map_row)
+            print(grid_row)
 
 
 def start_game():
@@ -747,7 +753,7 @@ def summon_foe():
     """
     all_foes = list(zip(FOE_NAMES(), FOE_ATTACKS()))
     foe_name, foe_attacks = random.choice(all_foes)
-    return {"name": foe_name,
+    return {"name": foe_colour(foe_name),
             "attacks": foe_attacks,
             "atk_modifier": 0,
             "HP": FOE_MAX_HP(),
