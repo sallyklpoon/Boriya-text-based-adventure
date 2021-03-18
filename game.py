@@ -857,7 +857,7 @@ def foe_flee(foe):
     :param foe:
     :return:
     """
-    foe["flee"] = True if roll((1, 10)) <= 20 else False
+    foe["flee"] = True if roll((1, 10)) <= 2 else False
 
 
 def get_continue_choice():
@@ -986,7 +986,7 @@ def encounter(character, foe):
               f"You've earned +100 experience points.")
     if foe["flee"]:
         print(f"{foe['name']} ran away.")
-        time.sleep(3)
+        time.sleep(1)
 
 # ===== CHECK LEVELING UP ==============================================================================================
 
