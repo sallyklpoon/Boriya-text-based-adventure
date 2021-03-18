@@ -20,8 +20,8 @@
 | One or more functions from itertools module        |   N   |
 | The enumerate function                             |   N   |
 | The filter or map function                         |   N   |
-| The   |   N   |
-
+| The random module                                  |   N   |
+| Function annotations                               |       |
 
 
 ### Game Specifications
@@ -37,7 +37,7 @@
 | character has **class-based attacks**        |   N   |
 | Create 4 classes with special attributes     |   N   |
 | game end when boss killed at fixed position  |   N   |
-| character moves N, E, S, W                   |   N   |
+| character moves N, E, S, W                   |   Y   |
 | choice to run away/fight foe upon encounter  |   N   |
 | game end when boss killed at fixed position  |   N   |
 | 20% foe encounter each time character moves  |   N   |
