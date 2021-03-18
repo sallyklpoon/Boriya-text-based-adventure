@@ -361,14 +361,6 @@ def INITIATIVE_DIE():
 def ENCOUNTER_FOE_DIE():
     """Return the summon foe die, 1d10 = (1, 10)
 
-    A protective function for the summon foe die constant.
-
-    :precondition: SUMMON_FOE_DIE() is called
-    :postcondition: returns the die to roll for chances that a character encounters a foe as a tuple,
-                    using specified values in description above
-    :postcondition: first and second element in the tuple are integers > 0
-    :postcondition: first element of the returned tuple is the specified number of times to roll
-    :postcondition: second element of the returned tuple is the number of sides on the die
     :return: an encounter foe die as a tuple (rolls, number_of_sides)
 
     >>> ENCOUNTER_FOE_DIE()
@@ -380,20 +372,23 @@ def ENCOUNTER_FOE_DIE():
 def FLEE_DAMAGE_DIE():
     """Return the foe damage die when a character flees as a tuple, 1d4 = (1, 4)
 
-    A protective function for the foe's damage die when a character flees.
-
-    :precondition: FLEE_DAMAGE_DIE() is called
-    :postcondition: returns a foe's damage die as a tuple,
-                    using specified values in description above
-    :postcondition: first and second element in the tuple are integers > 0
-    :postcondition: first element of the returned tuple is the specified number of times to roll
-    :postcondition: second element of the returned tuple is the number of sides on the die
     :return: a foe's damage die when a character flees unsuccessfully as a tuple (rolls, number_of_sides)
 
     >>> FLEE_DAMAGE_DIE()
     (1, 4)
     """
     return 1, 4
+
+
+def ATTACK_DIE():
+    """Return the attack roll die, 1d20 = (1, 20)
+
+    :return: the attack roll die as a tuple, (rolls, number_of_sides)
+
+    >>> ATTACK_DIE()
+    (1, 20)
+    """
+    return 1, 20
 
 
 # ======================================================================================================================
@@ -477,15 +472,19 @@ def choose_class():
     chosen_class = get_class()
     if chosen_class == "1":
         return {"class": "Sorcerer", "AC": 12,
+                "attacks": ["Fire Bolt", "Shocking Grasp", "Chromatic Orb"],
                 "atk_modifier": 4, "damage": (1, 12), "dmg_modifier": 12}
     elif chosen_class == "2":
         return {"class": "Rogue", "AC": 14,
+                "attacks": ["Sneak Attack", "their Longsword", "their Crossbow"],
                 "atk_modifier": 12, "damage": (2, 4), "dmg_modifier": 4}
     elif chosen_class == "3":
         return {"class": "Ranger", "AC": 16,
+                "attacks": ["Strike", "their Longbow", "Thorn Whip"],
                 "atk_modifier": 10, "damage": (1, 6), "dmg_modifier": 6}
     elif chosen_class == "4":
         return {"class": "Fighter", "AC": 18,
+                "attacks": ["their Hand-axe", "their Crossbow", "a Powerful Punch"],
                 "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 10}
 
 
@@ -524,6 +523,7 @@ def make_character():
                  "level": CHARACTER_START_LEVEL(),
                  "quit": False}
     character.update(choose_class())
+    print(character)
     return character
 
 
@@ -869,9 +869,11 @@ def summon_foe():
     foe_name, foe_attacks = random.choice(all_foes)
     return {"name": foe_name,
             "attacks": foe_attacks,
+            "atk_modifier": 0,
             "HP": FOE_MAX_HP(),
             "damage": FOE_DAMAGE_DIE(),
-            "bonus damage": 0}
+            "dmg_modifier": 0,
+            "AC": 10}
 
 
 def check_for_foe(character, achieved_goal):
@@ -909,7 +911,7 @@ def check_for_foe(character, achieved_goal):
 # ===== FOE ENCOUNTER ==================================================================================================
 
 
-def get_decision():
+def get_engage_decision():
     """Ask user for the combat decision.
 
     :precondition: get_direction is called
@@ -933,9 +935,7 @@ def engage(foe_name):
     """
     print(f"\n A {foe_name} has showed up!\n")
     get_menu("engage")
-    character_decision = get_decision()
-    time.sleep(2)
-    return character_decision == "1"
+    return get_engage_decision() == "1"
 
 
 def flee(character, foe):
@@ -969,6 +969,17 @@ def flee(character, foe):
         print(f"You said 'bye, Felicia!' and got out of {foe['name']}'s view range.\n"
               f"Phew! That was a close one.\n")
     time.sleep(2)
+
+
+def get_continue_choice():
+    return input("Enter the number of your decision: ")
+
+
+def stay_in_combat():
+    print("Choose your next action.")
+    get_menu("combat")
+    continue_choice = get_continue_choice()
+    return continue_choice == "1"
 
 
 def initiative():
@@ -1013,14 +1024,16 @@ def combat_round(attacker, opposition):
 
     No doctests, uses random module
     """
-    response = random.choice(DAMAGE_RESPONSE())
-    attack_damage = roll(attacker["damage"]) + attacker["bonus damage"]
-    opposition["HP"] -= attack_damage
-    print(f"{attacker['name']} attacks using {random.choice(attacker['attacks'])}!")
+    attack_roll = roll(ATTACK_DIE()) + attacker["atk_modifier"]
+    print(f"\n{attacker['name']} attacks using {random.choice(attacker['attacks'])}!")
     time.sleep(1)
-    print(f"{opposition['name']} {response} and takes {attack_damage} damage.\n"
-          f"{opposition['name']}'s current optimism level is now {opposition['HP']}...\n")
-    print("")
+    if attack_roll >= opposition["AC"]:
+        attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
+        opposition["HP"] -= attack_damage
+        print(f"{opposition['name']} {random.choice(DAMAGE_RESPONSE())} and takes {attack_damage} damage.\n"
+              f"{opposition['name']}'s health level is now at {opposition['HP']}...\n")
+    else:
+        print(f"{opposition['name']} dodges the attack successfully.")
     time.sleep(2)
 
 
@@ -1042,13 +1055,14 @@ def enter_combat(character, foe):
     No doctests, called functions, combat_round() and initiative() uses random module
     """
     while character["HP"] > 0 and foe["HP"] > 0:
-        if initiative():
-            attacker = character
-            opposition = foe
+        if stay_in_combat():
+            if initiative():
+                attacker, opposition = character, foe
+            else:
+                attacker, opposition = foe, character
+            combat_round(attacker, opposition)
         else:
-            attacker = foe
-            opposition = character
-        combat_round(attacker, opposition)
+            return flee(character, foe)
 
 
 def encounter(character, foe):
@@ -1075,11 +1089,12 @@ def encounter(character, foe):
     """
     enter_combat(character, foe) if engage(foe["name"]) else flee(character, foe)
     if foe["HP"] <= 0:
+        character["EXP"] += 100
         print(f"Fantastic, you've successfully defeated this {foe['name']},\n"
               f"you triumph in glory as you watch their shoulders slump\n"
               f"and they walk away with their head down in shame.\n"
-              f"Way to go, {character['name']}! ヽ(^◇^*)/\n")
-        character["XP"] += 100
+              f"Way to go, {character['name']}! ヽ(^◇^*)/\n"
+              f"You've earned +100 experience points.")
         time.sleep(3)
 
 # ===== CHECK LEVELING UP ==============================================================================================
@@ -1089,42 +1104,13 @@ def level_up(character):
     """Levels up character if they meet level_up threshold!
 
     :param character: a dictionary of character stats
-    :precondition: character is a dictionary of character stats containing the keys "XP" and "level"
-    :precondition: XP value is an integer >= 0, collection of experience points that character has
+    :precondition: character is a dictionary of character stats containing the keys "EXP" and "level"
+    :precondition: EXP value is an integer >= 0, collection of experience points that character has
     :precondition: "level" value is an integer >= 0 indicating the current level character is at
-    :return: character's level state modified to +1 if XP has reached the leveling up threshold
+    :return: character's level state modified to +1 if EXP has reached the leveling up threshold
 
-    >>> sample_character = {"XP": 0, "level": 0, 'bonus damage': 0}
-    >>> level_up(sample_character)
-    >>> print(sample_character)
-    {'XP': 0, 'level': 0, 'bonus damage': 0}
-    >>> sample_character = {"XP": 500, "level": 0, 'bonus damage': 0}
-    >>> level_up(sample_character)
-    <BLANKLINE>
-     ~~// (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ You've levelled up! *:･ﾟ✧//~~
-    Wow! Snazzy stuff! You're now at level 1!
-    And guess what... you get to deal 2 more damage to your opponents now!
-    <BLANKLINE>
-    >>> print(sample_character)
-    {'XP': 0, 'level': 1, 'bonus damage': 2}
-    >>> sample_character = {"XP": 500, "level": 1, 'bonus damage': 2}
-    >>> level_up(sample_character)
-    <BLANKLINE>
-     ~~// (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ You've levelled up! *:･ﾟ✧//~~
-    Wow! Snazzy stuff! You're now at level 2!
-    And guess what... you get to deal 4 more damage to your opponents now!
-    <BLANKLINE>
-    >>> print(sample_character)
-    {'XP': 0, 'level': 2, 'bonus damage': 4}
     """
-    level_up_mod = character["XP"] // LEVEL_UP_THRESHOLD()
-    if level_up_mod > 0:
-        character["XP"] = 0
-        character["level"] += level_up_mod
-        character["bonus damage"] = LEVEL_DAMAGE_MODIFIER() * character["level"]
-        print(f"\n ~~// (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ You've levelled up! *:･ﾟ✧//~~\n"
-              f"Wow! Snazzy stuff! You're now at level {character['level']}!\n"
-              f"And guess what... you get to deal {character['bonus damage']} more damage to your opponents now!\n")
+    pass
 
 
 # ===== END GAME =======================================================================================================
@@ -1169,7 +1155,7 @@ def end_game(character):
     We hope to see you again soon!
     =======================================================
     <BLANKLINE>
-    Thank you for playing, Suzie! - Sally (✿◠‿◠)
+    Thank you for playing, Suzie! - Marti & Sally (✿◠‿◠)
     """
     if character["HP"] <= 0:
         print("=======================================================\n"
@@ -1188,7 +1174,7 @@ def end_game(character):
               "You have successfully quit the game.\n"
               "We hope to see you again soon!\n"
               "=======================================================\n")
-    print(f"Thank you for playing, {character['name']}! - Sally (✿◠‿◠)")
+    print(f"Thank you for playing, {character['name']}! - Marti & Sally (✿◠‿◠)")
 
 
 # ======================================================================================================================
@@ -1229,7 +1215,7 @@ def game():
         else:
             achieved_goal = check_goal_attained(character["x-location"], character["y-location"])
             check_for_foe(character, achieved_goal)
-            level_up(character)
+            # level_up(character)
     end_game(character)
 
 
@@ -1241,4 +1227,3 @@ def main():
 if __name__ == '__main__':
     # Run main() if module is being run as a program
     main()
-
