@@ -949,7 +949,6 @@ def enter_combat(character, foe):
             else:
                 attacker, opposition = foe, character
             combat_round(attacker, opposition)
-            foe_flee(foe)
         else:
             return flee(character, foe)
 
