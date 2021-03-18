@@ -753,7 +753,8 @@ def summon_foe():
             "HP": FOE_MAX_HP(),
             "damage": FOE_DAMAGE_DIE(),
             "dmg_modifier": 0,
-            "AC": 10}
+            "AC": 10,
+            "flee": False}
 
 
 def check_for_foe(character, achieved_goal):
@@ -850,6 +851,15 @@ def flee(character, foe):
     time.sleep(2)
 
 
+def foe_flee(foe):
+    """Determine if foe will flee.
+
+    :param foe:
+    :return:
+    """
+    foe["flee"] = True if roll((1, 10)) <= 20 else False
+
+
 def get_continue_choice():
     return input("Enter the number of your decision: ")
 
@@ -932,13 +942,14 @@ def enter_combat(character, foe):
 
     No doctests, called functions, combat_round() and initiative() uses random module
     """
-    while character["HP"] > 0 and foe["HP"] > 0:
+    while character["HP"] > 0 and foe["HP"] > 0 and not foe["flee"]:
         if stay_in_combat():
             if initiative():
                 attacker, opposition = character, foe
             else:
                 attacker, opposition = foe, character
             combat_round(attacker, opposition)
+            foe_flee(foe)
         else:
             return flee(character, foe)
 
@@ -973,6 +984,8 @@ def encounter(character, foe):
               f"and they walk away with their head down in shame.\n"
               f"Way to go, {character['name']}! ヽ(^◇^*)/\n"
               f"You've earned +100 experience points.")
+    if foe["flee"]:
+        print(f"{foe['name']} ran away.")
         time.sleep(3)
 
 # ===== CHECK LEVELING UP ==============================================================================================
