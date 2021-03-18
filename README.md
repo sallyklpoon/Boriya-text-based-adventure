@@ -32,22 +32,22 @@
 | 25 x 25 grid environment                     |   Y   |
 | character has **name**                       |   Y   |
 | character has **HP**                         |   Y   |
-| character has **class**                      |   N   |
-| character has **level**; start Lvl.1         |   N   |
+| character has **class**                      |   Y   |
+| character has **level**; start Lvl.1         |   Y   |
 | character has **class-based attacks**        |   N   |
-| Create 4 classes with special attributes     |   N   |
+| Create 4 classes with special attributes     |   Y   |
 | game end when boss killed at fixed position  |   N   |
 | character moves N, E, S, W                   |   Y   |
-| choice to run away/fight foe upon encounter  |   N   |
+| choice to run away/fight foe upon encounter  |   Y   |
 | game end when boss killed at fixed position  |   N   |
-| 20% foe encounter each time character moves  |   N   |
-| choice to flee before or during encounter    |   N   |
-| 20% foe will flee after each combat round    |   N   |
-| 20% foe will damage you if you flee          |   N   |
+| 20% foe encounter each time character moves  |   Y   |
+| choice to flee before or during encounter    |   Y   |
+| 20% foe will flee after each combat round    |   Y   |
+| 20% foe will damage you if you flee          |   Y   |
 | ASCII Map                                    |   Y   |
-| End when user choose quit instead of move    |   N   |
+| End when user choose quit instead of move    |   Y   |
 | Simple leveling scheme                       |   N   |
-| Max HP increases at lv  l-up                 |   N   |
+| Max HP increases at lvl-up                   |   N   |
 | Damage character does increases at lvl-up    |   N   |
 | Foes become more challenging to defeat       |   N   |
 | Game ends if character dies                  |   N   |
