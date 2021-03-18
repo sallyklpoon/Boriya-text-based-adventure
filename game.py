@@ -999,7 +999,7 @@ def gain_exp(character):
     """
     print(f"You've earned +100 experience points.\n")
     character["EXP"] += 100
-    if character["EXP"] == 500:
+    if character["EXP"] == 100:
         level_up(character)
     if character["EXP"] == 1250:
         level_up(character)
@@ -1019,6 +1019,66 @@ def level_up(character):
     """
     character["level"] += 1
     print(f"You've level up, bless up fam.")
+
+    if character["class"] == "Illusionist":
+        level_illusionist(character)
+    elif character["class"] == "Rogue":
+        level_rogue(character)
+    elif character["class"] == "Ranger":
+        level_ranger(character)
+    elif character["class"] == "Paladin":
+        level_paladin(character)
+
+def level_illusionist(character):
+    """
+
+    :param character:
+    :return:
+    """
+    if character["level"] == 2:
+        character["level_name"] = "Cabalist"
+    elif character["level"] == 3:
+        character["level_name"] = "Reality Bender"
+    print(f"You are now a {character['level_name']}.")
+
+
+def level_rogue(character):
+    """
+
+    :param character:
+    :return:
+    """
+    if character["level"] == 2:
+        character["level_name"] = "Assassin"
+    elif character["level"] == 3:
+        character["level_name"] = "Shadow Master"
+    print(f"You are now a {character['level_name']}.")
+
+def level_ranger(character):
+    """
+
+    :param character:
+    :return:
+    """
+    if character["level"] == 2:
+        character["level_name"] = "Pathfinder"
+    elif character["level"] == 3:
+        character["level_name"] = "Far Wanderer"
+    print(f"You are now a {character['level_name']}.")
+
+def level_ranger(character):
+    """
+
+    :param character:
+    :return:
+    """
+    if character["level"] == 2:
+        character["level_name"] = "Guardian"
+    elif character["level"] == 3:
+        character["level_name"] = "Justiciar"
+    print(f"You are now a {character['level_name']}.")
+
+
 
 
 # ===== END GAME =======================================================================================================
