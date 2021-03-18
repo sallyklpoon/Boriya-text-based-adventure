@@ -979,17 +979,32 @@ def encounter(character, foe):
     """
     enter_combat(character, foe) if engage(foe["name"]) else flee(character, foe)
     if foe["HP"] <= 0:
-        character["EXP"] += 100
         print(f"Fantastic, you've successfully defeated this {foe['name']},\n"
               f"you triumph in glory as you watch their shoulders slump\n"
               f"and they walk away with their head down in shame.\n"
-              f"Way to go, {character['name']}! ヽ(^◇^*)/\n"
-              f"You've earned +100 experience points.")
+              f"Way to go, {character['name']}! \(^◇^*)/\n")
+        gain_exp(character)
     if foe["flee"]:
         print(f"{foe['name']} ran away.")
         time.sleep(1)
 
 # ===== CHECK LEVELING UP ==============================================================================================
+
+
+def gain_exp(character):
+    """
+
+    :param character:
+    :return:
+    """
+    print(f"You've earned +100 experience points.\n")
+    character["EXP"] += 100
+    if character["EXP"] == 500:
+        level_up(character)
+    if character["EXP"] == 1250:
+        level_up(character)
+    if character["EXP"] == 2500:
+        level_up(character)
 
 
 def level_up(character):
@@ -1002,7 +1017,8 @@ def level_up(character):
     :return: character's level state modified to +1 if EXP has reached the leveling up threshold
 
     """
-    pass
+    character["level"] += 1
+    print(f"You've level up, bless up fam.")
 
 
 # ===== END GAME =======================================================================================================
