@@ -342,7 +342,7 @@ def get_menu(menu_type):
 
 
 def valid_menu_input(selected_option, menu_type):
-    return int(selected_option) not in range(1, len(menu_type) + 1)
+    return int(selected_option) in range(1, len(menu_type) + 1)
 
 
 # ===== START GAME =====================================================================================================
