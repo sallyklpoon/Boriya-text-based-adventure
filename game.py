@@ -120,7 +120,7 @@ def ENGAGE_OPTIONS():
 
     :return: tuple of engagement options
     """
-    return "Fight", "Flee"
+    return "Attack", "Flee"
 
 
 def COMBAT_OPTIONS():
@@ -363,12 +363,11 @@ def get_menu(menu_type):
     [3] Ranger
     [4] Fighter
     """
+    print("")
     if menu_type == "move":
         menu = MOVE_OPTIONS()
     elif menu_type == "engage":
         menu = ENGAGE_OPTIONS()
-    elif menu_type == "combat":
-        menu = COMBAT_OPTIONS()
     else:
         menu = CLASS_OPTIONS()
     for number, option in enumerate(menu, 1):
@@ -380,6 +379,60 @@ def valid_menu_input(selected_option, menu_type):
 
 
 # ===== START GAME =====================================================================================================
+
+
+def lvl_board_max(level):
+    if level == 1:
+        return MAX_MAP_Y_LVL1(), MAX_MAP_Y_LVL1()
+    elif level == 2:
+        return MAX_MAP_X_LVL2(), MAX_MAP_Y_LVL2()
+    else:
+        return MAX_MAP_X_LVL3(), MAX_MAP_X_LVL3()
+
+
+def make_board(character):
+    """Create a dictionary to represent a board with given map_dimensions.
+
+    For key:value pairs in the dictionary, coordinates will be keys and descriptions will be values.
+
+    :postcondition: returns a dictionary data structure of the game's board
+    :postcondition: the key values in the dictionary are coordinates represented in tuples (x, y)
+    :return: a dictionary of the game board
+
+    # >>> board = make_board()
+    # >>> type(board)
+    # <class 'dict'>
+    # >>> pp = pprint.PrettyPrinter()
+    # >>> pp.pprint(board)
+    """
+    map_script = itertools.cycle(MAP_SCRIPTS())
+    lvl_max_x, lvl_max_y = lvl_board_max(character['level'])
+    board = {(x_location, y_location): next(map_script)
+             for x_location in range(lvl_max_x)
+             for y_location in range(lvl_max_y)}
+    board['max-x'], board['max-y'] = lvl_max_x, lvl_max_y
+    return board
+
+
+def print_map(character, board):
+    """Print a map of where the character is located on a board.
+
+    :param character: a dictionary of character stats
+    :param board: a dictionary of the board
+    :precondition
+    :precondition: character is a dictionary of stats with keys, "x-location" and "y-location"
+    :precondition: the values of "x-location" and "y-location" are both integers that are >= 0
+                   and less than the MAX_MAP_X and MAX_MAP_Y values, respectively
+    :postcondition: print out a visual map with the correct location as to where the character is on a board
+    :return: printed map
+    """
+    for row in range(board['max-y']):
+        for column in range(board['max-x']):
+            print(f"[{hero_colour('웃')}]", end="") \
+                if (column, row) == (character["x-location"], character["y-location"])\
+                else print("[  ]", end="")
+        print("")
+
 
 def get_class():
     return input("Enter the number of your class choice: ")
@@ -436,65 +489,12 @@ def make_character():
                  "HP": CHARACTER_MAX_HP(),
                  "x-location": START_X(),
                  "y-location": START_Y(),
-                 "attacks": map(hero_colour, CHARACTER_ATTACKS()),
                  "EXP": 0,
                  "level": CHARACTER_START_LEVEL(),
                  "quit": False}
     character.update(choose_class())
+    character["attacks"] = list(map(hero_colour, character["attacks"]))
     return character
-
-
-def lvl_board_max(level):
-    if level == 1:
-        return MAX_MAP_Y_LVL1(), MAX_MAP_Y_LVL1()
-    elif level == 2:
-        return MAX_MAP_X_LVL2(), MAX_MAP_Y_LVL2()
-    else:
-        return MAX_MAP_X_LVL3(), MAX_MAP_X_LVL3()
-
-
-def make_board(character):
-    """Create a dictionary to represent a board with given map_dimensions.
-
-    For key:value pairs in the dictionary, coordinates will be keys and descriptions will be values.
-
-    :postcondition: returns a dictionary data structure of the game's board
-    :postcondition: the key values in the dictionary are coordinates represented in tuples (x, y)
-    :return: a dictionary of the game board
-
-    # >>> board = make_board()
-    # >>> type(board)
-    # <class 'dict'>
-    # >>> pp = pprint.PrettyPrinter()
-    # >>> pp.pprint(board)
-    """
-    map_script = itertools.cycle(MAP_SCRIPTS())
-    lvl_max_x, lvl_max_y = lvl_board_max(character['level'])
-    board = {(x_location, y_location): next(map_script)
-             for x_location in range(lvl_max_x)
-             for y_location in range(lvl_max_y)}
-    board['max-x'], board['max-y'] = lvl_max_x, lvl_max_y
-    return board
-
-
-def print_map(character, board):
-    """Print a map of where the character is located on a board.
-
-    :param character: a dictionary of character stats
-    :param board: a dictionary of the board
-    :precondition
-    :precondition: character is a dictionary of stats with keys, "x-location" and "y-location"
-    :precondition: the values of "x-location" and "y-location" are both integers that are >= 0
-                   and less than the MAX_MAP_X and MAX_MAP_Y values, respectively
-    :postcondition: print out a visual map with the correct location as to where the character is on a board
-    :return: printed map
-    """
-    for row in range(board['max-y']):
-        for column in range(board['max-x']):
-            print(f"[{hero_colour('웃')}]", end="") \
-                if (column, row) == (character["x-location"], character["y-location"])\
-                else print("[  ]", end="")
-        print("")
 
 
 def start_game():
@@ -616,7 +616,7 @@ def get_direction():
     :postcondition: return the user's input name as a string containing an integer [1, 5]
     :return: string of direction they'd like to go [1, 5]
     """
-    return input("Which direction would you like to go? (Enter the number of your decision): ")
+    return input("Enter the number of your decision: ")
 
 
 def next_move(character, board):
@@ -633,6 +633,7 @@ def next_move(character, board):
     No doctests, requires user input
     """
     move_valid = False
+    print("\nWhich direction would you like to go?")
     get_menu("move")
     while not move_valid:
         direction = get_direction()
@@ -713,8 +714,9 @@ def heal(character):
         character["HP"] += CHARACTER_HEAL()
     else:
         character["HP"] = CHARACTER_MAX_HP()
-    print("\n.・。.・゜ As you take a step, you suddenly feel reinvigorated by the decent day you're having.・゜・。.\n"
-          f".・。.・゜Your optimism has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n")
+    print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel reinvigorated by the decent day you're having.・゜・。.\n"
+          f".・。.・゜Your optimism has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
+    time.sleep(1)
 
 
 def summon_foe():
@@ -735,7 +737,7 @@ def summon_foe():
     all_foes = list(zip(FOE_NAMES(), FOE_ATTACKS()))
     foe_name, foe_attacks = random.choice(all_foes)
     return {"name": foe_colour(foe_name),
-            "attacks": foe_attacks,
+            "attacks": list(map(foe_colour, foe_attacks)),
             "atk_modifier": 0,
             "HP": FOE_MAX_HP(),
             "damage": FOE_DAMAGE_DIE(),
@@ -787,14 +789,12 @@ def get_engage_decision():
     :postcondition: return the user's input as a string containing an integer [1, 2]
     :return: string of combat decision [1, 2]
     """
-    return input("What will you do? (Enter the number of your decision): ")
+    return input("Enter the number of your decision: ")
 
 
-def engage(foe_name):
+def engage():
     """Ask character if they would like to engage with or flee from foe.
 
-    :param foe_name: is a string of the foe's name
-    :precondition: foe_name is a string representing the foe's name
     :postcondition: determine, based on character's decision, if they will engage in combat or flee
     :postcondition: if user's input is 1, result of engage is True (engage)
     :postcondition: if user's input is 2, result of engage is False (flee)
@@ -802,9 +802,11 @@ def engage(foe_name):
 
     No doctests, user input required
     """
-    print(f"\n A {foe_name} has showed up!\n")
+    print("What will you do next, adventurer?")
     get_menu("engage")
-    return get_engage_decision() == "1"
+    engage_choice = get_engage_decision()
+    time.sleep(1)
+    return engage_choice == "1"
 
 
 def flee(character, foe):
@@ -847,17 +849,6 @@ def foe_flee(foe):
     :return:
     """
     foe["flee"] = True if roll((1, 10)) <= 2 else False
-
-
-def get_continue_choice():
-    return input("Enter the number of your decision: ")
-
-
-def stay_in_combat():
-    print("Choose your next action.")
-    get_menu("combat")
-    continue_choice = get_continue_choice()
-    return continue_choice == "1"
 
 
 def initiative():
@@ -907,8 +898,9 @@ def combat_round(attacker, opposition):
     if attack_roll >= opposition["AC"]:
         attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
         opposition["HP"] -= attack_damage
-        print(f"{opposition['name']} {random.choice(DAMAGE_RESPONSE())} and takes {attack_damage} damage.\n"
-              f"{opposition['name']}'s health level is now at {opposition['HP']}...\n")
+        print(f"{opposition['name']} {random.choice(DAMAGE_RESPONSE())} and takes "
+              f"\033[31m{attack_damage}\033[0m damage.\n"
+              f"{opposition['name']}'s health level is now at \033[34m{opposition['HP']}\033[0m...\n")
     else:
         print(f"{opposition['name']} dodges the attack successfully.")
     time.sleep(2)
@@ -932,7 +924,7 @@ def enter_combat(character, foe):
     No doctests, called functions, combat_round() and initiative() uses random module
     """
     while character["HP"] > 0 and foe["HP"] > 0 and not foe["flee"]:
-        if stay_in_combat():
+        if engage():
             if initiative():
                 attacker, opposition = character, foe
             else:
@@ -968,16 +960,18 @@ def encounter(character, foe, board):
 
     No doctests, called enter_combat() and flee() uses random module
     """
-    enter_combat(character, foe) if engage(foe["name"]) else flee(character, foe)
+    print(f"\n A {foe['name']} has showed up!\n")
+    enter_combat(character, foe)
     if foe["HP"] <= 0:
         print(f"Fantastic, you've successfully defeated this {foe['name']},\n"
               f"you triumph in glory as you watch their shoulders slump\n"
               f"and they walk away with their head down in shame.\n"
               f"Way to go, {character['name']}! \(^◇^*)/\n")
         gain_exp(character, board)
+
     if foe["flee"]:
         print(f"{foe['name']} ran away.")
-        time.sleep(1)
+    time.sleep(1)
 
 # ===== CHECK LEVELING UP ==============================================================================================
 
@@ -986,10 +980,11 @@ def gain_exp(character, board):
     """
 
     :param character:
+    :param board:
     :return:
     """
-    print(f"You've earned +100 experience points.\n")
     character["EXP"] += 100
+    print(f"You've earned +100 experience points. Current EXP: {hero_colour(str(character['EXP']))}\n")
     if character["EXP"] == 500:
         level_up(character, board)
     if character["EXP"] == 1250:
