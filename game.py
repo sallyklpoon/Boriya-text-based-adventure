@@ -677,7 +677,7 @@ def check_goal_attained(x_location, y_location):
 
 
 def heal(character):
-    """Heal a character, notifying them that they have been healed to new HP.
+    """Heal a character if necessary, notifying them that they have been healed to new HP.
 
     Heal a character by modifying their current HP to CHARACTER_HEAL(),
     but without exceeding CHARACTER_MAX_HP().
@@ -710,13 +710,16 @@ def heal(character):
     20
     """
     threshold = CHARACTER_MAX_HP() - CHARACTER_HEAL()
-    if character["HP"] <= threshold:
-        character["HP"] += CHARACTER_HEAL()
+    if character["HP"] == CHARACTER_MAX_HP():
+        print("\nNothing Happens.")
     else:
-        character["HP"] = CHARACTER_MAX_HP()
-    print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel "
-          "reinvigorated by the decent day you're having.・゜・。.\n"
-          f".・。.・゜Your optimism has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
+        if character["HP"] < threshold:
+            character["HP"] += CHARACTER_HEAL()
+        else:
+            character["HP"] = CHARACTER_MAX_HP()
+        print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel "
+              "reinvigorated by the decent day you're having.・゜・。.\n"
+              f".・。.・゜Your optimism has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
     time.sleep(1)
 
 
@@ -778,9 +781,7 @@ def check_for_foe(character, achieved_goal, board):
         else:
             heal(character)
     else:
-        heal(character) if character["HP"] < CHARACTER_MAX_HP() else print("Nothing Happens")
-
-
+        heal(character)
 
 
 # ===== FOE ENCOUNTER ==================================================================================================
@@ -835,8 +836,8 @@ def flee(character, foe):
         print(f"As you attempt to flee from {foe['name']}, they catch up to you,\n"
               f"using {random.choice(foe['attacks'])} and dealing \033[31m{damage}\033[0m damage.\n")
         time.sleep(1)
-        print(f"You came out here to have a good time\n "
-              f"but you're feeling pretty attacked right now.\n "
+        print(f"You came out here to have a good time\n"
+              f"but you're feeling pretty attacked right now.\n"
               f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
     else:
         print(f"\nYou said 'bye, Felicia!' and got out of {foe['name']}'s view range.\n"
@@ -1009,7 +1010,7 @@ def level_up(character, board):
 
     """
     character["level"] += 1
-    print(f"You've level up, bless up fam.")
+    print(f"You've level up, bless up fam. You're now able to explore new horizons!")
 
     if character["class"] == "Illusionist":
         level_illusionist(character)
