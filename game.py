@@ -19,39 +19,55 @@ import time
 # ===== MAP CONSTANTS ==================================================================================================
 
 
-def MAX_MAP_X_LVL1():
-    """Return maximum map x-dimension = 5.
+def MAX_MAP_X_LVL1() -> int:
+    """Return maximum map x-dimension at level 1.
 
-    :return: MAX_MAP_X dimensions as an integer
+    :return: the dimension as an integer
     """
     return 10
 
 
-def MAX_MAP_Y_LVL1():
-    """Return maximum map y-dimension = 5.
+def MAX_MAP_Y_LVL1() -> int:
+    """Return maximum map y-dimension at level 1.
 
-    :return: MAX_MAP_Y dimensions as an integer
+    :return: the dimension as an integer
     """
     return 10
 
 
-def MAX_MAP_X_LVL2():
+def MAX_MAP_X_LVL2() -> int:
+    """Return maximum map x-dimension at level 2.
+
+    :return: the dimension as an integer
+    """
     return 25
 
 
-def MAX_MAP_Y_LVL2():
+def MAX_MAP_Y_LVL2() -> int:
+    """Return maximum map y-dimension at level 2.
+
+    :return: the dimension as an integer
+    """
     return 20
 
 
-def MAX_MAP_X_LVL3():
+def MAX_MAP_X_LVL3() -> int:
+    """Return maximum map x-dimension at level 3.
+
+    :return: the dimension as an integer
+    """
     return 25
 
 
-def MAX_MAP_Y_LVL3():
+def MAX_MAP_Y_LVL3() -> int:
+    """Return maximum map y-dimension at level 3.
+
+    :return: the dimension as an integer
+    """
     return 25
 
 
-def MAP_SCRIPTS():
+def MAP_SCRIPTS() -> tuple:
     """Return a tuple of map scripts.
 
     :return: a tuple of map scripts
@@ -69,7 +85,7 @@ def MAP_SCRIPTS():
     return map_scripts
 
 
-def START_X():
+def START_X() -> int:
     """Return character's starting x-location = 0.
 
     :return: START_X location as an integer
@@ -77,7 +93,7 @@ def START_X():
     return 0
 
 
-def START_Y():
+def START_Y() -> int:
     """Return character's starting y-location = 0.
 
     :return: START_Y location as an integer
@@ -85,7 +101,7 @@ def START_Y():
     return 0
 
 
-def GOAL_LOCATION():
+def GOAL_LOCATION() -> tuple:
     """Return goal coordinates = (4, 4)
 
     :return: GOAL() coordinates as a tuple (x, y)
@@ -93,7 +109,7 @@ def GOAL_LOCATION():
     return 4, 4
 
 
-def START_GAME_MSG():
+def START_GAME_MSG() -> str:
     return "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"\
            "Welcome to Avocado Toast, a game about Gen Z and Millennial struggles\n"\
            "because we are a self-deprecating generation.\n" \
@@ -104,7 +120,7 @@ def START_GAME_MSG():
            "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"
 
 
-def CLASS_INFO():
+def CLASS_INFO() -> str:
     return "\033[1m<< Class Option 1 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
            "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
            "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
@@ -119,13 +135,13 @@ def CLASS_INFO():
            "\n" \
            "\033[1m<< Class Option 4 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
            "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
-           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
+           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n"
 
 
 # ===== MENU CONSTANTS =================================================================================================
 
 
-def MOVE_OPTIONS():
+def MOVE_OPTIONS() -> tuple:
     """Return tuple of move options as a list of string directions.
 
     :return: tuple of direction options
@@ -133,7 +149,7 @@ def MOVE_OPTIONS():
     return "go North", "go South", "go West", "go East", "Quit Game"
 
 
-def ENGAGE_OPTIONS():
+def ENGAGE_OPTIONS() -> tuple:
     """Return engage options as a tuple of strings.
 
     :return: tuple of engagement options
@@ -141,7 +157,7 @@ def ENGAGE_OPTIONS():
     return "Attack", "Flee"
 
 
-def COMBAT_OPTIONS():
+def COMBAT_OPTIONS() -> tuple:
     """Return combat options as a tuple of strings.
 
     :return: tuple of combat options
@@ -149,7 +165,7 @@ def COMBAT_OPTIONS():
     return "Continue Combat", "Flee"
 
 
-def CLASS_OPTIONS():
+def CLASS_OPTIONS() -> tuple:
     """Return class options as a tuple of strings.
 
     :return: tuple of class options
@@ -160,32 +176,7 @@ def CLASS_OPTIONS():
 # ===== CHARACTER CONSTANTS ============================================================================================
 
 
-def CHARACTER_MAX_HP():
-    """Return the maximum character HP = 20.
-
-    :return: MAX_CHARACTER_HP, an integer of character's max HP
-    """
-    return 20
-
-
-def CHARACTER_DAMAGE_DIE():
-    """Return the character damage die as a tuple, 1d10 = (1, 10).
-
-    :return: a character's damage die as a tuple (rolls, number_of_sides)
-    """
-    return 1, 10
-
-
-def CHARACTER_ATTACKS():
-    """Return a tuple of a character's available attack types.
-
-    :return: a tuple of character's attack types
-    """
-    return ("Perseverance", "Patience", "Setting Healthy Boundaries",
-            "Empowerment", "Integrity", "Authenticity")
-
-
-def CHARACTER_HEAL():
+def CHARACTER_HEAL() -> int:
     """Return the maximum heal for HP if monster not encountered = 4.
 
     :return: an integer, the amount a character heals
@@ -193,7 +184,7 @@ def CHARACTER_HEAL():
     return 4
 
 
-def CHARACTER_START_LEVEL():
+def CHARACTER_START_LEVEL() -> int:
     """Return the character's starting level = 1.
 
     :return: an integer, representing the starting level of a character as defined above
@@ -201,15 +192,7 @@ def CHARACTER_START_LEVEL():
     return 1
 
 
-def LEVEL_UP_THRESHOLD():
-    """Return the threshold at which characters can level up = 500
-
-    :return: an integer value of the threshold at which character can level up, as defined above
-    """
-    return 500
-
-
-def LEVEL_DAMAGE_MODIFIER():
+def LEVEL_DAMAGE_MODIFIER() -> int:
     """Return the bonus damage modifier for a character, 2
 
     :return: integer of bonus damage modifier as indicated in description above
@@ -220,7 +203,7 @@ def LEVEL_DAMAGE_MODIFIER():
 # ===== FOE CONSTANTS ==================================================================================================
 
 
-def FOE_NAMES():
+def FOE_NAMES() -> tuple:
     """Return a tuple of foe names.
 
     Recommend to use in conjunction with FOE_ATTACKS() which consists of Foe Attacks associated
@@ -238,7 +221,7 @@ def FOE_NAMES():
     return all_foe_names
 
 
-def FOE_ATTACKS():
+def FOE_ATTACKS() -> tuple:
     """Return a tuple of foe attacks.
 
     Recommend to use in conjunction with FOE_NAMES() which consists of Foe Names associated
@@ -259,7 +242,7 @@ def FOE_ATTACKS():
     return all_foe_attacks
 
 
-def FOE_MAX_HP():
+def FOE_MAX_HP() -> int:
     """Return a maximum foe HP = 10.
 
     A protective function for the foe's maximum HP constant.
@@ -269,7 +252,7 @@ def FOE_MAX_HP():
     return 10
 
 
-def FOE_DAMAGE_DIE():
+def FOE_DAMAGE_DIE() -> tuple:
     """Return the foe damage die as a tuple, 1d10 = (1, 10)
 
     :return: a foe's damage die as a tuple (rolls, number_of_sides)
@@ -280,16 +263,16 @@ def FOE_DAMAGE_DIE():
 # ===== COMBAT CONSTANTS ===============================================================================================
 
 
-def DAMAGE_RESPONSE():
+def DAMAGE_RESPONSE() -> tuple:
     """Return a tuple of possible damage responses.
 
     :return: a tuple of possible damage responses
     """
-    return ("Stumbles", "Curls Up in Fetal Position", "Screams in Binary",
-            "Feels Sick", "Laughs Nervously")
+    return "Stumbles", "Winces", "Falls Back",\
+           "Feels Sick", "Falters"
 
 
-def INITIATIVE_DIE():
+def INITIATIVE_DIE() -> tuple:
     """Return the initiative die, 1d100 = (1, 100)
 
     :return: an initiative die as a tuple (rolls, number_of_sides)
@@ -297,7 +280,7 @@ def INITIATIVE_DIE():
     return 1, 100
 
 
-def ENCOUNTER_FOE_DIE():
+def ENCOUNTER_FOE_DIE() -> tuple:
     """Return the summon foe die, 1d10 = (1, 10)
 
     :return: an encounter foe die as a tuple (rolls, number_of_sides)
@@ -305,7 +288,7 @@ def ENCOUNTER_FOE_DIE():
     return 1, 10
 
 
-def FLEE_DAMAGE_DIE():
+def FLEE_DAMAGE_DIE() -> tuple:
     """Return the foe damage die when a character flees as a tuple, 1d4 = (1, 4)
 
     :return: a foe's damage die when a character flees unsuccessfully as a tuple (rolls, number_of_sides)
@@ -313,7 +296,7 @@ def FLEE_DAMAGE_DIE():
     return 1, 4
 
 
-def ATTACK_DIE():
+def ATTACK_DIE() -> tuple:
     """Return the attack roll die, 1d20 = (1, 20)
 
     :return: the attack roll die as a tuple, (rolls, number_of_sides)
@@ -328,15 +311,15 @@ def ATTACK_DIE():
 
 # ===== COMMON FUNCTIONS ===============================================================================================
 
-def hero_colour(string):
+def hero_colour(string: str) -> str:
     return f"\033[36m{string}\033[0m"
 
 
-def foe_colour(string):
+def foe_colour(string: str) -> str:
     return f"\033[33m{string}\033[0m"
 
 
-def roll(die):
+def roll(die: tuple) -> int:
     """Roll a die with the specified number of sides the specified number of times.
 
     :param die: a tuple
@@ -352,7 +335,7 @@ def roll(die):
     return random.randint(1, sides * rolls)
 
 
-def get_menu(menu_type):
+def get_menu(menu_type: str) -> None:
     """Print menu options for a given menu type of either "move" or "combat".
 
     :param menu_type: a string
@@ -392,14 +375,14 @@ def get_menu(menu_type):
         print(f"[{number}] {option}")
 
 
-def valid_menu_input(selected_option, menu_type):
+def valid_menu_input(selected_option: str, menu_type: tuple) -> bool:
     return int(selected_option) in range(1, len(menu_type) + 1)
 
 
 # ===== START GAME =====================================================================================================
 
 
-def lvl_board_max(level):
+def lvl_board_max(level: int) -> tuple:
     if level == 1:
         return MAX_MAP_Y_LVL1(), MAX_MAP_Y_LVL1()
     elif level == 2:
@@ -408,7 +391,7 @@ def lvl_board_max(level):
         return MAX_MAP_X_LVL3(), MAX_MAP_X_LVL3()
 
 
-def make_board(character):
+def make_board(character: dict) -> dict:
     """Create a dictionary to represent a board with given map_dimensions.
 
     For key:value pairs in the dictionary, coordinates will be keys and descriptions will be values.
@@ -432,7 +415,7 @@ def make_board(character):
     return board
 
 
-def print_map(character, board):
+def print_map(character: dict, board: dict) -> None:
     """Print a map of where the character is located on a board.
 
     :param character: a dictionary of character stats
@@ -452,15 +435,15 @@ def print_map(character, board):
         print("")
 
 
-def get_class():
+def get_class_choice() -> str:
     return input("\nEnter the number of your class choice: ")
 
 
-def choose_class():
+def choose_class() -> dict:
     print("\nWhat kind of adventurer are you?\n")
     print(CLASS_INFO())
     get_menu("class")
-    chosen_class = get_class()
+    chosen_class = get_class_choice()
     if chosen_class == "1":
         return {"class": "Illusionist", "level_name": "Trickster",
                 "AC": 12, "HP": 6, "max-HP": 6,
@@ -484,7 +467,7 @@ def choose_class():
                 "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 10}
 
 
-def get_name():
+def get_name() -> str:
     """Ask user for their character name.
 
     :postcondition: return the user's input name as a string
@@ -493,7 +476,7 @@ def get_name():
     return input("What's your name? ")
 
 
-def make_character():
+def make_character() -> dict:
     """Create a character dictionary with character details
 
     :precondition: make_character() is called
@@ -520,7 +503,7 @@ def make_character():
     return character
 
 
-def start_game():
+def start_game() -> tuple:
     """Start up the game by returning map and character information.
 
     :postcondition: collects result of the map as a dictionary
@@ -538,20 +521,20 @@ def start_game():
 # ===== NEXT MOVE (VALIDATE AND MOVE) ==================================================================================
 
 
-def valid_move(direction, x_location, y_location, board):
+def valid_move(direction: str, x_location: int, y_location: int, board: dict) -> bool:
     """Validate the character's movement is valid (in the board).
 
     Return Boolean True for valid move and False for invalid move.
 
-    :param direction: integer between [1, 4]
+    :param direction: a string of an integer between [1, 4]
     :param x_location: an integer representing character's current x-location
     :param y_location: an integer representing chraracter's current y-location
     :param board: a dictionary of the board
-    :precondition: direction is an integer representative of moving
-    :precondition: direction == 1 is moving north, or y - 1
-    :precondition: direction == 2 is moving south, or y + 1
-    :precondition: direction == 3 is moving west, or x - 1
-    :precondition: direction == 4 is moving east, or x + 1
+    :precondition: direction is a string of an integer representative of moving
+    :precondition: direction == '1' is moving north, or y - 1
+    :precondition: direction == '2' is moving south, or y + 1
+    :precondition: direction == '3' is moving west, or x - 1
+    :precondition: direction == '4' is moving east, or x + 1
     :precondition: x_location and y_location are integers representing character's
                    current x and y location respectively
     :precondition: board is a non-empty dictionary containing the keys "max-x" and "max-y"
@@ -582,20 +565,20 @@ def valid_move(direction, x_location, y_location, board):
     return x_location in range(board['max-x']) and y_location in range(board['max-y'])
 
 
-def move_character(direction, character):
+def move_character(direction: str, character: dict) -> None:
     """Move the character in the direction indicated.
 
-    :param direction: an integer representing where character will move
+    :param direction: a string of an integer representing where character will move
     :param character: a dictionary, the character's dictionary
     :precondition: the character dictionary contains an "x_location" and "y_location" key
     :precondition: the values of the "x_location" and "y_location" key in the character dictionary are
                    integers representing coordinates x and y of the character at the current moment
     :precondition: the direction being moved has been validated and is a valid move for the character
     :postcondition: accurately move the character by updating the character's x and y coordinates
-    :precondition: direction == 1 is moving north, will change character's current y-coordinate to y - 1
-    :precondition: direction == 2 is moving south, will change character's current y-coordinate to y + 1
-    :precondition: direction == 3 is moving west, will change character's current x-coordinate to x - 1
-    :precondition: direction == 4 is moving east, will change character's current x-coordinate to x + 1
+    :precondition: direction == '1' is moving north, will change character's current y-coordinate to y - 1
+    :precondition: direction == '2' is moving south, will change character's current y-coordinate to y + 1
+    :precondition: direction == '3' is moving west, will change character's current x-coordinate to x - 1
+    :precondition: direction == '4' is moving east, will change character's current x-coordinate to x + 1
     :return: character's "x-location" or "y-location" value modified appropriately
 
     >>> sample_character = {"x-location": 1, "y-location": 2}
@@ -633,7 +616,7 @@ def move_character(direction, character):
         character["x-location"] += 1
 
 
-def get_direction():
+def get_direction() -> str:
     """Ask user for the direction they want to go.
 
     :postcondition: return the user's input name as a string containing an integer [1, 5]
@@ -642,7 +625,7 @@ def get_direction():
     return input("Enter the number of your decision: ")
 
 
-def next_move(character, board):
+def next_move(character: dict, board: dict) -> None:
     """Move the character to a valid position on the board as requested by user.
 
     :param character: a dictionary, the character's dictionary
@@ -674,7 +657,7 @@ def next_move(character, board):
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
 
 
-def check_goal_attained(x_location, y_location):
+def check_goal_attained(x_location: int, y_location: int) -> bool:
     """Check if character has arrived at goal location.
 
     :param x_location: an integer, the character's current x-location
@@ -699,7 +682,7 @@ def check_goal_attained(x_location, y_location):
 # ===== CHECK FOR MONSTERS =============================================================================================
 
 
-def heal(character):
+def heal(character: dict) -> None:
     """Heal a character if necessary, notifying them that they have been healed to new HP.
 
     Heal a character by modifying their current HP to CHARACTER_HEAL(),
@@ -744,7 +727,7 @@ def heal(character):
     time.sleep(1)
 
 
-def summon_foe():
+def summon_foe() -> dict:
     """Summon a random foe.
 
     :postcondition: a random foe is summoned
@@ -772,7 +755,7 @@ def summon_foe():
             "flee": False}
 
 
-def check_for_foe(character, achieved_goal, board):
+def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
 
     Character will either encounter a foe or, if they do not encounter a foe,
@@ -809,7 +792,7 @@ def check_for_foe(character, achieved_goal, board):
 # ===== FOE ENCOUNTER ==================================================================================================
 
 
-def get_engage_decision():
+def get_engage_decision() -> str:
     """Ask user for the combat decision.
 
     :postcondition: return the user's input as a string containing an integer [1, 2]
@@ -818,7 +801,7 @@ def get_engage_decision():
     return input("Enter the number of your decision: ")
 
 
-def engage():
+def engage() -> bool:
     """Ask character if they would like to engage with or flee from foe.
 
     :postcondition: determine, based on character's decision, if they will engage in combat or flee
@@ -835,7 +818,7 @@ def engage():
     return engage_choice == "1"
 
 
-def flee(character, foe):
+def flee(character: dict, foe: dict) -> None:
     """Determine character takes damage when fleeing, print message to notify character if successful.
 
     If successful, print message will tell character they left the encounter successfully,
@@ -867,16 +850,21 @@ def flee(character, foe):
     time.sleep(2)
 
 
-def foe_flee(foe):
+def foe_flee(foe: dict) -> None:
     """Determine if foe will flee.
 
-    :param foe:
-    :return:
+    :param foe: a dictionary representing the foe stats
+    :precondition: the foe dictionary is non-empty and contains a key, "flee"
+    :precondition: the value of the key, "flee" is the Boolean False
+    :postcondition: accurately modify the "flee" key to True if the foe flees given specific chances
+    :return: nothing, foe's 'flee' key updated if they manage to flee
+
+    No doctests, random module required
     """
     foe["flee"] = True if roll((1, 10)) <= 2 else False
 
 
-def initiative():
+def initiative() -> bool:
     """Determine if character has initiative in battle.
 
     :postcondition: determine if character has initiative first in a combat round by comparing character
@@ -897,7 +885,7 @@ def initiative():
     return initiative_roll["character"] > initiative_roll["foe"]
 
 
-def combat_round(attacker, opposition):
+def combat_round(attacker: dict, opposition: dict) -> None:
     """Complete one round of combat between an attacker and opposition.
 
     :param attacker: a dictionary of either character or foe stats
@@ -932,7 +920,7 @@ def combat_round(attacker, opposition):
     time.sleep(2)
 
 
-def enter_combat(character, foe):
+def enter_combat(character: dict, foe: dict) -> None:
     """Battle character and foe in combat until character or foe dies (HP == 0).
 
     :param character: a dictionary containing character stats
@@ -959,10 +947,10 @@ def enter_combat(character, foe):
             if opposition["HP"] > 0:
                 combat_round(opposition, attacker)
         else:
-            return flee(character, foe)
+            flee(character, foe)
 
 
-def encounter(character, foe, board):
+def encounter(character: dict, foe: dict, board: dict) -> None:
     """Send character into an encounter with foe.
 
     Encounter ends by character's choice to flee or by character and foe's fight to death
@@ -1002,12 +990,15 @@ def encounter(character, foe, board):
 # ===== CHECK LEVELING UP ==============================================================================================
 
 
-def gain_exp(character, board):
-    """
+def gain_exp(character: dict, board: dict) -> None:
+    """Increase the EXP of the character then check if they have levelled up
 
-    :param character:
-    :param board:
-    :return:
+    :param character: a dictionary of the character's stats
+    :param board: a dictionary representing the current board
+    :precondition: character contains the key "EXP"
+    :precondition: board is a non-empty dictionary containing coordinate keys and max-x/max-y values
+    :postcondition: character gains exp, leveling up if they meet a level-up threshold
+    :return: nothing, character dictionary and board may be modified
     """
     character["EXP"] += 100
     print(f"You've earned +100 experience points. Current EXP: {hero_colour(str(character['EXP']))}\n")
@@ -1019,18 +1010,19 @@ def gain_exp(character, board):
         level_up(character, board)
 
 
-def level_up(character, board):
-    """Levels up the game if character meets level_up threshold!
+def level_up(character: dict, board: dict) -> None:
+    """Levels up the game!
+
+    Game board and character will level up
 
     :param character: a dictionary of character stats
     :param board: a dictionary of map stats
     :precondition: character is a dictionary of character stats containing the keys "EXP" and "level"
     :precondition: EXP value is an integer >= 0, collection of experience points that character has
-    :precondition: "level" value is an integer >= 0 indicating the current level character is at
+    :precondition: "level" value is an integer >= 1 indicating the current level character is at
     :precondition: board is a non-empty dictionary
-    :postcondition: the game is leveled up (including the character and map)
+    :postcondition: the game is leveled up (including the character and board map)
     :return: levels up the game, not return value
-
     """
     character["level"] += 1
     print(f"You've level up, bless up fam. You're now able to explore new horizons!")
@@ -1046,11 +1038,14 @@ def level_up(character, board):
     board.update(make_board(character))
 
 
-def level_illusionist(character):
-    """
+def level_illusionist(character: dict) -> None:
+    """Level up an Illusionist class.
 
-    :param character:
-    :return:
+    :param character: a dictionary of the character stats
+    :precondition: the character dictionary is non-empty
+    :precondition: the value of the character's "class" key is "Illusionist"
+    :postcondition: the character stats are levelled up accurately in accordance to their current level
+    :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
         level_character = {"level_name": "Mesmer", "AC": 15,
@@ -1067,11 +1062,14 @@ def level_illusionist(character):
     print(f"You are now a {character['level_name']}.")
 
 
-def level_rogue(character):
-    """
+def level_rogue(character: dict) -> None:
+    """Level up a Rogue class.
 
-    :param character:
-    :return:
+    :param character: a dictionary of the character stats
+    :precondition: the character dictionary is non-empty
+    :precondition: the value of the character's "class" key is "Rogue"
+    :postcondition: the character stats are levelled up accurately in accordance to their current level
+    :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
         character["level_name"] = "Assassin"
@@ -1080,11 +1078,14 @@ def level_rogue(character):
     print(f"You are now a {character['level_name']}.")
 
 
-def level_ranger(character):
-    """
+def level_ranger(character: dict) -> None:
+    """Level up a Ranger class.
 
-    :param character:
-    :return:
+    :param character: a dictionary of the character stats
+    :precondition: the character dictionary is non-empty
+    :precondition: the value of the character's "class" key is "Ranger"
+    :postcondition: the character stats are levelled up accurately in accordance to their current level
+    :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
         character["level_name"] = "Pathfinder"
@@ -1093,11 +1094,14 @@ def level_ranger(character):
     print(f"You are now a {character['level_name']}.")
 
 
-def level_paladin(character):
-    """
+def level_paladin(character: dict) -> None:
+    """Level up an Paladin class.
 
-    :param character:
-    :return:
+    :param character: a dictionary of the character stats
+    :precondition: the character dictionary is non-empty
+    :precondition: the value of the character's "class" key is "Paladin"
+    :postcondition: the character stats are levelled up accurately in accordance to their current level
+    :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
         character["level_name"] = "Guardian"
@@ -1109,7 +1113,7 @@ def level_paladin(character):
 # ===== END GAME =======================================================================================================
 
 
-def end_game(character):
+def end_game(character: dict) -> None:
     """Print appropriate end-game message depending on ending.
 
     :param character: a dictionary containing character stats
@@ -1175,7 +1179,7 @@ def end_game(character):
 # ======================================================================================================================
 
 
-def game():
+def game() -> None:
     """Run the game until user quits, character attains the goal, or character dies.
 
     Game will continue as long as none of the above conditions are met.
