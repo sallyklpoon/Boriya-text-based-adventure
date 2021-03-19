@@ -105,19 +105,19 @@ def START_GAME_MSG():
 
 
 def CLASS_INFO():
-    return "\033[1m<< Class Option 1 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
+    return "\033[1m<< Illusionist >>\033[0m The Illusionist is a magic user that is a master of deception,\n" \
+           "light, and shodows. Utilizing spells of great power, they are of a distinctive character, creating \n" \
+           "figments and phantasms to deceive, influence, and trick their foes in mind-altering ways..\n" \
+           "\n" \
+           "\033[1m<< Rogue >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
            "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
            "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
            "\n" \
-           "\033[1m<< Class Option 2 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
+           "\033[1m<< Ranger >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
            "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
            "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
            "\n" \
-           "\033[1m<< Class Option 3 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
-           "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
-           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
-           "\n" \
-           "\033[1m<< Class Option 4 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
+           "\033[1m<< Paladin >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
            "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
            "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
 
