@@ -331,7 +331,7 @@ def foe_colour(text: str) -> str:
     :return: a string, wrapping original text in ASCII escape code for yellow
 
     >>> foe_colour("hello")
-    \x1b[33mhello\x1b[0m
+    '\x1b[33mhello\x1b[0m'
     """
     return f"\033[33m{text}\033[0m"
 
@@ -341,8 +341,8 @@ def roll(die: tuple) -> int:
 
     :param die: a tuple
     :precondition: the accepted die must be a tuple with two integers (rolls, sides)
-    :precondition: rolls must be an int, represents the number of rolls for the die
-    :precondition: sides must be an int, represents the number of sides on the die being rolled
+    :precondition: rolls must be an int >= 1, represents the number of rolls for the die
+    :precondition: sides must be an int >= 1, represents the number of sides on the die being rolled
     :postcondition: calculate the sum of the die rolled a specified number of times
     :return: the sum of rolled numbers
 
