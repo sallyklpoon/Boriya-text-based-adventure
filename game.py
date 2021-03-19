@@ -439,7 +439,7 @@ def get_class():
 
 
 def choose_class():
-    print("What kind of adventurer are you?")
+    print("\nWhat kind of adventurer are you?")
     get_menu("class")
     chosen_class = get_class()
     if chosen_class == "1":
@@ -714,7 +714,8 @@ def heal(character):
         character["HP"] += CHARACTER_HEAL()
     else:
         character["HP"] = CHARACTER_MAX_HP()
-    print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel reinvigorated by the decent day you're having.・゜・。.\n"
+    print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel "
+          "reinvigorated by the decent day you're having.・゜・。.\n"
           f".・。.・゜Your optimism has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
     time.sleep(1)
 
@@ -777,7 +778,9 @@ def check_for_foe(character, achieved_goal, board):
         else:
             heal(character)
     else:
-        heal(character)
+        heal(character) if character["HP"] < CHARACTER_MAX_HP() else print("Nothing Happens")
+
+
 
 
 # ===== FOE ENCOUNTER ==================================================================================================
@@ -802,7 +805,7 @@ def engage():
 
     No doctests, user input required
     """
-    print("What will you do next, adventurer?")
+    print("\nWhat will you do next, adventurer?")
     get_menu("engage")
     engage_choice = get_engage_decision()
     time.sleep(1)
@@ -829,15 +832,14 @@ def flee(character, foe):
     if roll(ENCOUNTER_FOE_DIE()) in range(1, 3):
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage
-        print(f"As you attempt to flee from {foe['name']}, they catch up to you\n"
-              f"and use {random.choice(foe['attacks'])} to attack you.\n")
+        print(f"As you attempt to flee from {foe['name']}, they catch up to you,\n"
+              f"using {random.choice(foe['attacks'])} and dealing \033[31m{damage}\033[0m damage.\n")
         time.sleep(1)
         print(f"You came out here to have a good time\n "
               f"but you're feeling pretty attacked right now.\n "
-              f"Your optimism takes {damage} damage "
-              f"and is now at {character['HP']} points.\n")
+              f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
     else:
-        print(f"You said 'bye, Felicia!' and got out of {foe['name']}'s view range.\n"
+        print(f"\nYou said 'bye, Felicia!' and got out of {foe['name']}'s view range.\n"
               f"Phew! That was a close one.\n")
     time.sleep(2)
 
@@ -1174,6 +1176,7 @@ def game():
     while not achieved_goal and character["HP"] > 0:
         print(f"\nYou're now at ({character['x-location']}, {character['y-location']}) \n"
               f"{board[(character['x-location'], character['y-location'])]} \n")
+        time.sleep(1.5)
         print_map(character, board)
         next_move(character, board)
         if character["quit"]:
