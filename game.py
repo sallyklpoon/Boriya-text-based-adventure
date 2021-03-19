@@ -364,8 +364,8 @@ def choose_class():
     chosen_class = get_class()
     if chosen_class == "1":
         return {"class": "Illusionist", "level_name": "Trickster", "AC": 12,
-                "attacks": ["Fire Bolt", "Shocking Grasp", "Chromatic Orb"],
-                "atk_modifier": 4, "damage": (1, 12), "dmg_modifier": 12}
+                "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
+                "atk_modifier": 4, "damage": (1, 12), "dmg_modifier": 12, "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "2":
         return {"class": "Rogue", "level_name": "Cutpurse", "AC": 14,
                 "attacks": ["Sneak Attack", "their Longsword", "their Crossbow"],
@@ -1032,9 +1032,17 @@ def level_illusionist(character):
     :return:
     """
     if character["level"] == 2:
-        character["level_name"] = "Cabalist"
+        level_character = {"level_name": "Mesmer", "AC": 15,
+                           "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
+                           "atk_modifier": 8, "damage": (1, 20), "dmg_modifier": 16, "crit_chance": [20],
+                           "crit_modifier": 3}
+        character.update(level_character)
     elif character["level"] == 3:
-        character["level_name"] = "Reality Bender"
+        level_character = {"class": "Creator", "level_name": "Trickster", "AC": 20,
+                           "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
+                           "atk_modifier": 10, "damage": (1, 32), "dmg_modifier": 20,
+                           "crit_chance": [20], "crit_modifier": 5}
+        character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
 
