@@ -311,12 +311,29 @@ def ATTACK_DIE() -> tuple:
 
 # ===== COMMON FUNCTIONS ===============================================================================================
 
-def hero_colour(string: str) -> str:
-    return f"\033[36m{string}\033[0m"
+def hero_colour(text: str) -> str:
+    """Colour the given text in the hero colour (cyan).
+
+    :param text: a string
+    :precondition: text is a string
+    :postcondition: returns the text wrapped with ASCII escape code for cyan
+    :return: a string, wrapping original text in ASCII escape code for cyan
+    """
+    return f"\033[36m{text}\033[0m"
 
 
-def foe_colour(string: str) -> str:
-    return f"\033[33m{string}\033[0m"
+def foe_colour(text: str) -> str:
+    """Colour the given text in the foe colour (yellow).
+
+    :param text: a string
+    :precondition: text is a string
+    :postcondition: returns the text wrapped with ASCII escape code for yellow
+    :return: a string, wrapping original text in ASCII escape code for yellow
+
+    >>> foe_colour("hello")
+    \x1b[33mhello\x1b[0m
+    """
+    return f"\033[33m{text}\033[0m"
 
 
 def roll(die: tuple) -> int:
@@ -498,6 +515,8 @@ def make_character() -> dict:
                  "EXP": 0,
                  "level": CHARACTER_START_LEVEL(),
                  "quit": False}
+    print(f"Welcome to _____, {character['name']}")
+    time.sleep(1)
     character.update(choose_class())
     character["attacks"] = list(map(hero_colour, character["attacks"]))
     return character
@@ -706,10 +725,18 @@ def heal(character: dict) -> None:
     10
     >>> sample_character = {"name": "Norm", "HP": 18, "max-HP": 20, "attacks": ["short sword"]}
     >>> heal(sample_character)
+    <BLANKLINE>
+    \x1b[32m.・。.・゜ As you take a step, you suddenly feel reinvigorated by the decent day you're having.・゜・。.
+    .・。.・゜Your health has been healed to 20 points. (◡‿◡✿)・゜・。.
+    \x1b[0m
     >>> sample_character["HP"]
     20
     >>> sample_character = {"name": "Bob", "HP": 1, "max-HP": 10}
     >>> heal(sample_character)
+    <BLANKLINE>
+    \x1b[32m.・。.・゜ As you take a step, you suddenly feel reinvigorated by the decent day you're having.・゜・。.
+    .・。.・゜Your health has been healed to 5 points. (◡‿◡✿)・゜・。.
+    \x1b[0m
     >>> sample_character["HP"]
     5
     """
