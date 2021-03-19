@@ -450,7 +450,7 @@ def choose_class():
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "2":
         return {"class": "Rogue", "level_name": "Cutpurse",
-                "AC": 14, "HP": 8,"max-HP": 8,
+                "AC": 14, "HP": 8, "max-HP": 8,
                 "attacks": ["Sneak Attack", "their Longsword", "their Crossbow"],
                 "atk_modifier": 12, "damage": (2, 4), "dmg_modifier": 4}
     elif chosen_class == "3":
@@ -748,6 +748,7 @@ def summon_foe():
             "attacks": list(map(foe_colour, foe_attacks)),
             "atk_modifier": 0,
             "HP": FOE_MAX_HP(),
+            "max-HP": FOE_MAX_HP(),
             "damage": FOE_DAMAGE_DIE(),
             "dmg_modifier": 0,
             "AC": 10,
@@ -907,7 +908,8 @@ def combat_round(attacker, opposition):
         opposition["HP"] -= attack_damage
         print(f"{opposition['name']} {random.choice(DAMAGE_RESPONSE())} and takes "
               f"\033[31m{attack_damage}\033[0m damage.\n"
-              f"{opposition['name']}'s health level is now at \033[34m{opposition['HP']}\033[0m...\n")
+              f"{opposition['name']}'s health level is now "
+              f"\033[34m{opposition['HP']}/{opposition['max-HP']}\033[0m...\n")
     else:
         print(f"{opposition['name']} dodges the attack successfully.")
     time.sleep(2)
@@ -973,7 +975,7 @@ def encounter(character, foe, board):
         print(f"Fantastic, you've successfully defeated this {foe['name']},\n"
               f"you triumph in glory as you watch their shoulders slump\n"
               f"and they walk away with their head down in shame.\n"
-              f"Way to go, {character['name']}! \(^◇^*)/\n")
+              f"Way to go, {character['name']}! (^◇^*)\n")
         gain_exp(character, board)
 
     if foe["flee"]:
@@ -1179,7 +1181,10 @@ def game():
     board, character = start_game()
     achieved_goal = False
     while not achieved_goal and character["HP"] > 0:
-        print(f"\nYou're now at ({character['x-location']}, {character['y-location']}) \n"
+        print(f"\nYou're now at ({character['x-location']}, {character['y-location']}),"
+              f"\033[35m Level {character['level']}: {character['level_name']}\033[0m, "
+              f"\033[34m HP: {character['HP']}/{character['max-HP']}\033[0m, "
+              f"\033[36m EXP: {character['EXP']}\033[0m \n"
               f"{board[(character['x-location'], character['y-location'])]} \n")
         time.sleep(1.5)
         print_map(character, board)
