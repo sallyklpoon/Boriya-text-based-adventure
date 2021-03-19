@@ -104,6 +104,24 @@ def START_GAME_MSG():
            "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"
 
 
+def CLASS_INFO():
+    return "\033[1m<< Class Option 1 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
+           "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
+           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
+           "\n" \
+           "\033[1m<< Class Option 2 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
+           "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
+           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
+           "\n" \
+           "\033[1m<< Class Option 3 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
+           "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
+           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
+           "\n" \
+           "\033[1m<< Class Option 4 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
+           "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
+           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
+
+
 # ===== MENU CONSTANTS =================================================================================================
 
 
@@ -435,11 +453,12 @@ def print_map(character, board):
 
 
 def get_class():
-    return input("Enter the number of your class choice: ")
+    return input("\nEnter the number of your class choice: ")
 
 
 def choose_class():
-    print("\nWhat kind of adventurer are you?")
+    print("\nWhat kind of adventurer are you?\n")
+    print(CLASS_INFO())
     get_menu("class")
     chosen_class = get_class()
     if chosen_class == "1":
@@ -696,26 +715,24 @@ def heal(character):
     :return: character["HP"] healed by CHARACTER_HEAL() amount and printed statement of character healing,
              no actual value returned
 
-    >>> sample_character = {"name": "Ikki Ooli", "HP": 10, "x-location": 1, "y-location": 4}
+    >>> sample_character = {"name": "Ikki Ooli", "HP": 10, "max-HP": 10}
     >>> heal(sample_character)
     <BLANKLINE>
-    .・。.・゜ As you take a step, you suddenly feel reinvigorated by the decent day you're having.・゜・。.
-    .・。.・゜Your optimism has been healed to 14 points. (◡‿◡✿)・゜・。.
-    <BLANKLINE>
+    Nothing happens.
     >>> sample_character["HP"]
-    14
-    >>> sample_character = {"name": "Norm", "HP": 18, "attacks": ["short sword"]}
+    10
+    >>> sample_character = {"name": "Norm", "HP": 18, "max-HP": 20, "attacks": ["short sword"]}
     >>> heal(sample_character)
-    <BLANKLINE>
-    .・。.・゜ As you take a step, you suddenly feel reinvigorated by the decent day you're having.・゜・。.
-    .・。.・゜Your optimism has been healed to 20 points. (◡‿◡✿)・゜・。.
-    <BLANKLINE>
     >>> sample_character["HP"]
     20
+    >>> sample_character = {"name": "Bob", "HP": 1, "max-HP": 10}
+    >>> heal(sample_character)
+    >>> sample_character["HP"]
+    5
     """
     threshold = character["max-HP"] - CHARACTER_HEAL()
     if character["HP"] == character["max-HP"]:
-        print("\nNothing Happens.")
+        print("\nNothing happens.")
     else:
         if character["HP"] < threshold:
             character["HP"] += CHARACTER_HEAL()
@@ -723,7 +740,7 @@ def heal(character):
             character["HP"] = character["max-HP"]
         print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel "
               "reinvigorated by the decent day you're having.・゜・。.\n"
-              f".・。.・゜Your optimism has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
+              f".・。.・゜Your health has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
     time.sleep(1)
 
 
@@ -1113,7 +1130,7 @@ def end_game(character):
     That's alright, we'll get them another time, Bob.
      =======================================================
     <BLANKLINE>
-    Thank you for playing, Bob! - Marti & Sally (✿◠‿◠)
+    Thank you for playing, Bob! - Marti & Sally
     >>> x, y = GOAL_LOCATION()
     >>> sample_character = {"name": "Suzie", "HP": 1, "x-location": x, "y-location": y}
     >>> end_game(sample_character)
@@ -1123,7 +1140,7 @@ def end_game(character):
     Now you can head home, bake some cinnamon buns, and relax.
     ｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆
     <BLANKLINE>
-    Thank you for playing, Suzie! - Marti & Sally (✿◠‿◠)
+    Thank you for playing, Suzie! - Marti & Sally
     >>> sample_character = {"name": "Suzie", "HP": 2, "x-location": 0, "y-location": 1}
     >>> end_game(sample_character)
     =======================================================
@@ -1131,7 +1148,7 @@ def end_game(character):
     We hope to see you again soon!
     =======================================================
     <BLANKLINE>
-    Thank you for playing, Suzie! - Marti & Sally (✿◠‿◠)
+    Thank you for playing, Suzie! - Marti & Sally
     """
     if character["HP"] <= 0:
         print("=======================================================\n"
@@ -1150,7 +1167,7 @@ def end_game(character):
               "You have successfully quit the game.\n"
               "We hope to see you again soon!\n"
               "=======================================================\n")
-    print(f"Thank you for playing, {character['name']}! - Marti & Sally (✿◠‿◠)")
+    print(f"Thank you for playing, {character['name']}! - Marti & Sally")
 
 
 # ======================================================================================================================
