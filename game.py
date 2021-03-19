@@ -346,22 +346,22 @@ def get_menu(menu_type):
     :return: prints enumerated options as strings starting from 1
 
     >>> get_menu("move")
+    <BLANKLINE>
     [1] go North
     [2] go South
     [3] go West
     [4] go East
     [5] Quit Game
     >>> get_menu("engage")
-    [1] 'I can do this!' (fight)
-    [2] 'Not today, Satan!' (flee)
-    >>> get_menu("combat")
-    [1] Continue Combat
+    <BLANKLINE>
+    [1] Attack
     [2] Flee
     >>> get_menu("class")
-    [1] Sorcerer
+    <BLANKLINE>
+    [1] Illusionist
     [2] Rogue
     [3] Ranger
-    [4] Fighter
+    [4] Paladin
     """
     print("")
     if menu_type == "move":
@@ -443,19 +443,24 @@ def choose_class():
     get_menu("class")
     chosen_class = get_class()
     if chosen_class == "1":
-        return {"class": "Illusionist", "level_name": "Trickster", "AC": 12,
+        return {"class": "Illusionist", "level_name": "Trickster",
+                "AC": 12, "HP": 6, "max-HP": 6,
                 "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
-                "atk_modifier": 4, "damage": (1, 12), "dmg_modifier": 12, "crit_chance": [20], "crit_modifier": 2}
+                "atk_modifier": 4, "damage": (1, 12), "dmg_modifier": 12,
+                "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "2":
-        return {"class": "Rogue", "level_name": "Cutpurse", "AC": 14,
+        return {"class": "Rogue", "level_name": "Cutpurse",
+                "AC": 14, "HP": 8,"max-HP": 8,
                 "attacks": ["Sneak Attack", "their Longsword", "their Crossbow"],
                 "atk_modifier": 12, "damage": (2, 4), "dmg_modifier": 4}
     elif chosen_class == "3":
-        return {"class": "Ranger", "level_name": "Scout", "AC": 16,
+        return {"class": "Ranger", "level_name": "Scout",
+                "AC": 16, "HP": 8, "max-HP": 8,
                 "attacks": ["Strike", "their Longbow", "Thorn Whip"],
                 "atk_modifier": 10, "damage": (1, 6), "dmg_modifier": 6}
     elif chosen_class == "4":
-        return {"class": "Paladin", "level_name": "Protector", "AC": 18,
+        return {"class": "Paladin", "level_name": "Protector",
+                "AC": 18, "HP": 12, "max-HP": 12,
                 "attacks": ["their Hand-axe", "their Crossbow", "a Powerful Punch"],
                 "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 10}
 
@@ -486,7 +491,6 @@ def make_character():
     No doctests, input is required
     """
     character = {"name": hero_colour(get_name()),
-                 "HP": CHARACTER_MAX_HP(),
                  "x-location": START_X(),
                  "y-location": START_Y(),
                  "EXP": 0,
@@ -709,14 +713,14 @@ def heal(character):
     >>> sample_character["HP"]
     20
     """
-    threshold = CHARACTER_MAX_HP() - CHARACTER_HEAL()
-    if character["HP"] == CHARACTER_MAX_HP():
+    threshold = character["max-HP"] - CHARACTER_HEAL()
+    if character["HP"] == character["max-HP"]:
         print("\nNothing Happens.")
     else:
         if character["HP"] < threshold:
             character["HP"] += CHARACTER_HEAL()
         else:
-            character["HP"] = CHARACTER_MAX_HP()
+            character["HP"] = character["max-HP"]
         print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel "
               "reinvigorated by the decent day you're having.・゜・。.\n"
               f".・。.・゜Your optimism has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
@@ -1107,7 +1111,7 @@ def end_game(character):
     That's alright, we'll get them another time, Bob.
      =======================================================
     <BLANKLINE>
-    Thank you for playing, Bob! - Sally (✿◠‿◠)
+    Thank you for playing, Bob! - Marti & Sally (✿◠‿◠)
     >>> x, y = GOAL_LOCATION()
     >>> sample_character = {"name": "Suzie", "HP": 1, "x-location": x, "y-location": y}
     >>> end_game(sample_character)
@@ -1117,7 +1121,7 @@ def end_game(character):
     Now you can head home, bake some cinnamon buns, and relax.
     ｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆
     <BLANKLINE>
-    Thank you for playing, Suzie! - Sally (✿◠‿◠)
+    Thank you for playing, Suzie! - Marti & Sally (✿◠‿◠)
     >>> sample_character = {"name": "Suzie", "HP": 2, "x-location": 0, "y-location": 1}
     >>> end_game(sample_character)
     =======================================================
