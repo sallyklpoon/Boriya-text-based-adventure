@@ -19,20 +19,36 @@ import time
 # ===== MAP CONSTANTS ==================================================================================================
 
 
-def MAX_MAP_X():
+def MAX_MAP_X_LVL1():
     """Return maximum map x-dimension = 5.
 
     :return: MAX_MAP_X dimensions as an integer
     """
-    return 5
+    return 10
 
 
-def MAX_MAP_Y():
+def MAX_MAP_Y_LVL1():
     """Return maximum map y-dimension = 5.
 
     :return: MAX_MAP_Y dimensions as an integer
     """
-    return 5
+    return 10
+
+
+def MAX_MAP_X_LVL2():
+    return 25
+
+
+def MAX_MAP_Y_LVL2():
+    return 20
+
+
+def MAX_MAP_X_LVL3():
+    return 25
+
+
+def MAX_MAP_Y_LVL3():
+    return 25
 
 
 def MAP_SCRIPTS():
@@ -75,6 +91,17 @@ def GOAL_LOCATION():
     :return: GOAL() coordinates as a tuple (x, y)
     """
     return 4, 4
+
+
+def START_GAME_MSG():
+    return "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"\
+           "Welcome to Avocado Toast, a game about Gen Z and Millennial struggles\n"\
+           "because we are a self-deprecating generation.\n" \
+           "You've just completed a 7-hour hackathon and you've spent the last\n"\
+           "few days pent up in your room studying for midterms. It could be nice to\n"\
+           "get outside and enjoy the Spring weather. Maybe hit the grocery store\n"\
+           "to grab some ingredients for a soothing baking session this evening.\n"\
+           "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"
 
 
 # ===== MENU CONSTANTS =================================================================================================
@@ -417,7 +444,16 @@ def make_character():
     return character
 
 
-def make_board():
+def lvl_board_max(level):
+    if level == 1:
+        return MAX_MAP_Y_LVL1(), MAX_MAP_Y_LVL1()
+    elif level == 2:
+        return MAX_MAP_X_LVL2(), MAX_MAP_Y_LVL2()
+    else:
+        return MAX_MAP_X_LVL3(), MAX_MAP_X_LVL3()
+
+
+def make_board(character):
     """Create a dictionary to represent a board with given map_dimensions.
 
     For key:value pairs in the dictionary, coordinates will be keys and descriptions will be values.
@@ -426,77 +462,35 @@ def make_board():
     :postcondition: the key values in the dictionary are coordinates represented in tuples (x, y)
     :return: a dictionary of the game board
 
-    >>> board = make_board()
-    >>> type(board)
-    <class 'dict'>
-    >>> pp = pprint.PrettyPrinter()
-    >>> pp.pprint(board)
-    {(0, 0): 'The sun is beaming and birds are chirping -- finally getting some '
-             'Vitamin D!',
-     (0, 1): 'A pudgy doggo passes by and uses its sniffer to sniff you from afar, '
-             'cute!',
-     (0, 2): 'Strolling through a quaint park, you see people jogging and meeting '
-             'up with friends- how nice!',
-     (0, 3): 'You pass by yet another Starbucks in the neighbourhood. These are '
-             'everywhere!',
-     (0, 4): 'A squirrel finds an acorn and scurries up a tree as it sees you '
-             'approaching.',
-     (1, 0): 'Nothing exciting at this corner of the neighbourhood.',
-     (1, 1): "A snake jumps out of a bush. Did you just hear it say, 'Python's the "
-             "besssst...', as it slithered by?!",
-     (1, 2): 'A slight breeze picks up, you can hear the leaves in the trees '
-             'rustle gently.',
-     (1, 3): 'Colourful wild flowers are growing in the patches of grass by the '
-             'sidewalk.',
-     (1, 4): 'The sun is beaming and birds are chirping -- finally getting some '
-             'Vitamin D!',
-     (2, 0): 'A pudgy doggo passes by and uses its sniffer to sniff you from afar, '
-             'cute!',
-     (2, 1): 'Strolling through a quaint park, you see people jogging and meeting '
-             'up with friends- how nice!',
-     (2, 2): 'You pass by yet another Starbucks in the neighbourhood. These are '
-             'everywhere!',
-     (2, 3): 'A squirrel finds an acorn and scurries up a tree as it sees you '
-             'approaching.',
-     (2, 4): 'Nothing exciting at this corner of the neighbourhood.',
-     (3, 0): "A snake jumps out of a bush. Did you just hear it say, 'Python's the "
-             "besssst...', as it slithered by?!",
-     (3, 1): 'A slight breeze picks up, you can hear the leaves in the trees '
-             'rustle gently.',
-     (3, 2): 'Colourful wild flowers are growing in the patches of grass by the '
-             'sidewalk.',
-     (3, 3): 'The sun is beaming and birds are chirping -- finally getting some '
-             'Vitamin D!',
-     (3, 4): 'A pudgy doggo passes by and uses its sniffer to sniff you from afar, '
-             'cute!',
-     (4, 0): 'Strolling through a quaint park, you see people jogging and meeting '
-             'up with friends- how nice!',
-     (4, 1): 'You pass by yet another Starbucks in the neighbourhood. These are '
-             'everywhere!',
-     (4, 2): 'A squirrel finds an acorn and scurries up a tree as it sees you '
-             'approaching.',
-     (4, 3): 'Nothing exciting at this corner of the neighbourhood.',
-     (4, 4): "A snake jumps out of a bush. Did you just hear it say, 'Python's the "
-             "besssst...', as it slithered by?!"}
+    # >>> board = make_board()
+    # >>> type(board)
+    # <class 'dict'>
+    # >>> pp = pprint.PrettyPrinter()
+    # >>> pp.pprint(board)
     """
     map_script = itertools.cycle(MAP_SCRIPTS())
-    return {(x_location, y_location): next(map_script)
-            for x_location in range(MAX_MAP_X())
-            for y_location in range(MAX_MAP_Y())}
+    lvl_max_x, lvl_max_y = lvl_board_max(character['level'])
+    board = {(x_location, y_location): next(map_script)
+             for x_location in range(lvl_max_x)
+             for y_location in range(lvl_max_y)}
+    board['max-x'], board['max-y'] = lvl_max_x, lvl_max_y
+    return board
 
 
-def print_map(character):
+def print_map(character, board):
     """Print a map of where the character is located on a board.
 
     :param character: a dictionary of character stats
+    :param board: a dictionary of the board
+    :precondition
     :precondition: character is a dictionary of stats with keys, "x-location" and "y-location"
     :precondition: the values of "x-location" and "y-location" are both integers that are >= 0
                    and less than the MAX_MAP_X and MAX_MAP_Y values, respectively
     :postcondition: print out a visual map with the correct location as to where the character is on a board
     :return: printed map
     """
-    for row in range(MAX_MAP_Y()):
-        for column in range(MAX_MAP_X()):
+    for row in range(board['max-y']):
+        for column in range(board['max-x']):
             print(f"[{hero_colour('웃')}]", end="") \
                 if (column, row) == (character["x-location"], character["y-location"])\
                 else print("[  ]", end="")
@@ -513,21 +507,15 @@ def start_game():
 
     No doctests. Calls make_character(), which requires user input.
     """
-    print("========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"
-          "Welcome to Avocado Toast, a game about Gen Z and Millennial struggles\n"
-          "because we are a self-deprecating generation.\n"
-          "You've just completed a 7-hour hackathon and you've spent the last\n"
-          "few days pent up in your room studying for midterms. It could be nice to\n"
-          "get outside and enjoy the Spring weather. Maybe hit the grocery store\n"
-          "to grab some ingredients for a soothing baking session this evening.\n"
-          "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n")
-    return make_board(), make_character()
+    print(START_GAME_MSG())
+    character = make_character()
+    return make_board(character), character
 
 
 # ===== NEXT MOVE (VALIDATE AND MOVE) ==================================================================================
 
 
-def valid_move(direction, x_location, y_location):
+def valid_move(direction, x_location, y_location, board):
     """Validate the character's movement is valid (in the board).
 
     Return Boolean True for valid move and False for invalid move.
@@ -535,6 +523,7 @@ def valid_move(direction, x_location, y_location):
     :param direction: integer between [1, 4]
     :param x_location: an integer representing character's current x-location
     :param y_location: an integer representing chraracter's current y-location
+    :param board: a dictionary of the board
     :precondition: direction is an integer representative of moving
     :precondition: direction == 1 is moving north, or y - 1
     :precondition: direction == 2 is moving south, or y + 1
@@ -542,19 +531,21 @@ def valid_move(direction, x_location, y_location):
     :precondition: direction == 4 is moving east, or x + 1
     :precondition: x_location and y_location are integers representing character's
                    current x and y location respectively
+    :precondition: board is a non-empty dictionary containing the keys "max-x" and "max-y"
     :postcondition: accurately determine if the character's move is valid (within the board space) or invalid
                     (moved off board or is not one of the precondition indicated moves)
     :return: Boolean True or False
 
-    >>> valid_move("1", 0, 0)
+    >>> sample_board = {"max-x": 5, "max-y": 5}
+    >>> valid_move("1", 0, 0, sample_board)
     False
-    >>> valid_move("3", 0, 0)
+    >>> valid_move("3", 0, 0, sample_board)
     False
-    >>> valid_move("2", MAX_MAP_X() - 1, MAX_MAP_Y() - 1)
+    >>> valid_move("2", sample_board["max-x"], sample_board["max-y"], sample_board)
     False
-    >>> valid_move("4", MAX_MAP_X() - 1, MAX_MAP_Y() - 1)
+    >>> valid_move("4", sample_board["max-x"], sample_board["max-y"], sample_board)
     False
-    >>> valid_move("1", MAX_MAP_X() // 2, MAX_MAP_Y() // 2)
+    >>> valid_move("1", sample_board["max-x"] // 2, sample_board["max-y"] // 2, sample_board)
     True
     """
     if direction == "1":
@@ -565,7 +556,7 @@ def valid_move(direction, x_location, y_location):
         x_location -= 1
     else:
         x_location += 1
-    return x_location in range(MAX_MAP_X()) and y_location in range(MAX_MAP_Y())
+    return x_location in range(board['max-x']) and y_location in range(board['max-y'])
 
 
 def move_character(direction, character):
@@ -628,10 +619,11 @@ def get_direction():
     return input("Which direction would you like to go? (Enter the number of your decision): ")
 
 
-def next_move(character):
+def next_move(character, board):
     """Move the character to a valid position on the board as requested by user.
 
     :param character: a dictionary, the character's dictionary
+    :param board: a dictionary, the board's representation
     :precondition: the character dictionary contains a "x_location" and "y_location" key
     :precondition: the values of the "x_location" and "y_location" key in the character dictionary are
                    integers representing coordinates x and y of the character at the current moment
@@ -645,10 +637,9 @@ def next_move(character):
     while not move_valid:
         direction = get_direction()
         if direction == "5":
-            move_valid = True
-            character["quit"] = True
+            move_valid, character["quit"] = True, True
         else:
-            if valid_move(direction, character["x-location"], character["y-location"]):
+            if valid_move(direction, character["x-location"], character["y-location"], board):
                 move_valid = True
                 move_character(direction, character)
             else:
@@ -753,7 +744,7 @@ def summon_foe():
             "flee": False}
 
 
-def check_for_foe(character, achieved_goal):
+def check_for_foe(character, achieved_goal, board):
     """Check if character meets a foe or heals.
 
     Character will either encounter a foe or, if they do not encounter a foe,
@@ -761,6 +752,7 @@ def check_for_foe(character, achieved_goal):
 
     :param character: a dictionary of the character's stats
     :param achieved_goal: a Boolean of whether or not goal was achieved
+    :param board: a dictionary representing the game board
     :precondition: character is a dictionary of character's stats
     :precondition: character dictionary contains keys "name", "HP", "damage", "attacks", "x-location", "y-location"
     :precondition: value of "name" is a string input by the user in make_character() function
@@ -770,6 +762,7 @@ def check_for_foe(character, achieved_goal):
     :precondition: value of "x-location" is an integer >= 0
     :precondition: value of "y-location" is an integer >= 0
     :precondition: achieved_goal is a Boolean of whether or not goal was achieved; True means goal has been achieved
+    :precondition: param board contains the keys "max-x" and "max-y" with integer values >= 0
     :postcondition: character's "HP" value will be appropriately be affected by either healing if there is no foe
                     or taking possible damage if they encounter a foe and fight to the death
     :return: character's HP modified by either damage or heal, no actual return value
@@ -778,7 +771,7 @@ def check_for_foe(character, achieved_goal):
     """
     if not achieved_goal:
         if roll(ENCOUNTER_FOE_DIE()) in range(1, 5):
-            encounter(character, summon_foe())
+            encounter(character, summon_foe(), board)
         else:
             heal(character)
     else:
@@ -951,7 +944,7 @@ def enter_combat(character, foe):
             return flee(character, foe)
 
 
-def encounter(character, foe):
+def encounter(character, foe, board):
     """Send character into an encounter with foe.
 
     Encounter ends by character's choice to flee or by character and foe's fight to death
@@ -959,11 +952,13 @@ def encounter(character, foe):
 
     :param character: a dictionary containing character stats
     :param foe: a dictionary containing foe stats
+    :param board: a dictionary, representing the current game map
     :precondition: both character and foe dictionaries include keys-- "name", "attacks", "HP", and "damage"
     :precondition: value of "name" is a string, the name of character or foe
     :precondition: value of "attacks" is a list of string elements, attack types from character or foe
     :precondition: value of "HP" is an integer, the current health points character or foe
     :precondition: value of "damage" is a tuple, the damage die for character or foe
+    :precondition: board contains the keys "max-x" and "max-y" with integer values >= 0
     :postcondition: character either engages in battle to the death or attempts to flee
     :postcondition: character's "HP" key value may be affected by damage from flee or by entering combat
     :postcondition: foe's "HP" key value may be affected by damage from combat
@@ -979,7 +974,7 @@ def encounter(character, foe):
               f"you triumph in glory as you watch their shoulders slump\n"
               f"and they walk away with their head down in shame.\n"
               f"Way to go, {character['name']}! \(^◇^*)/\n")
-        gain_exp(character)
+        gain_exp(character, board)
     if foe["flee"]:
         print(f"{foe['name']} ran away.")
         time.sleep(1)
@@ -987,7 +982,7 @@ def encounter(character, foe):
 # ===== CHECK LEVELING UP ==============================================================================================
 
 
-def gain_exp(character):
+def gain_exp(character, board):
     """
 
     :param character:
@@ -995,22 +990,25 @@ def gain_exp(character):
     """
     print(f"You've earned +100 experience points.\n")
     character["EXP"] += 100
-    if character["EXP"] == 100:
-        level_up(character)
+    if character["EXP"] == 500:
+        level_up(character, board)
     if character["EXP"] == 1250:
-        level_up(character)
+        level_up(character, board)
     if character["EXP"] == 2500:
-        level_up(character)
+        level_up(character, board)
 
 
-def level_up(character):
-    """Levels up character if they meet level_up threshold!
+def level_up(character, board):
+    """Levels up the game if character meets level_up threshold!
 
     :param character: a dictionary of character stats
+    :param board: a dictionary of map stats
     :precondition: character is a dictionary of character stats containing the keys "EXP" and "level"
     :precondition: EXP value is an integer >= 0, collection of experience points that character has
     :precondition: "level" value is an integer >= 0 indicating the current level character is at
-    :return: character's level state modified to +1 if EXP has reached the leveling up threshold
+    :precondition: board is a non-empty dictionary
+    :postcondition: the game is leveled up (including the character and map)
+    :return: levels up the game, not return value
 
     """
     character["level"] += 1
@@ -1024,6 +1022,8 @@ def level_up(character):
         level_ranger(character)
     elif character["class"] == "Paladin":
         level_paladin(character)
+    board.update(make_board(character))
+
 
 def level_illusionist(character):
     """
@@ -1050,6 +1050,7 @@ def level_rogue(character):
         character["level_name"] = "Shadow Master"
     print(f"You are now a {character['level_name']}.")
 
+
 def level_ranger(character):
     """
 
@@ -1062,7 +1063,8 @@ def level_ranger(character):
         character["level_name"] = "Far Wanderer"
     print(f"You are now a {character['level_name']}.")
 
-def level_ranger(character):
+
+def level_paladin(character):
     """
 
     :param character:
@@ -1073,8 +1075,6 @@ def level_ranger(character):
     elif character["level"] == 3:
         character["level_name"] = "Justiciar"
     print(f"You are now a {character['level_name']}.")
-
-
 
 
 # ===== END GAME =======================================================================================================
@@ -1171,15 +1171,13 @@ def game():
     while not achieved_goal and character["HP"] > 0:
         print(f"\nYou're now at ({character['x-location']}, {character['y-location']}) \n"
               f"{board[(character['x-location'], character['y-location'])]} \n")
-        print_map(character)
-        time.sleep(1)
-        next_move(character)
+        print_map(character, board)
+        next_move(character, board)
         if character["quit"]:
             achieved_goal = True
         else:
             achieved_goal = check_goal_attained(character["x-location"], character["y-location"])
-            check_for_foe(character, achieved_goal)
-            # level_up(character)
+            check_for_foe(character, achieved_goal, board)
     end_game(character)
 
 
