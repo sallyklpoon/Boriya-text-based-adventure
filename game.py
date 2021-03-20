@@ -779,7 +779,7 @@ def summon_foe(character) -> dict:
         return summon_weak_foe()
 
 def summon_weak_foe():
-    random_class = random.randint(1, 3)
+    random_class = str(random.randint(1, 3))
     if random_class == "1":
         return {"name": "Illusionist",
                 "AC": 12,
@@ -790,7 +790,8 @@ def summon_weak_foe():
                 "damage": (1, 12),
                 "dmg_modifier": 2,
                 "crit_chance": [20],
-                "crit_modifier": 2}
+                "crit_modifier": 2,
+                "flee": False}
     elif random_class == "2":
         return {"name": "BLESSMANS",
                 "AC": 12,
@@ -801,7 +802,8 @@ def summon_weak_foe():
                 "damage": (1, 12),
                 "dmg_modifier": 2,
                 "crit_chance": [20],
-                "crit_modifier": 2}
+                "crit_modifier": 2,
+                "flee": False}
     elif random_class == "3":
         return {"name": "SUAVEMANS",
                 "AC": 12,
@@ -812,7 +814,8 @@ def summon_weak_foe():
                 "damage": (1, 12),
                 "dmg_modifier": 2,
                 "crit_chance": [20],
-                "crit_modifier": 2}
+                "crit_modifier": 2,
+                "flee": False}
 
 def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
