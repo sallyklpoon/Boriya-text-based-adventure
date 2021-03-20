@@ -480,7 +480,7 @@ def choose_class() -> dict:
                 "AC": 16, "HP": 12, "max-HP": 12,
                 "attacks": ["Strike", "their Longbow", "Thorn Whip"],
                 "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 6,
-                "crit_chance": [19, 20], "crit_modifier": 2}
+                "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "4":
         return {"class": "Paladin", "level_name": "Protector",
                 "AC": 16, "HP": 12, "max-HP": 12,
@@ -1086,16 +1086,16 @@ def level_illusionist(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Mesmer", "AC": 15,  "max-HP": 10,
+        level_character = {"level_name": "Mesmer", "AC": 15,  "max-HP": 12,
                            "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
-                           "atk_modifier": 8, "damage": (1, 20), "dmg_modifier": 16, "crit_chance": [20],
-                           "crit_modifier": 3}
+                           "atk_modifier": 4, "damage": (2, 10), "dmg_modifier": 10, "crit_chance": [20],
+                           "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 20,
+        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 24,
                            "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
-                           "atk_modifier": 10, "damage": (1, 32), "dmg_modifier": 20,
-                           "crit_chance": [20], "crit_modifier": 5}
+                           "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 20,
+                           "crit_chance": [19, 20], "crit_modifier": 4}
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
@@ -1112,13 +1112,13 @@ def level_rogue(character: dict) -> None:
     if character["level"] == 2:
         level_character = {"level_name": "Assassin", "AC": 18,  "max-HP": 16,
                            "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
-                           "atk_modifier": 15, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
+                           "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Shadow Master", "AC": 24,  "max-HP": 24,
+        level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 24,
                            "attacks": ["Shadow Blade", "Fan of Knives", "Culling"],
-                           "atk_modifier": 18, "damage": (3, 10), "dmg_modifier": 8,
+                           "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8,
                            "crit_chance": [19, 20], "crit_modifier": 2}
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
@@ -1134,9 +1134,17 @@ def level_ranger(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        character["level_name"] = "Pathfinder"
+        level_character = {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24,
+                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+                           "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
+                           "crit_modifier": 2}
+        character.update(level_character)
     elif character["level"] == 3:
-        character["level_name"] = "Far Wanderer"
+        level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 30,
+                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+                           "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
+                           "crit_modifier": 2}
+        character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
 
@@ -1150,9 +1158,17 @@ def level_paladin(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        character["level_name"] = "Guardian"
+        level_character = {"level_name": "Guardian", "AC": 18,  "max-HP": 24,
+                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+                           "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
+                           "crit_modifier": 2}
+        character.update(level_character)
     elif character["level"] == 3:
-        character["level_name"] = "Justiciar"
+        level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 36,
+                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+                           "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
+                           "crit_modifier": 3}
+        character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
 
