@@ -467,23 +467,26 @@ def choose_class() -> dict:
         return {"class": "Illusionist", "level_name": "Trickster",
                 "AC": 12, "HP": 6, "max-HP": 6,
                 "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
-                "atk_modifier": 4, "damage": (1, 12), "dmg_modifier": 12,
+                "atk_modifier": 2, "damage": (1, 12), "dmg_modifier": 2,
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "2":
         return {"class": "Rogue", "level_name": "Cutpurse",
-                "AC": 14, "HP": 8, "max-HP": 8,
+                "AC": 15, "HP": 8, "max-HP": 8,
                 "attacks": ["Sneak Attack", "their Longsword", "their Crossbow"],
-                "atk_modifier": 12, "damage": (2, 4), "dmg_modifier": 4}
+                "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
+                "crit_chance": [19, 20], "crit_modifier": 2}
     elif chosen_class == "3":
         return {"class": "Ranger", "level_name": "Scout",
-                "AC": 16, "HP": 8, "max-HP": 8,
+                "AC": 16, "HP": 12, "max-HP": 12,
                 "attacks": ["Strike", "their Longbow", "Thorn Whip"],
-                "atk_modifier": 10, "damage": (1, 6), "dmg_modifier": 6}
+                "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 6,
+                "crit_chance": [19, 20], "crit_modifier": 2}
     elif chosen_class == "4":
         return {"class": "Paladin", "level_name": "Protector",
-                "AC": 18, "HP": 12, "max-HP": 12,
+                "AC": 16, "HP": 12, "max-HP": 12,
                 "attacks": ["their Hand-axe", "their Crossbow", "a Powerful Punch"],
-                "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 10}
+                "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 4,
+                "crit_chance": [20], "crit_modifier": 2}
 
 
 def get_name() -> str:
