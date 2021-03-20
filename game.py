@@ -1077,13 +1077,13 @@ def level_illusionist(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Mesmer", "AC": 15,
+        level_character = {"level_name": "Mesmer", "AC": 15,  "max-HP": 10,
                            "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
                            "atk_modifier": 8, "damage": (1, 20), "dmg_modifier": 16, "crit_chance": [20],
                            "crit_modifier": 3}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"class": "Creator", "level_name": "Trickster", "AC": 20,
+        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 20,
                            "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
                            "atk_modifier": 10, "damage": (1, 32), "dmg_modifier": 20,
                            "crit_chance": [20], "crit_modifier": 5}
@@ -1101,9 +1101,17 @@ def level_rogue(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        character["level_name"] = "Assassin"
+        level_character = {"level_name": "Assassin", "AC": 18,  "max-HP": 16,
+                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+                           "atk_modifier": 15, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
+                           "crit_modifier": 2}
+        character.update(level_character)
     elif character["level"] == 3:
-        character["level_name"] = "Shadow Master"
+        level_character = {"level_name": "Shadow Master", "AC": 24,  "max-HP": 24,
+                           "attacks": ["Shadow Blade", "Fan of Knives", "Culling"],
+                           "atk_modifier": 18, "damage": (3, 10), "dmg_modifier": 8,
+                           "crit_chance": [19, 20], "crit_modifier": 2}
+        character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
 
