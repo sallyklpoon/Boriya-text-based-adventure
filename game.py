@@ -936,11 +936,15 @@ def combat_round(attacker: dict, opposition: dict) -> None:
 
     No doctests, uses random module
     """
-    attack_roll = roll(ATTACK_DIE()) + attacker["atk_modifier"]
+    initial_roll = roll(ATTACK_DIE())
+    attack_roll = initial_roll + attacker["atk_modifier"]
     print(f"\n{attacker['name']} attacks using {random.choice(attacker['attacks'])}!")
     time.sleep(1)
     if attack_roll >= opposition["AC"]:
-        attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
+        if initial_roll in attacker["crit_chance"]:
+            attack_damage = (roll(attacker["damage"]) * attacker["crit_modifier"]) + attacker["dmg_modifier"]
+        else:
+            attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
         opposition["HP"] -= attack_damage
         print(f"{opposition['name']} {random.choice(DAMAGE_RESPONSE())} and takes "
               f"\033[31m{attack_damage}\033[0m damage.\n"
