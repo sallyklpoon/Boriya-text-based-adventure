@@ -781,6 +781,8 @@ def summon_foe() -> dict:
             "damage": FOE_DAMAGE_DIE(),
             "dmg_modifier": 0,
             "AC": 10,
+            "crit_chance": [20],
+            "crit_modifier": 2,
             "flee": False}
 
 
