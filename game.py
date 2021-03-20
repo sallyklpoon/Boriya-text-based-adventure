@@ -777,6 +777,10 @@ def summon_foe(character) -> dict:
 
     if character["level"] == 1:
         return summon_weak_foe()
+    if character["level"] == 2:
+        return summon_weak_foe()
+    if character["level"] == 3:
+        return summon_weak_foe()
 
 def summon_weak_foe():
     random_class = str(random.randint(1, 3))
@@ -816,6 +820,98 @@ def summon_weak_foe():
                 "crit_chance": [20],
                 "crit_modifier": 2,
                 "flee": False}
+
+def summon_strong_foe():
+    random_class = str(random.randint(1, 3))
+    if random_class == "1":
+        return {"name": "Illusionist",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2,
+                "flee": False}
+    elif random_class == "2":
+        return {"name": "BLESSMANS",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE", "Shadow Blade"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2,
+                "flee": False}
+    elif random_class == "3":
+        return {"name": "SUAVEMANS",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE", "Shadow Blade"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2,
+                "flee": False}
+
+def summon_epic_foe():
+    random_class = str(random.randint(1, 3))
+    if random_class == "1":
+        return {"name": "Illusionist",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2,
+                "flee": False}
+    elif random_class == "2":
+        return {"name": "BLESSMANS",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE", "Shadow Blade"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2,
+                "flee": False}
+    elif random_class == "3":
+        return {"name": "SUAVEMANS",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE", "Shadow Blade"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2,
+                "flee": False}
+
+def summon_god():
+        return {"name": "GOD",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2,
+                "flee": False}
+
 
 def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
