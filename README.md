@@ -45,8 +45,9 @@
 | 20% foe will damage you if you flee          |   Y   |
 | ASCII Map                                    |   Y   |
 | End when user choose quit instead of move    |   Y   |
-| Simple leveling scheme                       |   IP   |
-| Max HP increases at lvl-up                   |   IP   |
+| Simple leveling scheme                       |   Y   |
+| Max HP increases at lvl-up                   |   Y   |
+| Elaborate foe/god summoning                  |   IP   |
 | Damage character does increases at lvl-up    |   N   |
 | Foes become more challenging to defeat       |   N   |
 | Game ends if character dies                  |   Y   |
