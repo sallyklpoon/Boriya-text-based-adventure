@@ -782,10 +782,11 @@ def summon_foe(character) -> dict:
     if character["level"] == 3:
         return summon_weak_foe()
 
+
 def summon_weak_foe():
     random_class = str(random.randint(1, 3))
     if random_class == "1":
-        return {"name": "Illusionist",
+        return {"name": foe_colour("Illusionist"),
                 "AC": 12,
                 "HP": 6,
                 "max-HP": 6,
@@ -797,7 +798,7 @@ def summon_weak_foe():
                 "crit_modifier": 2,
                 "flee": False}
     elif random_class == "2":
-        return {"name": "BLESSMANS",
+        return {"name": foe_colour("BLESSMANS"),
                 "AC": 12,
                 "HP": 6,
                 "max-HP": 6,
@@ -809,7 +810,7 @@ def summon_weak_foe():
                 "crit_modifier": 2,
                 "flee": False}
     elif random_class == "3":
-        return {"name": "SUAVEMANS",
+        return {"name": foe_colour("SUAVEMANS"),
                 "AC": 12,
                 "HP": 6,
                 "max-HP": 6,
@@ -820,6 +821,7 @@ def summon_weak_foe():
                 "crit_chance": [20],
                 "crit_modifier": 2,
                 "flee": False}
+
 
 def summon_strong_foe():
     random_class = str(random.randint(1, 3))
@@ -1109,7 +1111,7 @@ def enter_combat(character: dict, foe: dict) -> None:
             if opposition["HP"] > 0:
                 combat_round(opposition, attacker)
         else:
-            flee(character, foe)
+            return flee(character, foe)
 
 
 def encounter(character: dict, foe: dict, board: dict) -> None:
@@ -1163,7 +1165,7 @@ def gain_exp(character: dict, board: dict) -> None:
     :return: nothing, character dictionary and board may be modified
     """
     character["EXP"] += 100
-    print(f"You've earned +100 experience points. Current EXP: {hero_colour(str(character['EXP']))}\n")
+    print(hero_colour(f"You've earned +100 experience points. Current EXP: {character['EXP']}\n"))
     if character["EXP"] == 500:
         level_up(character, board)
     if character["EXP"] == 1250:
