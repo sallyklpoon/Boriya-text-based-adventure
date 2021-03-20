@@ -48,6 +48,8 @@
 | Simple leveling scheme                       |   Y   |
 | Max HP increases at lvl-up                   |   Y   |
 | Elaborate foe/god summoning                  |   IP   |
+| Print critical hit messaging                 |   N   |
+| Implement color for foe and god.             |   N   |
 | Damage character does increases at lvl-up    |   N   |
 | Foes become more challenging to defeat       |   N   |
 | Game ends if character dies                  |   Y   |
