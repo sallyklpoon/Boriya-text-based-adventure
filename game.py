@@ -759,7 +759,7 @@ def heal(character: dict) -> None:
     time.sleep(1)
 
 
-def summon_foe() -> dict:
+def summon_foe(character) -> dict:
     """Summon a random foe.
 
     :postcondition: a random foe is summoned
@@ -774,20 +774,45 @@ def summon_foe() -> dict:
 
     No doctests, random used
     """
-    all_foes = list(zip(FOE_NAMES(), FOE_ATTACKS()))
-    foe_name, foe_attacks = random.choice(all_foes)
-    return {"name": foe_colour(foe_name),
-            "attacks": list(map(foe_colour, foe_attacks)),
-            "atk_modifier": 0,
-            "HP": FOE_MAX_HP(),
-            "max-HP": FOE_MAX_HP(),
-            "damage": FOE_DAMAGE_DIE(),
-            "dmg_modifier": 0,
-            "AC": 10,
-            "crit_chance": [20],
-            "crit_modifier": 2,
-            "flee": False}
 
+    if character["level"] == 1:
+        return summon_weak_foe()
+
+def summon_weak_foe():
+    random_class = random.randint(1, 3)
+    if random_class == "1":
+        return {"name": "Illusionist",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2}
+    elif random_class == "2":
+        return {"name": "BLESSMANS",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE", "Shadow Blade"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2}
+    elif random_class == "3":
+        return {"name": "SUAVEMANS",
+                "AC": 12,
+                "HP": 6,
+                "max-HP": 6,
+                "attacks": ["VIBE", "Shadow Blade"],
+                "atk_modifier": 2,
+                "damage": (1, 12),
+                "dmg_modifier": 2,
+                "crit_chance": [20],
+                "crit_modifier": 2}
 
 def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
@@ -816,7 +841,7 @@ def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     """
     if not achieved_goal:
         if roll(ENCOUNTER_FOE_DIE()) in range(1, 5):
-            encounter(character, summon_foe(), board)
+            encounter(character, summon_foe(character), board)
         else:
             heal(character)
     else:
