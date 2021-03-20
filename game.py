@@ -121,21 +121,23 @@ def START_GAME_MSG() -> str:
 
 
 def CLASS_INFO() -> str:
-    return "\033[1m<< Class Option 1 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
-           "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
-           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
+    return "\033[1m<< Illusionist >>\033[0m The Illusionist is a magic user that is a master of deception,\n" \
+           "light, and shodows. Utilizing spells of great power, they create figments and phantasms to deceive, \n" \
+           "influence, and trick their foes in mind-altering ways. This class has a very weak early game, \n" \
+           "but a god-like late game.\n" \
            "\n" \
-           "\033[1m<< Class Option 2 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
-           "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
-           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
+           "\033[1m<< Rogue >>\033[0m The Rogue is a versatile character, capable of sneaky combat and nimble \n" \
+           "tricks. Utilizing their stealth and dexterity, Rogues sacrifice brute strength for a nimble dodging \n" \
+           "ability, and a consistent output of damage. This class has a neutral early and late game.\n" \
            "\n" \
-           "\033[1m<< Class Option 3 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
-           "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
-           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n" \
+           "\033[1m<< Ranger >>\033[0m The Ranger is a hunter and woodsman who lives by not only their sword, \n" \
+           "but also their wits. Utilizing an assortment of weapons, poisons, and magic, Rangers relentlessly \n" \
+           "chase down their prey in order to secure a kill. This class has a strong early game, and a \n" \
+           "weak late game.\n" \
            "\n" \
-           "\033[1m<< Class Option 4 >>\033[0m Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n" \
-           "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n" \
-           "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.\n"
+           "\033[1m<< Paladin >>\033[0m The Paladin swears to uphold justice and righteousness above all else. \n" \
+           "They are proficient with heavy arms and armor, while also using divine powers to augment their combat \n" \
+           "capabilities. This class has a weak early game, and a strong late game. \n" \
 
 
 # ===== MENU CONSTANTS =================================================================================================
