@@ -786,37 +786,37 @@ def summon_foe(character) -> dict:
 def summon_weak_foe():
     random_class = str(random.randint(1, 3))
     if random_class == "1":
-        return {"name": foe_colour("Acolyte"),
+        return {"name": foe_colour("Fanatic"),
                 "AC": 10,
                 "HP": 6,
                 "max-HP": 6,
-                "attacks": ["SACRED FLAME"],
-                "atk_modifier": 2,
+                "attacks": ["their Dagger"],
+                "atk_modifier": 3,
                 "damage": (1, 6),
                 "dmg_modifier": 1,
                 "crit_chance": [20],
                 "crit_modifier": 1.5,
                 "flee": False}
     elif random_class == "2":
-        return {"name": foe_colour("Archer"),
+        return {"name": foe_colour("Heretic"),
                 "AC": 12,
                 "HP": 8,
                 "max-HP": 8,
-                "attacks": ["ARROW"],
-                "atk_modifier": 4,
-                "damage": (1, 6),
+                "attacks": ["Necrotic Touch"],
+                "atk_modifier": 2,
+                "damage": (1, 4),
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 1.5,
                 "flee": False}
     elif random_class == "3":
         return {"name": foe_colour("Berserker"),
-                "AC": 14,
-                "HP": 8,
-                "max-HP": 8,
-                "attacks": ["AXE THROW"],
+                "AC": 8,
+                "HP": 10,
+                "max-HP": 10,
+                "attacks": ["Necrotic Touch"],
                 "atk_modifier": 0,
-                "damage": (2, 3),
+                "damage": (1, 8),
                 "dmg_modifier": 0,
                 "crit_chance": [20],
                 "crit_modifier": 2,
@@ -825,7 +825,7 @@ def summon_weak_foe():
 def summon_strong_foe():
     random_class = str(random.randint(1, 3))
     if random_class == "1":
-        return {"name": foe_colour("STRONGAcolyte"),
+        return {"name": foe_colour("Wraith"),
                 "AC": 14,
                 "HP": 8,
                 "max-HP": 8,
@@ -837,11 +837,11 @@ def summon_strong_foe():
                 "crit_modifier": 1.5,
                 "flee": False}
     elif random_class == "2":
-        return {"name": foe_colour("STRONGArcher"),
+        return {"name": foe_colour("Shadow"),
                 "AC": 15,
                 "HP": 16,
                 "max-HP": 16,
-                "attacks": ["ARROW"],
+                "attacks": ["Life Drain"],
                 "atk_modifier": 4,
                 "damage": (2, 6),
                 "dmg_modifier": 2,
@@ -849,11 +849,11 @@ def summon_strong_foe():
                 "crit_modifier": 1.5,
                 "flee": False}
     elif random_class == "3":
-        return {"name": foe_colour("STRONGBerserker"),
+        return {"name": foe_colour("Zealot"),
                 "AC": 16,
                 "HP": 20,
                 "max-HP": 20,
-                "attacks": ["AXE THROW"],
+                "attacks": ["Necrotic Touch"],
                 "atk_modifier": 2,
                 "damage": (3, 4),
                 "dmg_modifier": 2,
@@ -864,7 +864,7 @@ def summon_strong_foe():
 def summon_epic_foe():
     random_class = str(random.randint(1, 3))
     if random_class == "1":
-        return {"name": foe_colour("STRONGAcolyte"),
+        return {"name": foe_colour("Death Knight"),
                 "AC": 16,
                 "HP": 18,
                 "max-HP": 18,
@@ -876,7 +876,7 @@ def summon_epic_foe():
                 "crit_modifier": 2,
                 "flee": False}
     elif random_class == "2":
-        return {"name": foe_colour("STRONGArcher"),
+        return {"name": foe_colour("Devourer"),
                 "AC": 18,
                 "HP": 20,
                 "max-HP": 20,
@@ -888,11 +888,11 @@ def summon_epic_foe():
                 "crit_modifier": 2,
                 "flee": False}
     elif random_class == "3":
-        return {"name": foe_colour("STRONGBerserker"),
+        return {"name": foe_colour("Nightwalker"),
                 "AC": 20,
                 "HP": 24,
                 "max-HP": 24,
-                "attacks": ["AXE THROW"],
+                "attacks": ["Annihilating Aura", "Touch of Death"],
                 "atk_modifier": 4,
                 "damage": (3, 6),
                 "dmg_modifier": 4,
