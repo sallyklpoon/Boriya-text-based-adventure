@@ -471,7 +471,7 @@ def choose_class() -> dict:
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "2":
         return {"class": "Rogue", "level_name": "Cutpurse",
-                "AC": 15, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
+                "AC": 16, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
                 "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
                 "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
                 "crit_chance": [19, 20], "crit_modifier": 2}
@@ -483,7 +483,7 @@ def choose_class() -> dict:
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "4":
         return {"class": "Paladin", "level_name": "Protector",
-                "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
+                "AC": 15, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
                 "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
                 "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 4,
                 "crit_chance": [20], "crit_modifier": 2}
