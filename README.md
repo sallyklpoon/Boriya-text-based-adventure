@@ -49,12 +49,15 @@
 | Max HP increases at lvl-up                   |   Y   |
 | Elaborate class attacks                      |   Y   |
 | Elaborate foe/god summoning                  |   IP  |
-| Elaborate class healing                      |   N   |
+| Elaborate class healing                      |   Y   |
 | Damage character does increases at lvl-up    |   Y   |
 | Print critical hit messaging                 |   N   |
+| Fix attack messaging                         |   N   |
 | Implement color for foe and god.             |   N   |
 | Foes become more challenging to defeat       |   N   |
 | Game ends if character dies                  |   Y   |
+| Elaborate storyline                          |   N   |
+
 
 
 #### ** Add any comments for me above this line **
