@@ -745,7 +745,7 @@ def heal(character: dict) -> None:
     >>> sample_character["HP"]
     5
     """
-    threshold = character["max-HP"] - character["hit_dice"]
+    threshold = character["max-HP"] - character["hit_dice"][1]
     if character["HP"] == character["max-HP"]:
         print("\nNothing happens.")
     else:
