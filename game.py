@@ -465,25 +465,25 @@ def choose_class() -> dict:
     chosen_class = get_class_choice()
     if chosen_class == "1":
         return {"class": "Illusionist", "level_name": "Trickster",
-                "AC": 12, "HP": 6, "max-HP": 6, "hit_dice": 6,
+                "AC": 12, "HP": 6, "max-HP": 6, "hit_dice": (1, 6),
                 "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
                 "atk_modifier": 2, "damage": (1, 12), "dmg_modifier": 2,
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "2":
         return {"class": "Rogue", "level_name": "Cutpurse",
-                "AC": 15, "HP": 8, "max-HP": 8, "hit_dice": 6,
+                "AC": 15, "HP": 8, "max-HP": 8, "hit_dice": (1, 6),
                 "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
                 "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
                 "crit_chance": [19, 20], "crit_modifier": 2}
     elif chosen_class == "3":
         return {"class": "Ranger", "level_name": "Scout",
-                "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": 8,
+                "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 8),
                 "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
                 "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 6,
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "4":
         return {"class": "Paladin", "level_name": "Protector",
-                "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": 4,
+                "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
                 "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
                 "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 4,
                 "crit_chance": [20], "crit_modifier": 2}
@@ -745,12 +745,12 @@ def heal(character: dict) -> None:
     >>> sample_character["HP"]
     5
     """
-    threshold = character["max-HP"] - CHARACTER_HEAL()
+    threshold = character["max-HP"] - character["hit_dice"]
     if character["HP"] == character["max-HP"]:
         print("\nNothing happens.")
     else:
         if character["HP"] < threshold:
-            character["HP"] += CHARACTER_HEAL()
+            character["HP"] += roll(character["hit_dice"])
         else:
             character["HP"] = character["max-HP"]
         print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel "
