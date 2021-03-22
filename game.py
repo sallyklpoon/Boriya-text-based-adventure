@@ -786,42 +786,41 @@ def summon_foe(character) -> dict:
 def summon_weak_foe():
     random_class = str(random.randint(1, 3))
     if random_class == "1":
-        return {"name": foe_colour("Illusionist"),
-                "AC": 12,
+        return {"name": foe_colour("Acolyte"),
+                "AC": 10,
                 "HP": 6,
                 "max-HP": 6,
-                "attacks": ["VIBE"],
+                "attacks": ["SACRED FLAME"],
                 "atk_modifier": 2,
-                "damage": (1, 12),
-                "dmg_modifier": 2,
+                "damage": (1, 8),
+                "dmg_modifier": 1,
                 "crit_chance": [20],
-                "crit_modifier": 2,
+                "crit_modifier": 1.5,
                 "flee": False}
     elif random_class == "2":
-        return {"name": foe_colour("BLESSMANS"),
+        return {"name": foe_colour("Archer"),
                 "AC": 12,
-                "HP": 6,
-                "max-HP": 6,
-                "attacks": ["VIBE", "Shadow Blade"],
-                "atk_modifier": 2,
-                "damage": (1, 12),
+                "HP": 8,
+                "max-HP": 8,
+                "attacks": ["ARROW"],
+                "atk_modifier": 4,
+                "damage": (1, 6),
                 "dmg_modifier": 2,
                 "crit_chance": [20],
-                "crit_modifier": 2,
+                "crit_modifier": 1.5,
                 "flee": False}
     elif random_class == "3":
-        return {"name": foe_colour("SUAVEMANS"),
-                "AC": 12,
-                "HP": 6,
-                "max-HP": 6,
-                "attacks": ["VIBE", "Shadow Blade"],
-                "atk_modifier": 2,
+        return {"name": foe_colour("Berserker"),
+                "AC": 14,
+                "HP": 10,
+                "max-HP": 10,
+                "attacks": ["AXE THROW"],
+                "atk_modifier": 0,
                 "damage": (1, 12),
-                "dmg_modifier": 2,
+                "dmg_modifier": 0,
                 "crit_chance": [20],
                 "crit_modifier": 2,
                 "flee": False}
-
 
 def summon_strong_foe():
     random_class = str(random.randint(1, 3))
