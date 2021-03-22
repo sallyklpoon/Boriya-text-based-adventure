@@ -778,9 +778,9 @@ def summon_foe(character) -> dict:
     if character["level"] == 1:
         return summon_weak_foe()
     if character["level"] == 2:
-        return summon_weak_foe()
+        return summon_strong_foe()
     if character["level"] == 3:
-        return summon_weak_foe()
+        return summon_epic_foe()
 
 
 def summon_weak_foe():
