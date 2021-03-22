@@ -465,13 +465,13 @@ def choose_class() -> dict:
     chosen_class = get_class_choice()
     if chosen_class == "1":
         return {"class": "Illusionist", "level_name": "Trickster",
-                "AC": 12, "HP": 6, "max-HP": 6, "hit_dice": (1, 6),
+                "AC": 14, "HP": 8, "max-HP": 8, "hit_dice": (1, 6),
                 "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
                 "atk_modifier": 2, "damage": (1, 12), "dmg_modifier": 2,
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "2":
         return {"class": "Rogue", "level_name": "Cutpurse",
-                "AC": 15, "HP": 8, "max-HP": 8, "hit_dice": (1, 6),
+                "AC": 15, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
                 "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
                 "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
                 "crit_chance": [19, 20], "crit_modifier": 2}
