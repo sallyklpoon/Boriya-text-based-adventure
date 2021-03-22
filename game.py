@@ -472,19 +472,19 @@ def choose_class() -> dict:
     elif chosen_class == "2":
         return {"class": "Rogue", "level_name": "Cutpurse",
                 "AC": 15, "HP": 8, "max-HP": 8,
-                "attacks": ["Sneak Attack", "their Longsword", "their Crossbow"],
+                "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
                 "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
                 "crit_chance": [19, 20], "crit_modifier": 2}
     elif chosen_class == "3":
         return {"class": "Ranger", "level_name": "Scout",
                 "AC": 16, "HP": 12, "max-HP": 12,
-                "attacks": ["Strike", "their Longbow", "Thorn Whip"],
+                "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
                 "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 6,
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "4":
         return {"class": "Paladin", "level_name": "Protector",
                 "AC": 16, "HP": 12, "max-HP": 12,
-                "attacks": ["their Hand-axe", "their Crossbow", "a Powerful Punch"],
+                "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
                 "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 4,
                 "crit_chance": [20], "crit_modifier": 2}
 
@@ -1243,7 +1243,7 @@ def level_rogue(character: dict) -> None:
         character.update(level_character)
     elif character["level"] == 3:
         level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 24,
-                           "attacks": ["Shadow Blade", "Fan of Knives", "Culling"],
+                           "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
                            "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8,
                            "crit_chance": [19, 20], "crit_modifier": 2}
         character.update(level_character)
@@ -1261,13 +1261,13 @@ def level_ranger(character: dict) -> None:
     """
     if character["level"] == 2:
         level_character = {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24,
-                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+                           "attacks": ["Flame Arrows", "Conjure Barrage", "Grasping Vine"],
                            "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
         level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 30,
-                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+                           "attacks": ["Steel Wind Strike", "Swift Quiver", "Wrath of Nature"],
                            "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
                            "crit_modifier": 2}
         character.update(level_character)
@@ -1285,13 +1285,13 @@ def level_paladin(character: dict) -> None:
     """
     if character["level"] == 2:
         level_character = {"level_name": "Guardian", "AC": 18,  "max-HP": 24,
-                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+                           "attacks": ["Divine Word", "Forbiddance", "Staggering Smite"],
                            "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
         level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 36,
-                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+                           "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
                            "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
                            "crit_modifier": 3}
         character.update(level_character)
