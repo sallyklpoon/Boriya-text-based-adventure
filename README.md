@@ -47,7 +47,7 @@
 | End when user choose quit instead of move    |   Y   |
 | Simple leveling scheme                       |   Y   |
 | Max HP increases at lvl-up                   |   Y   |
-| Elaborate class attacks                      |   IP   |
+| Elaborate class attacks                      |   Y   |
 | Elaborate foe/god summoning                  |   IP   |
 | Damage character does increases at lvl-up    |   Y   |
 | Print critical hit messaging                 |   N   |
