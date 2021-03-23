@@ -1244,6 +1244,91 @@ def level_paladin(character: dict) -> None:
 
 
 # ===== END GAME =======================================================================================================
+def combat_round(attacker: dict, opposition: dict) -> None:
+    """Complete one round of combat between an attacker and opposition.
+
+    :param attacker: a dictionary of either character or foe stats
+    :param opposition: a dictionary of either character or foe stats
+    :precondition: both attacker and opposition dictionaries include keys-- "name", "attacks", "HP", and "damage"
+    :precondition: value of "name" is a string, the name of attacker or opposition
+    :precondition: value of "attacks" is a list of string elements, attack types from attacker or opposition
+    :precondition: value of "HP" is an integer, the current health points of attacker or opposition
+    :precondition: value of "damage" is a tuple, the damage die for attacker or opposition
+    :postcondition: amount of damage from attacker to foe is determined
+    :postcondition: opposition takes damage from attacker["damage"] die, their HP will be modified to reflect the change
+    :postcondition: a message is printed with attacker name and attack type
+    :postcondition: a message is printed with opposition name, damage taken by opposition, and updated opposition HP
+    :return: no value, but opposition's HP modified by damage from attacker
+    :return: printed message of attacker and attack
+    :return: printed message of opposition suffering damage
+
+    No doctests, uses random module
+    """
+    initial_roll = roll(ATTACK_DIE())
+    attack_roll = initial_roll + attacker["atk_modifier"]
+    print(f"\n{attacker['name']} attacks using {random.choice(attacker['attacks'])}!")
+    time.sleep(0.5)
+    if attack_roll >= opposition["AC"]:
+        if initial_roll in attacker["crit_chance"]:
+            attack_damage = (roll(attacker["damage"]) * attacker["crit_modifier"]) + attacker["dmg_modifier"]
+        else:
+            attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
+        opposition["HP"] -= attack_damage
+        print(f"{opposition['name']} takes \033[31m{attack_damage}\033[0m damage.\n"
+              f"{opposition['name']}'s health level is now "
+              f"\033[34m{opposition['HP']}/{opposition['max-HP']}\033[0m...\n")
+    else:
+        print(f"{opposition['name']} dodges the attack successfully.")
+    time.sleep(0.5)
+
+
+def enter_combat(character: dict, foe: dict) -> None:
+    """Battle character and foe in combat until character or foe dies (HP == 0).
+
+    :param character: a dictionary containing character stats
+    :param foe: a dictionary containing foe stats
+    :precondition: both character and foe dictionaries include keys-- "name", "attacks", "HP", and "damage"
+    :precondition: value of "name" is a string, the name of character or foe
+    :precondition: value of "attacks" is a list of string elements, attack types from character or foe
+    :precondition: value of "HP" is an integer, the current health points character or foe
+    :precondition: value of "damage" is a tuple, the damage die for character or foe
+    :postcondition: both character and foe's HP will be sent to combat based on rolled initiative order
+    :postcondition: both character and foe may take damage to their "HP" key value
+    :postcondition: combat will continue until either character or foe has "HP" == 0
+    :return: no value, but modified effects of key value "HP" for both character and foe after end of combat
+
+    No doctests, called functions, combat_round() and initiative() uses random module
+    """
+    while character["HP"] > 0 and foe["HP"] > 0 and not foe["flee"]:
+        if engage():
+            if initiative():
+                attacker, opposition = character, foe
+            else:
+                attacker, opposition = foe, character
+            combat_round(attacker, opposition)
+            if opposition["HP"] > 0:
+                combat_round(opposition, attacker)
+        else:
+            return flee(character, foe)
+
+
+
+
+def final_boss_encounter(character: dict):
+    print("You arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
+          "entirely of unending nothingness. Are you ready to die?")
+
+    boss = summon_god()
+
+    enter_combat(character, boss)
+
+    if foe["HP"] <= 0:
+        print(f"God is dead.\n")
+    elif character["HP"] <= 0:
+        print(f"You are dead.")
+
+    time.sleep(0.5)
+
 
 
 def end_game(character: dict) -> None:
@@ -1287,6 +1372,9 @@ def end_game(character: dict) -> None:
     <BLANKLINE>
     Thank you for playing, Suzie! - Marti & Sally
     """
+    if (character["x-location"], character["y-location"]) == GOAL_LOCATION():
+        final_boss_encounter(character)
+
     if character["HP"] <= 0:
         print("=======================================================\n"
               "Today just isn't your day, eh? You've been defeated.\n"
