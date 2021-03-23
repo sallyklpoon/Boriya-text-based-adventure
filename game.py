@@ -765,7 +765,7 @@ def summon_strong_foe():
                 "AC": 14,
                 "HP": 8,
                 "max-HP": 8,
-                "attacks": ["SACRED FLAME"],
+                "attacks": list(map(foe_colour, ["VIBEATTACK"])),
                 "atk_modifier": 2,
                 "damage": (2, 4),
                 "dmg_modifier": 4,
@@ -778,7 +778,7 @@ def summon_strong_foe():
                 "AC": 15,
                 "HP": 16,
                 "max-HP": 16,
-                "attacks": ["Life Drain"],
+                "attacks": list(map(foe_colour, ["Life Drain"])),
                 "atk_modifier": 4,
                 "damage": (2, 6),
                 "dmg_modifier": 2,
@@ -791,7 +791,7 @@ def summon_strong_foe():
                 "AC": 16,
                 "HP": 20,
                 "max-HP": 20,
-                "attacks": ["Necrotic Touch"],
+                "attacks": list(map(foe_colour, ["Necrotic Touch"])),
                 "atk_modifier": 2,
                 "damage": (3, 4),
                 "dmg_modifier": 2,
@@ -808,7 +808,7 @@ def summon_epic_foe():
                 "AC": 16,
                 "HP": 18,
                 "max-HP": 18,
-                "attacks": ["SACRED FLAME"],
+                "attacks": list(map(foe_colour, ["DEATHKNIGHTATTACK"])),
                 "atk_modifier": 6,
                 "damage": (2, 4),
                 "dmg_modifier": 4,
@@ -821,7 +821,7 @@ def summon_epic_foe():
                 "AC": 18,
                 "HP": 20,
                 "max-HP": 20,
-                "attacks": ["ARROW"],
+                "attacks": list(map(foe_colour, ["DEVOURERATTACK"])),
                 "atk_modifier": 8,
                 "damage": (2, 6),
                 "dmg_modifier": 2,
@@ -834,7 +834,7 @@ def summon_epic_foe():
                 "AC": 20,
                 "HP": 24,
                 "max-HP": 24,
-                "attacks": ["Annihilating Aura", "Touch of Death"],
+                "attacks": list(map(foe_colour, ["Annihilating Aura", "Touch of Death"])),
                 "atk_modifier": 4,
                 "damage": (3, 6),
                 "dmg_modifier": 4,
@@ -944,7 +944,7 @@ def flee(character: dict, foe: dict) -> None:
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage
         print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
-              f"using {foe_colour(random.choice(foe['attacks']))} dealing \033[31m{damage}\033[0m damage.\n")
+              f"using {random.choice(foe['attacks'])} dealing \033[31m{damage}\033[0m damage.\n")
         time.sleep(1)
         print(f"You came out here to have a good time\n"
               f"but you're feeling pretty attacked right now.\n"
