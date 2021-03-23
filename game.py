@@ -808,7 +808,7 @@ def summon_epic_foe():
                 "AC": 16,
                 "HP": 18,
                 "max-HP": 18,
-                "attacks": list(map(foe_colour, ["Vampiric Touch", "Chilling Smite", ])),
+                "attacks": list(map(foe_colour, ["Vampiric Touch", "Chilling Smite", "Eyebite"])),
                 "atk_modifier": 6,
                 "damage": (2, 4),
                 "dmg_modifier": 4,
@@ -821,7 +821,7 @@ def summon_epic_foe():
                 "AC": 18,
                 "HP": 20,
                 "max-HP": 20,
-                "attacks": list(map(foe_colour, ["Devour", "Blight", ])),
+                "attacks": list(map(foe_colour, ["Devour", "Blight", "Enervation"])),
                 "atk_modifier": 8,
                 "damage": (2, 6),
                 "dmg_modifier": 2,
@@ -834,7 +834,7 @@ def summon_epic_foe():
                 "AC": 20,
                 "HP": 24,
                 "max-HP": 24,
-                "attacks": list(map(foe_colour, ["Annihilating Aura", "Touch of Death"])),
+                "attacks": list(map(foe_colour, ["Annihilating Aura", "Touch of Death", "Circle of Death"])),
                 "atk_modifier": 4,
                 "damage": (3, 6),
                 "dmg_modifier": 4,
@@ -845,16 +845,17 @@ def summon_epic_foe():
 
 
 def summon_god():
-        return {"name": "GOD",
-                "AC": 12,
-                "HP": 6,
-                "max-HP": 6,
-                "attacks": ["VIBE"],
-                "atk_modifier": 2,
-                "damage": (1, 12),
-                "dmg_modifier": 2,
+        return {"name": foe_colour("Erebus"),
+                "AC": 20,
+                "HP": 24,
+                "max-HP": 24,
+                "attacks": list(map(foe_colour, ["Time Ravage", "Imprisonment", "Power Word: Kill", "Tear Soul"])),
+                "atk_modifier": 4,
+                "damage": (3, 6),
+                "dmg_modifier": 4,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "EXP": 500,
                 "flee": False}
 
 
