@@ -62,6 +62,9 @@
 | Change chance of encountering foes           |   N   |
 | Change EXP gain and level up values          |   N   |
 | Boss encounter and end game                  |   N   |
+| Double check to quit game                    |   N   |
+| Make input loops to check validity           |   N   |
+| Can foes flee?                               |   ?   |
 
 
 ### Unit Test Checklist
