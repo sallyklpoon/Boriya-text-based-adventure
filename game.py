@@ -688,6 +688,7 @@ def heal(character: dict) -> None:
               f".・。.・゜Your health has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
     time.sleep(1)
 
+
 def summon_foe(character) -> dict:
     """Summon a random foe.
 
@@ -711,14 +712,17 @@ def summon_foe(character) -> dict:
     if character["level"] == 3:
         return summon_epic_foe()
 
+
 def summon_weak_foe():
     random_class = str(random.randint(1, 3))
+    list(map(foe_colour, ["attacks"]))
+
     if random_class == "1":
         return {"name": foe_colour("Fanatic"),
                 "AC": 10,
                 "HP": 6,
                 "max-HP": 6,
-                "attacks": ["their Dagger"],
+                "attacks": list(map(foe_colour, ["their Dagger"])),
                 "atk_modifier": 3,
                 "damage": (1, 6),
                 "dmg_modifier": 1,
@@ -731,7 +735,7 @@ def summon_weak_foe():
                 "AC": 12,
                 "HP": 8,
                 "max-HP": 8,
-                "attacks": ["Necrotic Touch"],
+                "attacks": list(map(foe_colour, ["Necrotic Touch"])),
                 "atk_modifier": 2,
                 "damage": (1, 4),
                 "dmg_modifier": 2,
@@ -744,7 +748,7 @@ def summon_weak_foe():
                 "AC": 8,
                 "HP": 10,
                 "max-HP": 10,
-                "attacks": ["Fury of Blows"],
+                "attacks": list(map(foe_colour, ["Fury of Blows"])),
                 "atk_modifier": 0,
                 "damage": (1, 8),
                 "dmg_modifier": 0,
@@ -853,6 +857,7 @@ def summon_god():
                 "crit_modifier": 2,
                 "flee": False}
 
+
 def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
 
@@ -898,7 +903,7 @@ def get_engage_decision() -> str:
 
     No doctest, function requires input
     """
-    return input("Enter the number of your decision: ")
+    return input("\nEnter the number of your decision: ")
 
 
 def engage() -> bool:
@@ -938,8 +943,8 @@ def flee(character: dict, foe: dict) -> None:
     if roll(ENCOUNTER_FOE_DIE()) in range(1, 3):
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage
-        print(f"As you attempt to flee from {foe['name']}, they catch up to you,\n"
-              f"using {random.choice(foe['attacks'])} and dealing \033[31m{damage}\033[0m damage.\n")
+        print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
+              f"using {foe_colour(random.choice(foe['attacks']))} dealing \033[31m{damage}\033[0m damage.\n")
         time.sleep(1)
         print(f"You came out here to have a good time\n"
               f"but you're feeling pretty attacked right now.\n"
@@ -947,7 +952,7 @@ def flee(character: dict, foe: dict) -> None:
     else:
         print(f"\nYou said 'bye, Felicia!' and got out of {foe['name']}'s view range.\n"
               f"Phew! That was a close one.\n")
-    time.sleep(2)
+    time.sleep(1)
 
 
 def foe_flee(foe: dict) -> None:
@@ -1021,7 +1026,7 @@ def combat_round(attacker: dict, opposition: dict) -> None:
               f"\033[34m{opposition['HP']}/{opposition['max-HP']}\033[0m...\n")
     else:
         print(f"{opposition['name']} dodges the attack successfully.")
-    time.sleep(2)
+    time.sleep(1)
 
 
 def enter_combat(character: dict, foe: dict) -> None:
@@ -1078,7 +1083,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
 
     No doctests, called enter_combat() and flee() uses random module
     """
-    print(f"\n A {foe['name']} has showed up!\n")
+    print(f"\nA {foe['name']} has showed up!")
     enter_combat(character, foe)
     if foe["HP"] <= 0:
         print(f"Fantastic, you've successfully defeated this {foe['name']},\n"
@@ -1094,7 +1099,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
 # ===== CHECK LEVELING UP ==============================================================================================
 
 
-def gain_exp(character: dict, board: dict) -> None:
+def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
     """Increase the EXP of the character then check if they have levelled up
 
     :param character: a dictionary of the character's stats
@@ -1104,11 +1109,11 @@ def gain_exp(character: dict, board: dict) -> None:
     :postcondition: character gains exp, leveling up if they meet a level-up threshold
     :return: nothing, character dictionary and board may be modified
     """
-    character["EXP"] += 100
-    print(hero_colour(f"You've earned +100 experience points. Current EXP: {character['EXP']}\n"))
-    if character["EXP"] == 500:
+    character["EXP"] += experience_gain
+    print(hero_colour(f"You've earned {experience_gain} experience points. Current EXP: {character['EXP']}\n"))
+    if character["EXP"] == 200:
         level_up(character, board)
-    if character["EXP"] == 1250:
+    if character["EXP"] == 1000:
         level_up(character, board)
     if character["EXP"] == 2500:
         level_up(character, board)
@@ -1335,7 +1340,7 @@ def game() -> None:
               f"\033[34m HP: {character['HP']}/{character['max-HP']}\033[0m, "
               f"\033[36m EXP: {character['EXP']}\033[0m \n"
               f"{board[(character['x-location'], character['y-location'])]} \n")
-        time.sleep(1.5)
+        time.sleep(1)
         print_map(character, board)
         next_move(character, board)
         if character["quit"]:
