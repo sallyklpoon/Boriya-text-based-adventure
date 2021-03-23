@@ -102,11 +102,11 @@ def START_Y() -> int:
 
 
 def GOAL_LOCATION() -> tuple:
-    """Return goal coordinates = (4, 4)
+    """Return goal coordinates = (25, 25)
 
     :return: GOAL() coordinates as a tuple (x, y)
     """
-    return 4, 4
+    return 25, 25
 
 
 def START_GAME_MSG() -> str:
@@ -178,14 +178,6 @@ def CLASS_OPTIONS() -> tuple:
 # ===== CHARACTER CONSTANTS ============================================================================================
 
 
-def CHARACTER_HEAL() -> int:
-    """Return the maximum heal for HP if monster not encountered = 4.
-
-    :return: an integer, the amount a character heals
-    """
-    return 4
-
-
 def CHARACTER_START_LEVEL() -> int:
     """Return the character's starting level = 1.
 
@@ -200,66 +192,6 @@ def LEVEL_DAMAGE_MODIFIER() -> int:
     :return: integer of bonus damage modifier as indicated in description above
     """
     return 2
-
-
-# ===== FOE CONSTANTS ==================================================================================================
-
-
-def FOE_NAMES() -> tuple:
-    """Return a tuple of foe names.
-
-    Recommend to use in conjunction with FOE_ATTACKS() which consists of Foe Attacks associated
-    with each foe in this tuple.
-
-    :return: a tuple containing names of foes
-    """
-    all_foe_names = ("Coffee Shop Barista",
-                     "Dating App",
-                     "Crappy Client",
-                     "Existential Crisis",
-                     "New-Age Teen",
-                     "'Woke''Friend'",
-                     "Job Posting")
-    return all_foe_names
-
-
-def FOE_ATTACKS() -> tuple:
-    """Return a tuple of foe attacks.
-
-    Recommend to use in conjunction with FOE_NAMES() which consists of Foe Names associated
-    with each foe attack list in this tuple.
-
-    :return: a tuple containing foes attacks
-    """
-    all_foe_attacks = (
-        ["$12 Small Coffee", "Wrong Order", "Misspelled Name", "Out Of Cream And Sugar"],
-        ["Corny Profile", "Sliding into Your DMs", "Lame Pickup Line", "Ghosted - POOF!"],
-        ["Give Me A Discount Because I Know You", "Paid In Experience", "No Reply To Invoices",
-         "'You're Not A Professional, You'll Get This On Your Portfolio!'"],
-        ["Crippling Anxiety", "Pure Nihilism", "Angst", "Dread"],
-        ["Tik-Tok Dance", "Viral Meme", "YEET", "Phone Scroll"],
-        ["'I Just Think Mask Mandates Are Harsh'", "'Wake Up Sheeple!!1!'", "Do You Invest In Bitcoin?",
-         "'Don't You Think The World Is *TOO* Progressive?'", "'Not To Be Racist But...'"],
-        ["'Required: 32 years of experience'", "'Must possess a PhD'", "'Most Canadians are under-employed!'"])
-    return all_foe_attacks
-
-
-def FOE_MAX_HP() -> int:
-    """Return a maximum foe HP = 10.
-
-    A protective function for the foe's maximum HP constant.
-
-    :return: MAX_CHARACTER_HP, an integer of foe's max HP
-    """
-    return 10
-
-
-def FOE_DAMAGE_DIE() -> tuple:
-    """Return the foe damage die as a tuple, 1d10 = (1, 10)
-
-    :return: a foe's damage die as a tuple (rolls, number_of_sides)
-    """
-    return 1, 10
 
 
 # ===== COMBAT CONSTANTS ===============================================================================================
@@ -332,8 +264,6 @@ def foe_colour(text: str) -> str:
     :postcondition: returns the text wrapped with ASCII escape code for yellow
     :return: a string, wrapping original text in ASCII escape code for yellow
 
-    >>> foe_colour("hello")
-    '\x1b[33mhello\x1b[0m'
     """
     return f"\033[33m{text}\033[0m"
 
@@ -823,6 +753,7 @@ def summon_weak_foe():
                 "EXP": 50,
                 "flee": False}
 
+
 def summon_strong_foe():
     random_class = str(random.randint(1, 3))
     if random_class == "1":
@@ -865,6 +796,7 @@ def summon_strong_foe():
                 "EXP": 200,
                 "flee": False}
 
+
 def summon_epic_foe():
     random_class = str(random.randint(1, 3))
     if random_class == "1":
@@ -906,6 +838,7 @@ def summon_epic_foe():
                 "crit_modifier": 2,
                 "EXP": 500,
                 "flee": False}
+
 
 def summon_god():
         return {"name": "GOD",
@@ -962,6 +895,8 @@ def get_engage_decision() -> str:
 
     :postcondition: return the user's input as a string containing an integer [1, 2]
     :return: string of combat decision [1, 2]
+
+    No doctest, function requires input
     """
     return input("Enter the number of your decision: ")
 
