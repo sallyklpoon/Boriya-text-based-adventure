@@ -159,14 +159,6 @@ def ENGAGE_OPTIONS() -> tuple:
     return "Attack", "Flee"
 
 
-def COMBAT_OPTIONS() -> tuple:
-    """Return combat options as a tuple of strings.
-
-    :return: tuple of combat options
-    """
-    return "Continue Combat", "Flee"
-
-
 def CLASS_OPTIONS() -> tuple:
     """Return class options as a tuple of strings.
 
@@ -186,24 +178,7 @@ def CHARACTER_START_LEVEL() -> int:
     return 1
 
 
-def LEVEL_DAMAGE_MODIFIER() -> int:
-    """Return the bonus damage modifier for a character, 2
-
-    :return: integer of bonus damage modifier as indicated in description above
-    """
-    return 2
-
-
 # ===== COMBAT CONSTANTS ===============================================================================================
-
-
-def DAMAGE_RESPONSE() -> tuple:
-    """Return a tuple of possible damage responses.
-
-    :return: a tuple of possible damage responses
-    """
-    return "Stumbles", "Winces", "Falls Back",\
-           "Feels Sick", "Falters"
 
 
 def INITIATIVE_DIE() -> tuple:
@@ -252,6 +227,9 @@ def hero_colour(text: str) -> str:
     :precondition: text is a string
     :postcondition: returns the text wrapped with ASCII escape code for cyan
     :return: a string, wrapping original text in ASCII escape code for cyan
+
+    >>> print(hero_colour('hello'))
+    \033[36mhello\033[0m
     """
     return f"\033[36m{text}\033[0m"
 
@@ -264,6 +242,8 @@ def foe_colour(text: str) -> str:
     :postcondition: returns the text wrapped with ASCII escape code for yellow
     :return: a string, wrapping original text in ASCII escape code for yellow
 
+    >>> print(foe_colour('hello'))
+    \033[33mhello\033[0m
     """
     return f"\033[33m{text}\033[0m"
 
@@ -285,13 +265,14 @@ def roll(die: tuple) -> int:
 
 
 def get_menu(menu_type: str) -> None:
-    """Print menu options for a given menu type of either "move" or "combat".
+    """Print menu options for a given menu type of either "move", "engage", or "class".
 
-    :param menu_type: a string
+    :param menu_type: a non-empty string, either "move", "engage", or "class"
     :precondition: menu_type is a string asking for the correct menu
-    :precondition: menu_type is either "move" or "combat" only
+    :precondition: menu_type argument is either the string "move", "engage", or "class"
     :postcondition: print enumerated MOVE_OPTIONS() if menu_type is "move"
-    :postcondition: print enumerated COMBAT_OPTIONS() if menu_type is "combat"
+    :postcondition: print enumerated ENGAGE_OPTIONS() if menu_type is "engage"
+    :postcondition: print enumerated CLASS_OPTIONS() if menu_type is "class"
     :postcondition: enumerated list starts from 1
     :return: prints enumerated options as strings starting from 1
 
@@ -332,12 +313,31 @@ def valid_menu_input(selected_option: str, menu_type: tuple) -> bool:
 
 
 def lvl_board_max(level: int) -> tuple:
+    """Return the game board dimensions for the appropriate level.
+
+    Board will expand at each level as a part of level-up experience.
+
+    :param level: an integer of the player's level
+    :precondition: level is an integer [1, 3] representing the player's current level
+    :precondition: level is an integer >= CHARACTER_START_LEVEL() constant
+    :postcondition: return the accurate board dimensions for a given level
+    :postcondition: return is a tuple that contains MAX_MAP_X_LVL#, MAX_MAP_X_LVL# where # is
+                    an integer, representing the level number
+    :return: a tuple of the current level's board dimensions
+
+    >>> lvl_board_max(CHARACTER_START_LEVEL())
+    (10, 10)
+    >>> lvl_board_max(2)
+    (25, 20)
+    >>> lvl_board_max(3)
+    (25, 25)
+    """
     if level == 1:
-        return MAX_MAP_Y_LVL1(), MAX_MAP_Y_LVL1()
+        return MAX_MAP_X_LVL1(), MAX_MAP_Y_LVL1()
     elif level == 2:
         return MAX_MAP_X_LVL2(), MAX_MAP_Y_LVL2()
     else:
-        return MAX_MAP_X_LVL3(), MAX_MAP_X_LVL3()
+        return MAX_MAP_X_LVL3(), MAX_MAP_Y_LVL3()
 
 
 def make_board(character: dict) -> dict:
@@ -605,7 +605,6 @@ def next_move(character: dict, board: dict) -> None:
                 move_character(direction, character)
             else:
                 print("Move is invalid...")
-    time.sleep(0.5)
 
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
@@ -920,7 +919,6 @@ def engage() -> bool:
     print("\nWhat will you do next, adventurer?")
     get_menu("engage")
     engage_choice = get_engage_decision()
-    time.sleep(1)
     return engage_choice == "1"
 
 
@@ -1428,7 +1426,6 @@ def game() -> None:
               f"\033[34m HP: {character['HP']}/{character['max-HP']}\033[0m, "
               f"\033[36m EXP: {character['EXP']}\033[0m \n"
               f"{board[(character['x-location'], character['y-location'])]} \n")
-        time.sleep(1)
         print_map(character, board)
         next_move(character, board)
         if character["quit"]:
