@@ -53,10 +53,13 @@
 | Damage character does increases at lvl-up    |   Y   |
 | Print critical hit messaging                 |   N   |
 | Fix attack messaging                         |   N   |
-| Implement color for foe and god.             |   N   |
 | Foes become more challenging to defeat       |   N   |
 | Game ends if character dies                  |   Y   |
 | Elaborate storyline                          |   N   |
+
+| Change sleep timing to run the game faster   |   N   |
+| Implement color for foe and god. Use make_character    |   N   |
+| Change chance of encountering foes           |   N   |
 
 
 

@@ -758,7 +758,6 @@ def heal(character: dict) -> None:
               f".・。.・゜Your health has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
     time.sleep(1)
 
-
 def summon_foe(character) -> dict:
     """Summon a random foe.
 
@@ -782,7 +781,6 @@ def summon_foe(character) -> dict:
     if character["level"] == 3:
         return summon_epic_foe()
 
-
 def summon_weak_foe():
     random_class = str(random.randint(1, 3))
     if random_class == "1":
@@ -796,6 +794,7 @@ def summon_weak_foe():
                 "dmg_modifier": 1,
                 "crit_chance": [20],
                 "crit_modifier": 1.5,
+                "EXP": 50,
                 "flee": False}
     elif random_class == "2":
         return {"name": foe_colour("Heretic"),
@@ -808,18 +807,20 @@ def summon_weak_foe():
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 1.5,
+                "EXP": 50,
                 "flee": False}
     elif random_class == "3":
         return {"name": foe_colour("Berserker"),
                 "AC": 8,
                 "HP": 10,
                 "max-HP": 10,
-                "attacks": ["Necrotic Touch"],
+                "attacks": ["Fury of Blows"],
                 "atk_modifier": 0,
                 "damage": (1, 8),
                 "dmg_modifier": 0,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "EXP": 50,
                 "flee": False}
 
 def summon_strong_foe():
@@ -835,6 +836,7 @@ def summon_strong_foe():
                 "dmg_modifier": 4,
                 "crit_chance": [20],
                 "crit_modifier": 1.5,
+                "EXP": 200,
                 "flee": False}
     elif random_class == "2":
         return {"name": foe_colour("Shadow"),
@@ -847,6 +849,7 @@ def summon_strong_foe():
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 1.5,
+                "EXP": 200,
                 "flee": False}
     elif random_class == "3":
         return {"name": foe_colour("Zealot"),
@@ -859,6 +862,7 @@ def summon_strong_foe():
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "EXP": 200,
                 "flee": False}
 
 def summon_epic_foe():
@@ -874,6 +878,7 @@ def summon_epic_foe():
                 "dmg_modifier": 4,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "EXP": 500,
                 "flee": False}
     elif random_class == "2":
         return {"name": foe_colour("Devourer"),
@@ -886,6 +891,7 @@ def summon_epic_foe():
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "EXP": 500,
                 "flee": False}
     elif random_class == "3":
         return {"name": foe_colour("Nightwalker"),
@@ -898,6 +904,7 @@ def summon_epic_foe():
                 "dmg_modifier": 4,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "EXP": 500,
                 "flee": False}
 
 def summon_god():
@@ -912,7 +919,6 @@ def summon_god():
                 "crit_chance": [20],
                 "crit_modifier": 2,
                 "flee": False}
-
 
 def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
@@ -1144,7 +1150,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
               f"you triumph in glory as you watch their shoulders slump\n"
               f"and they walk away with their head down in shame.\n"
               f"Way to go, {character['name']}! (^◇^*)\n")
-        gain_exp(character, board)
+        gain_exp(character, foe["EXP"], board)
 
     if foe["flee"]:
         print(f"{foe['name']} ran away.")
