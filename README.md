@@ -60,6 +60,8 @@
 | Change sleep timing to run the game faster   |   N   |
 | Implement color for foe and god. Use make_character    |   N   |
 | Change chance of encountering foes           |   N   |
+| Change EXP gain and level up values          |   N   |
+| Boss encounter and end game                  |   N   |
 
 
 
