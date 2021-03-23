@@ -57,11 +57,58 @@
 | Game ends if character dies                  |   Y   |
 | Elaborate storyline                          |   N   |
 
-| Change sleep timing to run the game faster   |   N   |
+| Change sleep timing to run the game faster   |   Y   |
 | Implement color for foe and god. Use make_character    |   N   |
 | Change chance of encountering foes           |   N   |
 | Change EXP gain and level up values          |   N   |
 | Boss encounter and end game                  |   N   |
+
+
+### Unit Test Checklist
+
+| In-game Function                             | Done? | Double-checked? |
+|       -----                                  | ---   |    ---          |
+| hero_colour                                  |   Y   |   N   |
+| foe_colour                                   |   Y   |   N   |
+| roll                                         |   Y   |   N   |
+| get_menu                                     |   Y   |   N   |
+| valid_menu_input?                            |   Y   |   N   |
+| lvl_board_max                                |   Y   |   N   |
+| make_board                                   |   N   |   N   |
+| print_map                                    |   N   |   N   |
+| get_class_choice                             |   N   |   N   |
+| choose_class                                 |   N   |   N   |
+| get_name                                     |   N   |   N   |
+| make_character                               |   N   |   N   |
+| start_game                                   |   N   |   N   |
+| valid_move                                   |   N   |   N   |
+| move_character                               |   N   |   N   |
+| get_direction                                |   N   |   N   |
+| next_move                                    |   N   |   N   |
+| check_goal_attained                          |   N   |   N   |
+| heal                                         |   N   |   N   |
+| summon_foe                                   |   N   |   N   |
+| summon_weak_foe                              |   N   |   N   |
+| summon_strong_foe                            |   N   |   N   |
+| summon_epic_foe                              |   N   |   N   |
+| summon_god                                   |   N   |   N   |
+| check_for_foe                                |   N   |   N   |
+| get_engage_decision                          |   N   |   N   |
+| engage                                       |   N   |   N   |
+| flee                                         |   N   |   N   |
+| foe_flee                                     |   N   |   N   |
+| initiative                                   |   N   |   N   |
+| combat_round                                 |   N   |   N   |
+| enter_combat                                 |   N   |   N   |
+| encounter                                    |   N   |   N   |
+| gain_exp                                     |   N   |   N   |
+| level_up                                     |   N   |   N   |
+| level_illusionist                            |   N   |   N   |
+| level_rogue                                  |   N   |   N   |
+| level_ranger                                 |   N   |   N   |
+| level_paladin                                |   N   |   N   |
+| end_game                                     |   N   |   N   |
+
 
 
 
