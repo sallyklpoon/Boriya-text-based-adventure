@@ -137,7 +137,7 @@ def CLASS_INFO() -> str:
            "\n" \
            "\033[1m<< Paladin >>\033[0m The Paladin swears to uphold justice and righteousness above all else. \n" \
            "They are proficient with heavy arms and armor, while also using divine powers to augment their combat \n" \
-           "capabilities. This class has a weak early game, and a strong late game. \n" \
+           "capabilities. This class has a weak early game, and a strong late game." \
 
 
 # ===== MENU CONSTANTS =================================================================================================
@@ -450,8 +450,8 @@ def make_character() -> dict:
                  "EXP": 0,
                  "level": CHARACTER_START_LEVEL(),
                  "quit": False}
-    print(f"Welcome to _____, {character['name']}")
-    time.sleep(1)
+    print(f"Welcome to Vosynia, {character['name']}")
+    time.sleep(0.5)
     character.update(choose_class())
     character["attacks"] = list(map(hero_colour, character["attacks"]))
     return character
@@ -576,7 +576,7 @@ def get_direction() -> str:
     :postcondition: return the user's input name as a string containing an integer [1, 5]
     :return: string of direction they'd like to go [1, 5]
     """
-    return input("Enter the number of your decision: ")
+    return input("\nEnter the number of your decision: ")
 
 
 def next_move(character: dict, board: dict) -> None:
@@ -605,7 +605,7 @@ def next_move(character: dict, board: dict) -> None:
                 move_character(direction, character)
             else:
                 print("Move is invalid...")
-    time.sleep(1)
+    time.sleep(0.5)
 
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
@@ -686,7 +686,7 @@ def heal(character: dict) -> None:
         print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel "
               "reinvigorated by the decent day you're having.・゜・。.\n"
               f".・。.・゜Your health has been healed to {character['HP']} points. (◡‿◡✿)・゜・。.\n\033[0m")
-    time.sleep(1)
+    time.sleep(0.5)
 
 
 def summon_foe(character) -> dict:
@@ -946,14 +946,14 @@ def flee(character: dict, foe: dict) -> None:
         character["HP"] -= damage
         print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
               f"using {random.choice(foe['attacks'])} dealing \033[31m{damage}\033[0m damage.\n")
-        time.sleep(1)
+        time.sleep(0.5)
         print(f"You came out here to have a good time\n"
               f"but you're feeling pretty attacked right now.\n"
               f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
     else:
         print(f"\nYou said 'bye, Felicia!' and got out of {foe['name']}'s view range.\n"
               f"Phew! That was a close one.\n")
-    time.sleep(1)
+    time.sleep(0.5)
 
 
 def foe_flee(foe: dict) -> None:
@@ -1014,20 +1014,19 @@ def combat_round(attacker: dict, opposition: dict) -> None:
     initial_roll = roll(ATTACK_DIE())
     attack_roll = initial_roll + attacker["atk_modifier"]
     print(f"\n{attacker['name']} attacks using {random.choice(attacker['attacks'])}!")
-    time.sleep(1)
+    time.sleep(0.5)
     if attack_roll >= opposition["AC"]:
         if initial_roll in attacker["crit_chance"]:
             attack_damage = (roll(attacker["damage"]) * attacker["crit_modifier"]) + attacker["dmg_modifier"]
         else:
             attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
         opposition["HP"] -= attack_damage
-        print(f"{opposition['name']} {random.choice(DAMAGE_RESPONSE())} and takes "
-              f"\033[31m{attack_damage}\033[0m damage.\n"
+        print(f"{opposition['name']} takes \033[31m{attack_damage}\033[0m damage.\n"
               f"{opposition['name']}'s health level is now "
               f"\033[34m{opposition['HP']}/{opposition['max-HP']}\033[0m...\n")
     else:
         print(f"{opposition['name']} dodges the attack successfully.")
-    time.sleep(1)
+    time.sleep(0.5)
 
 
 def enter_combat(character: dict, foe: dict) -> None:
@@ -1095,7 +1094,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
 
     if foe["flee"]:
         print(f"{foe['name']} ran away.")
-    time.sleep(1)
+    time.sleep(0.5)
 
 # ===== CHECK LEVELING UP ==============================================================================================
 
@@ -1116,7 +1115,7 @@ def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
         level_up(character, board)
     if character["EXP"] == 1000:
         level_up(character, board)
-    if character["EXP"] == 2500:
+    if character["EXP"] == 5000:
         level_up(character, board)
 
 
