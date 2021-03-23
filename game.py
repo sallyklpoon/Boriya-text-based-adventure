@@ -313,12 +313,31 @@ def valid_menu_input(selected_option: str, menu_type: tuple) -> bool:
 
 
 def lvl_board_max(level: int) -> tuple:
+    """Return the game board dimensions for the appropriate level.
+
+    Board will expand at each level as a part of level-up experience.
+
+    :param level: an integer of the player's level
+    :precondition: level is an integer [1, 3] representing the player's current level
+    :precondition: level is an integer >= CHARACTER_START_LEVEL() constant
+    :postcondition: return the accurate board dimensions for a given level
+    :postcondition: return is a tuple that contains MAX_MAP_X_LVL#, MAX_MAP_X_LVL# where # is
+                    an integer, representing the level number
+    :return: a tuple of the current level's board dimensions
+
+    >>> lvl_board_max(CHARACTER_START_LEVEL())
+    (10, 10)
+    >>> lvl_board_max(2)
+    (25, 20)
+    >>> lvl_board_max(3)
+    (25, 25)
+    """
     if level == 1:
-        return MAX_MAP_Y_LVL1(), MAX_MAP_Y_LVL1()
+        return MAX_MAP_X_LVL1(), MAX_MAP_Y_LVL1()
     elif level == 2:
         return MAX_MAP_X_LVL2(), MAX_MAP_Y_LVL2()
     else:
-        return MAX_MAP_X_LVL3(), MAX_MAP_X_LVL3()
+        return MAX_MAP_X_LVL3(), MAX_MAP_Y_LVL3()
 
 
 def make_board(character: dict) -> dict:
