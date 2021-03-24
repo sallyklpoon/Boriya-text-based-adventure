@@ -308,13 +308,16 @@ def get_menu(menu_type: str) -> None:
 def get_user_choice(decision_type: str) -> str:
     """Return user's valid input for choice of class
 
-    :postcondition: the user will be asked for their class of choice as a number
-    :postcondition: user's input for choice of class will be returned
+    :param decision_type: a string
+    :precondition: decision_type is a string that will customize the input prompt
+    :postcondition: the user will be asked for their choice, customized to a
+                    decision_type string
+    :postcondition: user's input for choice will be returned
     :return: a string, the user's input for choice of class
 
     No doctests, requires user input
     """
-    return input(f"\nEnter the number of your {decision_type} choice: ")
+    return input(f"\n\033[1mEnter the number of your {decision_type} choice: \033[0m")
 
 
 def valid_input(decision_type: str, menu_type: tuple) -> str:
@@ -325,7 +328,7 @@ def valid_input(decision_type: str, menu_type: tuple) -> str:
     """
     user_choice = get_user_choice(decision_type)
     while int(user_choice) not in range(1, len(menu_type) + 1):
-        print('invalid.')
+        print('Choice is invalid, adventurer...')
         user_choice = get_user_choice(decision_type)
     return user_choice
 
@@ -428,7 +431,7 @@ def choose_class() -> dict:
 
     :return:
     """
-    print("\nWhat kind of adventurer are you?\n")
+    print("\n\033[1mWhat kind of adventurer are you?\033[0m\n")
     print(CLASS_INFO())
     get_menu("class")
     chosen_class = valid_input('class', CLASS_OPTIONS())
@@ -464,7 +467,7 @@ def get_name() -> str:
     :postcondition: return the user's input name as a string
     :return: string of character name
     """
-    return input("What's your name? ")
+    return input("\033[1mWhat's your name? \033[0m")
 
 
 def make_character() -> dict:
@@ -609,15 +612,6 @@ def move_character(direction: str, character: dict) -> None:
         character["x-location"] += 1
 
 
-def get_direction() -> str:
-    """Ask user for the direction they want to go.
-
-    :postcondition: return the user's input name as a string containing an integer [1, 5]
-    :return: string of direction they'd like to go [1, 5]
-    """
-    return input("\nEnter the number of your decision: ")
-
-
 def next_move(character: dict, board: dict) -> None:
     """Move the character to a valid position on the board as requested by user.
 
@@ -632,10 +626,10 @@ def next_move(character: dict, board: dict) -> None:
     No doctests, requires user input
     """
     move_valid = False
-    print("\nWhich direction would you like to go?")
+    print("\n\033[1mWhich direction would you like to go?\033[0m")
     get_menu("move")
     while not move_valid:
-        direction = get_direction()
+        direction = valid_input('direction', MOVE_OPTIONS())
         if direction == "5":
             move_valid, character["quit"] = True, True
         else:
@@ -643,7 +637,7 @@ def next_move(character: dict, board: dict) -> None:
                 move_valid = True
                 move_character(direction, character)
             else:
-                print("Move is invalid...")
+                print("You've reached the limits of , adventurer...")
 
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
@@ -884,18 +878,18 @@ def summon_epic_foe():
 
 
 def summon_god():
-        return {"name": foe_colour("Erebus"),
-                "AC": 16,
-                "HP": 100,
-                "max-HP": 48,
-                "attacks": list(map(foe_colour, ["Time Ravage", "Imprisonment", "Power Word: Kill", "Tear Soul"])),
-                "atk_modifier": 6,
-                "damage": (3, 6),
-                "dmg_modifier": 4,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "EXP": 500,
-                "flee": False}
+    return {"name": foe_colour("Erebus"),
+            "AC": 16,
+            "HP": 100,
+            "max-HP": 48,
+            "attacks": list(map(foe_colour, ["Time Ravage", "Imprisonment", "Power Word: Kill", "Tear Soul"])),
+            "atk_modifier": 6,
+            "damage": (3, 6),
+            "dmg_modifier": 4,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "EXP": 500,
+            "flee": False}
 
 
 def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
@@ -935,17 +929,6 @@ def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
 # ===== FOE ENCOUNTER ==================================================================================================
 
 
-def get_engage_decision() -> str:
-    """Ask user for the combat decision.
-
-    :postcondition: return the user's input as a string containing an integer [1, 2]
-    :return: string of combat decision [1, 2]
-
-    No doctest, function requires input
-    """
-    return input("\nEnter the number of your decision: ")
-
-
 def engage() -> bool:
     """Ask character if they would like to engage with or flee from foe.
 
@@ -956,9 +939,9 @@ def engage() -> bool:
 
     No doctests, user input required
     """
-    print("\nWhat will you do next, adventurer?")
+    print("\n\033[1mWhat will you do next, adventurer?\033[0m")
     get_menu("engage")
-    engage_choice = get_engage_decision()
+    engage_choice = valid_input('engage', ENGAGE_OPTIONS())
     return engage_choice == "1"
 
 
@@ -1316,7 +1299,6 @@ def enter_boss_combat(character: dict, foe: dict) -> None:
             return flee(character, foe)
 
 
-
 def final_boss_encounter(character: dict):
     print("You arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
           "entirely of unending nothingness. Are you ready to die?")
@@ -1331,7 +1313,6 @@ def final_boss_encounter(character: dict):
         print(f"You are dead.")
 
     time.sleep(0.5)
-
 
 
 def end_game(character: dict) -> None:
