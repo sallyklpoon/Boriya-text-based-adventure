@@ -48,7 +48,7 @@
 | Simple leveling scheme                       |   Y   |
 | Max HP increases at lvl-up                   |   Y   |
 | Elaborate class attacks                      |   Y   |
-| Elaborate foe/god summoning                  |   IP  |
+| Elaborate foe/god summoning                  |   Y  |
 | Elaborate class healing                      |   Y   |
 | Damage character does increases at lvl-up    |   Y   |
 | Print critical hit messaging                 |   N   |
