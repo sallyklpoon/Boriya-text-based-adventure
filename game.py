@@ -340,13 +340,18 @@ def lvl_board_max(level: int) -> tuple:
         return MAX_MAP_X_LVL3(), MAX_MAP_Y_LVL3()
 
 
-def make_board(character: dict) -> dict:
+def make_board(level: int) -> dict:
     """Create a dictionary to represent a board with given map_dimensions.
 
     For key:value pairs in the dictionary, coordinates will be keys and descriptions will be values.
 
-    :postcondition: returns a dictionary data structure of the game's board
-    :postcondition: the key values in the dictionary are coordinates represented in tuples (x, y)
+    :param level: an integer
+    :precondition: level is an integer >= CHARACTER_START_LEVEL()
+    :postcondition: returns a dictionary data structure of the game's board at the character's current level
+    :postcondition: the keys in the dictionary are coordinates represented in tuples (x, y)
+    :postcondition: the value of tuple coordinate keys are strings of location descriptions
+    :postcondition: the returned dictionary will include two keys 'max-x' and 'max-y' which have values of
+                    the maximum x-coordinate and maximum y-coordinate of the board as integers, respectively
     :return: a dictionary of the game board
 
     # >>> board = make_board()
@@ -356,7 +361,7 @@ def make_board(character: dict) -> dict:
     # >>> pp.pprint(board)
     """
     map_script = itertools.cycle(MAP_SCRIPTS())
-    lvl_max_x, lvl_max_y = lvl_board_max(character['level'])
+    lvl_max_x, lvl_max_y = lvl_board_max(level)
     board = {(x_location, y_location): next(map_script)
              for x_location in range(lvl_max_x)
              for y_location in range(lvl_max_y)}
@@ -469,7 +474,7 @@ def start_game() -> tuple:
     """
     print(START_GAME_MSG())
     character = make_character()
-    return make_board(character), character
+    return make_board(character['level']), character
 
 
 # ===== NEXT MOVE (VALIDATE AND MOVE) ==================================================================================
@@ -1143,7 +1148,7 @@ def level_up(character: dict, board: dict) -> None:
         level_ranger(character)
     elif character["class"] == "Paladin":
         level_paladin(character)
-    board.update(make_board(character))
+    board.update(make_board(character['level']))
 
 
 def level_illusionist(character: dict) -> None:

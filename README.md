@@ -56,7 +56,6 @@
 | Foes become more challenging to defeat       |   N   |
 | Game ends if character dies                  |   Y   |
 | Elaborate storyline                          |   N   |
-
 | Change sleep timing to run the game faster   |   Y   |
 | Implement color for foe and god. Use make_character    |   N   |
 | Change chance of encountering foes           |   N   |
@@ -69,15 +68,15 @@
 
 ### Unit Test Checklist
 
-| In-game Function                             | Done? | Double-checked? |
-|       -----                                  | ---   |    ---          |
+| In-game Function                             | Done? | Checked? |
+|       -----                                  | ---   |    ---|
 | hero_colour                                  |   Y   |   N   |
 | foe_colour                                   |   Y   |   N   |
 | roll                                         |   Y   |   N   |
 | get_menu                                     |   Y   |   N   |
 | valid_menu_input?                            |   Y   |   N   |
 | lvl_board_max                                |   Y   |   N   |
-| make_board                                   |   N   |   N   |
+| make_board*                                  |   N   |   N   |
 | print_map                                    |   N   |   N   |
 | get_class_choice                             |   N   |   N   |
 | choose_class                                 |   N   |   N   |
