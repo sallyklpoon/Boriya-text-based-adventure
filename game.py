@@ -374,12 +374,21 @@ def print_map(character: dict, board: dict) -> None:
 
     :param character: a dictionary of character stats
     :param board: a dictionary of the board
-    :precondition
     :precondition: character is a dictionary of stats with keys, "x-location" and "y-location"
     :precondition: the values of "x-location" and "y-location" are both integers that are >= 0
-                   and less than the MAX_MAP_X and MAX_MAP_Y values, respectively
+                   and less than the board['max-x'] and board['max-y'] values, respectively
+    :precondition: map is a dictionary that contains a 'max-x' and 'max-y' key
+    :precondition: the values of the 'max-x' and 'max-y' key are integers that are >= 0, representing the
+                   maximum x and y value of the map (i.e. the dimensions)
     :postcondition: print out a visual map with the correct location as to where the character is on a board
     :return: printed map
+
+    >>> sample_character = {"x-location": 0, "y-location": 0}
+    >>> sample_board = {"max-x": 3, "max-y": 3}
+    >>> print_map(sample_character, sample_board)
+    [\033[36m웃\033[0m][  ][  ]
+    [  ][  ][  ]
+    [  ][  ][  ]
     """
     for row in range(board['max-y']):
         for column in range(board['max-x']):
