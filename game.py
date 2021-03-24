@@ -1053,6 +1053,7 @@ def enter_combat(character: dict, foe: dict) -> None:
             combat_round(attacker, opposition)
             if opposition["HP"] > 0:
                 combat_round(opposition, attacker)
+                foe_flee(foe)
         else:
             return flee(character, foe)
 
