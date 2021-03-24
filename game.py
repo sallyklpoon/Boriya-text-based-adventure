@@ -452,7 +452,7 @@ def choose_class() -> dict:
     chosen_class = valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
         return {"class": "Illusionist", "level_name": "Trickster",
-                "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
+                "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 4),
                 "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
                 "atk_modifier": 2, "damage": (1, 8), "dmg_modifier": 2,
                 "crit_chance": [20], "crit_modifier": 2}
@@ -466,7 +466,7 @@ def choose_class() -> dict:
         return {"class": "Ranger", "level_name": "Scout",
                 "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 8),
                 "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
-                "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 6,
+                "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 4,
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "4":
         return {"class": "Paladin", "level_name": "Protector",
