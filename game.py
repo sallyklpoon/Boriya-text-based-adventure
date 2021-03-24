@@ -725,6 +725,7 @@ def summon_foe(character) -> dict:
 
     No doctests, random used
     """
+    foe_chance = random.randint(1, 10)
 
     if character["level"] == 1:
         return summon_weak_foe()
@@ -1038,6 +1039,7 @@ def combat_round(attacker: dict, opposition: dict) -> None:
     if attack_roll >= opposition["AC"]:
         if initial_roll in attacker["crit_chance"]:
             attack_damage = (roll(attacker["damage"]) * attacker["crit_modifier"]) + attacker["dmg_modifier"]
+            print(f"It's a critical hit!\n")
         else:
             attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
         opposition["HP"] -= attack_damage
@@ -1073,7 +1075,7 @@ def enter_combat(character: dict, foe: dict) -> None:
             else:
                 attacker, opposition = foe, character
             combat_round(attacker, opposition)
-            if opposition["HP"] > 0:
+            if opposition["HP"] > 0 and attacker["HP"] > 0:
                 combat_round(opposition, attacker)
                 foe_flee(foe)
         else:
@@ -1114,7 +1116,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
         gain_exp(character, foe["EXP"], board)
 
     if foe["flee"]:
-        print(f"{foe['name']} ran away.")
+        print(f"\n{foe['name']} ran away.")
     time.sleep(0.5)
 
 # ===== CHECK LEVELING UP ==============================================================================================
@@ -1131,7 +1133,7 @@ def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
     :return: nothing, character dictionary and board may be modified
     """
     character["EXP"] += experience_gain
-    print(hero_colour(f"You've earned {experience_gain} experience points. Current EXP: {character['EXP']}\n"))
+    print(hero_colour(f"You've earned {experience_gain} experience points. Current EXP: {character['EXP']}"))
     if character["EXP"] == 200:
         level_up(character, board)
     if character["EXP"] == 1000:
