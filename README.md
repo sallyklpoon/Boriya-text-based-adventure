@@ -86,7 +86,6 @@
 | start_game                                   |   N   |   N   |
 | valid_move                                   |   N   |   N   |
 | move_character                               |   N   |   N   |
-| get_direction                                |   N   |   N   |
 | next_move                                    |   N   |   N   |
 | check_goal_attained                          |   N   |   N   |
 | heal                                         |   N   |   N   |

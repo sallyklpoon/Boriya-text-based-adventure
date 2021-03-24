@@ -544,7 +544,6 @@ def get_name() -> str:
 def make_character() -> dict:
     """Create a character dictionary with character details
 
-    :precondition: make_character() is called
     :postcondition: returns a complete character dictionary
     :postcondition: character dictionary contains keys "name", "HP", "damage", "attacks", "x-location", "y-location"
     :postcondition: value of "name" is a string input by the user
