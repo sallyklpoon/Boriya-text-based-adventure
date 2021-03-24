@@ -531,10 +531,12 @@ def choose_class() -> dict:
 
 
 def get_name() -> str:
-    """Ask user for their character name.
+    """Return user's input for their character name.
 
     :postcondition: return the user's input name as a string
     :return: string of character name
+
+    No doctest, input required
     """
     return input("\033[1mWhat's your name? \033[0m")
 

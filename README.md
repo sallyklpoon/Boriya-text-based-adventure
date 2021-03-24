@@ -81,7 +81,7 @@
 | make_board*                                  |   Y   |   N   |
 | print_map                                    |   Y   |   N   |
 | choose_class                                 |   Y   |   N   |
-| get_name                                     |   N   |   N   |
+| get_name                                     |   Y   |   N   |
 | make_character                               |   N   |   N   |
 | start_game                                   |   N   |   N   |
 | valid_move                                   |   N   |   N   |
