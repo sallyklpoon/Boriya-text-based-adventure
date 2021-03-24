@@ -742,6 +742,7 @@ def summon_foe(character) -> dict:
 
     No doctests, random used
     """
+    foe_chance = random.randint(1, 10)
 
     if character["level"] == 1:
         return summon_weak_foe()
@@ -884,11 +885,11 @@ def summon_epic_foe():
 
 def summon_god():
         return {"name": foe_colour("Erebus"),
-                "AC": 20,
-                "HP": 24,
-                "max-HP": 24,
+                "AC": 16,
+                "HP": 100,
+                "max-HP": 48,
                 "attacks": list(map(foe_colour, ["Time Ravage", "Imprisonment", "Power Word: Kill", "Tear Soul"])),
-                "atk_modifier": 4,
+                "atk_modifier": 6,
                 "damage": (3, 6),
                 "dmg_modifier": 4,
                 "crit_chance": [20],
@@ -1055,6 +1056,7 @@ def combat_round(attacker: dict, opposition: dict) -> None:
     if attack_roll >= opposition["AC"]:
         if initial_roll in attacker["crit_chance"]:
             attack_damage = (roll(attacker["damage"]) * attacker["crit_modifier"]) + attacker["dmg_modifier"]
+            print(f"It's a critical hit!\n")
         else:
             attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
         opposition["HP"] -= attack_damage
@@ -1090,7 +1092,7 @@ def enter_combat(character: dict, foe: dict) -> None:
             else:
                 attacker, opposition = foe, character
             combat_round(attacker, opposition)
-            if opposition["HP"] > 0:
+            if opposition["HP"] > 0 and attacker["HP"] > 0:
                 combat_round(opposition, attacker)
                 foe_flee(foe)
         else:
@@ -1131,7 +1133,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
         gain_exp(character, foe["EXP"], board)
 
     if foe["flee"]:
-        print(f"{foe['name']} ran away.")
+        print(f"\n{foe['name']} ran away.")
     time.sleep(0.5)
 
 # ===== CHECK LEVELING UP ==============================================================================================
@@ -1148,7 +1150,7 @@ def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
     :return: nothing, character dictionary and board may be modified
     """
     character["EXP"] += experience_gain
-    print(hero_colour(f"You've earned {experience_gain} experience points. Current EXP: {character['EXP']}\n"))
+    print(hero_colour(f"You've earned {experience_gain} experience points. Current EXP: {character['EXP']}"))
     if character["EXP"] == 200:
         level_up(character, board)
     if character["EXP"] == 1000:
@@ -1201,9 +1203,9 @@ def level_illusionist(character: dict) -> None:
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 24,
+        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 48,
                            "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
-                           "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 20,
+                           "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
                            "crit_chance": [19, 20], "crit_modifier": 4}
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
@@ -1225,7 +1227,7 @@ def level_rogue(character: dict) -> None:
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 24,
+        level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48,
                            "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
                            "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8,
                            "crit_chance": [19, 20], "crit_modifier": 2}
@@ -1249,7 +1251,7 @@ def level_ranger(character: dict) -> None:
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 30,
+        level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 54,
                            "attacks": ["Steel Wind Strike", "Swift Quiver", "Wrath of Nature"],
                            "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
                            "crit_modifier": 2}
@@ -1273,7 +1275,7 @@ def level_paladin(character: dict) -> None:
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 36,
+        level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 62,
                            "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
                            "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
                            "crit_modifier": 3}
