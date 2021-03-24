@@ -74,11 +74,12 @@
 | foe_colour                                   |   Y   |   N   |
 | roll                                         |   Y   |   N   |
 | get_menu                                     |   Y   |   N   |
-| valid_menu_input?                            |   Y   |   N   |
+| get_user_choice                              |   Y   |   N   |
+| non_digit_filter                             |   N   |   N   |
+| valid_menu_input                             |   N   |   N   |
 | lvl_board_max                                |   Y   |   N   |
 | make_board*                                  |   Y   |   N   |
 | print_map                                    |   Y   |   N   |
-| get_class_choice                             |   Y   |   N   |
 | choose_class                                 |   N   |   N   |
 | get_name                                     |   N   |   N   |
 | make_character                               |   N   |   N   |

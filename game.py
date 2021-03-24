@@ -326,8 +326,7 @@ def get_user_choice(decision_type: str) -> str:
 
     :param decision_type: a string
     :precondition: decision_type is a string that will customize the input prompt
-    :postcondition: the user will be asked for their choice, customized to a
-                    decision_type string
+    :postcondition: the user will be asked for their choice
     :postcondition: user's input for choice will be returned
     :return: a string, the user's input for choice of class
 
@@ -336,31 +335,33 @@ def get_user_choice(decision_type: str) -> str:
     return input(f"\n\033[1mEnter the number of your {decision_type} choice: \033[0m")
 
 
-def non_digit_filter(string: str) -> bool:
-    """Determine if string contains digits only.
+def filter_non_digits(element: str) -> bool:
+    """Determine if string contains non-digits.
 
-    :param string: a string
-    :precondition: string is a string
-    :postcondition: return True or False if string contains digits only
-    :postcondition: if string contains digits only, return is True
-    :postcondition: if string contains anything other than digits, return False
+    :param element: a single character from a string
+    :precondition: element is a single character from a string
+    :postcondition: return a Boolean if the element is a non-digit string character
+    :postcondition: if element is any ASCII letter, whitespace, or punctuation, return True
     :return: Boolean
 
-    >>> non_digit_filter("1")
+    >>> filter_non_digits("1")
     False
-    >>> non_digit_filter(" ")
+    >>> filter_non_digits("A")
     True
-    >>> non_digit_filter("&")
+    >>> filter_non_digits("z")
+    True
+    >>> filter_non_digits("&")
+    True
+    >>> filter_non_digits(" ")
     True
     """
-    for element in string:
-        if element in ascii_letters or element in punctuation or element in whitespace:
-            return True
-        else:
-            return False
+    if element in ascii_letters or element in punctuation or element in whitespace:
+        return True
+    else:
+        return False
 
 
-def valid_input(decision_type: str, menu_type: tuple) -> str:
+def get_valid_input(decision_type: str, menu_type: tuple) -> str:
     """
     :param decision_type:
     :param menu_type:
@@ -368,7 +369,7 @@ def valid_input(decision_type: str, menu_type: tuple) -> str:
     """
     user_choice = get_user_choice(decision_type)
     while user_choice == "" \
-            or list(filter(non_digit_filter, user_choice)) \
+            or list(filter(filter_non_digits, user_choice)) \
             or int(user_choice) not in range(1, len(menu_type) + 1):
         print('Choice is invalid, adventurer...\nPlease submit a number within the menu selection.')
         user_choice = get_user_choice(decision_type)
@@ -476,7 +477,7 @@ def choose_class() -> dict:
     print("\n\033[1mWhat kind of adventurer are you?\033[0m\n")
     print(CLASS_INFO())
     get_menu("class")
-    chosen_class = valid_input('class', CLASS_OPTIONS())
+    chosen_class = get_valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
         return {"class": "Illusionist", "level_name": "Trickster",
                 "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
@@ -671,7 +672,7 @@ def next_move(character: dict, board: dict) -> None:
     print("\n\033[1mWhich direction would you like to go?\033[0m")
     get_menu("move")
     while not move_valid:
-        direction = valid_input('direction', MOVE_OPTIONS())
+        direction = get_valid_input('direction', MOVE_OPTIONS())
         if direction == "5":
             move_valid, character["quit"] = True, True
         else:
@@ -989,7 +990,7 @@ def engage() -> bool:
     """
     print("\n\033[1mWhat will you do next, adventurer?\033[0m")
     get_menu("engage")
-    engage_choice = valid_input('engage', ENGAGE_OPTIONS())
+    engage_choice = get_valid_input('engage', ENGAGE_OPTIONS())
     return engage_choice == "1"
 
 
