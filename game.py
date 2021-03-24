@@ -872,14 +872,14 @@ def summon_strong_foe():
     if random_class == "1":
         return {"name": foe_colour("Wraith"),
                 "AC": 14,
-                "HP": 8,
+                "HP": 18,
                 "max-HP": 8,
                 "attacks": list(map(foe_colour, ["Ray of Sickness", "Ray of Enfeeblement"])),
                 "atk_modifier": 2,
                 "damage": (2, 4),
                 "dmg_modifier": 4,
                 "crit_chance": [20],
-                "crit_modifier": 1.5,
+                "crit_modifier": 2,
                 "EXP": 200,
                 "flee": False}
     elif random_class == "2":
@@ -888,21 +888,21 @@ def summon_strong_foe():
                 "HP": 16,
                 "max-HP": 16,
                 "attacks": list(map(foe_colour, ["Life Drain", "Curse"])),
-                "atk_modifier": 4,
+                "atk_modifier": 3,
                 "damage": (2, 6),
                 "dmg_modifier": 2,
                 "crit_chance": [20],
-                "crit_modifier": 1.5,
+                "crit_modifier": 2,
                 "EXP": 200,
                 "flee": False}
     elif random_class == "3":
         return {"name": foe_colour("Zealot"),
                 "AC": 16,
-                "HP": 20,
+                "HP": 12,
                 "max-HP": 20,
                 "attacks": list(map(foe_colour, ["Necrotic Touch", "Inflict Wounds"])),
                 "atk_modifier": 2,
-                "damage": (3, 4),
+                "damage": (2, 8),
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 2,
@@ -1211,9 +1211,9 @@ def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
     """
     character["EXP"] += experience_gain
     print(hero_colour(f"You've earned {experience_gain} experience points. Current EXP: {character['EXP']}"))
-    if character["EXP"] >= 200:
+    if character["EXP"] >= 200 and character['level'] == 1:
         level_up(character, board)
-    if character["EXP"] >= 1600:
+    if character["EXP"] >= 1000 and character['level'] == 2:
         level_up(character, board)
 
 
