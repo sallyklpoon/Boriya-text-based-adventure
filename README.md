@@ -75,7 +75,7 @@
 | roll                                         |   Y   |   N   |
 | get_menu                                     |   Y   |   N   |
 | get_user_choice                              |   Y   |   N   |
-| is_not_digit                                 |   N   |   N   |
+| is_not_digit                                 |   Y   |   N   |
 | valid_menu_input                             |   N   |   N   |
 | lvl_board_max                                |   Y   |   N   |
 | make_board*                                  |   Y   |   N   |
