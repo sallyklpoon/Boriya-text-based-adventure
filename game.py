@@ -437,9 +437,9 @@ def choose_class() -> dict:
     chosen_class = valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
         return {"class": "Illusionist", "level_name": "Trickster",
-                "AC": 14, "HP": 8, "max-HP": 8, "hit_dice": (1, 6),
+                "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
                 "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
-                "atk_modifier": 2, "damage": (1, 12), "dmg_modifier": 2,
+                "atk_modifier": 2, "damage": (1, 8), "dmg_modifier": 2,
                 "crit_chance": [20], "crit_modifier": 2}
     elif chosen_class == "2":
         return {"class": "Rogue", "level_name": "Cutpurse",
@@ -457,7 +457,7 @@ def choose_class() -> dict:
         return {"class": "Paladin", "level_name": "Protector",
                 "AC": 15, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
                 "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
-                "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 4,
+                "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 2,
                 "crit_chance": [20], "crit_modifier": 2}
 
 
@@ -741,9 +741,15 @@ def summon_foe(character) -> dict:
     if character["level"] == 1:
         return summon_weak_foe()
     if character["level"] == 2:
-        return summon_strong_foe()
+        if foe_chance > 3:
+            return summon_strong_foe()
+        else:
+            return summon_weak_foe()
     if character["level"] == 3:
-        return summon_epic_foe()
+        if foe_chance > 3:
+            return summon_epic_foe()
+        else:
+            return summon_strong_foe()
 
 
 def summon_weak_foe():
@@ -760,7 +766,7 @@ def summon_weak_foe():
                 "damage": (1, 6),
                 "dmg_modifier": 1,
                 "crit_chance": [20],
-                "crit_modifier": 1.5,
+                "crit_modifier": 2,
                 "EXP": 50,
                 "flee": False}
     elif random_class == "2":
@@ -773,7 +779,7 @@ def summon_weak_foe():
                 "damage": (1, 4),
                 "dmg_modifier": 2,
                 "crit_chance": [20],
-                "crit_modifier": 1.5,
+                "crit_modifier": 2,
                 "EXP": 50,
                 "flee": False}
     elif random_class == "3":
@@ -1039,13 +1045,13 @@ def combat_round(attacker: dict, opposition: dict) -> None:
     if attack_roll >= opposition["AC"]:
         if initial_roll in attacker["crit_chance"]:
             attack_damage = (roll(attacker["damage"]) * attacker["crit_modifier"]) + attacker["dmg_modifier"]
-            print(f"It's a critical hit!\n")
+            print(f"It's a \033[35mcritical\033[0m hit!\n")
         else:
             attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
         opposition["HP"] -= attack_damage
         print(f"{opposition['name']} takes \033[31m{attack_damage}\033[0m damage.\n"
               f"{opposition['name']}'s health level is now "
-              f"\033[34m{opposition['HP']}/{opposition['max-HP']}\033[0m...\n")
+              f"\033[34m{opposition['HP']}/{opposition['max-HP']}\033[0m...")
     else:
         print(f"{opposition['name']} dodges the attack successfully.")
     time.sleep(0.5)
@@ -1075,8 +1081,9 @@ def enter_combat(character: dict, foe: dict) -> None:
             else:
                 attacker, opposition = foe, character
             combat_round(attacker, opposition)
-            if opposition["HP"] > 0 and attacker["HP"] > 0:
+            if opposition["HP"] > 0:
                 combat_round(opposition, attacker)
+            if opposition["HP"] > 0 and attacker["HP"] > 0:
                 foe_flee(foe)
         else:
             return flee(character, foe)
@@ -1109,7 +1116,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
     print(f"\nA {foe['name']} has showed up!")
     enter_combat(character, foe)
     if foe["HP"] <= 0:
-        print(f"Fantastic, you've successfully defeated this {foe['name']},\n"
+        print(f"\nFantastic, you've successfully defeated the {foe['name']},\n"
               f"you triumph in glory as you watch their shoulders slump\n"
               f"and they walk away with their head down in shame.\n"
               f"Way to go, {character['name']}! (^◇^*)\n")
@@ -1180,7 +1187,7 @@ def level_illusionist(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Mesmer", "AC": 15,  "max-HP": 12,
+        level_character = {"level_name": "Mesmer", "AC": 15,  "max-HP": 18,
                            "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
                            "atk_modifier": 4, "damage": (2, 10), "dmg_modifier": 10, "crit_chance": [20],
                            "crit_modifier": 2}
@@ -1204,7 +1211,7 @@ def level_rogue(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Assassin", "AC": 18,  "max-HP": 16,
+        level_character = {"level_name": "Assassin", "AC": 18,  "max-HP": 20,
                            "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
                            "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
                            "crit_modifier": 2}
@@ -1360,7 +1367,7 @@ def end_game(character: dict) -> None:
         final_boss_encounter(character)
 
     if character["HP"] <= 0:
-        print("=======================================================\n"
+        print("\n=======================================================\n"
               "Today just isn't your day, eh? You've been defeated.\n"
               "You're tired and your optimism level has gone down to 0.\n"
               f"That's alright, we'll get them another time, {character['name']}.\n "
