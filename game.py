@@ -402,8 +402,8 @@ def get_class_choice() -> str:
     """Receive user's input for choice of class
 
     :postcondition: the user will be asked for their class of choice as a number
-    :postcondition: user's input will be returned
-    :return: a string, the user's choice of class
+    :postcondition: user's input for choice of class will be returned
+    :return: a string, the user's input for choice of class
 
     No doctests, requires user input
     """

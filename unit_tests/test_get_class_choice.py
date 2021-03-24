@@ -11,4 +11,3 @@ class TestGetClassChoice(TestCase):
         expected = "3"
         actual = get_class_choice()
         self.assertTrue(actual, expected)
-

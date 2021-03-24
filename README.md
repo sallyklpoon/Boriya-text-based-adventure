@@ -78,7 +78,7 @@
 | lvl_board_max                                |   Y   |   N   |
 | make_board*                                  |   Y   |   N   |
 | print_map                                    |   Y   |   N   |
-| get_class_choice                             |   N   |   N   |
+| get_class_choice                             |   Y   |   N   |
 | choose_class                                 |   N   |   N   |
 | get_name                                     |   N   |   N   |
 | make_character                               |   N   |   N   |
