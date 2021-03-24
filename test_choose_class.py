@@ -9,7 +9,7 @@ class TestChooseClass(TestCase):
 
     @patch("builtins.input", side_effect=["1"])
     @patch("sys.stdout", new_callable=io.StringIO)
-    def test_choose_class_prints_class_information_and_options(self, mock_output, mock_side_effect):
+    def test_choose_class_prints_class_information_and_options(self, mock_output, mock_chosen_class):
         expected_output = "\n\033[1mWhat kind of adventurer are you?\033[0m\n\n" + CLASS_INFO() + "\n" +\
             "\n[1] Illusionist\n[2] Rogue\n[3] Ranger\n[4] Paladin\n"
         choose_class()
