@@ -339,7 +339,8 @@ def is_not_digit(element: str) -> bool:
     """Determine if string contains non-digits.
 
     :param element: a single character from a string
-    :precondition: element is a single character from a string
+    :precondition: element is a single character from a string, that is, len(element) == 1
+    :precondition: element is not an empty string
     :postcondition: return a Boolean if the element is a non-digit string character
     :postcondition: if element is any ASCII letter, whitespace, or punctuation, return True
     :return: Boolean

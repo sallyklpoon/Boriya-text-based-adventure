@@ -96,7 +96,6 @@
 | summon_epic_foe                              |   N   |   N   |
 | summon_god                                   |   N   |   N   |
 | check_for_foe                                |   N   |   N   |
-| get_engage_decision                          |   N   |   N   |
 | engage                                       |   N   |   N   |
 | flee                                         |   N   |   N   |
 | foe_flee                                     |   N   |   N   |
