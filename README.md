@@ -77,7 +77,7 @@
 | valid_menu_input?                            |   Y   |   N   |
 | lvl_board_max                                |   Y   |   N   |
 | make_board*                                  |   Y   |   N   |
-| print_map                                    |   N   |   N   |
+| print_map                                    |   Y   |   N   |
 | get_class_choice                             |   N   |   N   |
 | choose_class                                 |   N   |   N   |
 | get_name                                     |   N   |   N   |
