@@ -483,9 +483,22 @@ def choose_class() -> dict:
 
     Class choices include Illusionist, Rogue, Ranger, and Paladin.
 
-    :precondition: when get_class_choice() is called, user returns a valid input
+    :postcondition: return the accurate class statistics as a dictionary based on user's input
+    :postcondition: dict contains "class" key with string value
+    :postcondition: dict contains "level_name" with string value
+    :postcondition: dict contains "AC" key with with integer value for Armour Class
+    :postcondition: dict contains "HP" key with with integer value for current HP
+    :postcondition: dict contains "max-HP" key with with integer value for character's maximum HP
+    :postcondition: dict contains "hit_dice" key with with tuple value for hit dice
+    :postcondition: dict contains "attacks" key with with list value of attacks
+    :postcondition: dict contains "atk-modifier" key with with integer value for attack modifier
+    :postcondition: dict contains "damage" key with with tuple value for damage dice
+    :postcondition: dict contains "dmg-modifier" key with with integer for damage modifier
+    :postcondition: dict contains "crit_chance" key with with list value of critical roll chances
+    :postcondition: dict contains "crit_modifier" key with with integer value for critical roll modifier
+    :return: a dictionary of a chosen class' statistics
 
-    :return:
+    No doctest, get_valid_input calls upon another helper function that requires input
     """
     print("\n\033[1mWhat kind of adventurer are you?\033[0m\n")
     print(CLASS_INFO())
@@ -777,7 +790,7 @@ def heal(character: dict) -> None:
     time.sleep(0.5)
 
 
-def summon_foe(character) -> dict:
+def summon_foe(character: dict) -> dict:
     """Summon a random foe.
 
     :postcondition: a random foe is summoned
@@ -808,7 +821,7 @@ def summon_foe(character) -> dict:
             return summon_strong_foe()
 
 
-def summon_weak_foe():
+def summon_weak_foe() -> dict:
     random_class = str(random.randint(1, 3))
     list(map(foe_colour, ["attacks"]))
 
