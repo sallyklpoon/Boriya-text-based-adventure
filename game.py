@@ -483,25 +483,25 @@ def choose_class() -> dict:
 
     Class choices include Illusionist, Rogue, Ranger, and Paladin.
 
+    :postcondition: available class options will be printed to user
     :postcondition: return the accurate class statistics as a dictionary based on user's input
     :postcondition: dict contains "class" key with string value
     :postcondition: dict contains "level_name" with string value
     :postcondition: dict contains "AC" key with with integer value for Armour Class
     :postcondition: dict contains "HP" key with with integer value for current HP
     :postcondition: dict contains "max-HP" key with with integer value for character's maximum HP
-    :postcondition: dict contains "hit_dice" key with with tuple value for hit dice
+    :postcondition: dict contains "hit_dice" key with with tuple value two integers for hit dice
     :postcondition: dict contains "attacks" key with with list value of attacks
-    :postcondition: dict contains "atk-modifier" key with with integer value for attack modifier
-    :postcondition: dict contains "damage" key with with tuple value for damage dice
-    :postcondition: dict contains "dmg-modifier" key with with integer for damage modifier
+    :postcondition: dict contains "atk_modifier" key with with integer value for attack modifier
+    :postcondition: dict contains "damage" key with with tuple value of two integers for damage dice
+    :postcondition: dict contains "dmg_modifier" key with with integer for damage modifier
     :postcondition: dict contains "crit_chance" key with with list value of critical roll chances
     :postcondition: dict contains "crit_modifier" key with with integer value for critical roll modifier
     :return: a dictionary of a chosen class' statistics
 
     No doctest, get_valid_input calls upon another helper function that requires input
     """
-    print("\n\033[1mWhat kind of adventurer are you?\033[0m\n")
-    print(CLASS_INFO())
+    print("\n\033[1mWhat kind of adventurer are you?\033[0m\n\n" + CLASS_INFO())
     get_menu("class")
     chosen_class = get_valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
