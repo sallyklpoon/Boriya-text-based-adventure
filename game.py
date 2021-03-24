@@ -363,10 +363,22 @@ def is_not_digit(element: str) -> bool:
 
 
 def get_valid_input(decision_type: str, menu_type: tuple) -> str:
-    """
-    :param decision_type:
-    :param menu_type:
-    :return:
+    """Return a input from user that is valid.
+
+    An invalid answer is when user inputs nothing or inputs something other than a number or their
+    input is not within the given options of a menu given to them.
+
+    :param decision_type: a string
+    :param menu_type: a tuple
+    :precondition: decision_type is any string
+    :precondition: menu_type is a tuple of choices for a given menu, this may be selected from one of the
+                   menu options defined as constants such as CLASS_OPTIONS(), ENGAGE_OPTIONS(), or MOVE_OPTIONS()
+    :postcondition: return the user's choice only if it is a valid choice
+    :postcondition: a user's choice is only valid if it is not empty, does not contain non-digit characters
+                    and is an integer within the range of the menu_type tuple length
+    :return: a string, a valid user input given the menu_type
+
+    No doctests, get_user_choice() uses input function
     """
     user_choice = get_user_choice(decision_type)
     while user_choice == "" \
