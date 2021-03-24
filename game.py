@@ -11,6 +11,7 @@ import pprint
 import random
 import itertools
 import time
+from string import ascii_letters, punctuation, whitespace
 
 # ======================================================================================================================
 #                                                     CONSTANTS
@@ -122,7 +123,7 @@ def START_GAME_MSG() -> str:
 
 def CLASS_INFO() -> str:
     return "\033[1m<< ILLUSIONIST >>\033[0m The Illusionist is a magic user that is a master of deception,\n" \
-           "light, and shodows. Utilizing spells of great power, they create figments and phantasms to deceive, \n" \
+           "light, and shadows. Utilizing spells of great power, they create figments and phantasms to deceive, \n" \
            "influence, and trick their foes in mind-altering ways. This class has a very weak early game, \n" \
            "but a god-like late game.\n" \
            "STATS: \033[32mArmour Class (AC): XXX\033[0m  | " \
@@ -335,6 +336,30 @@ def get_user_choice(decision_type: str) -> str:
     return input(f"\n\033[1mEnter the number of your {decision_type} choice: \033[0m")
 
 
+def non_digit_filter(string: str) -> bool:
+    """Determine if string contains digits only.
+
+    :param string: a string
+    :precondition: string is a string
+    :postcondition: return True or False if string contains digits only
+    :postcondition: if string contains digits only, return is True
+    :postcondition: if string contains anything other than digits, return False
+    :return: Boolean
+
+    >>> non_digit_filter("1")
+    False
+    >>> non_digit_filter(" ")
+    True
+    >>> non_digit_filter("&")
+    True
+    """
+    for element in string:
+        if element in ascii_letters or element in punctuation or element in whitespace:
+            return True
+        else:
+            return False
+
+
 def valid_input(decision_type: str, menu_type: tuple) -> str:
     """
     :param decision_type:
@@ -342,7 +367,9 @@ def valid_input(decision_type: str, menu_type: tuple) -> str:
     :return:
     """
     user_choice = get_user_choice(decision_type)
-    while int(user_choice) not in range(1, len(menu_type) + 1):
+    while user_choice == "" \
+            or list(filter(non_digit_filter, user_choice)) \
+            or int(user_choice) not in range(1, len(menu_type) + 1):
         print('Choice is invalid, adventurer...')
         user_choice = get_user_choice(decision_type)
     return user_choice
