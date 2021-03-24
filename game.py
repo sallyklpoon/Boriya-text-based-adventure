@@ -747,12 +747,12 @@ def summon_foe(character) -> dict:
     if character["level"] == 1:
         return summon_weak_foe()
     if character["level"] == 2:
-        if foe_chance > 3:
+        if (foe_chance > 3):
             return summon_strong_foe()
         else:
             return summon_weak_foe()
     if character["level"] == 3:
-        if foe_chance > 3:
+        if (foe_chance > 3):
             return summon_epic_foe()
         else:
             return summon_strong_foe()
@@ -1158,11 +1158,9 @@ def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
     """
     character["EXP"] += experience_gain
     print(hero_colour(f"You've earned {experience_gain} experience points. Current EXP: {character['EXP']}"))
-    if character["EXP"] == 200:
+    if character["EXP"] >= 200:
         level_up(character, board)
-    if character["EXP"] == 1000:
-        level_up(character, board)
-    if character["EXP"] == 5000:
+    if character["EXP"] >= 1600:
         level_up(character, board)
 
 
