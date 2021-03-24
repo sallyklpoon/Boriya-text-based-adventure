@@ -80,7 +80,7 @@
 | lvl_board_max                                |   Y   |   N   |
 | make_board*                                  |   Y   |   N   |
 | print_map                                    |   Y   |   N   |
-| choose_class                                 |   N   |   N   |
+| choose_class                                 |   Y   |   N   |
 | get_name                                     |   N   |   N   |
 | make_character                               |   N   |   N   |
 | start_game                                   |   N   |   N   |
