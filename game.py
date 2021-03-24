@@ -374,12 +374,12 @@ def print_map(character: dict, board: dict) -> None:
 
     :param character: a dictionary of character stats
     :param board: a dictionary of the board
+    :precondition: board is a dictionary that contains a 'max-x' and 'max-y' key
+    :precondition: the board values of the 'max-x' and 'max-y' key are integers that are >= 1, representing the
+                   maximum x and y value of the board (i.e. the dimensions)
     :precondition: character is a dictionary of stats with keys, "x-location" and "y-location"
     :precondition: the values of "x-location" and "y-location" are both integers that are >= 0
                    and less than the board['max-x'] and board['max-y'] values, respectively
-    :precondition: map is a dictionary that contains a 'max-x' and 'max-y' key
-    :precondition: the values of the 'max-x' and 'max-y' key are integers that are >= 0, representing the
-                   maximum x and y value of the map (i.e. the dimensions)
     :postcondition: print out a visual map with the correct location as to where the character is on a board
     :return: printed map
 
@@ -399,6 +399,14 @@ def print_map(character: dict, board: dict) -> None:
 
 
 def get_class_choice() -> str:
+    """Receive user's input for choice of class
+
+    :postcondition: the user will be asked for their class of choice as a number
+    :postcondition: user's input for choice of class will be returned
+    :return: a string, the user's input for choice of class
+
+    No doctests, requires user input
+    """
     return input("\nEnter the number of your class choice: ")
 
 
