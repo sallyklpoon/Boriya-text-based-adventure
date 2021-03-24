@@ -867,11 +867,11 @@ def summon_epic_foe():
 
 def summon_god():
         return {"name": foe_colour("Erebus"),
-                "AC": 20,
-                "HP": 24,
-                "max-HP": 24,
+                "AC": 16,
+                "HP": 100,
+                "max-HP": 48,
                 "attacks": list(map(foe_colour, ["Time Ravage", "Imprisonment", "Power Word: Kill", "Tear Soul"])),
-                "atk_modifier": 4,
+                "atk_modifier": 6,
                 "damage": (3, 6),
                 "dmg_modifier": 4,
                 "crit_chance": [20],
@@ -1184,9 +1184,9 @@ def level_illusionist(character: dict) -> None:
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 36,
+        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 48,
                            "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
-                           "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 20,
+                           "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
                            "crit_chance": [19, 20], "crit_modifier": 4}
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
@@ -1208,7 +1208,7 @@ def level_rogue(character: dict) -> None:
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 36,
+        level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48,
                            "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
                            "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8,
                            "crit_chance": [19, 20], "crit_modifier": 2}
@@ -1232,7 +1232,7 @@ def level_ranger(character: dict) -> None:
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 40,
+        level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 54,
                            "attacks": ["Steel Wind Strike", "Swift Quiver", "Wrath of Nature"],
                            "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
                            "crit_modifier": 2}
@@ -1256,7 +1256,7 @@ def level_paladin(character: dict) -> None:
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 48,
+        level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 62,
                            "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
                            "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
                            "crit_modifier": 3}
