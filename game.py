@@ -335,7 +335,7 @@ def get_user_choice(decision_type: str) -> str:
     return input(f"\n\033[1mEnter the number of your {decision_type} choice: \033[0m")
 
 
-def filter_non_digits(element: str) -> bool:
+def is_not_digit(element: str) -> bool:
     """Determine if string contains non-digits.
 
     :param element: a single character from a string
@@ -344,15 +344,15 @@ def filter_non_digits(element: str) -> bool:
     :postcondition: if element is any ASCII letter, whitespace, or punctuation, return True
     :return: Boolean
 
-    >>> filter_non_digits("1")
+    >>> is_not_digit("1")
     False
-    >>> filter_non_digits("A")
+    >>> is_not_digit("A")
     True
-    >>> filter_non_digits("z")
+    >>> is_not_digit("z")
     True
-    >>> filter_non_digits("&")
+    >>> is_not_digit("&")
     True
-    >>> filter_non_digits(" ")
+    >>> is_not_digit(" ")
     True
     """
     if element in ascii_letters or element in punctuation or element in whitespace:
@@ -369,9 +369,9 @@ def get_valid_input(decision_type: str, menu_type: tuple) -> str:
     """
     user_choice = get_user_choice(decision_type)
     while user_choice == "" \
-            or list(filter(filter_non_digits, user_choice)) \
+            or list(filter(is_not_digit, user_choice)) \
             or int(user_choice) not in range(1, len(menu_type) + 1):
-        print('Choice is invalid, adventurer...\nPlease submit a number within the menu selection.')
+        print('Choice is invalid, adventurer...\nPlease input a number within the menu selection.')
         user_choice = get_user_choice(decision_type)
     return user_choice
 
