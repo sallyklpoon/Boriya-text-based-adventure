@@ -11,6 +11,7 @@ import pprint
 import random
 import itertools
 import time
+from string import ascii_letters, punctuation, whitespace
 
 # ======================================================================================================================
 #                                                     CONSTANTS
@@ -122,7 +123,7 @@ def START_GAME_MSG() -> str:
 
 def CLASS_INFO() -> str:
     return "\033[1m<< ILLUSIONIST >>\033[0m The Illusionist is a magic user that is a master of deception,\n" \
-           "light, and shodows. Utilizing spells of great power, they create figments and phantasms to deceive, \n" \
+           "light, and shadows. Utilizing spells of great power, they create figments and phantasms to deceive, \n" \
            "influence, and trick their foes in mind-altering ways. This class has a very weak early game, \n" \
            "but a god-like late game.\n" \
            "STATS: \033[32mArmour Class (AC): XXX\033[0m  | " \
@@ -325,8 +326,7 @@ def get_user_choice(decision_type: str) -> str:
 
     :param decision_type: a string
     :precondition: decision_type is a string that will customize the input prompt
-    :postcondition: the user will be asked for their choice, customized to a
-                    decision_type string
+    :postcondition: the user will be asked for their choice
     :postcondition: user's input for choice will be returned
     :return: a string, the user's input for choice of class
 
@@ -335,15 +335,56 @@ def get_user_choice(decision_type: str) -> str:
     return input(f"\n\033[1mEnter the number of your {decision_type} choice: \033[0m")
 
 
-def valid_input(decision_type: str, menu_type: tuple) -> str:
+def is_not_digit(element: str) -> bool:
+    """Determine if string contains non-digits.
+
+    :param element: a single character from a string
+    :precondition: element is a single character from a string, that is, len(element) == 1
+    :precondition: element is not an empty string
+    :postcondition: return a Boolean if the element is a non-digit string character
+    :postcondition: if element is any ASCII letter, whitespace, or punctuation, return True
+    :return: Boolean
+
+    >>> is_not_digit("1")
+    False
+    >>> is_not_digit("A")
+    True
+    >>> is_not_digit("z")
+    True
+    >>> is_not_digit("&")
+    True
+    >>> is_not_digit(" ")
+    True
     """
-    :param decision_type:
-    :param menu_type:
-    :return:
+    if element in ascii_letters or element in punctuation or element in whitespace:
+        return True
+    else:
+        return False
+
+
+def get_valid_input(decision_type: str, menu_type: tuple) -> str:
+    """Return a input from user that is valid.
+
+    An invalid answer is when user inputs nothing or inputs something other than a number or their
+    input is not within the given options of a menu given to them.
+
+    :param decision_type: a string
+    :param menu_type: a tuple
+    :precondition: decision_type is any string
+    :precondition: menu_type is a tuple of choices for a given menu, this may be selected from one of the
+                   menu options defined as constants such as CLASS_OPTIONS(), ENGAGE_OPTIONS(), or MOVE_OPTIONS()
+    :postcondition: return the user's choice only if it is a valid choice
+    :postcondition: a user's choice is only valid if it is not empty, does not contain non-digit characters
+                    and is an integer within the range of the menu_type tuple length
+    :return: a string, a valid user input given the menu_type
+
+    No doctests, get_user_choice() uses input function
     """
     user_choice = get_user_choice(decision_type)
-    while int(user_choice) not in range(1, len(menu_type) + 1):
-        print('Choice is invalid, adventurer...')
+    while user_choice == "" \
+            or list(filter(is_not_digit, user_choice)) \
+            or int(user_choice) not in range(1, len(menu_type) + 1):
+        print('Choice is invalid, adventurer...\nPlease input a number within the menu selection.')
         user_choice = get_user_choice(decision_type)
     return user_choice
 
@@ -442,14 +483,27 @@ def choose_class() -> dict:
 
     Class choices include Illusionist, Rogue, Ranger, and Paladin.
 
-    :precondition: when get_class_choice() is called, user returns a valid input
+    :postcondition: available class options will be printed to user
+    :postcondition: return the accurate class statistics as a dictionary based on user's input
+    :postcondition: dict contains "class" key with string value
+    :postcondition: dict contains "level_name" with string value
+    :postcondition: dict contains "AC" key with with integer value for Armour Class
+    :postcondition: dict contains "HP" key with with integer value for current HP
+    :postcondition: dict contains "max-HP" key with with integer value for character's maximum HP
+    :postcondition: dict contains "hit_dice" key with with tuple value two integers for hit dice
+    :postcondition: dict contains "attacks" key with with list value of attacks
+    :postcondition: dict contains "atk_modifier" key with with integer value for attack modifier
+    :postcondition: dict contains "damage" key with with tuple value of two integers for damage dice
+    :postcondition: dict contains "dmg_modifier" key with with integer for damage modifier
+    :postcondition: dict contains "crit_chance" key with with list value of critical roll chances
+    :postcondition: dict contains "crit_modifier" key with with integer value for critical roll modifier
+    :return: a dictionary of a chosen class' statistics
 
-    :return:
+    No doctest, get_valid_input calls upon another helper function that requires input
     """
-    print("\n\033[1mWhat kind of adventurer are you?\033[0m\n")
-    print(CLASS_INFO())
+    print("\n\033[1mWhat kind of adventurer are you?\033[0m\n\n" + CLASS_INFO())
     get_menu("class")
-    chosen_class = valid_input('class', CLASS_OPTIONS())
+    chosen_class = get_valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
         return {"class": "Illusionist", "level_name": "Trickster",
                 "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 4),
@@ -477,10 +531,12 @@ def choose_class() -> dict:
 
 
 def get_name() -> str:
-    """Ask user for their character name.
+    """Return user's input for their character name.
 
     :postcondition: return the user's input name as a string
     :return: string of character name
+
+    No doctest, input required
     """
     return input("\033[1mWhat's your name? \033[0m")
 
@@ -488,7 +544,6 @@ def get_name() -> str:
 def make_character() -> dict:
     """Create a character dictionary with character details
 
-    :precondition: make_character() is called
     :postcondition: returns a complete character dictionary
     :postcondition: character dictionary contains keys "name", "HP", "damage", "attacks", "x-location", "y-location"
     :postcondition: value of "name" is a string input by the user
@@ -644,7 +699,7 @@ def next_move(character: dict, board: dict) -> None:
     print("\n\033[1mWhich direction would you like to go?\033[0m")
     get_menu("move")
     while not move_valid:
-        direction = valid_input('direction', MOVE_OPTIONS())
+        direction = get_valid_input('direction', MOVE_OPTIONS())
         if direction == "5":
             move_valid, character["quit"] = True, True
         else:
@@ -736,7 +791,7 @@ def heal(character: dict) -> None:
     time.sleep(0.5)
 
 
-def summon_foe(character) -> dict:
+def summon_foe(character: dict) -> dict:
     """Summon a random foe.
 
     :postcondition: a random foe is summoned
@@ -767,7 +822,7 @@ def summon_foe(character) -> dict:
             return summon_strong_foe()
 
 
-def summon_weak_foe():
+def summon_weak_foe() -> dict:
     random_class = str(random.randint(1, 3))
     list(map(foe_colour, ["attacks"]))
 
@@ -962,7 +1017,7 @@ def engage() -> bool:
     """
     print("\n\033[1mWhat will you do next, adventurer?\033[0m")
     get_menu("engage")
-    engage_choice = valid_input('engage', ENGAGE_OPTIONS())
+    engage_choice = get_valid_input('engage', ENGAGE_OPTIONS())
     return engage_choice == "1"
 
 
