@@ -1243,45 +1243,9 @@ def level_paladin(character: dict) -> None:
 
 
 # ===== END GAME =======================================================================================================
-def combat_round(attacker: dict, opposition: dict) -> None:
-    """Complete one round of combat between an attacker and opposition.
-
-    :param attacker: a dictionary of either character or foe stats
-    :param opposition: a dictionary of either character or foe stats
-    :precondition: both attacker and opposition dictionaries include keys-- "name", "attacks", "HP", and "damage"
-    :precondition: value of "name" is a string, the name of attacker or opposition
-    :precondition: value of "attacks" is a list of string elements, attack types from attacker or opposition
-    :precondition: value of "HP" is an integer, the current health points of attacker or opposition
-    :precondition: value of "damage" is a tuple, the damage die for attacker or opposition
-    :postcondition: amount of damage from attacker to foe is determined
-    :postcondition: opposition takes damage from attacker["damage"] die, their HP will be modified to reflect the change
-    :postcondition: a message is printed with attacker name and attack type
-    :postcondition: a message is printed with opposition name, damage taken by opposition, and updated opposition HP
-    :return: no value, but opposition's HP modified by damage from attacker
-    :return: printed message of attacker and attack
-    :return: printed message of opposition suffering damage
-
-    No doctests, uses random module
-    """
-    initial_roll = roll(ATTACK_DIE())
-    attack_roll = initial_roll + attacker["atk_modifier"]
-    print(f"\n{attacker['name']} attacks using {random.choice(attacker['attacks'])}!")
-    time.sleep(0.5)
-    if attack_roll >= opposition["AC"]:
-        if initial_roll in attacker["crit_chance"]:
-            attack_damage = (roll(attacker["damage"]) * attacker["crit_modifier"]) + attacker["dmg_modifier"]
-        else:
-            attack_damage = roll(attacker["damage"]) + attacker["dmg_modifier"]
-        opposition["HP"] -= attack_damage
-        print(f"{opposition['name']} takes \033[31m{attack_damage}\033[0m damage.\n"
-              f"{opposition['name']}'s health level is now "
-              f"\033[34m{opposition['HP']}/{opposition['max-HP']}\033[0m...\n")
-    else:
-        print(f"{opposition['name']} dodges the attack successfully.")
-    time.sleep(0.5)
 
 
-def enter_combat(character: dict, foe: dict) -> None:
+def enter_boss_combat(character: dict, foe: dict) -> None:
     """Battle character and foe in combat until character or foe dies (HP == 0).
 
     :param character: a dictionary containing character stats
@@ -1312,14 +1276,13 @@ def enter_combat(character: dict, foe: dict) -> None:
 
 
 
-
 def final_boss_encounter(character: dict):
     print("You arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
           "entirely of unending nothingness. Are you ready to die?")
 
-    boss = summon_god()
+    foe = summon_god()
 
-    enter_combat(character, boss)
+    enter_boss_combat(character, foe)
 
     if foe["HP"] <= 0:
         print(f"God is dead.\n")
