@@ -370,7 +370,7 @@ def valid_input(decision_type: str, menu_type: tuple) -> str:
     while user_choice == "" \
             or list(filter(non_digit_filter, user_choice)) \
             or int(user_choice) not in range(1, len(menu_type) + 1):
-        print('Choice is invalid, adventurer...')
+        print('Choice is invalid, adventurer...\nPlease submit a number within the menu selection.')
         user_choice = get_user_choice(decision_type)
     return user_choice
 
