@@ -305,8 +305,29 @@ def get_menu(menu_type: str) -> None:
         print(f"[{number}] {option}")
 
 
-def valid_menu_input(selected_option: str, menu_type: tuple) -> bool:
-    return int(selected_option) in range(1, len(menu_type) + 1)
+def get_user_choice(decision_type: str) -> str:
+    """Return user's valid input for choice of class
+
+    :postcondition: the user will be asked for their class of choice as a number
+    :postcondition: user's input for choice of class will be returned
+    :return: a string, the user's input for choice of class
+
+    No doctests, requires user input
+    """
+    return input(f"\nEnter the number of your {decision_type} choice: ")
+
+
+def valid_input(decision_type: str, menu_type: tuple) -> str:
+    """
+    :param decision_type:
+    :param menu_type:
+    :return:
+    """
+    user_choice = get_user_choice(decision_type)
+    while int(user_choice) not in range(1, len(menu_type) + 1):
+        print('invalid.')
+        user_choice = get_user_choice(decision_type)
+    return user_choice
 
 
 # ===== START GAME =====================================================================================================
@@ -398,23 +419,19 @@ def print_map(character: dict, board: dict) -> None:
         print("")
 
 
-def get_class_choice() -> str:
-    """Receive user's input for choice of class
-
-    :postcondition: the user will be asked for their class of choice as a number
-    :postcondition: user's input for choice of class will be returned
-    :return: a string, the user's input for choice of class
-
-    No doctests, requires user input
-    """
-    return input("\nEnter the number of your class choice: ")
-
-
 def choose_class() -> dict:
+    """Return the character class statistics selected by the user.
+
+    Class choices include Illusionist, Rogue, Ranger, and Paladin.
+
+    :precondition: when get_class_choice() is called, user returns a valid input
+
+    :return:
+    """
     print("\nWhat kind of adventurer are you?\n")
     print(CLASS_INFO())
     get_menu("class")
-    chosen_class = get_class_choice()
+    chosen_class = valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
         return {"class": "Illusionist", "level_name": "Trickster",
                 "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
