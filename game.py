@@ -990,6 +990,7 @@ def summon_weak_foe() -> dict:
                 "dmg_modifier": 1,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "initiative_modifier": 1,
                 "EXP": 50,
                 "flee": False}
     elif random_class == "2":
@@ -1003,6 +1004,7 @@ def summon_weak_foe() -> dict:
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "initiative_modifier": 0,
                 "EXP": 50,
                 "flee": False}
     elif random_class == "3":
@@ -1016,6 +1018,7 @@ def summon_weak_foe() -> dict:
                 "dmg_modifier": 0,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "initiative_modifier": 3,
                 "EXP": 50,
                 "flee": False}
 
@@ -1033,6 +1036,7 @@ def summon_strong_foe():
                 "dmg_modifier": 4,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "initiative_modifier": 2,
                 "EXP": 200,
                 "flee": False}
     elif random_class == "2":
@@ -1046,6 +1050,7 @@ def summon_strong_foe():
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "initiative_modifier": 5,
                 "EXP": 200,
                 "flee": False}
     elif random_class == "3":
@@ -1059,6 +1064,7 @@ def summon_strong_foe():
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "initiative_modifier": 1,
                 "EXP": 200,
                 "flee": False}
 
@@ -1076,6 +1082,7 @@ def summon_epic_foe():
                 "dmg_modifier": 4,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "initiative_modifier": 2,
                 "EXP": 500,
                 "flee": False}
     elif random_class == "2":
@@ -1089,6 +1096,7 @@ def summon_epic_foe():
                 "dmg_modifier": 2,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "initiative_modifier": 1,
                 "EXP": 500,
                 "flee": False}
     elif random_class == "3":
@@ -1102,6 +1110,7 @@ def summon_epic_foe():
                 "dmg_modifier": 4,
                 "crit_chance": [20],
                 "crit_modifier": 2,
+                "initiative_modifier": 4,
                 "EXP": 500,
                 "flee": False}
 
@@ -1117,6 +1126,7 @@ def summon_god():
             "dmg_modifier": 4,
             "crit_chance": [20],
             "crit_modifier": 2,
+            "initiative_modifier": 4,
             "EXP": 500,
             "flee": False}
 
@@ -1220,10 +1230,11 @@ def foe_flee(foe: dict) -> None:
     foe["flee"] = True if roll((1, 10)) <= 2 else False
 
 
-def initiative(character) -> bool:
+def initiative(character, foe) -> bool:
     """Determine if character has initiative in battle.
 
     :param character: a dictionary representing the character stats
+    :param foe: a dictionary representing the foes stats
     :postcondition: determine if character has initiative first in a combat round by comparing character
                     and foe rolls for initiative
     :postcondition: returns True if character initiative roll > foe's initiative roll using INITIATIVE_DIE()
@@ -1236,7 +1247,7 @@ def initiative(character) -> bool:
     draw = True
     while draw:
         initiative_roll["character"] = roll(INITIATIVE_DIE()) + character["initiative_modifier"]
-        initiative_roll["foe"] = roll(INITIATIVE_DIE())
+        initiative_roll["foe"] = roll(INITIATIVE_DIE()) + foe["initiative_modifier"]
         if initiative_roll["character"] != initiative_roll["foe"]:
             draw = False
     return initiative_roll["character"] > initiative_roll["foe"]
@@ -1300,7 +1311,7 @@ def enter_combat(character: dict, foe: dict) -> None:
     """
     while character["HP"] > 0 and foe["HP"] > 0 and not foe["flee"]:
         if engage():
-            if initiative(character):
+            if initiative(character, foe):
                 attacker, opposition = character, foe
             else:
                 attacker, opposition = foe, character
@@ -1526,7 +1537,7 @@ def enter_boss_combat(character: dict, foe: dict) -> None:
     """
     while character["HP"] > 0 and foe["HP"] > 0 and not foe["flee"]:
         if engage():
-            if initiative(character):
+            if initiative(character, foe):
                 attacker, opposition = character, foe
             else:
                 attacker, opposition = foe, character
