@@ -23,56 +23,49 @@ from string import ascii_letters, punctuation, whitespace
 def MAX_MAP_X_LVL1() -> int:
     """Return maximum map x-dimension at level 1.
 
-    :return: the dimension as an integer
-    """
+    :return: the dimension as an integer"""
     return 10
 
 
 def MAX_MAP_Y_LVL1() -> int:
     """Return maximum map y-dimension at level 1.
 
-    :return: the dimension as an integer
-    """
+    :return: the dimension as an integer"""
     return 10
 
 
 def MAX_MAP_X_LVL2() -> int:
     """Return maximum map x-dimension at level 2.
 
-    :return: the dimension as an integer
-    """
+    :return: the dimension as an integer"""
     return 25
 
 
 def MAX_MAP_Y_LVL2() -> int:
     """Return maximum map y-dimension at level 2.
 
-    :return: the dimension as an integer
-    """
+    :return: the dimension as an integer"""
     return 20
 
 
 def MAX_MAP_X_LVL3() -> int:
     """Return maximum map x-dimension at level 3.
 
-    :return: the dimension as an integer
-    """
+    :return: the dimension as an integer"""
     return 25
 
 
 def MAX_MAP_Y_LVL3() -> int:
     """Return maximum map y-dimension at level 3.
 
-    :return: the dimension as an integer
-    """
+    :return: the dimension as an integer"""
     return 25
 
 
 def MAP_SCRIPTS() -> tuple:
     """Return a tuple of map scripts.
 
-    :return: a tuple of map scripts
-    """
+    :return: a tuple of map scripts"""
     map_scripts = \
         ("The sun is beaming and birds are chirping -- finally getting some Vitamin D!",
          "A pudgy doggo passes by and uses its sniffer to sniff you from afar, cute!",
@@ -89,28 +82,42 @@ def MAP_SCRIPTS() -> tuple:
 def START_X() -> int:
     """Return character's starting x-location = 0.
 
-    :return: START_X location as an integer
-    """
+    :return: START_X location as an integer"""
     return 0
 
 
 def START_Y() -> int:
     """Return character's starting y-location = 0.
 
-    :return: START_Y location as an integer
-    """
+    :return: START_Y location as an integer"""
     return 0
+
+
+def CHARACTER_START_EXP() -> int:
+    """Return character's starting EXP as an integer.
+
+    :return: an integer"""
+    return 0
+
+
+def CHARACTER_START_LEVEL() -> int:
+    """Return the character's starting level = 1.
+
+    :return: an integer, representing the starting level of a character as defined above"""
+    return 1
 
 
 def GOAL_LOCATION() -> tuple:
     """Return goal coordinates = (25, 25)
 
-    :return: GOAL() coordinates as a tuple (x, y)
-    """
+    :return: GOAL() coordinates as a tuple (x, y)"""
     return 24, 24
 
 
 def START_GAME_MSG() -> str:
+    """Return the message to start the game.
+
+    :return: a string, the start game message"""
     return "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"\
            "Your journey has brought you deep into the heartland of Vosynia as you reach the entrance of \n"\
            "the Forest of Bória.\n" \
@@ -122,6 +129,9 @@ def START_GAME_MSG() -> str:
 
 
 def CLASS_INFO() -> str:
+    """Return class information string, formatted with class information.
+
+    :return: a string, class information to be printed to user"""
     return "\033[1m<< ILLUSIONIST >>\033[0m The Illusionist is a magic user that is a master of deception,\n" \
            "light, and shadows. Utilizing spells of great power, they create figments and phantasms to deceive, \n" \
            "influence, and trick their foes in mind-altering ways. This class has a very weak early game, \n" \
@@ -162,36 +172,161 @@ def CLASS_INFO() -> str:
 def MOVE_OPTIONS() -> tuple:
     """Return tuple of move options as a list of string directions.
 
-    :return: tuple of direction options
-    """
+    :return: tuple of direction options"""
     return "go North", "go South", "go West", "go East", "Quit Game"
 
 
 def ENGAGE_OPTIONS() -> tuple:
     """Return engage options as a tuple of strings.
 
-    :return: tuple of engagement options
-    """
+    :return: tuple of engagement options"""
     return "Attack", "Flee"
 
 
 def CLASS_OPTIONS() -> tuple:
     """Return class options as a tuple of strings.
 
-    :return: tuple of class options
-    """
+    :return: tuple of class options """
     return "Illusionist", "Rogue", "Ranger", "Paladin"
 
 
-# ===== CHARACTER CONSTANTS ============================================================================================
+# ===== ILLUSIONIST CONSTANTS ==========================================================================================
+
+def ILLUSIONIST_LEVEL_NAMES():
+    """Return a collection of level names in increasing level order.
+
+    :return: a tuple"""
+    return "Trickster", "Mesmer", "Creator"
 
 
-def CHARACTER_START_LEVEL() -> int:
-    """Return the character's starting level = 1.
+# ------------------- LEVEL ONE STATS -----------------------
 
-    :return: an integer, representing the starting level of a character as defined above
-    """
-    return 1
+def ILLUSIONIST_AC_LVL1() -> int:
+    """Return the Illusionist Armour Class (AC) at level 1.
+
+    :return: an integer"""
+    return 14
+
+
+def ILLUSIONIST_MAX_HP_LVL1() -> int:
+    """Return the Illusionist Armour Class (AC) at level 1.
+
+    :return: an integer"""
+    return 10
+
+
+def ILLUSIONIST_HIT_DICE_LVL1() -> tuple:
+    """Return Illusionist class hit dice at level 1.
+
+    :return: a tuple of two integers"""
+    return 1, 4
+
+
+def ILLUSIONIST_ATTACKS_LVL1() -> tuple:
+    """Return Illusionist class attack types at level 1.
+
+    :return: a tuple of strings"""
+    return "Colour Spray", "Phantasmal Force", "Shadow Blade"
+
+
+def ILLUSIONIST_ATK_MODIFIER_LVL1() -> int:
+    """Return Illusionist class attack modifier at level 1.
+
+    :return: an integer"""
+    return 2
+
+
+def ILLUSIONIST_DAMAGE_LVL1() -> tuple:
+    """Return Illusionist damage dice at level 1.
+
+    :return: a tuple of two integers"""
+    return 1, 4
+
+
+def ILLUSIONIST_DMG_MODIFIER_LVL1() -> int:
+    """Return Illusionist class damage modifier at level 1.
+
+    :return: an integer"""
+    return 2
+
+
+def ILLUSIONIST_CRIT_CHANCE_LVL1() -> int:
+    """Return Illusionist class critical roll chances at level 1.
+
+    :return: an integer or tuple"""
+    return 20
+
+
+def ILLUSIONIST_CRIT_MODIFIER_LVL1() -> int:
+    """Return Illusionist class critical roll modifier at level 1.
+
+    :return: an integer"""
+    return 2
+
+
+# ------------------- LEVEL TWO STATS -----------------------
+
+def ILLUSIONIST_AC_LVL2() -> int:
+    """Return the Illusionist Armour Class (AC) at level 2.
+
+    :return: an integer"""
+    return 15
+
+
+def ILLUSIONIST_MAX_HP_LVL2() -> int:
+    """Return the Illusionist Armour Class (AC) at level 2.
+
+    :return: an integer"""
+    return 18
+
+
+def ILLUSIONIST_HIT_DICE_LVL2() -> tuple:
+    """Return Illusionist class hit dice at level 2.
+
+    :return: a tuple of two integers"""
+    return 1, 6
+
+
+def ILLUSIONIST_ATTACKS_LVL2() -> tuple:
+    """Return Illusionist class attack types at level 2.
+
+    :return: a tuple of strings"""
+    return "Hypnotic Pattern", "Shatter", "Mind Spike"
+
+
+def ILLUSIONIST_ATK_MODIFIER_LVL2() -> int:
+    """Return Illusionist class attack modifier at level 2.
+
+    :return: an integer"""
+    return 4
+
+
+def ILLUSIONIST_DAMAGE_LVL2() -> tuple:
+    """Return Illusionist damage dice at level 2.
+
+    :return: a tuple of two integers"""
+    return 2, 10
+
+
+def ILLUSIONIST_DMG_MODIFIER_LVL2() -> int:
+    """Return Illusionist class damage modifier at level 2.
+
+    :return: an integer"""
+    return 10
+
+
+def ILLUSIONIST_CRIT_CHANCE_LVL2() -> int:
+    """Return Illusionist class critical roll chances at level 2.
+
+    :return: an integer or tuple"""
+    return 20
+
+
+def ILLUSIONIST_CRIT_MODIFIER_LVL2() -> int:
+    """Return Illusionist class critical roll modifier at level 2.
+
+    :return: an integer"""
+    return 2
 
 
 # ===== COMBAT CONSTANTS ===============================================================================================
@@ -485,18 +620,20 @@ def choose_class() -> dict:
 
     :postcondition: available class options will be printed to user
     :postcondition: return the accurate class statistics as a dictionary based on user's input
-    :postcondition: dict contains "class" key with string value
-    :postcondition: dict contains "level_name" with string value
-    :postcondition: dict contains "AC" key with with integer value for Armour Class
-    :postcondition: dict contains "HP" key with with integer value for current HP
-    :postcondition: dict contains "max-HP" key with with integer value for character's maximum HP
-    :postcondition: dict contains "hit_dice" key with with tuple value two integers for hit dice
-    :postcondition: dict contains "attacks" key with with list value of attacks
-    :postcondition: dict contains "atk_modifier" key with with integer value for attack modifier
-    :postcondition: dict contains "damage" key with with tuple value of two integers for damage dice
-    :postcondition: dict contains "dmg_modifier" key with with integer for damage modifier
-    :postcondition: dict contains "crit_chance" key with with list value of critical roll chances
-    :postcondition: dict contains "crit_modifier" key with with integer value for critical roll modifier
+    :postcondition: return dictionary contains the keys "class", "level_name", "AC", "HP", "max-HP", "hit_dice",
+                    "attacks", "atk_modifier", "damage", "dmg_modifier", "crit_chance", "crit_modifier"
+    :postcondition: value of "class" key with string value
+    :postcondition: value of "level_name" with string value
+    :postcondition: value of "AC" key with with integer value for Armour Class
+    :postcondition: value of "HP" key with with integer value for current HP
+    :postcondition: value of "max-HP" key with with integer value for character's maximum HP
+    :postcondition: value of "hit_dice" key with with tuple value two integers for hit dice
+    :postcondition: value of "attacks" key with with list value of attacks
+    :postcondition: value of "atk_modifier" key with with integer value for attack modifier
+    :postcondition: value of "damage" key with with tuple value of two integers for damage dice
+    :postcondition: value of "dmg_modifier" key with with integer for damage modifier
+    :postcondition: value of "crit_chance" key with with list value of critical roll chances
+    :postcondition: value of "crit_modifier" key with with integer value for critical roll modifier
     :return: a dictionary of a chosen class' statistics
 
     No doctest, get_valid_input calls upon another helper function that requires input
@@ -545,13 +682,30 @@ def make_character() -> dict:
     """Create a character dictionary with character details
 
     :postcondition: returns a complete character dictionary
-    :postcondition: character dictionary contains keys "name", "HP", "damage", "attacks", "x-location", "y-location"
+    :postcondition: character dictionary contains keys "name", "x-location", "y-location", "EXP", "level", "quit",
+                    "class", "level_name", "AC", "HP", "max-HP", "hit_dice", "attacks", "atk_modifier", "damage",
+                    "dmg_modifier", "crit_chance", "crit_modifier"
     :postcondition: value of "name" is a string input by the user
-    :postcondition: value of "HP" is an integer, determined by CHARACTER_MAX_HP()
-    :postcondition: value of "damage" is a tuple, determined by CHARACTER_DAMAGE_DIE()
-    :postcondition: value of "attacks" is a list, determined by CHARACTER_ATTACKS()
     :postcondition: value of "x-location" is an integer, determined by START_X()
     :postcondition: value of "y-location" is an integer, determined by START_Y()
+    :postcondition: value of "EXP" is 0
+    :postcondition: value of "level" is integer, determined by CHARACTER_START_LEVEL()
+    :postcondition: value of "quit" is False
+    :postcondition: value of "HP" is an integer, determined by CHARACTER_MAX_HP()
+    :postcondition: value of "damage" is a tuple, determined by CHARACTER_DAMAGE_DIE()
+    :postcondition: value of "attacks" is a list, determined by character's chosen
+    :postcondition: value of "class" key with string value
+    :postcondition: value of "level_name" with string value
+    :postcondition: value of "AC" key with with integer value for Armour Class
+    :postcondition: value of "HP" key with with integer value for current HP
+    :postcondition: value of "max-HP" key with with integer value for character's maximum HP
+    :postcondition: value of "hit_dice" key with with tuple value two integers for hit dice
+    :postcondition: value of "attacks" key with with list value of attacks
+    :postcondition: value of "atk_modifier" key with with integer value for attack modifier
+    :postcondition: value of "damage" key with with tuple value of two integers for damage dice
+    :postcondition: value of "dmg_modifier" key with with integer for damage modifier
+    :postcondition: value of "crit_chance" key with with list value of critical roll chances
+    :postcondition: value of "crit_modifier" key with with integer value for critical roll modifier
     :return: a complete character dictionary
 
     No doctests, input is required
@@ -559,11 +713,9 @@ def make_character() -> dict:
     character = {"name": hero_colour(get_name()),
                  "x-location": START_X(),
                  "y-location": START_Y(),
-                 "EXP": 0,
+                 "EXP": CHARACTER_START_EXP(),
                  "level": CHARACTER_START_LEVEL(),
                  "quit": False}
-    print(f"Welcome to Vosynia, {character['name']}")
-    time.sleep(0.5)
     character.update(choose_class())
     character["attacks"] = list(map(hero_colour, character["attacks"]))
     return character
@@ -581,6 +733,7 @@ def start_game() -> tuple:
     """
     print(START_GAME_MSG())
     character = make_character()
+    print(f"\nWelcome to Vosynia, {character['name']}")
     return make_board(character['level']), character
 
 
@@ -707,7 +860,7 @@ def next_move(character: dict, board: dict) -> None:
                 move_valid = True
                 move_character(direction, character)
             else:
-                print("You've reached the limits of , adventurer...")
+                print("You've reached the limits of the map, adventurer...")
 
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
@@ -811,12 +964,12 @@ def summon_foe(character: dict) -> dict:
     if character["level"] == 1:
         return summon_weak_foe()
     if character["level"] == 2:
-        if (foe_chance > 3):
+        if foe_chance > 3:
             return summon_strong_foe()
         else:
             return summon_weak_foe()
     if character["level"] == 3:
-        if (foe_chance > 3):
+        if foe_chance > 3:
             return summon_epic_foe()
         else:
             return summon_strong_foe()
