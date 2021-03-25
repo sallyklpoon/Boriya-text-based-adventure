@@ -85,7 +85,7 @@
 | make_character                               |   Y   |   N   |
 | start_game                                   |   Y   |   N   |
 | valid_move                                   |   Y   |   N   |
-| move_character                               |   N   |   N   |
+| move_character                               |   Y   |   N   |
 | next_move                                    |   N   |   N   |
 | check_goal_attained                          |   N   |   N   |
 | heal                                         |   N   |   N   |
