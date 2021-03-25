@@ -40,7 +40,7 @@ class TestChooseClass(TestCase):
     def test_choose_class_returns_correct_class_dictionary_option_3(self, mock_chosen_class):
         expected = {"class": "Ranger", "level_name": "Scout", "HP": 12, "max-HP": 12,
                     "hit_dice": (1, 8), "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
-                    "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 6,
+                    "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 4,
                     "crit_chance": [20], "crit_modifier": 2, "AC": 16}
         actual = choose_class()
         self.assertEqual(expected, actual)
