@@ -303,6 +303,24 @@ def PALADIN_STATS_LVL1() -> dict:
             "crit_chance": [20], "crit_modifier": 2}
 
 
+def PALADIN_STATS_LVL2() -> dict:
+    """Return Paladin class level 2 stats.
+
+    :return: a dictionary of Paladin level 2 stats"""
+    return {"level_name": "Guardian", "AC": 18,  "max-HP": 24, "hit_dice": (1, 6),
+            "attacks": ["Divine Word", "Forbiddance", "Staggering Smite"],
+            "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
+            "crit_modifier": 2}
+
+
+def PALADIN_STATS_LVL3() -> dict:
+    """Return Paladin class level 3 stats.
+
+    :return: a dictionary of Paladin level 3 stats"""
+    return {"level_name": "Justiciar", "AC": 22,  "max-HP": 62, "hit_dice": (1, 10),
+            "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
+            "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
+            "crit_modifier": 3}
 
 
 # ===== COMBAT CONSTANTS ===============================================================================================
@@ -1422,16 +1440,10 @@ def level_paladin(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Guardian", "AC": 18,  "max-HP": 24, "hit_dice": (1, 6),
-                           "attacks": ["Divine Word", "Forbiddance", "Staggering Smite"],
-                           "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
-                           "crit_modifier": 2}
+        level_character = PALADIN_STATS_LVL2()
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 62, "hit_dice": (1, 10),
-                           "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
-                           "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
-                           "crit_modifier": 3}
+        level_character = PALADIN_STATS_LVL3()
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
