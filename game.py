@@ -5,8 +5,8 @@ Your student number: A01232177
 This module includes code to run the game, 'Avocado Toast'.
 
 """
-import doctest
-import pprint
+# import doctest
+# import pprint
 
 import random
 import itertools
@@ -746,7 +746,7 @@ def valid_move(direction: str, x_location: int, y_location: int, board: dict) ->
                    current x and y location respectively
     :precondition: board is a non-empty dictionary containing the keys "max-x" and "max-y"
     :postcondition: accurately determine if the character's move is valid (within the board space) or invalid
-                    (moved off board or is not one of the precondition indicated moves)
+                    (hits the board's limits)
     :return: Boolean True or False
 
     >>> sample_board = {"max-x": 5, "max-y": 5}
@@ -831,6 +831,8 @@ def next_move(character: dict, board: dict) -> None:
     :precondition: the character dictionary contains a "x_location" and "y_location" key
     :precondition: the values of the "x_location" and "y_location" key in the character dictionary are
                    integers representing coordinates x and y of the character at the current moment
+    :precondition: the board dictionary contains a "max-x" and "max-y" key
+    :precondition: the values of "max-x" and "max-y" keys are integers >= 0
     :postcondition: character is moved to a valid spot on the board
     :postcondition: character "x_location" and "y_location" is updated
 
@@ -853,13 +855,9 @@ def next_move(character: dict, board: dict) -> None:
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
 
-
-
 def check_goal_attained(character: dict) -> bool:
     """Check if character has arrived at goal location.
 
-    :param x_location: an integer, the character's current x-location
-    :param y_location: an integer, the character's current y-location
     :precondition: x_location is an integer representing character's current x-location
     :precondition: y_location is an integer representing character's current y-location
     :postcondition: accurately checks if a character's current x and y-location matches the goal location
@@ -1368,6 +1366,7 @@ def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
     """Increase the EXP of the character then check if they have levelled up
 
     :param character: a dictionary of the character's stats
+    :param experience_gain:
     :param board: a dictionary representing the current board
     :precondition: character contains the key "EXP"
     :precondition: board is a non-empty dictionary containing coordinate keys and max-x/max-y values
@@ -1518,7 +1517,7 @@ def boss_flee(character: dict, foe: dict) -> None:
     time.sleep(0.5)
 
 
-def enter_boss_combat(character: dict, foe: dict) -> None:
+def enter_boss_combat(character: dict, foe: dict) -> bool:
     """Battle character and foe in combat until character or foe dies (HP == 0).
 
     :param character: a dictionary containing character stats
@@ -1555,12 +1554,10 @@ def final_boss_encounter(character: dict, foe: dict):
     print("\nYou arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
           "entirely of unending nothingness. Are you ready to die?")
 
-    if enter_boss_combat(character, foe) == False:
+    if not enter_boss_combat(character, foe):
         return False
     else:
         return True
-
-
     time.sleep(0.5)
 
 
