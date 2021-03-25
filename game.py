@@ -210,7 +210,7 @@ def ILLUSIONIST_STATS_LVL1() -> dict:
             "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 4),
             "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
             "atk_modifier": 2, "damage": (1, 8), "dmg_modifier": 2,
-            "crit_chance": [20], "crit_modifier": 2}
+            "crit_chance": [20], "crit_modifier": 2, "initiative_modifier": 1}
 
 
 def ILLUSIONIST_STATS_LVL2() -> dict:
@@ -220,7 +220,7 @@ def ILLUSIONIST_STATS_LVL2() -> dict:
     return {"level_name": "Mesmer", "AC": 15,  "max-HP": 18, "hit_dice": (1, 6),
             "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
             "atk_modifier": 4, "damage": (2, 10), "dmg_modifier": 10, "crit_chance": [20],
-            "crit_modifier": 2}
+            "crit_modifier": 2, "initiative_modifier": 1}
 
 
 def ILLUSIONIST_STATS_LVL3() -> dict:
@@ -230,7 +230,7 @@ def ILLUSIONIST_STATS_LVL3() -> dict:
     return {"level_name": "Creator", "AC": 22,  "max-HP": 48, "hit_dice": (1, 8),
             "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
             "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
-            "crit_chance": [19, 20], "crit_modifier": 4}
+            "crit_chance": [19, 20], "crit_modifier": 4, "initiative_modifier": 2}
 
 
 # ----- ROGUE ----------------------------------------------------------------------------------------------------------
@@ -243,7 +243,7 @@ def ROGUE_STATS_LVL1() -> dict:
             "AC": 16, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
             "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
             "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
-            "crit_chance": [19, 20], "crit_modifier": 2}
+            "crit_chance": [19, 20], "crit_modifier": 2, "initiative_modifier": 3}
 
 
 def ROGUE_STATS_LVL2() -> dict:
@@ -253,7 +253,7 @@ def ROGUE_STATS_LVL2() -> dict:
     return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
             "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
             "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
-            "crit_modifier": 2}
+            "crit_modifier": 2, "initiative_modifier": 4}
 
 
 def ROGUE_STATS_LVL3() -> dict:
@@ -263,7 +263,7 @@ def ROGUE_STATS_LVL3() -> dict:
     return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
             "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
             "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
-            "crit_modifier": 2}
+            "crit_modifier": 2, "initiative_modifier": 5}
 
 
 # ----- RANGER ---------------------------------------------------------------------------------------------------------
@@ -276,7 +276,7 @@ def RANGER_STATS_LVL1() -> dict:
             "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 8),
             "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
             "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 4,
-            "crit_chance": [20], "crit_modifier": 2}
+            "crit_chance": [20], "crit_modifier": 2, "initiative_modifier": 2}
 
 
 def RANGER_STATS_LVL2() -> dict:
@@ -286,7 +286,7 @@ def RANGER_STATS_LVL2() -> dict:
     return {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24, "hit_dice": (1, 8),
             "attacks": ["Flame Arrows", "Conjure Barrage", "Grasping Vine"],
             "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
-            "crit_modifier": 2}
+            "crit_modifier": 2, "initiative_modifier": 3}
 
 
 def RANGER_STATS_LVL3() -> dict:
@@ -296,7 +296,7 @@ def RANGER_STATS_LVL3() -> dict:
     return {"level_name": "Far Wanderer", "AC": 20, "max-HP": 54, "hit_dice": (1, 10),
             "attacks": ["Steel Wind Strike", "Swift Quiver", "Wrath of Nature"],
             "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
-            "crit_modifier": 2}
+            "crit_modifier": 2, "initiative_modifier": 4}
 
 
 # ----- PALADIN --------------------------------------------------------------------------------------------------------
@@ -309,7 +309,7 @@ def PALADIN_STATS_LVL1() -> dict:
             "AC": 15, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
             "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
             "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 2,
-            "crit_chance": [20], "crit_modifier": 2}
+            "crit_chance": [20], "crit_modifier": 2, "initiative_modifier": 1}
 
 
 def PALADIN_STATS_LVL2() -> dict:
@@ -319,7 +319,7 @@ def PALADIN_STATS_LVL2() -> dict:
     return {"level_name": "Guardian", "AC": 18,  "max-HP": 24, "hit_dice": (1, 6),
             "attacks": ["Divine Word", "Forbiddance", "Staggering Smite"],
             "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
-            "crit_modifier": 2}
+            "crit_modifier": 2, "initiative_modifier": 2}
 
 
 def PALADIN_STATS_LVL3() -> dict:
@@ -329,7 +329,7 @@ def PALADIN_STATS_LVL3() -> dict:
     return {"level_name": "Justiciar", "AC": 22,  "max-HP": 62, "hit_dice": (1, 10),
             "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
             "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
-            "crit_modifier": 3}
+            "crit_modifier": 3, "initiative_modifier": 3}
 
 
 # ===== COMBAT CONSTANTS ===============================================================================================
@@ -1220,9 +1220,10 @@ def foe_flee(foe: dict) -> None:
     foe["flee"] = True if roll((1, 10)) <= 2 else False
 
 
-def initiative() -> bool:
+def initiative(character) -> bool:
     """Determine if character has initiative in battle.
 
+    :param character: a dictionary representing the character stats
     :postcondition: determine if character has initiative first in a combat round by comparing character
                     and foe rolls for initiative
     :postcondition: returns True if character initiative roll > foe's initiative roll using INITIATIVE_DIE()
@@ -1234,7 +1235,7 @@ def initiative() -> bool:
     initiative_roll = {}
     draw = True
     while draw:
-        initiative_roll["character"] = roll(INITIATIVE_DIE())
+        initiative_roll["character"] = roll(INITIATIVE_DIE()) + character["initiative_modifier"]
         initiative_roll["foe"] = roll(INITIATIVE_DIE())
         if initiative_roll["character"] != initiative_roll["foe"]:
             draw = False
@@ -1299,7 +1300,7 @@ def enter_combat(character: dict, foe: dict) -> None:
     """
     while character["HP"] > 0 and foe["HP"] > 0 and not foe["flee"]:
         if engage():
-            if initiative():
+            if initiative(character):
                 attacker, opposition = character, foe
             else:
                 attacker, opposition = foe, character
@@ -1525,7 +1526,7 @@ def enter_boss_combat(character: dict, foe: dict) -> None:
     """
     while character["HP"] > 0 and foe["HP"] > 0 and not foe["flee"]:
         if engage():
-            if initiative():
+            if initiative(character):
                 attacker, opposition = character, foe
             else:
                 attacker, opposition = foe, character
