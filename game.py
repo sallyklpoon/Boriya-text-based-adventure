@@ -128,6 +128,15 @@ def START_GAME_MSG() -> str:
            "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"
 
 
+def PROLOGUE() -> str:
+    """Return the prologue of the game.
+
+    :return: a string, the prologue of the game"""
+    return "\n<+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+>\n" \
+           "PROLOGUE SPACE." \
+           "\n<+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+>\n"
+
+
 def CLASS_INFO() -> str:
     """Return class information string, formatted with class information.
 
@@ -702,6 +711,7 @@ def make_character() -> dict:
 def start_game() -> tuple:
     """Start up the game by returning map and character information.
 
+    :postcondition: prints START_GAME_MSG()
     :postcondition: collects result of the map as a dictionary
     :postcondition: collects result of the character as a dictionary
     :postcondition: produces a tuple of both map and character data structures in the order (map, character)
@@ -711,7 +721,7 @@ def start_game() -> tuple:
     """
     print(START_GAME_MSG())
     character = make_character()
-    print(f"\nWelcome to Vosynia, {character['name']}")
+    print(f"\nWELCOME TO VOSYNIA, {character['name']}" + PROLOGUE())
     return make_board(character['level']), character
 
 
