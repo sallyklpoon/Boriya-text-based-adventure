@@ -13,7 +13,7 @@ class TestStartGame(TestCase):
         actual = start_game()
         self.assertIsInstance(actual, expected_instance)
 
-    @patch('builtins.input', side_effect=["Beepboops", "2"])
+    @patch('builtins.input', side_effect=["Sarah", "2"])
     def test_start_game_returns_tuple_containing_two_dictionaries(self, mock_input):
         expected_instance = dict
         actual = start_game()
