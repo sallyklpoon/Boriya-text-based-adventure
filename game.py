@@ -38,7 +38,7 @@ def MAX_MAP_X_LVL2() -> int:
     """Return maximum map x-dimension at level 2.
 
     :return: the dimension as an integer"""
-    return 25
+    return 20
 
 
 def MAX_MAP_Y_LVL2() -> int:
@@ -522,7 +522,7 @@ def get_valid_input(decision_type: str, menu_type: tuple) -> str:
     while user_choice == "" \
             or list(filter(is_not_digit, user_choice)) \
             or int(user_choice) not in range(1, len(menu_type) + 1):
-        print('Choice is invalid, adventurer...\nPlease input a number within the menu selection.')
+        print('\nChoice is invalid, adventurer...\nPlease input a number within the menu selection.')
         user_choice = get_user_choice(decision_type)
     return user_choice
 
@@ -848,13 +848,14 @@ def next_move(character: dict, board: dict) -> None:
                 move_valid = True
                 move_character(direction, character)
             else:
-                print("You've reached the limits of the map, adventurer...")
+                print("\nYou've reached the limits of the map, adventurer...")
 
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
 
 
-def check_goal_attained(x_location: int, y_location: int) -> bool:
+
+def check_goal_attained(character: dict) -> bool:
     """Check if character has arrived at goal location.
 
     :param x_location: an integer, the character's current x-location
@@ -873,7 +874,18 @@ def check_goal_attained(x_location: int, y_location: int) -> bool:
     >>> check_goal_attained(GOAL_LOCATION()[0], GOAL_LOCATION()[1])
     True
     """
-    return (x_location, y_location) == GOAL_LOCATION()
+    if (character["x-location"], character["y-location"]) == GOAL_LOCATION():
+        foe = summon_god()
+        if final_boss_encounter(character, foe):
+            if foe["HP"] <= 0:
+                print(f"God is dead.\n")
+                character["boss_defeat"] = True
+                return True
+            elif character["HP"] <= 0:
+                print(f"You are dead.")
+                return True
+    else:
+        return False
 
 
 # ===== CHECK FOR MONSTERS =============================================================================================
@@ -1189,8 +1201,8 @@ def flee(character: dict, foe: dict) -> None:
               f"but you're feeling pretty attacked right now.\n"
               f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
     else:
-        print(f"\nYou said 'bye, Felicia!' and got out of {foe['name']}'s view range.\n"
-              f"Phew! That was a close one.\n")
+        print(f"\nQuickly evading your foe, you leave the {foe['name']}'s view range.\n"
+              f"You've escaped violence this time.\n")
     time.sleep(0.5)
 
 
@@ -1460,6 +1472,37 @@ def level_paladin(character: dict) -> None:
 
 # ===== END GAME =======================================================================================================
 
+def boss_flee(character: dict, foe: dict) -> None:
+    """Determine character takes damage when fleeing, print message to notify character if successful.
+
+    If successful, print message will tell character they left the encounter successfully,
+    if unsuccessful, print message will show damage that character has taken.
+
+    :param character: a dictionary containing character stats
+    :param foe: a dictionary containing foe stats
+    :precondition: character contains the key "HP"
+    :precondition: the value of character["HP"] is an integer > 0, representing the character's current health points
+    :postcondition: accurately modify the current character's 'HP' if they are unsuccessful fleeing
+    :postcondition: informative messages are printed to confirm if character can successfully flee or has taken damage
+    :return: possible modified character["HP"]
+    :return: informative printed messages of flee success
+
+    No doctests, uses random module
+    """
+    if roll(ENCOUNTER_FOE_DIE()) in range(1, 3):
+        damage = roll(FLEE_DAMAGE_DIE())
+        character["HP"] -= damage
+        print(f"As you attempt to flee from {foe['name']}, they catch up to you,\n"
+              f"using {random.choice(foe['attacks'])} dealing \033[31m{damage}\033[0m damage.\n")
+        time.sleep(0.5)
+        print(f"You came out here to have a good time\n"
+              f"but you're feeling pretty attacked right now.\n"
+              f"Your health is now at \033[34m{character['HP']}\033[0m points.\n"
+              f"\n{foe['name']}' blank eyes follow you as you cower away in fear.\n")
+    else:
+        print(f"\n{foe['name']}' blank eyes follow you as you cower away in fear.")
+    time.sleep(0.5)
+
 
 def enter_boss_combat(character: dict, foe: dict) -> None:
     """Battle character and foe in combat until character or foe dies (HP == 0).
@@ -1488,21 +1531,21 @@ def enter_boss_combat(character: dict, foe: dict) -> None:
             if opposition["HP"] > 0:
                 combat_round(opposition, attacker)
         else:
-            return flee(character, foe)
+            boss_flee(character, foe)
+            return False
+
+    return True
 
 
-def final_boss_encounter(character: dict):
+def final_boss_encounter(character: dict, foe: dict):
     print("You arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
           "entirely of unending nothingness. Are you ready to die?")
 
-    foe = summon_god()
+    if enter_boss_combat(character, foe) == False:
+        return False
+    else:
+        return True
 
-    enter_boss_combat(character, foe)
-
-    if foe["HP"] <= 0:
-        print(f"God is dead.\n")
-    elif character["HP"] <= 0:
-        print(f"You are dead.")
 
     time.sleep(0.5)
 
@@ -1548,8 +1591,6 @@ def end_game(character: dict) -> None:
     <BLANKLINE>
     Thank you for playing, Suzie! - Marti & Sally
     """
-    if (character["x-location"], character["y-location"]) == GOAL_LOCATION():
-        final_boss_encounter(character)
 
     if character["HP"] <= 0:
         print("\n=======================================================\n"
@@ -1608,8 +1649,9 @@ def game() -> None:
         if character["quit"]:
             achieved_goal = True
         else:
-            achieved_goal = check_goal_attained(character["x-location"], character["y-location"])
-            check_for_foe(character, achieved_goal, board)
+            achieved_goal = check_goal_attained(character)
+            if (character["x-location"], character["y-location"]) != GOAL_LOCATION():
+                check_for_foe(character, achieved_goal, board)
     end_game(character)
 
 
