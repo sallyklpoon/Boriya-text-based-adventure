@@ -192,206 +192,49 @@ def CLASS_OPTIONS() -> tuple:
 
 # ===== ILLUSIONIST CONSTANTS ==========================================================================================
 
-def ILLUSIONIST_LEVEL_NAMES():
-    """Return a collection of level names in increasing level order.
+def ILLUSIONIST_STATS_LVL1() -> dict:
+    """Return Illusionist class level 1 stats.
 
-    :return: a tuple"""
-    return "Trickster", "Mesmer", "Creator"
+    :return: a dictionary of Illusionist level 1 stats"""
+    return {"class": "Illusionist", "level_name": "Trickster",
+            "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 4),
+            "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
+            "atk_modifier": 2, "damage": (1, 8), "dmg_modifier": 2,
+            "crit_chance": [20], "crit_modifier": 2}
 
 
-# ------------------- LEVEL ONE STATS -----------------------
+def ROGUE_STATS_LVL1() -> dict:
+    """Return Rogue class level 1 stats.
 
-def ILLUSIONIST_AC_LVL1() -> int:
-    """Return the Illusionist Armour Class (AC) at level 1.
+    :return: a dictionary of Rogue level 1 stats"""
+    return {"class": "Rogue", "level_name": "Cutpurse",
+            "AC": 16, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
+            "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
+            "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
+            "crit_chance": [19, 20], "crit_modifier": 2}
 
-    :return: an integer"""
-    return 14
 
+def RANGER_STATS_LVL1() -> dict:
+    """Return Ranger class level 1 stats.
 
-def ILLUSIONIST_MAX_HP_LVL1() -> int:
-    """Return the Illusionist Armour Class (AC) at level 1.
+    :return: a dictionary of Ranger level 1 stats"""
+    return {"class": "Ranger", "level_name": "Scout",
+            "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 8),
+            "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
+            "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 4,
+            "crit_chance": [20], "crit_modifier": 2}
 
-    :return: an integer"""
-    return 10
 
+def PALADIN_STATS_LVL1() -> dict:
+    """Return Paladin class level 1 stats.
 
-def ILLUSIONIST_HIT_DICE_LVL1() -> tuple:
-    """Return Illusionist class hit dice at level 1.
+    :return: a dictionary of Paladin level 1 stats"""
+    return {"class": "Paladin", "level_name": "Protector",
+            "AC": 15, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
+            "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
+            "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 2,
+            "crit_chance": [20], "crit_modifier": 2}
 
-    :return: a tuple of two integers"""
-    return 1, 4
-
-
-def ILLUSIONIST_ATTACKS_LVL1() -> tuple:
-    """Return Illusionist class attack types at level 1.
-
-    :return: a tuple of strings"""
-    return "Colour Spray", "Phantasmal Force", "Shadow Blade"
-
-
-def ILLUSIONIST_ATK_MODIFIER_LVL1() -> int:
-    """Return Illusionist class attack modifier at level 1.
-
-    :return: an integer"""
-    return 2
-
-
-def ILLUSIONIST_DAMAGE_LVL1() -> tuple:
-    """Return Illusionist damage dice at level 1.
-
-    :return: a tuple of two integers"""
-    return 1, 4
-
-
-def ILLUSIONIST_DMG_MODIFIER_LVL1() -> int:
-    """Return Illusionist class damage modifier at level 1.
-
-    :return: an integer"""
-    return 2
-
-
-def ILLUSIONIST_CRIT_CHANCE_LVL1() -> int:
-    """Return Illusionist class critical roll chances at level 1.
-
-    :return: an integer or tuple"""
-    return 20
-
-
-def ILLUSIONIST_CRIT_MODIFIER_LVL1() -> int:
-    """Return Illusionist class critical roll modifier at level 1.
-
-    :return: an integer"""
-    return 2
-
-
-# ------------------- LEVEL TWO STATS -----------------------
-
-def ILLUSIONIST_AC_LVL2() -> int:
-    """Return the Illusionist Armour Class (AC) at level 2.
-
-    :return: an integer"""
-    return 15
-
-
-def ILLUSIONIST_MAX_HP_LVL2() -> int:
-    """Return the Illusionist Armour Class (AC) at level 2.
-
-    :return: an integer"""
-    return 18
-
-
-def ILLUSIONIST_HIT_DICE_LVL2() -> tuple:
-    """Return Illusionist class hit dice at level 2.
-
-    :return: a tuple of two integers"""
-    return 1, 6
-
-
-def ILLUSIONIST_ATTACKS_LVL2() -> tuple:
-    """Return Illusionist class attack types at level 2.
-
-    :return: a tuple of strings"""
-    return "Hypnotic Pattern", "Shatter", "Mind Spike"
-
-
-def ILLUSIONIST_ATK_MODIFIER_LVL2() -> int:
-    """Return Illusionist class attack modifier at level 2.
-
-    :return: an integer"""
-    return 4
-
-
-def ILLUSIONIST_DAMAGE_LVL2() -> tuple:
-    """Return Illusionist damage dice at level 2.
-
-    :return: a tuple of two integers"""
-    return 2, 10
-
-
-def ILLUSIONIST_DMG_MODIFIER_LVL2() -> int:
-    """Return Illusionist class damage modifier at level 2.
-
-    :return: an integer"""
-    return 10
-
-
-def ILLUSIONIST_CRIT_CHANCE_LVL2() -> int:
-    """Return Illusionist class critical roll chances at level 2.
-
-    :return: an integer or tuple"""
-    return 20
-
-
-def ILLUSIONIST_CRIT_MODIFIER_LVL2() -> int:
-    """Return Illusionist class critical roll modifier at level 2.
-
-    :return: an integer"""
-    return 2
-
-# ------------------- LEVEL TWO STATS -----------------------
-
-
-def ILLUSIONIST_AC_LVL3() -> int:
-    """Return the Illusionist Armour Class (AC) at level 3.
-
-    :return: an integer"""
-    return 22
-
-
-def ILLUSIONIST_MAX_HP_LVL3() -> int:
-    """Return the Illusionist Armour Class (AC) at level 3.
-
-    :return: an integer"""
-    return 48
-
-
-def ILLUSIONIST_HIT_DICE_LVL3() -> tuple:
-    """Return Illusionist class hit dice at level 3.
-
-    :return: a tuple of two integers"""
-    return 1, 8
-
-
-def ILLUSIONIST_ATTACKS_LVL3() -> tuple:
-    """Return Illusionist class attack types at level 3.
-
-    :return: a tuple of strings"""
-    return "Psychic Scream", "Mental Prison", "Ravenous Void"
-
-
-def ILLUSIONIST_ATK_MODIFIER_LVL3() -> int:
-    """Return Illusionist class attack modifier at level 3.
-
-    :return: an integer"""
-    return 12
-
-
-def ILLUSIONIST_DAMAGE_LVL3() -> tuple:
-    """Return Illusionist damage dice at level 3.
-
-    :return: a tuple of two integers"""
-    return 2, 16
-
-
-def ILLUSIONIST_DMG_MODIFIER_LVL3() -> int:
-    """Return Illusionist class damage modifier at level 3.
-
-    :return: an integer"""
-    return 12
-
-
-def ILLUSIONIST_CRIT_CHANCE_LVL3() -> tuple:
-    """Return Illusionist class critical roll chances at level 3.
-
-    :return: an integer or tuple"""
-    return 19, 20
-
-
-def ILLUSIONIST_CRIT_MODIFIER_LVL3() -> int:
-    """Return Illusionist class critical roll modifier at level 3.
-
-    :return: an integer"""
-    return 4
 
 # ===== COMBAT CONSTANTS ===============================================================================================
 
@@ -706,30 +549,13 @@ def choose_class() -> dict:
     get_menu("class")
     chosen_class = get_valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
-        return {"class": "Illusionist", "level_name": ILLUSIONIST_LEVEL_NAMES()[0],
-                "AC": ILLUSIONIST_AC_LVL1(), "HP": ILLUSIONIST_MAX_HP_LVL1(),
-                "max-HP": ILLUSIONIST_MAX_HP_LVL1(), "hit_dice": ILLUSIONIST_HIT_DICE_LVL1(),
-                "attacks": list(ILLUSIONIST_ATTACKS_LVL1()), "atk_modifier": ILLUSIONIST_ATK_MODIFIER_LVL1(),
-                "damage": ILLUSIONIST_DAMAGE_LVL1(), "dmg_modifier": ILLUSIONIST_DMG_MODIFIER_LVL1(),
-                "crit_chance": [ILLUSIONIST_CRIT_CHANCE_LVL1()], "crit_modifier": ILLUSIONIST_CRIT_MODIFIER_LVL1()}
+        return ILLUSIONIST_STATS_LVL1()
     elif chosen_class == "2":
-        return {"class": "Rogue", "level_name": "Cutpurse",
-                "AC": 16, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
-                "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
-                "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
-                "crit_chance": [19, 20], "crit_modifier": 2}
+        return ROGUE_STATS_LVL1()
     elif chosen_class == "3":
-        return {"class": "Ranger", "level_name": "Scout",
-                "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 8),
-                "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
-                "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 4,
-                "crit_chance": [20], "crit_modifier": 2}
+        return RANGER_STATS_LVL1()
     elif chosen_class == "4":
-        return {"class": "Paladin", "level_name": "Protector",
-                "AC": 15, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
-                "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
-                "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 2,
-                "crit_chance": [20], "crit_modifier": 2}
+        return PALADIN_STATS_LVL1()
 
 
 def get_name() -> str:
