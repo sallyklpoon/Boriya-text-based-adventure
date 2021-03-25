@@ -86,7 +86,7 @@
 | start_game                                   |   Y   |   N   |
 | valid_move                                   |   Y   |   N   |
 | move_character                               |   Y   |   N   |
-| next_move                                    |   N   |   N   |
+| next_move                                    |   Y   |   N   |
 | check_goal_attained                          |   N   |   N   |
 | heal                                         |   N   |   N   |
 | summon_foe                                   |   N   |   N   |
