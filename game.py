@@ -878,7 +878,7 @@ def check_goal_attained(character: dict) -> bool:
         foe = summon_god()
         if final_boss_encounter(character, foe):
             if foe["HP"] <= 0:
-                print(f"God is dead.\n")
+                print(f"\nGod is dead.\n")
                 character["boss_defeat"] = True
                 return True
             elif character["HP"] <= 0:
@@ -1498,9 +1498,11 @@ def boss_flee(character: dict, foe: dict) -> None:
         print(f"You came out here to have a good time\n"
               f"but you're feeling pretty attacked right now.\n"
               f"Your health is now at \033[34m{character['HP']}\033[0m points.\n"
-              f"\n{foe['name']}' blank eyes follow you as you cower away in fear.\n")
+              f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
+              f"\nYou will never rid the blight from this land as long as he lives.\n")
     else:
-        print(f"\n{foe['name']}' blank eyes follow you as you cower away in fear.")
+        print(f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
+              f"\nYou will never rid the blight from this land as long as he lives.")
     time.sleep(0.5)
 
 
@@ -1538,7 +1540,7 @@ def enter_boss_combat(character: dict, foe: dict) -> None:
 
 
 def final_boss_encounter(character: dict, foe: dict):
-    print("You arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
+    print("\nYou arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
           "entirely of unending nothingness. Are you ready to die?")
 
     if enter_boss_combat(character, foe) == False:
