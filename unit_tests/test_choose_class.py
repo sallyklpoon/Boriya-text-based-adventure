@@ -2,7 +2,8 @@ import io
 from unittest import TestCase
 from unittest.mock import patch
 
-from game import choose_class, CLASS_INFO
+from game import choose_class, CLASS_INFO, \
+    ILLUSIONIST_STATS_LVL1, RANGER_STATS_LVL1, ROGUE_STATS_LVL1, PALADIN_STATS_LVL1
 
 
 class TestChooseClass(TestCase):
@@ -18,40 +19,25 @@ class TestChooseClass(TestCase):
 
     @patch("builtins.input", side_effect=["1"])
     def test_choose_class_returns_correct_class_dictionary_option_1(self, mock_chosen_class):
-        expected = {"HP": 10, "class": "Illusionist", "level_name": "Trickster", "AC": 14,
-                    "max-HP": 10, "hit_dice": (1, 6),
-                    "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
-                    "atk_modifier": 2, "damage": (1, 8), "dmg_modifier": 2,
-                    "crit_chance": [20], "crit_modifier": 2}
+        expected = ILLUSIONIST_STATS_LVL1()
         actual = choose_class()
         self.assertEqual(expected, actual)
 
     @patch("builtins.input", side_effect=["apple", "!", "2"])
     def test_choose_class_returns_correct_class_dictionary_option_2(self, mock_chosen_class):
-        expected = {"level_name": "Cutpurse", "class": "Rogue",
-                    "AC": 16, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
-                    "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
-                    "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
-                    "crit_chance": [19, 20], "crit_modifier": 2}
+        expected = ROGUE_STATS_LVL1()
         actual = choose_class()
         self.assertEqual(expected, actual)
 
     @patch("builtins.input", side_effect=["not valid input", " ", "3"])
     def test_choose_class_returns_correct_class_dictionary_option_3(self, mock_chosen_class):
-        expected = {"class": "Ranger", "level_name": "Scout", "HP": 12, "max-HP": 12,
-                    "hit_dice": (1, 8), "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
-                    "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 4,
-                    "crit_chance": [20], "crit_modifier": 2, "AC": 16}
+        expected = RANGER_STATS_LVL1()
         actual = choose_class()
         self.assertEqual(expected, actual)
 
     @patch("builtins.input", side_effect=["2 ", "4"])
     def test_choose_class_returns_correct_class_dictionary_option_4(self, mock_chosen_class):
-        expected = {"class": "Paladin", "level_name": "Protector",
-                    "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
-                    "AC": 15, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
-                    "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 2,
-                    "crit_chance": [20], "crit_modifier": 2}
+        expected = PALADIN_STATS_LVL1()
         actual = choose_class()
         self.assertEqual(expected, actual)
 
