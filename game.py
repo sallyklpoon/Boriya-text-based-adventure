@@ -190,8 +190,8 @@ def CLASS_OPTIONS() -> tuple:
     return "Illusionist", "Rogue", "Ranger", "Paladin"
 
 
-# ===== ILLUSIONIST CONSTANTS ==========================================================================================
-
+# ===== CLASS CONSTANTS ================================================================================================
+# ----- ILLUSIONIST ----------------------------------------------------------------------------------------------------
 def ILLUSIONIST_STATS_LVL1() -> dict:
     """Return Illusionist class level 1 stats.
 
@@ -203,6 +203,28 @@ def ILLUSIONIST_STATS_LVL1() -> dict:
             "crit_chance": [20], "crit_modifier": 2}
 
 
+def ILLUSIONIST_STATS_LVL2() -> dict:
+    """Return Illusionist class level 2 stats.
+
+    :return: a dictionary of Illusionist level 2 stats"""
+    return {"level_name": "Mesmer", "AC": 15,  "max-HP": 18, "hit_dice": (1, 6),
+            "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
+            "atk_modifier": 4, "damage": (2, 10), "dmg_modifier": 10, "crit_chance": [20],
+            "crit_modifier": 2}
+
+
+def ILLUSIONIST_STATS_LVL3() -> dict:
+    """Return Illusionist class level 3 stats.
+
+    :return: a dictionary of Illusionist level 3 stats"""
+    return {"level_name": "Creator", "AC": 22,  "max-HP": 48, "hit_dice": (1, 8),
+            "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
+            "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
+            "crit_chance": [19, 20], "crit_modifier": 4}
+
+# ----- ROGUE ----------------------------------------------------------------------------------------------------------
+
+
 def ROGUE_STATS_LVL1() -> dict:
     """Return Rogue class level 1 stats.
 
@@ -212,6 +234,26 @@ def ROGUE_STATS_LVL1() -> dict:
             "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
             "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
             "crit_chance": [19, 20], "crit_modifier": 2}
+
+
+def ROGUE_STATS_LVL2() -> dict:
+    """Return Rogue class level 2 stats.
+
+    :return: a dictionary of Rogue level 2 stats"""
+    return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
+            "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+            "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
+            "crit_modifier": 2}
+
+
+def ROGUE_STATS_LVL3() -> dict:
+    """Return Rogue class level 3 stats.
+
+    :return: a dictionary of Rogue level 3 stats"""
+    return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
+            "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+            "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
+            "crit_modifier": 2}
 
 
 def RANGER_STATS_LVL1() -> dict:
@@ -1299,16 +1341,10 @@ def level_illusionist(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Mesmer", "AC": 15,  "max-HP": 18, "hit_dice": (1, 6),
-                           "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
-                           "atk_modifier": 4, "damage": (2, 10), "dmg_modifier": 10, "crit_chance": [20],
-                           "crit_modifier": 2}
+        level_character = ILLUSIONIST_STATS_LVL2()
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 48, "hit_dice": (1, 8),
-                           "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
-                           "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
-                           "crit_chance": [19, 20], "crit_modifier": 4}
+        level_character = ILLUSIONIST_STATS_LVL3()
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
@@ -1323,16 +1359,10 @@ def level_rogue(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
-                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
-                           "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
-                           "crit_modifier": 2}
+        level_character = ROGUE_STATS_LVL2()
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48, "hit_dice": (1, 8),
-                           "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
-                           "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8,
-                           "crit_chance": [19, 20], "crit_modifier": 2}
+        level_character = ROGUE_STATS_LVL3()
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
