@@ -328,6 +328,70 @@ def ILLUSIONIST_CRIT_MODIFIER_LVL2() -> int:
     :return: an integer"""
     return 2
 
+# ------------------- LEVEL TWO STATS -----------------------
+
+
+def ILLUSIONIST_AC_LVL3() -> int:
+    """Return the Illusionist Armour Class (AC) at level 3.
+
+    :return: an integer"""
+    return 22
+
+
+def ILLUSIONIST_MAX_HP_LVL3() -> int:
+    """Return the Illusionist Armour Class (AC) at level 3.
+
+    :return: an integer"""
+    return 48
+
+
+def ILLUSIONIST_HIT_DICE_LVL3() -> tuple:
+    """Return Illusionist class hit dice at level 3.
+
+    :return: a tuple of two integers"""
+    return 1, 8
+
+
+def ILLUSIONIST_ATTACKS_LVL3() -> tuple:
+    """Return Illusionist class attack types at level 3.
+
+    :return: a tuple of strings"""
+    return "Psychic Scream", "Mental Prison", "Ravenous Void"
+
+
+def ILLUSIONIST_ATK_MODIFIER_LVL3() -> int:
+    """Return Illusionist class attack modifier at level 3.
+
+    :return: an integer"""
+    return 12
+
+
+def ILLUSIONIST_DAMAGE_LVL3() -> tuple:
+    """Return Illusionist damage dice at level 3.
+
+    :return: a tuple of two integers"""
+    return 2, 16
+
+
+def ILLUSIONIST_DMG_MODIFIER_LVL3() -> int:
+    """Return Illusionist class damage modifier at level 3.
+
+    :return: an integer"""
+    return 12
+
+
+def ILLUSIONIST_CRIT_CHANCE_LVL3() -> tuple:
+    """Return Illusionist class critical roll chances at level 3.
+
+    :return: an integer or tuple"""
+    return 19, 20
+
+
+def ILLUSIONIST_CRIT_MODIFIER_LVL3() -> int:
+    """Return Illusionist class critical roll modifier at level 3.
+
+    :return: an integer"""
+    return 4
 
 # ===== COMBAT CONSTANTS ===============================================================================================
 
