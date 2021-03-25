@@ -128,6 +128,15 @@ def START_GAME_MSG() -> str:
            "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"
 
 
+def PROLOGUE() -> str:
+    """Return the prologue of the game.
+
+    :return: a string, the prologue of the game"""
+    return "\n<+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+>\n" \
+           "PROLOGUE SPACE." \
+           "\n<+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+>\n"
+
+
 def CLASS_INFO() -> str:
     """Return class information string, formatted with class information.
 
@@ -190,143 +199,137 @@ def CLASS_OPTIONS() -> tuple:
     return "Illusionist", "Rogue", "Ranger", "Paladin"
 
 
-# ===== ILLUSIONIST CONSTANTS ==========================================================================================
+# ===== CLASS CONSTANTS ================================================================================================
+# ----- ILLUSIONIST ----------------------------------------------------------------------------------------------------
 
-def ILLUSIONIST_LEVEL_NAMES():
-    """Return a collection of level names in increasing level order.
+def ILLUSIONIST_STATS_LVL1() -> dict:
+    """Return Illusionist class level 1 stats.
 
-    :return: a tuple"""
-    return "Trickster", "Mesmer", "Creator"
-
-
-# ------------------- LEVEL ONE STATS -----------------------
-
-def ILLUSIONIST_AC_LVL1() -> int:
-    """Return the Illusionist Armour Class (AC) at level 1.
-
-    :return: an integer"""
-    return 14
+    :return: a dictionary of Illusionist level 1 stats"""
+    return {"class": "Illusionist", "level_name": "Trickster",
+            "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 4),
+            "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
+            "atk_modifier": 2, "damage": (1, 8), "dmg_modifier": 2,
+            "crit_chance": [20], "crit_modifier": 2}
 
 
-def ILLUSIONIST_MAX_HP_LVL1() -> int:
-    """Return the Illusionist Armour Class (AC) at level 1.
+def ILLUSIONIST_STATS_LVL2() -> dict:
+    """Return Illusionist class level 2 stats.
 
-    :return: an integer"""
-    return 10
-
-
-def ILLUSIONIST_HIT_DICE_LVL1() -> tuple:
-    """Return Illusionist class hit dice at level 1.
-
-    :return: a tuple of two integers"""
-    return 1, 4
+    :return: a dictionary of Illusionist level 2 stats"""
+    return {"level_name": "Mesmer", "AC": 15,  "max-HP": 18, "hit_dice": (1, 6),
+            "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
+            "atk_modifier": 4, "damage": (2, 10), "dmg_modifier": 10, "crit_chance": [20],
+            "crit_modifier": 2}
 
 
-def ILLUSIONIST_ATTACKS_LVL1() -> tuple:
-    """Return Illusionist class attack types at level 1.
+def ILLUSIONIST_STATS_LVL3() -> dict:
+    """Return Illusionist class level 3 stats.
 
-    :return: a tuple of strings"""
-    return "Colour Spray", "Phantasmal Force", "Shadow Blade"
-
-
-def ILLUSIONIST_ATK_MODIFIER_LVL1() -> int:
-    """Return Illusionist class attack modifier at level 1.
-
-    :return: an integer"""
-    return 2
+    :return: a dictionary of Illusionist level 3 stats"""
+    return {"level_name": "Creator", "AC": 22,  "max-HP": 48, "hit_dice": (1, 8),
+            "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
+            "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
+            "crit_chance": [19, 20], "crit_modifier": 4}
 
 
-def ILLUSIONIST_DAMAGE_LVL1() -> tuple:
-    """Return Illusionist damage dice at level 1.
+# ----- ROGUE ----------------------------------------------------------------------------------------------------------
 
-    :return: a tuple of two integers"""
-    return 1, 4
+def ROGUE_STATS_LVL1() -> dict:
+    """Return Rogue class level 1 stats.
 
-
-def ILLUSIONIST_DMG_MODIFIER_LVL1() -> int:
-    """Return Illusionist class damage modifier at level 1.
-
-    :return: an integer"""
-    return 2
-
-
-def ILLUSIONIST_CRIT_CHANCE_LVL1() -> int:
-    """Return Illusionist class critical roll chances at level 1.
-
-    :return: an integer or tuple"""
-    return 20
+    :return: a dictionary of Rogue level 1 stats"""
+    return {"class": "Rogue", "level_name": "Cutpurse",
+            "AC": 16, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
+            "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
+            "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
+            "crit_chance": [19, 20], "crit_modifier": 2}
 
 
-def ILLUSIONIST_CRIT_MODIFIER_LVL1() -> int:
-    """Return Illusionist class critical roll modifier at level 1.
+def ROGUE_STATS_LVL2() -> dict:
+    """Return Rogue class level 2 stats.
 
-    :return: an integer"""
-    return 2
-
-
-# ------------------- LEVEL TWO STATS -----------------------
-
-def ILLUSIONIST_AC_LVL2() -> int:
-    """Return the Illusionist Armour Class (AC) at level 2.
-
-    :return: an integer"""
-    return 15
+    :return: a dictionary of Rogue level 2 stats"""
+    return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
+            "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+            "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
+            "crit_modifier": 2}
 
 
-def ILLUSIONIST_MAX_HP_LVL2() -> int:
-    """Return the Illusionist Armour Class (AC) at level 2.
+def ROGUE_STATS_LVL3() -> dict:
+    """Return Rogue class level 3 stats.
 
-    :return: an integer"""
-    return 18
-
-
-def ILLUSIONIST_HIT_DICE_LVL2() -> tuple:
-    """Return Illusionist class hit dice at level 2.
-
-    :return: a tuple of two integers"""
-    return 1, 6
+    :return: a dictionary of Rogue level 3 stats"""
+    return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
+            "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+            "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
+            "crit_modifier": 2}
 
 
-def ILLUSIONIST_ATTACKS_LVL2() -> tuple:
-    """Return Illusionist class attack types at level 2.
+# ----- RANGER ---------------------------------------------------------------------------------------------------------
 
-    :return: a tuple of strings"""
-    return "Hypnotic Pattern", "Shatter", "Mind Spike"
+def RANGER_STATS_LVL1() -> dict:
+    """Return Ranger class level 1 stats.
 
-
-def ILLUSIONIST_ATK_MODIFIER_LVL2() -> int:
-    """Return Illusionist class attack modifier at level 2.
-
-    :return: an integer"""
-    return 4
-
-
-def ILLUSIONIST_DAMAGE_LVL2() -> tuple:
-    """Return Illusionist damage dice at level 2.
-
-    :return: a tuple of two integers"""
-    return 2, 10
+    :return: a dictionary of Ranger level 1 stats"""
+    return {"class": "Ranger", "level_name": "Scout",
+            "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 8),
+            "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
+            "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 4,
+            "crit_chance": [20], "crit_modifier": 2}
 
 
-def ILLUSIONIST_DMG_MODIFIER_LVL2() -> int:
-    """Return Illusionist class damage modifier at level 2.
+def RANGER_STATS_LVL2() -> dict:
+    """Return Ranger class level 2 stats.
 
-    :return: an integer"""
-    return 10
-
-
-def ILLUSIONIST_CRIT_CHANCE_LVL2() -> int:
-    """Return Illusionist class critical roll chances at level 2.
-
-    :return: an integer or tuple"""
-    return 20
+    :return: a dictionary of Ranger level 2 stats"""
+    return {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24, "hit_dice": (1, 8),
+            "attacks": ["Flame Arrows", "Conjure Barrage", "Grasping Vine"],
+            "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
+            "crit_modifier": 2}
 
 
-def ILLUSIONIST_CRIT_MODIFIER_LVL2() -> int:
-    """Return Illusionist class critical roll modifier at level 2.
+def RANGER_STATS_LVL3() -> dict:
+    """Return Ranger class level 3 stats.
 
-    :return: an integer"""
-    return 2
+    :return: a dictionary of Ranger level 3 stats"""
+    return {"level_name": "Far Wanderer", "AC": 20, "max-HP": 54, "hit_dice": (1, 10),
+            "attacks": ["Steel Wind Strike", "Swift Quiver", "Wrath of Nature"],
+            "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
+            "crit_modifier": 2}
+
+
+# ----- PALADIN --------------------------------------------------------------------------------------------------------
+
+def PALADIN_STATS_LVL1() -> dict:
+    """Return Paladin class level 1 stats.
+
+    :return: a dictionary of Paladin level 1 stats"""
+    return {"class": "Paladin", "level_name": "Protector",
+            "AC": 15, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
+            "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
+            "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 2,
+            "crit_chance": [20], "crit_modifier": 2}
+
+
+def PALADIN_STATS_LVL2() -> dict:
+    """Return Paladin class level 2 stats.
+
+    :return: a dictionary of Paladin level 2 stats"""
+    return {"level_name": "Guardian", "AC": 18,  "max-HP": 24, "hit_dice": (1, 6),
+            "attacks": ["Divine Word", "Forbiddance", "Staggering Smite"],
+            "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
+            "crit_modifier": 2}
+
+
+def PALADIN_STATS_LVL3() -> dict:
+    """Return Paladin class level 3 stats.
+
+    :return: a dictionary of Paladin level 3 stats"""
+    return {"level_name": "Justiciar", "AC": 22,  "max-HP": 62, "hit_dice": (1, 10),
+            "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
+            "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
+            "crit_modifier": 3}
 
 
 # ===== COMBAT CONSTANTS ===============================================================================================
@@ -642,29 +645,13 @@ def choose_class() -> dict:
     get_menu("class")
     chosen_class = get_valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
-        return {"class": "Illusionist", "level_name": "Trickster",
-                "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 4),
-                "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
-                "atk_modifier": 2, "damage": (1, 8), "dmg_modifier": 2,
-                "crit_chance": [20], "crit_modifier": 2}
+        return ILLUSIONIST_STATS_LVL1()
     elif chosen_class == "2":
-        return {"class": "Rogue", "level_name": "Cutpurse",
-                "AC": 16, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
-                "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
-                "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
-                "crit_chance": [19, 20], "crit_modifier": 2}
+        return ROGUE_STATS_LVL1()
     elif chosen_class == "3":
-        return {"class": "Ranger", "level_name": "Scout",
-                "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 8),
-                "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
-                "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 4,
-                "crit_chance": [20], "crit_modifier": 2}
+        return RANGER_STATS_LVL1()
     elif chosen_class == "4":
-        return {"class": "Paladin", "level_name": "Protector",
-                "AC": 15, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
-                "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
-                "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 2,
-                "crit_chance": [20], "crit_modifier": 2}
+        return PALADIN_STATS_LVL1()
 
 
 def get_name() -> str:
@@ -724,6 +711,7 @@ def make_character() -> dict:
 def start_game() -> tuple:
     """Start up the game by returning map and character information.
 
+    :postcondition: prints START_GAME_MSG()
     :postcondition: collects result of the map as a dictionary
     :postcondition: collects result of the character as a dictionary
     :postcondition: produces a tuple of both map and character data structures in the order (map, character)
@@ -733,7 +721,7 @@ def start_game() -> tuple:
     """
     print(START_GAME_MSG())
     character = make_character()
-    print(f"\nWelcome to Vosynia, {character['name']}")
+    print(f"\nWELCOME TO VOSYNIA, {character['name']}" + PROLOGUE())
     return make_board(character['level']), character
 
 
@@ -1420,16 +1408,10 @@ def level_illusionist(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Mesmer", "AC": 15,  "max-HP": 18, "hit_dice": (1, 6),
-                           "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
-                           "atk_modifier": 4, "damage": (2, 10), "dmg_modifier": 10, "crit_chance": [20],
-                           "crit_modifier": 2}
+        level_character = ILLUSIONIST_STATS_LVL2()
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 48, "hit_dice": (1, 8),
-                           "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
-                           "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
-                           "crit_chance": [19, 20], "crit_modifier": 4}
+        level_character = ILLUSIONIST_STATS_LVL3()
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
@@ -1444,16 +1426,10 @@ def level_rogue(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
-                           "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
-                           "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
-                           "crit_modifier": 2}
+        level_character = ROGUE_STATS_LVL2()
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48, "hit_dice": (1, 8),
-                           "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
-                           "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8,
-                           "crit_chance": [19, 20], "crit_modifier": 2}
+        level_character = ROGUE_STATS_LVL3()
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
@@ -1468,16 +1444,10 @@ def level_ranger(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24, "hit_dice": (1, 8),
-                           "attacks": ["Flame Arrows", "Conjure Barrage", "Grasping Vine"],
-                           "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
-                           "crit_modifier": 2}
+        level_character = RANGER_STATS_LVL2()
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 54, "hit_dice": (1, 10),
-                           "attacks": ["Steel Wind Strike", "Swift Quiver", "Wrath of Nature"],
-                           "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
-                           "crit_modifier": 2}
+        level_character = RANGER_STATS_LVL3()
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
@@ -1492,16 +1462,10 @@ def level_paladin(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Guardian", "AC": 18,  "max-HP": 24, "hit_dice": (1, 6),
-                           "attacks": ["Divine Word", "Forbiddance", "Staggering Smite"],
-                           "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
-                           "crit_modifier": 2}
+        level_character = PALADIN_STATS_LVL2()
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 62, "hit_dice": (1, 10),
-                           "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
-                           "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
-                           "crit_modifier": 3}
+        level_character = PALADIN_STATS_LVL3()
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
