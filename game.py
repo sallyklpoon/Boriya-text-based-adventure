@@ -192,6 +192,7 @@ def CLASS_OPTIONS() -> tuple:
 
 # ===== CLASS CONSTANTS ================================================================================================
 # ----- ILLUSIONIST ----------------------------------------------------------------------------------------------------
+
 def ILLUSIONIST_STATS_LVL1() -> dict:
     """Return Illusionist class level 1 stats.
 
@@ -222,8 +223,8 @@ def ILLUSIONIST_STATS_LVL3() -> dict:
             "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
             "crit_chance": [19, 20], "crit_modifier": 4}
 
-# ----- ROGUE ----------------------------------------------------------------------------------------------------------
 
+# ----- ROGUE ----------------------------------------------------------------------------------------------------------
 
 def ROGUE_STATS_LVL1() -> dict:
     """Return Rogue class level 1 stats.
@@ -256,6 +257,8 @@ def ROGUE_STATS_LVL3() -> dict:
             "crit_modifier": 2}
 
 
+# ----- RANGER ---------------------------------------------------------------------------------------------------------
+
 def RANGER_STATS_LVL1() -> dict:
     """Return Ranger class level 1 stats.
 
@@ -267,6 +270,28 @@ def RANGER_STATS_LVL1() -> dict:
             "crit_chance": [20], "crit_modifier": 2}
 
 
+def RANGER_STATS_LVL2() -> dict:
+    """Return Ranger class level 2 stats.
+
+    :return: a dictionary of Ranger level 2 stats"""
+    return {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24, "hit_dice": (1, 8),
+            "attacks": ["Flame Arrows", "Conjure Barrage", "Grasping Vine"],
+            "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
+            "crit_modifier": 2}
+
+
+def RANGER_STATS_LVL3() -> dict:
+    """Return Ranger class level 3 stats.
+
+    :return: a dictionary of Ranger level 3 stats"""
+    return {"level_name": "Far Wanderer", "AC": 20, "max-HP": 54, "hit_dice": (1, 10),
+            "attacks": ["Steel Wind Strike", "Swift Quiver", "Wrath of Nature"],
+            "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
+            "crit_modifier": 2}
+
+
+# ----- PALADIN --------------------------------------------------------------------------------------------------------
+
 def PALADIN_STATS_LVL1() -> dict:
     """Return Paladin class level 1 stats.
 
@@ -276,6 +301,8 @@ def PALADIN_STATS_LVL1() -> dict:
             "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
             "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 2,
             "crit_chance": [20], "crit_modifier": 2}
+
+
 
 
 # ===== COMBAT CONSTANTS ===============================================================================================
@@ -1377,16 +1404,10 @@ def level_ranger(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24, "hit_dice": (1, 8),
-                           "attacks": ["Flame Arrows", "Conjure Barrage", "Grasping Vine"],
-                           "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
-                           "crit_modifier": 2}
+        level_character = RANGER_STATS_LVL2()
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 54, "hit_dice": (1, 10),
-                           "attacks": ["Steel Wind Strike", "Swift Quiver", "Wrath of Nature"],
-                           "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
-                           "crit_modifier": 2}
+        level_character = RANGER_STATS_LVL3()
         character.update(level_character)
     print(f"You are now a {character['level_name']}.")
 
