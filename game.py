@@ -1500,7 +1500,7 @@ def boss_flee(character: dict, foe: dict) -> None:
               f"Your health is now at \033[34m{character['HP']}\033[0m points.\n"
               f"\n{foe['name']}' blank eyes follow you as you cower away in fear.\n")
     else:
-        print(f"\N{foe['name']}' blank eyes follow you as you cower away in fear.")
+        print(f"\n{foe['name']}' blank eyes follow you as you cower away in fear.")
     time.sleep(0.5)
 
 
