@@ -107,13 +107,13 @@ def GOAL_LOCATION() -> tuple:
 
     :return: GOAL() coordinates as a tuple (x, y)
     """
-    return 25, 25
+    return 24, 24
 
 
 def START_GAME_MSG() -> str:
     return "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"\
-           "Welcome to Avocado Toast, a game about Gen Z and Millennial struggles\n"\
-           "because we are a self-deprecating generation.\n" \
+           "Your journey has brought you deep into the heartland of Vosynia as you reach the entrance of \n"\
+           "the Forest of Bória.\n" \
            "You've just completed a 7-hour hackathon and you've spent the last\n"\
            "few days pent up in your room studying for midterms. It could be nice to\n"\
            "get outside and enjoy the Spring weather. Maybe hit the grocery store\n"\
@@ -873,7 +873,7 @@ def summon_strong_foe():
         return {"name": foe_colour("Wraith"),
                 "AC": 14,
                 "HP": 18,
-                "max-HP": 8,
+                "max-HP": 18,
                 "attacks": list(map(foe_colour, ["Ray of Sickness", "Ray of Enfeeblement"])),
                 "atk_modifier": 2,
                 "damage": (2, 4),
@@ -899,7 +899,7 @@ def summon_strong_foe():
         return {"name": foe_colour("Zealot"),
                 "AC": 16,
                 "HP": 12,
-                "max-HP": 20,
+                "max-HP": 12,
                 "attacks": list(map(foe_colour, ["Necrotic Touch", "Inflict Wounds"])),
                 "atk_modifier": 2,
                 "damage": (2, 8),
@@ -957,7 +957,7 @@ def summon_god():
     return {"name": foe_colour("Erebus"),
             "AC": 16,
             "HP": 100,
-            "max-HP": 48,
+            "max-HP": 100,
             "attacks": list(map(foe_colour, ["Time Ravage", "Imprisonment", "Power Word: Kill", "Tear Soul"])),
             "atk_modifier": 6,
             "damage": (3, 6),
@@ -1255,13 +1255,13 @@ def level_illusionist(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Mesmer", "AC": 15,  "max-HP": 18,
+        level_character = {"level_name": "Mesmer", "AC": 15,  "max-HP": 18, "hit_dice": (1, 6),
                            "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
                            "atk_modifier": 4, "damage": (2, 10), "dmg_modifier": 10, "crit_chance": [20],
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 48,
+        level_character = {"level_name": "Creator", "AC": 22,  "max-HP": 48, "hit_dice": (1, 8),
                            "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
                            "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
                            "crit_chance": [19, 20], "crit_modifier": 4}
@@ -1279,13 +1279,13 @@ def level_rogue(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Assassin", "AC": 18,  "max-HP": 20,
+        level_character = {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
                            "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
                            "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48,
+        level_character = {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48, "hit_dice": (1, 8),
                            "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
                            "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8,
                            "crit_chance": [19, 20], "crit_modifier": 2}
@@ -1303,13 +1303,13 @@ def level_ranger(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24,
+        level_character = {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24, "hit_dice": (1, 8),
                            "attacks": ["Flame Arrows", "Conjure Barrage", "Grasping Vine"],
                            "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 54,
+        level_character = {"level_name": "Far Wanderer", "AC": 20, "max-HP": 54, "hit_dice": (1, 10),
                            "attacks": ["Steel Wind Strike", "Swift Quiver", "Wrath of Nature"],
                            "atk_modifier": 8, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
                            "crit_modifier": 2}
@@ -1327,13 +1327,13 @@ def level_paladin(character: dict) -> None:
     :return: nothing, character dictionary is updated
     """
     if character["level"] == 2:
-        level_character = {"level_name": "Guardian", "AC": 18,  "max-HP": 24,
+        level_character = {"level_name": "Guardian", "AC": 18,  "max-HP": 24, "hit_dice": (1, 6),
                            "attacks": ["Divine Word", "Forbiddance", "Staggering Smite"],
                            "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
                            "crit_modifier": 2}
         character.update(level_character)
     elif character["level"] == 3:
-        level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 62,
+        level_character = {"level_name": "Justiciar", "AC": 22,  "max-HP": 62, "hit_dice": (1, 10),
                            "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
                            "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
                            "crit_modifier": 3}
@@ -1442,14 +1442,13 @@ def end_game(character: dict) -> None:
               f"=======================================================\n")
     elif (character["x-location"], character["y-location"]) == GOAL_LOCATION():
         print(f"｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆\n"
-              f"Can we get a HIP-HIP (hip-hip) HOORAY?\n"
-              f"{character['name']}, you slayed the day and managed to get to the grocery store!\n"
-              f"Now you can head home, bake some cinnamon buns, and relax.\n"
+              f"As you look down at Erebus' lifeless body, you see an inkling of light appear through \n"
+              f"the clouds, as the moonlight begins to pour in through the shadows. \n"
               f"｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆\n")
     else:   # quit ending
         print("=======================================================\n"
               "You have successfully quit the game.\n"
-              "We hope to see you again soon!\n"
+              "The adventure will be continued another day.!\n"
               "=======================================================\n")
     print(f"Thank you for playing, {character['name']}! - Marti & Sally")
 
