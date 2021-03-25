@@ -706,11 +706,12 @@ def choose_class() -> dict:
     get_menu("class")
     chosen_class = get_valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
-        return {"class": "Illusionist", "level_name": "Trickster",
-                "AC": 14, "HP": 10, "max-HP": 10, "hit_dice": (1, 4),
-                "attacks": ["Colour Spray", "Phantasmal Force", "Shadow Blade"],
-                "atk_modifier": 2, "damage": (1, 8), "dmg_modifier": 2,
-                "crit_chance": [20], "crit_modifier": 2}
+        return {"class": "Illusionist", "level_name": ILLUSIONIST_LEVEL_NAMES()[0],
+                "AC": ILLUSIONIST_AC_LVL1(), "HP": ILLUSIONIST_MAX_HP_LVL1(),
+                "max-HP": ILLUSIONIST_MAX_HP_LVL1(), "hit_dice": ILLUSIONIST_HIT_DICE_LVL1(),
+                "attacks": list(ILLUSIONIST_ATTACKS_LVL1()), "atk_modifier": ILLUSIONIST_ATK_MODIFIER_LVL1(),
+                "damage": ILLUSIONIST_DAMAGE_LVL1(), "dmg_modifier": ILLUSIONIST_DMG_MODIFIER_LVL1(),
+                "crit_chance": [ILLUSIONIST_CRIT_CHANCE_LVL1()], "crit_modifier": ILLUSIONIST_CRIT_MODIFIER_LVL1()}
     elif chosen_class == "2":
         return {"class": "Rogue", "level_name": "Cutpurse",
                 "AC": 16, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
