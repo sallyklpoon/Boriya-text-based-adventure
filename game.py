@@ -67,15 +67,21 @@ def MAP_SCRIPTS() -> tuple:
 
     :return: a tuple of map scripts"""
     map_scripts = \
-        ("The sun is beaming and birds are chirping -- finally getting some Vitamin D!",
-         "A pudgy doggo passes by and uses its sniffer to sniff you from afar, cute!",
-         "Strolling through a quaint park, you see people jogging and meeting up with friends- how nice!",
-         "You pass by yet another Starbucks in the neighbourhood. These are everywhere!",
-         "A squirrel finds an acorn and scurries up a tree as it sees you approaching.",
-         "Nothing exciting at this corner of the neighbourhood.",
-         "A snake jumps out of a bush. Did you just hear it say, 'Python's the besssst...', as it slithered by?!",
-         "A slight breeze picks up, you can hear the leaves in the trees rustle gently.",
-         "Colourful wild flowers are growing in the patches of grass by the sidewalk.")
+        ("You sense a horrid presence around you, but you see nothing with your eyes.",
+         "A fresh corpse lays in front of you, as the sound of giggling fills the air.",
+         "Walking through a shroud of darkness, you smell a deep and stagnant stench.",
+         "Ancient trees stand before you like castles, their magnanimity giving you the strength to continue.",
+         "All around you sway disoriented shadows, each one whispering, 'Death will offer you no peace'.",
+         "Searching through the sky you see no sign on light, only a velvety pool of darkness.",
+         "A bed of feathery moss lays before you, offering you a moment of peace in this abyss.",
+         "An inescapable power calls out to you, beckoning you to give in to it's influence. "
+         "How much longer before you give in?",
+         "Nothing stirs, nothing shines, and nothing sings. "
+         "You only hear a hollow echoing, like the hushed tones of a great, slabbed cathedral.",
+         "Coils of vaporous void writhe around you like a smoke from a fire, stealing the warmth from your body.",
+         "A small pond appears before you, it's shore gurgling as water meets stone; "
+         "a swish, a clunk, a swell and a clop.",
+         "A pair of black dogs eye you as you make your way through the forest. Will they ever leave you?")
     return map_scripts
 
 
@@ -118,23 +124,20 @@ def START_GAME_MSG() -> str:
     """Return the message to start the game.
 
     :return: a string, the start game message"""
-    return "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"\
+    return "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
            "Your journey has brought you deep into the heartland of Vosynia as you reach the entrance of \n"\
            "the Forest of Bória.\n" \
            "You've just completed a 7-hour hackathon and you've spent the last\n"\
-           "few days pent up in your room studying for midterms. It could be nice to\n"\
-           "get outside and enjoy the Spring weather. Maybe hit the grocery store\n"\
-           "to grab some ingredients for a soothing baking session this evening.\n"\
-           "========================❋✿❀✿❋❋✿❀✿❋❋✿❀✿❋===========================\n"
+           "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
 
 
 def PROLOGUE() -> str:
     """Return the prologue of the game.
 
     :return: a string, the prologue of the game"""
-    return "\n<+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+>\n" \
+    return "\n༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
            "PROLOGUE SPACE." \
-           "\n<+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+><+>\n"
+           "\n༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n"
 
 
 def CLASS_INFO() -> str:
@@ -1203,11 +1206,9 @@ def flee(character: dict, foe: dict) -> None:
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage
         print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
-              f"using {random.choice(foe['attacks'])} dealing \033[31m{damage}\033[0m damage.\n")
+              f"using {random.choice(foe['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
         time.sleep(0.5)
-        print(f"You came out here to have a good time\n"
-              f"but you're feeling pretty attacked right now.\n"
-              f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
+        print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
     else:
         print(f"\nQuickly evading your foe, you leave the {foe['name']}'s view range.\n"
               f"You've escaped violence this time.\n")
@@ -1604,21 +1605,24 @@ def end_game(character: dict) -> None:
     """
 
     if character["HP"] <= 0:
-        print("\n=======================================================\n"
-              "Today just isn't your day, eh? You've been defeated.\n"
-              "You're tired and your optimism level has gone down to 0.\n"
-              f"That's alright, we'll get them another time, {character['name']}.\n "
-              f"=======================================================\n")
+        print(f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n"
+              "Falling down to the cold ground, you feel your soul slowly being devoured by the darkness around you.\n"
+              f"As you breathe your last breath, you see a sliver of moonlight appear in the sky above you, \n"
+              f"but it only lasts for an instant, before being swallowed by the infinite nothingness around you.\n"
+              f"\nGoodbye, {character['name']}.\n "
+              f"༺═────────────────────────────────────────────────────────────────────────────═༻\n")
     elif (character["x-location"], character["y-location"]) == GOAL_LOCATION():
-        print(f"｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆\n"
+        print(f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n"
               f"As you look down at Erebus' lifeless body, you see an inkling of light appear through \n"
-              f"the clouds, as the moonlight begins to pour in through the shadows. \n"
-              f"｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆\n")
+              f"the clouds. You feel the blight slowly leave the forest, as the moonlight begins to \n"
+              f"pour in through the shadows. Your journey has finally come to an end.\n"
+              f"May you rest easy, {character['name']}.\n"
+              f"༺═────────────────────────────────────────────────────────────────────────────═༻\n")
     else:   # quit ending
-        print("=======================================================\n"
-              "You have successfully quit the game.\n"
-              "The adventure will be continued another day.!\n"
-              "=======================================================\n")
+        print(f"\n༺═──────────────────────────────────────────────────═༻\n"
+              f"The Shadow above Bória has taken it's toll on your soul.\n"
+              f"You can no longer continue. Goodbye, {character['name']}.\n"
+              f"༺═──────────────────────────────────────────────────═༻\n")
     print(f"Thank you for playing, {character['name']}! - Marti & Sally")
 
 
