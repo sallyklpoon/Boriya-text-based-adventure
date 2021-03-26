@@ -1182,7 +1182,8 @@ def summon_god():
             "crit_modifier": 2,
             "initiative_modifier": 4,
             "EXP": 500,
-            "flee": False}
+            "flee": False,
+            "boss": True}
 
 
 def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
