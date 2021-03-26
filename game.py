@@ -900,43 +900,24 @@ def heal(character: dict) -> None:
 
     :param character: a dictionary of the character's stats
     :precondition: character is a dictionary of the character's stats
-    :precondition: character dictionary contains the key, "HP"
+    :precondition: character dictionary contains the keys, "HP",  "hit-dice", and "max-HP"
     :precondition: the value of character["HP"] is an integer > 0, representing the character's current health points
-    :postcondition: accurately modify the current character's 'HP' to heal CHARACTER_HEAL() amount without
-                    exceeding CHARACTER_MAX_HP()
-    :postcondition: print a message to notify character that they have been healed to new HP
+    :precondition: the value of character["hit_dice"] is a tuple representing the hit dice that will be rolled
+                   to determine the healing HP amount
+    :precondition: the value of character["max-HP"] is an integer, the maximum character may have
+    :postcondition: accurately modify the current character's 'HP' to a quantity specified by rolling the character's
+                    hit dice without exceeding the maximum HP
     :return: character["HP"] healed by CHARACTER_HEAL() amount and printed statement of character healing,
              no actual value returned
 
-    >>> sample_character = {"name": "Ikki Ooli", "HP": 10, "max-HP": 10}
-    >>> heal(sample_character)
-    <BLANKLINE>
-    Nothing happens.
-    >>> sample_character["HP"]
-    10
-    >>> sample_character = {"name": "Norm", "HP": 18, "max-HP": 20, "attacks": ["short sword"]}
-    >>> heal(sample_character)
-    <BLANKLINE>
-    \x1b[32m.・。.・゜ As you take a step, you suddenly feel reinvigorated by the decent day you're having.・゜・。.
-    .・。.・゜Your health has been healed to 20 points. (◡‿◡✿)・゜・。.
-    \x1b[0m
-    >>> sample_character["HP"]
-    20
-    >>> sample_character = {"name": "Bob", "HP": 1, "max-HP": 10}
-    >>> heal(sample_character)
-    <BLANKLINE>
-    \x1b[32m.・。.・゜ As you take a step, you suddenly feel reinvigorated by the decent day you're having.・゜・。.
-    .・。.・゜Your health has been healed to 5 points. (◡‿◡✿)・゜・。.
-    \x1b[0m
-    >>> sample_character["HP"]
-    5
+    No doctests, roll() uses random module
     """
-    threshold = character["max-HP"] - character["hit_dice"][1]
     if character["HP"] == character["max-HP"]:
         print("\nNothing happens.")
     else:
-        if character["HP"] < threshold:
-            character["HP"] += roll(character["hit_dice"])
+        heal_points = roll(character["hit_dice"])
+        if character["HP"] + heal_points <= character["max-HP"]:
+            character["HP"] += heal_points
         else:
             character["HP"] = character["max-HP"]
         print("\n\033[32m.・。.・゜ As you take a step, you suddenly feel "
@@ -1358,6 +1339,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
 
     if foe["flee"]:
         print(f"\n{foe['name']} ran away.")
+        gain_exp(character, foe["EXP"] // 4, board)
     time.sleep(0.5)
 
 # ===== CHECK LEVELING UP ==============================================================================================

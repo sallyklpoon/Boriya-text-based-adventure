@@ -24,7 +24,7 @@ class TestRoll(TestCase):
         actual = roll(die)
         self.assertIn(actual, expected)
 
-    @patch ('random.randint', return_value=16)
+    @patch('random.randint', return_value=16)
     def test_roll_3_dice_8_sides(self, mock_randint):
         dice = (3, 8)
         actual = roll(dice)
