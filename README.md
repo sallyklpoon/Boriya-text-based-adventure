@@ -90,7 +90,7 @@
 | move_character                               |   Y   |   N   |
 | next_move                                    |   Y   |   N   |
 | check_goal_attained                          |   N   |   N   |
-| heal                                         |   N   |   N   |
+| heal                                         |   Y   |   N   |
 | summon_foe                                   |   N   |   N   |
 | summon_weak_foe                              |   N   |   N   |
 | summon_strong_foe                            |   N   |   N   |

@@ -85,6 +85,8 @@ def MAP_SCRIPTS() -> tuple:
     return map_scripts
 
 
+# ===== START GAME CONSTANTS ===========================================================================================
+
 def START_X() -> int:
     """Return character's starting x-location = 0.
 
@@ -254,7 +256,7 @@ def ROGUE_STATS_LVL2() -> dict:
 
     :return: a dictionary of Rogue level 2 stats"""
     return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
-            "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+            "attacks": ["a cheap-shot", "their Double Blade", "Smoke Bomb"],
             "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
             "crit_modifier": 2, "initiative_modifier": 4}
 
@@ -264,7 +266,7 @@ def ROGUE_STATS_LVL3() -> dict:
 
     :return: a dictionary of Rogue level 3 stats"""
     return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
-            "attacks": ["a cheapshot", "their Double Blade", "Smoke Bomb"],
+            "attacks": ["a cheap-shot", "their Double Blade", "Smoke Bomb"],
             "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
             "crit_modifier": 2, "initiative_modifier": 5}
 
@@ -333,6 +335,65 @@ def PALADIN_STATS_LVL3() -> dict:
             "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
             "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
             "crit_modifier": 3, "initiative_modifier": 3}
+
+
+# ===== FOE CONSTANTS ==================================================================================================
+
+def WEAK_FOE_1() -> dict:
+    """Return the statistics of a weak foe.
+
+    :return: a dictionary"""
+    return {"name": "Fanatic",
+            "AC": 10,
+            "HP": 6,
+            "max-HP": 6,
+            "attacks": ["their Dagger", "Purge"],
+            "atk_modifier": 3,
+            "damage": (1, 6),
+            "dmg_modifier": 1,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 1,
+            "EXP": 50,
+            "flee": False}
+
+
+def WEAK_FOE_2() -> dict:
+    """Return the statistics of a weak foe.
+
+    :return: a dictionary"""
+    return {"name": "Cultist",
+            "AC": 12,
+            "HP": 8,
+            "max-HP": 8,
+            "attacks": ["Necrotic Touch", "Decompose"],
+            "atk_modifier": 2,
+            "damage": (1, 4),
+            "dmg_modifier": 2,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 0,
+            "EXP": 50,
+            "flee": False}
+
+
+def WEAK_FOE_3() -> dict:
+    """Return the statistics of a weak foe.
+
+    :return: a dictionary"""
+    return {"name": "Berserker",
+            "AC": 8,
+            "HP": 10,
+            "max-HP": 10,
+            "attacks": ["Fury of Blows", "Reckless Swing"],
+            "atk_modifier": 0,
+            "damage": (1, 8),
+            "dmg_modifier": 0,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 3,
+            "EXP": 50,
+            "flee": False}
 
 
 # ===== COMBAT CONSTANTS ===============================================================================================
@@ -707,7 +768,7 @@ def make_character() -> dict:
                  "level": CHARACTER_START_LEVEL(),
                  "quit": False}
     character.update(choose_class())
-    character["attacks"] = list(map(hero_colour, character["attacks"]))
+    character["attacks"] = list(map(hero_colour, character['attacks']))
     return character
 
 
@@ -876,9 +937,10 @@ def check_goal_attained(character: dict) -> bool:
     True
     """
     if (character["x-location"], character["y-location"]) == GOAL_LOCATION():
-        foe = summon_god()
-        if final_boss_encounter(character, foe):
-            if foe["HP"] <= 0:
+        boss = summon_god()
+        if final_boss_encounter(character, boss):
+            time.sleep(0.5)
+            if boss["HP"] <= 0:
                 print(f"\nGod is dead.\n")
                 character["boss_defeat"] = True
                 return True
@@ -926,6 +988,11 @@ def heal(character: dict) -> None:
     time.sleep(0.5)
 
 
+def format_foe(foe: dict) -> None:
+    foe["name"] = foe_colour(foe["name"])
+    foe["attacks"] = list(foe_colour(foe["attacks"]))
+
+
 def summon_foe(character: dict) -> dict:
     """Summon a random foe.
 
@@ -959,50 +1026,15 @@ def summon_foe(character: dict) -> dict:
 
 def summon_weak_foe() -> dict:
     random_class = str(random.randint(1, 3))
-    list(map(foe_colour, ["attacks"]))
 
     if random_class == "1":
-        return {"name": foe_colour("Fanatic"),
-                "AC": 10,
-                "HP": 6,
-                "max-HP": 6,
-                "attacks": list(map(foe_colour, ["their Dagger", "Purge"])),
-                "atk_modifier": 3,
-                "damage": (1, 6),
-                "dmg_modifier": 1,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "initiative_modifier": 1,
-                "EXP": 50,
-                "flee": False}
+        summoned = WEAK_FOE_1()
     elif random_class == "2":
-        return {"name": foe_colour("Cultist"),
-                "AC": 12,
-                "HP": 8,
-                "max-HP": 8,
-                "attacks": list(map(foe_colour, ["Necrotic Touch", "Decompose"])),
-                "atk_modifier": 2,
-                "damage": (1, 4),
-                "dmg_modifier": 2,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "initiative_modifier": 0,
-                "EXP": 50,
-                "flee": False}
+        summoned = WEAK_FOE_2()
     elif random_class == "3":
-        return {"name": foe_colour("Berserker"),
-                "AC": 8,
-                "HP": 10,
-                "max-HP": 10,
-                "attacks": list(map(foe_colour, ["Fury of Blows", "Reckless Swing"])),
-                "atk_modifier": 0,
-                "damage": (1, 8),
-                "dmg_modifier": 0,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "initiative_modifier": 3,
-                "EXP": 50,
-                "flee": False}
+        summoned = WEAK_FOE_3()
+    format_foe(summoned)
+    return summoned
 
 
 def summon_strong_foe():
@@ -1058,7 +1090,7 @@ def summon_epic_foe():
                 "AC": 16,
                 "HP": 18,
                 "max-HP": 18,
-                "attacks": list(map(foe_colour, ["Vampiric Touch", "Chilling Smite", "Eyebite"])),
+                "attacks": list(map(foe_colour, ["Vampiric Touch", "Chilling Smite", "Eye-bite"])),
                 "atk_modifier": 6,
                 "damage": (2, 4),
                 "dmg_modifier": 4,
@@ -1541,7 +1573,6 @@ def final_boss_encounter(character: dict, foe: dict):
         return False
     else:
         return True
-    time.sleep(0.5)
 
 
 def end_game(character: dict) -> None:
