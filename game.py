@@ -1158,6 +1158,16 @@ def heal(character: dict) -> None:
 
 
 def format_foe(foe: dict) -> None:
+    """Format the foe dictionary by foe_colour.
+
+    :param foe: a dictionary
+    :precondition: foe is a dictionary
+    :precondition: foe contains the keys "name" and "attacks"
+    :precondition: value of "name" is a string
+    :precondition: value of "attacks" is a list of strings
+    :postcondition: all strings from "name" and "attacks" are formatted to foe_colour()
+    :return: nothing, foe dictionary values changed
+    """
     foe["name"] = foe_colour(foe["name"])
     foe["attacks"] = list(map(foe_colour, foe["attacks"]))
 
@@ -1167,8 +1177,10 @@ def summon_foe(character: dict) -> dict:
 
     :postcondition: a random foe is summoned based on character's level
     :postcondition: the return is a dictionary of foe's stats
-    :postcondition: foe is randomly selected from specific level selections of foes
-
+    :postcondition: foe is randomly selected from specific level selection of foes
+    :postcondition: characters at level 1 will be summoned a weak foe from WEAK_FOES()
+    :postcondition: characters at level 2 may summon a foe from STRONG_FOES() or WEAK_FOES()
+    :postcondition: characters at level 3 may summon a foe from STRONG_FOES() or EPIC_FOES()
     :return: a dictionary containing summoned foe's stats
 
     No doctests, random used
@@ -1202,7 +1214,9 @@ def summon_foe_class(foe_selection: tuple) -> dict:
     :postcondition: value of "crit_modifier" key with with integer value for critical roll modifier
     :postcondition: value of "initiative_modifier" is an integer
     :postcondition: value of "EXP" is an integer > 0, he EXP points that can be gained by defeating foe
-    :postcondition: value of "flee" is False, indicator if foe has decided to flee"""
+    :postcondition: value of "flee" is False, indicator if foe has decided to flee
+
+    """
     random_class = roll(FOE_CLASS_DIE())
     summoned = {}
     if random_class == 1:
