@@ -77,6 +77,7 @@
 | roll                                         |   Y   |   N   |
 | get_menu                                     |   Y   |   N   |
 | get_user_choice                              |   Y   |   N   |
+| assign_hp                                    |   N   |   N   |
 | is_not_digit                                 |   Y   |   N   |
 | get_valid_input                              |   Y   |   N   |
 | lvl_board_max                                |   Y   |   N   |
