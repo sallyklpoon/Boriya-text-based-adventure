@@ -990,7 +990,7 @@ def heal(character: dict) -> None:
 
 def format_foe(foe: dict) -> None:
     foe["name"] = foe_colour(foe["name"])
-    foe["attacks"] = list(foe_colour(foe["attacks"]))
+    foe["attacks"] = list(map(foe_colour, foe["attacks"]))
 
 
 def summon_foe(character: dict) -> dict:
