@@ -1432,10 +1432,16 @@ def enter_combat(character: dict, foe: dict) -> None:
             combat_round(attacker, opposition)
             if opposition["HP"] > 0:
                 combat_round(opposition, attacker)
-            if opposition["HP"] > 0 and attacker["HP"] > 0:
+            if opposition["HP"] > 0 and attacker["HP"] > 0 and not foe["boss"]:
                 foe_flee(foe)
         else:
-            return flee(character, foe)
+            if foe['boss']:
+                flee(character, foe)
+                return False
+            else:
+                return flee(character, foe)
+
+    return True
 
 
 def encounter(character: dict, foe: dict, board: dict) -> None:
@@ -1601,44 +1607,11 @@ def level_paladin(character: dict) -> None:
 # ===== END GAME =======================================================================================================
 
 
-def enter_boss_combat(character: dict, foe: dict) -> bool:
-    """Battle character and foe in combat until character or foe dies (HP == 0).
-
-    :param character: a dictionary containing character stats
-    :param foe: a dictionary containing foe stats
-    :precondition: both character and foe dictionaries include keys-- "name", "attacks", "HP", and "damage"
-    :precondition: value of "name" is a string, the name of character or foe
-    :precondition: value of "attacks" is a list of string elements, attack types from character or foe
-    :precondition: value of "HP" is an integer, the current health points character or foe
-    :precondition: value of "damage" is a tuple, the damage die for character or foe
-    :postcondition: both character and foe's HP will be sent to combat based on rolled initiative order
-    :postcondition: both character and foe may take damage to their "HP" key value
-    :postcondition: combat will continue until either character or foe has "HP" == 0
-    :return: no value, but modified effects of key value "HP" for both character and foe after end of combat
-
-    No doctests, called functions, combat_round() and initiative() uses random module
-    """
-    while character["HP"] > 0 and foe["HP"] > 0 and not foe["flee"]:
-        if engage():
-            if initiative(character, foe):
-                attacker, opposition = character, foe
-            else:
-                attacker, opposition = foe, character
-            combat_round(attacker, opposition)
-            if opposition["HP"] > 0:
-                combat_round(opposition, attacker)
-        else:
-            flee(character, foe)
-            return False
-
-    return True
-
-
 def final_boss_encounter(character: dict, foe: dict):
     print("\nYou arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
           "entirely of unending nothingness. Are you ready to die?")
 
-    if not enter_boss_combat(character, foe):
+    if not enter_combat(character, foe):
         return False
     else:
         return True
