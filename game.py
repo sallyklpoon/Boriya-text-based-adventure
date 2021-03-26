@@ -1594,39 +1594,6 @@ def level_paladin(character: dict) -> None:
 
 # ===== END GAME =======================================================================================================
 
-def boss_flee(character: dict, foe: dict) -> None:
-    """Determine character takes damage when fleeing, print message to notify character if successful.
-
-    If successful, print message will tell character they left the encounter successfully,
-    if unsuccessful, print message will show damage that character has taken.
-
-    :param character: a dictionary containing character stats
-    :param foe: a dictionary containing foe stats
-    :precondition: character contains the key "HP"
-    :precondition: the value of character["HP"] is an integer > 0, representing the character's current health points
-    :postcondition: accurately modify the current character's 'HP' if they are unsuccessful fleeing
-    :postcondition: informative messages are printed to confirm if character can successfully flee or has taken damage
-    :return: possible modified character["HP"]
-    :return: informative printed messages of flee success
-
-    No doctests, uses random module
-    """
-    if roll(ENCOUNTER_FOE_DIE()) in range(1, 3):
-        damage = roll(FLEE_DAMAGE_DIE())
-        character["HP"] -= damage
-        print(f"As you attempt to flee from {foe['name']}, they catch up to you,\n"
-              f"using {random.choice(foe['attacks'])} dealing \033[31m{damage}\033[0m damage.\n")
-        time.sleep(0.5)
-        print(f"You came out here to have a good time\n"
-              f"but you're feeling pretty attacked right now.\n"
-              f"Your health is now at \033[34m{character['HP']}\033[0m points.\n"
-              f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
-              f"\nYou will never rid the blight from this land as long as he lives.\n")
-    else:
-        print(f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
-              f"\nYou will never rid the blight from this land as long as he lives.")
-    time.sleep(0.5)
-
 
 def enter_boss_combat(character: dict, foe: dict) -> bool:
     """Battle character and foe in combat until character or foe dies (HP == 0).
@@ -1655,7 +1622,7 @@ def enter_boss_combat(character: dict, foe: dict) -> bool:
             if opposition["HP"] > 0:
                 combat_round(opposition, attacker)
         else:
-            boss_flee(character, foe)
+            flee(character, foe)
             return False
 
     return True
