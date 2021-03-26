@@ -1027,6 +1027,8 @@ def summon_foe(character: dict) -> dict:
 def summon_weak_foe() -> dict:
     random_class = str(random.randint(1, 3))
 
+    summoned = {}
+
     if random_class == "1":
         summoned = WEAK_FOE_1()
     elif random_class == "2":
