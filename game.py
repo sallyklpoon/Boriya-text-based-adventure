@@ -354,7 +354,8 @@ def WEAK_FOE_1() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 1,
             "EXP": 50,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def WEAK_FOE_2() -> dict:
@@ -372,7 +373,8 @@ def WEAK_FOE_2() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 0,
             "EXP": 50,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def WEAK_FOE_3() -> dict:
@@ -390,7 +392,8 @@ def WEAK_FOE_3() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 3,
             "EXP": 50,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def WEAK_FOES() -> tuple:
@@ -1259,13 +1262,27 @@ def flee(character: dict, foe: dict) -> None:
     if roll(ENCOUNTER_FOE_DIE()) in range(1, 3):
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage
-        print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
-              f"using {random.choice(foe['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
-        time.sleep(0.5)
-        print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
+
+        if foe['boss']:
+            print(f"As you attempt to flee from {foe['name']}, he crawls towards you\n"
+                  f"using {random.choice(foe['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
+            time.sleep(0.5)
+            print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n"
+                  f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
+                  f"\nYou will never rid the blight from this land as long as he lives.\n")
+        else:
+            print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
+                  f"using {random.choice(foe['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
+            time.sleep(0.5)
+            print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
+
     else:
-        print(f"\nQuickly evading your foe, you leave the {foe['name']}'s view range.\n"
-              f"You've escaped violence this time.\n")
+        if foe['boss']:
+            print(f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
+                  f"\nYou will never rid the blight from this land as long as he lives.")
+        else:
+            print(f"\nQuickly evading your foe, you leave the {foe['name']}'s view range.\n"
+                  f"You've escaped violence this time.\n")
     time.sleep(0.5)
 
 
