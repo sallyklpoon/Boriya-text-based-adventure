@@ -6,6 +6,9 @@
 
 #### ** Add any comments for me below this line **
 
+### Special Features from Comrades
+* healing takes place by each class' hit die rather than a constant value
+
 ### Code Requirements
 
 | Required Element                             | Location (line #) |
@@ -36,7 +39,7 @@
 | character has **level**; start Lvl.1         |   Y   |
 | character has **class-based attacks**        |   Y   |
 | Create 4 classes with special attributes     |   Y   |
-| game end when boss killed at fixed position  |   N   |
+| game end when boss killed at fixed position  |   Y   |
 | character moves N, E, S, W                   |   Y   |
 | choice to run away/fight foe upon encounter  |   Y   |
 | 20% foe encounter each time character moves  |   Y   |
@@ -48,21 +51,20 @@
 | Simple leveling scheme                       |   Y   |
 | Max HP increases at lvl-up                   |   Y   |
 | Elaborate class attacks                      |   Y   |
-| Elaborate foe/god summoning                  |   Y  |
+| Elaborate foe/god summoning                  |   Y   |
 | Elaborate class healing                      |   Y   |
 | Damage character does increases at lvl-up    |   Y   |
 | Print critical hit messaging                 |   N   |
 | Fix attack messaging                         |   N   |
-| Foes become more challenging to defeat       |   N   |
+| Foes become more challenging to defeat       |   Y   |
 | Game ends if character dies                  |   Y   |
 | Elaborate storyline                          |   N   |
 | Change sleep timing to run the game faster   |   Y   |
 | Implement color for foe and god. Use make_character    |   N   |
-| Change chance of encountering foes           |   N   |
-| Change EXP gain and level up values          |   N   |
-| Boss encounter and end game                  |   N   |
+| Change chance of encountering foes           |   Y   |
+| Change EXP gain and level up values          |   Y   |
 | Double check to quit game                    |   N   |
-| Make input loops to check validity           |   N   |
+| Make input loops to check validity           |   Y   |
 | Can foes flee?                               |   ?   |
 
 
