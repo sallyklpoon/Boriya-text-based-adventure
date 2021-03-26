@@ -420,7 +420,8 @@ def STRONG_FOE_1() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 2,
             "EXP": 200,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def STRONG_FOE_2() -> dict:
@@ -438,7 +439,8 @@ def STRONG_FOE_2() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 5,
             "EXP": 200,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def STRONG_FOE_3() -> dict:
@@ -457,7 +459,8 @@ def STRONG_FOE_3() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 1,
             "EXP": 200,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def STRONG_FOES() -> tuple:
@@ -484,7 +487,8 @@ def EPIC_FOE_1() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 2,
             "EXP": 500,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def EPIC_FOE_2() -> dict:
@@ -502,7 +506,8 @@ def EPIC_FOE_2() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 1,
             "EXP": 500,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def EPIC_FOE_3() -> dict:
@@ -520,7 +525,8 @@ def EPIC_FOE_3() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 4,
             "EXP": 500,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def EPIC_FOES() -> tuple:
