@@ -354,7 +354,8 @@ def WEAK_FOE_1() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 1,
             "EXP": 50,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def WEAK_FOE_2() -> dict:
@@ -372,7 +373,8 @@ def WEAK_FOE_2() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 0,
             "EXP": 50,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def WEAK_FOE_3() -> dict:
@@ -390,7 +392,8 @@ def WEAK_FOE_3() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 3,
             "EXP": 50,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def WEAK_FOES() -> tuple:
@@ -417,7 +420,8 @@ def STRONG_FOE_1() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 2,
             "EXP": 200,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def STRONG_FOE_2() -> dict:
@@ -435,7 +439,8 @@ def STRONG_FOE_2() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 5,
             "EXP": 200,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def STRONG_FOE_3() -> dict:
@@ -454,7 +459,8 @@ def STRONG_FOE_3() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 1,
             "EXP": 200,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def STRONG_FOES() -> tuple:
@@ -481,7 +487,8 @@ def EPIC_FOE_1() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 2,
             "EXP": 500,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def EPIC_FOE_2() -> dict:
@@ -499,7 +506,8 @@ def EPIC_FOE_2() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 1,
             "EXP": 500,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def EPIC_FOE_3() -> dict:
@@ -517,7 +525,8 @@ def EPIC_FOE_3() -> dict:
             "crit_modifier": 2,
             "initiative_modifier": 4,
             "EXP": 500,
-            "flee": False}
+            "flee": False,
+            "boss": False}
 
 
 def EPIC_FOES() -> tuple:
@@ -1311,13 +1320,27 @@ def flee(character: dict, foe: dict) -> None:
     if roll(ENCOUNTER_FOE_DIE()) in range(1, 3):
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage
-        print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
-              f"using {random.choice(foe['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
-        time.sleep(0.5)
-        print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
+
+        if foe['boss']:
+            print(f"As you attempt to flee from {foe['name']}, he crawls towards you\n"
+                  f"using {random.choice(foe['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
+            time.sleep(0.5)
+            print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n"
+                  f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
+                  f"\nYou will never rid the blight from this land as long as he lives.\n")
+        else:
+            print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
+                  f"using {random.choice(foe['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
+            time.sleep(0.5)
+            print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
+
     else:
-        print(f"\nQuickly evading your foe, you leave the {foe['name']}'s view range.\n"
-              f"You've escaped violence this time.\n")
+        if foe['boss']:
+            print(f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
+                  f"\nYou will never rid the blight from this land as long as he lives.")
+        else:
+            print(f"\nQuickly evading your foe, you leave the {foe['name']}'s view range.\n"
+                  f"You've escaped violence this time.\n")
     time.sleep(0.5)
 
 
@@ -1591,39 +1614,6 @@ def level_paladin(character: dict) -> None:
 
 # ===== END GAME =======================================================================================================
 
-def boss_flee(character: dict, foe: dict) -> None:
-    """Determine character takes damage when fleeing, print message to notify character if successful.
-
-    If successful, print message will tell character they left the encounter successfully,
-    if unsuccessful, print message will show damage that character has taken.
-
-    :param character: a dictionary containing character stats
-    :param foe: a dictionary containing foe stats
-    :precondition: character contains the key "HP"
-    :precondition: the value of character["HP"] is an integer > 0, representing the character's current health points
-    :postcondition: accurately modify the current character's 'HP' if they are unsuccessful fleeing
-    :postcondition: informative messages are printed to confirm if character can successfully flee or has taken damage
-    :return: possible modified character["HP"]
-    :return: informative printed messages of flee success
-
-    No doctests, uses random module
-    """
-    if roll(ENCOUNTER_FOE_DIE()) in range(1, 3):
-        damage = roll(FLEE_DAMAGE_DIE())
-        character["HP"] -= damage
-        print(f"As you attempt to flee from {foe['name']}, they catch up to you,\n"
-              f"using {random.choice(foe['attacks'])} dealing \033[31m{damage}\033[0m damage.\n")
-        time.sleep(0.5)
-        print(f"You came out here to have a good time\n"
-              f"but you're feeling pretty attacked right now.\n"
-              f"Your health is now at \033[34m{character['HP']}\033[0m points.\n"
-              f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
-              f"\nYou will never rid the blight from this land as long as he lives.\n")
-    else:
-        print(f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
-              f"\nYou will never rid the blight from this land as long as he lives.")
-    time.sleep(0.5)
-
 
 def enter_boss_combat(character: dict, foe: dict) -> bool:
     """Battle character and foe in combat until character or foe dies (HP == 0).
@@ -1652,7 +1642,7 @@ def enter_boss_combat(character: dict, foe: dict) -> bool:
             if opposition["HP"] > 0:
                 combat_round(opposition, attacker)
         else:
-            boss_flee(character, foe)
+            flee(character, foe)
             return False
 
     return True
