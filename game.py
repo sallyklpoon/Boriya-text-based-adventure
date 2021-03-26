@@ -245,7 +245,7 @@ def ROGUE_STATS_LVL1() -> dict:
 
     :return: a dictionary of Rogue level 1 stats"""
     return {"class": "Rogue", "level_name": "Cutpurse",
-            "AC": 16, "HP": 10, "max-HP": 10, "hit_dice": (1, 6),
+            "AC": 16, "max-HP": 10, "hit_dice": (1, 6),
             "attacks": ["Sneak Attack", "their Dagger", "their Hand-Crossbow"],
             "atk_modifier": 4, "damage": (2, 4), "dmg_modifier": 4,
             "crit_chance": [19, 20], "crit_modifier": 2, "initiative_modifier": 3}
@@ -278,7 +278,7 @@ def RANGER_STATS_LVL1() -> dict:
 
     :return: a dictionary of Ranger level 1 stats"""
     return {"class": "Ranger", "level_name": "Scout",
-            "AC": 16, "HP": 12, "max-HP": 12, "hit_dice": (1, 8),
+            "AC": 16, "max-HP": 12, "hit_dice": (1, 8),
             "attacks": ["Ensnaring Strike", "Hail of Thorns", "Thorn Whip"],
             "atk_modifier": 6, "damage": (1, 12), "dmg_modifier": 4,
             "crit_chance": [20], "crit_modifier": 2, "initiative_modifier": 2}
@@ -467,6 +467,69 @@ def STRONG_FOES() -> tuple:
     return STRONG_FOE_1(), STRONG_FOE_2(), STRONG_FOE_3()
 
 
+# <<----------- epic foes ---------------------------->>
+
+def EPIC_FOE_1() -> dict:
+    """Return the statistics of a epic foe.
+
+    :return: a dictionary"""
+    return {"name": foe_colour("Death Knight"),
+            "AC": 16,
+            "max-HP": 18,
+            "attacks": list(map(foe_colour, ["Vampiric Touch", "Chilling Smite", "Eye-bite"])),
+            "atk_modifier": 6,
+            "damage": (2, 4),
+            "dmg_modifier": 4,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 2,
+            "EXP": 500,
+            "flee": False}
+
+
+def EPIC_FOE_2() -> dict:
+    """Return the statistics of a epic foe.
+
+    :return: a dictionary"""
+    return {"name": foe_colour("Devourer"),
+            "AC": 18,
+            "max-HP": 20,
+            "attacks": list(map(foe_colour, ["Devour", "Blight", "Enervation"])),
+            "atk_modifier": 8,
+            "damage": (2, 6),
+            "dmg_modifier": 2,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 1,
+            "EXP": 500,
+            "flee": False}
+
+
+def EPIC_FOE_3() -> dict:
+    """Return the statistics of a epic foe.
+
+    :return: a dictionary"""
+    return {"name": foe_colour("Nightwalker"),
+            "AC": 20,
+            "max-HP": 24,
+            "attacks": list(map(foe_colour, ["Annihilating Aura", "Touch of Death", "Circle of Death"])),
+            "atk_modifier": 4,
+            "damage": (3, 6),
+            "dmg_modifier": 4,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 4,
+            "EXP": 500,
+            "flee": False}
+
+
+def EPIC_FOES() -> tuple:
+    """Return collection of epic foes.
+
+    :return: tuple of epic foes"""
+    return EPIC_FOE_1(), EPIC_FOE_2(), EPIC_FOE_3()
+
+
 # ===== COMBAT CONSTANTS ===============================================================================================
 
 
@@ -619,6 +682,18 @@ def get_user_choice(decision_type: str) -> str:
     No doctests, requires user input
     """
     return input(f"\n\033[1mEnter the number of your {decision_type} choice: \033[0m")
+
+
+def assign_hp(creature: dict) -> None:
+    """Assign the HP key for a creature.
+
+    :param creature: a dictionary
+    :precondition: creature includes the ['max-HP'] key, an integer > 0
+    :postcondition: an ['HP'] key will be added to the creature's dictionary
+    :postcondition: creature['HP'] == creature['max-HP']
+    :return: nothing, the creature dictionary passed will have a new 'HP' key
+    """
+    creature['HP'] = creature['max-HP']
 
 
 def is_not_digit(element: str) -> bool:
@@ -826,8 +901,10 @@ def make_character() -> dict:
     :postcondition: value of "EXP" is 0
     :postcondition: value of "level" is integer, determined by CHARACTER_START_LEVEL()
     :postcondition: value of "quit" is False
-    :postcondition: value of "HP" is an integer, determined by CHARACTER_MAX_HP()
-    :postcondition: value of "damage" is a tuple, determined by CHARACTER_DAMAGE_DIE()
+    :postcondition: value of "AC" is an integer, the character's armour class
+    :postcondition: value of "HP" is an integer > 0
+    :postcondition: value of "max-HP" is an integer > 0
+    :postcondition: value of "damage" is a tuple, the damage die
     :postcondition: value of "attacks" is a list, determined by character's chosen
     :postcondition: value of "class" key with string value
     :postcondition: value of "level_name" with string value
@@ -841,6 +918,7 @@ def make_character() -> dict:
     :postcondition: value of "dmg_modifier" key with with integer for damage modifier
     :postcondition: value of "crit_chance" key with with list value of critical roll chances
     :postcondition: value of "crit_modifier" key with with integer value for critical roll modifier
+    :postcondition: value of "initiative_modifier" is an integer
     :return: a complete character dictionary
 
     No doctests, input is required
@@ -853,6 +931,7 @@ def make_character() -> dict:
                  "quit": False}
     character.update(choose_class())
     character["attacks"] = list(map(hero_colour, character['attacks']))
+    assign_hp(character)
     return character
 
 
@@ -1080,14 +1159,10 @@ def format_foe(foe: dict) -> None:
 def summon_foe(character: dict) -> dict:
     """Summon a random foe.
 
-    :postcondition: a random foe is summoned
+    :postcondition: a random foe is summoned based on character's level
     :postcondition: the return is a dictionary of foe's stats
-    :postcondition: foe is randomly selected from FOE_LIBRARY()
-    :postcondition: the dictionary includes keys-- "name", "attacks", "HP", and "damage"
-    :postcondition: value of "name" is a string, determined by randomly selected from the FOE_LIBRARY()
-    :postcondition: value of "attacks" is a list, determined by the randomly selected foe from FOE_LIBRARY()
-    :postcondition: value of "HP" is an integer, determined by FOE_MAX_HP()
-    :postcondition: value of "damage" is a tuple, determined by FOE_DAMAGE_DIE()
+    :postcondition: foe is randomly selected from specific level selections of foes
+
     :return: a dictionary containing summoned foe's stats
 
     No doctests, random used
@@ -1098,11 +1173,30 @@ def summon_foe(character: dict) -> dict:
     if character["level"] == 2:
         foe = summon_foe_class(STRONG_FOES()) if roll(FOE_LVL_DIE()) > 4 else summon_foe_class(WEAK_FOES())
     if character["level"] == 3:
-        foe = summon_epic_foe() if roll(FOE_LVL_DIE()) > 4 else summon_foe_class(STRONG_FOES())
+        foe = summon_foe_class(EPIC_FOES()) if roll(FOE_LVL_DIE()) > 4 else summon_foe_class(STRONG_FOES())
     return foe
 
 
 def summon_foe_class(foe_selection: tuple) -> dict:
+    """Return a foe from a certain selection of foes by chance.
+
+    :param foe_selection: a tuple
+    :precondition: foe_selection is a tuple containing dictionaries of possible foes to select from by chance
+    :postcondition: the return dictionary includes keys-- "name", "AC", "attacks", "atk_modifier", "HP", "max-HP",
+                    "damage", "dmg_modifier", "crit_chance", "crit_modifier", "initiative_modifier", "EXP", "flee"
+    :postcondition: value of "name" is a string
+    :postcondition: value of "AC" is an integer, the character's armour class
+    :postcondition: value of "HP" is an integer > 0
+    :postcondition: value of "max-HP" is an integer > 0
+    :postcondition: value of "attacks" key with with list value of attacks
+    :postcondition: value of "atk_modifier" key with with integer value for attack modifier
+    :postcondition: value of "damage" key with with tuple value of two integers for damage dice
+    :postcondition: value of "dmg_modifier" key with with integer for damage modifier
+    :postcondition: value of "crit_chance" key with with list value of critical roll chances
+    :postcondition: value of "crit_modifier" key with with integer value for critical roll modifier
+    :postcondition: value of "initiative_modifier" is an integer
+    :postcondition: value of "EXP" is an integer > 0, he EXP points that can be gained by defeating foe
+    :postcondition: value of "flee" is False, indicator if foe has decided to flee"""
     random_class = roll(FOE_CLASS_DIE())
     summoned = {}
     if random_class == 1:
@@ -1112,64 +1206,8 @@ def summon_foe_class(foe_selection: tuple) -> dict:
     elif random_class == 3:
         summoned = foe_selection[2]
     format_foe(summoned)
-    summoned['HP'] = summoned['max-HP']
+    assign_hp(summoned)
     return summoned
-
-
-# def summon_strong_foe():
-#     random_class = str(random.randint(1, 3))
-#     if random_class == "1":
-#         return STRONG_FOE_1()
-#     elif random_class == "2":
-#         return STRONG_FOE_2()
-#     elif random_class == "3":
-#         return STRONG_FOE_3()
-
-
-def summon_epic_foe():
-    random_class = str(random.randint(1, 3))
-    if random_class == "1":
-        return {"name": foe_colour("Death Knight"),
-                "AC": 16,
-                "HP": 18,
-                "max-HP": 18,
-                "attacks": list(map(foe_colour, ["Vampiric Touch", "Chilling Smite", "Eye-bite"])),
-                "atk_modifier": 6,
-                "damage": (2, 4),
-                "dmg_modifier": 4,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "initiative_modifier": 2,
-                "EXP": 500,
-                "flee": False}
-    elif random_class == "2":
-        return {"name": foe_colour("Devourer"),
-                "AC": 18,
-                "HP": 20,
-                "max-HP": 20,
-                "attacks": list(map(foe_colour, ["Devour", "Blight", "Enervation"])),
-                "atk_modifier": 8,
-                "damage": (2, 6),
-                "dmg_modifier": 2,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "initiative_modifier": 1,
-                "EXP": 500,
-                "flee": False}
-    elif random_class == "3":
-        return {"name": foe_colour("Nightwalker"),
-                "AC": 20,
-                "HP": 24,
-                "max-HP": 24,
-                "attacks": list(map(foe_colour, ["Annihilating Aura", "Touch of Death", "Circle of Death"])),
-                "atk_modifier": 4,
-                "damage": (3, 6),
-                "dmg_modifier": 4,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "initiative_modifier": 4,
-                "EXP": 500,
-                "flee": False}
 
 
 def summon_god():
