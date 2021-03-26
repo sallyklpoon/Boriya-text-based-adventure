@@ -345,7 +345,6 @@ def WEAK_FOE_1() -> dict:
     :return: a dictionary"""
     return {"name": "Fanatic",
             "AC": 10,
-            "HP": 6,
             "max-HP": 6,
             "attacks": ["their Dagger", "Purge"],
             "atk_modifier": 3,
@@ -364,7 +363,6 @@ def WEAK_FOE_2() -> dict:
     :return: a dictionary"""
     return {"name": "Cultist",
             "AC": 12,
-            "HP": 8,
             "max-HP": 8,
             "attacks": ["Necrotic Touch", "Decompose"],
             "atk_modifier": 2,
@@ -383,7 +381,6 @@ def WEAK_FOE_3() -> dict:
     :return: a dictionary"""
     return {"name": "Berserker",
             "AC": 8,
-            "HP": 10,
             "max-HP": 10,
             "attacks": ["Fury of Blows", "Reckless Swing"],
             "atk_modifier": 0,
@@ -394,6 +391,77 @@ def WEAK_FOE_3() -> dict:
             "initiative_modifier": 3,
             "EXP": 50,
             "flee": False}
+
+
+def WEAK_FOES() -> tuple:
+    """Return collection of weak foes.
+
+    :return: tuple of weak foes"""
+    return WEAK_FOE_1(), WEAK_FOE_2(), WEAK_FOE_3()
+
+
+# <<----------- strong foes ---------------------------->>
+
+def STRONG_FOE_1() -> dict:
+    """Return the statistics of a strong foe.
+
+    :return: a dictionary"""
+    return {"name": foe_colour("Wraith"),
+            "AC": 14,
+            "max-HP": 18,
+            "attacks": list(map(foe_colour, ["Ray of Sickness", "Ray of Enfeeblement"])),
+            "atk_modifier": 2,
+            "damage": (2, 4),
+            "dmg_modifier": 4,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 2,
+            "EXP": 200,
+            "flee": False}
+
+
+def STRONG_FOE_2() -> dict:
+    """Return the statistics of a strong foe.
+
+    :return: a dictionary"""
+    return {"name": foe_colour("Shadow"),
+            "AC": 15,
+            "max-HP": 16,
+            "attacks": list(map(foe_colour, ["Life Drain", "Curse"])),
+            "atk_modifier": 3,
+            "damage": (2, 6),
+            "dmg_modifier": 2,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 5,
+            "EXP": 200,
+            "flee": False}
+
+
+def STRONG_FOE_3() -> dict:
+    """Return the statistics of a strong foe.
+
+    :return: a dictionary"""
+    return {"name": foe_colour("Zealot"),
+            "AC": 16,
+            "HP": 12,
+            "max-HP": 12,
+            "attacks": list(map(foe_colour, ["Necrotic Touch", "Inflict Wounds"])),
+            "atk_modifier": 2,
+            "damage": (2, 8),
+            "dmg_modifier": 2,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 1,
+            "EXP": 200,
+            "flee": False}
+
+
+def STRONG_FOES() -> tuple:
+    """Return collection of strong foes.
+
+    :return: tuple of strong foes"""
+    return STRONG_FOE_1(), STRONG_FOE_2(), STRONG_FOE_3()
 
 
 # ===== COMBAT CONSTANTS ===============================================================================================
@@ -410,9 +478,22 @@ def INITIATIVE_DIE() -> tuple:
 def ENCOUNTER_FOE_DIE() -> tuple:
     """Return the summon foe die, 1d10 = (1, 10)
 
-    :return: an encounter foe die as a tuple (rolls, number_of_sides)
-    """
+    :return: an encounter foe die as a tuple (rolls, number_of_sides)"""
     return 1, 10
+
+
+def FOE_LVL_DIE() -> tuple:
+    """Return the foe difficulty die, 1d10 = (1, 10)
+
+    :return: a foe difficulty die as a tuple (rolls, number_of_sides)"""
+    return 1, 10
+
+
+def FOE_CLASS_DIE() -> tuple:
+    """Return the die to determine foe class, 1d3 (1, 3)
+
+    :return: a foe class die as a tuple (rolls, number_of_sides)"""
+    return 1, 3
 
 
 def FLEE_DAMAGE_DIE() -> tuple:
@@ -1008,79 +1089,38 @@ def summon_foe(character: dict) -> dict:
 
     No doctests, random used
     """
-    foe_chance = random.randint(1, 10)
-
+    foe = {}
     if character["level"] == 1:
-        return summon_weak_foe()
+        return summon_foe_class(WEAK_FOES())
     if character["level"] == 2:
-        if foe_chance > 3:
-            return summon_strong_foe()
-        else:
-            return summon_weak_foe()
+        foe = summon_foe_class(STRONG_FOES()) if roll(FOE_LVL_DIE()) > 4 else summon_foe_class(WEAK_FOES())
     if character["level"] == 3:
-        if foe_chance > 3:
-            return summon_epic_foe()
-        else:
-            return summon_strong_foe()
+        foe = summon_epic_foe() if roll(FOE_LVL_DIE()) > 4 else summon_foe_class(STRONG_FOES())
+    return foe
 
 
-def summon_weak_foe() -> dict:
-    random_class = str(random.randint(1, 3))
-
-    if random_class == "1":
-        summoned = WEAK_FOE_1()
-    elif random_class == "2":
-        summoned = WEAK_FOE_2()
-    elif random_class == "3":
-        summoned = WEAK_FOE_3()
+def summon_foe_class(foe_selection: tuple) -> dict:
+    random_class = roll(FOE_CLASS_DIE())
+    summoned = {}
+    if random_class == 1:
+        summoned = foe_selection[0]
+    elif random_class == 2:
+        summoned = foe_selection[1]
+    elif random_class == 3:
+        summoned = foe_selection[2]
     format_foe(summoned)
+    summoned['HP'] = summoned['max-HP']
     return summoned
 
 
-def summon_strong_foe():
-    random_class = str(random.randint(1, 3))
-    if random_class == "1":
-        return {"name": foe_colour("Wraith"),
-                "AC": 14,
-                "HP": 18,
-                "max-HP": 18,
-                "attacks": list(map(foe_colour, ["Ray of Sickness", "Ray of Enfeeblement"])),
-                "atk_modifier": 2,
-                "damage": (2, 4),
-                "dmg_modifier": 4,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "initiative_modifier": 2,
-                "EXP": 200,
-                "flee": False}
-    elif random_class == "2":
-        return {"name": foe_colour("Shadow"),
-                "AC": 15,
-                "HP": 16,
-                "max-HP": 16,
-                "attacks": list(map(foe_colour, ["Life Drain", "Curse"])),
-                "atk_modifier": 3,
-                "damage": (2, 6),
-                "dmg_modifier": 2,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "initiative_modifier": 5,
-                "EXP": 200,
-                "flee": False}
-    elif random_class == "3":
-        return {"name": foe_colour("Zealot"),
-                "AC": 16,
-                "HP": 12,
-                "max-HP": 12,
-                "attacks": list(map(foe_colour, ["Necrotic Touch", "Inflict Wounds"])),
-                "atk_modifier": 2,
-                "damage": (2, 8),
-                "dmg_modifier": 2,
-                "crit_chance": [20],
-                "crit_modifier": 2,
-                "initiative_modifier": 1,
-                "EXP": 200,
-                "flee": False}
+# def summon_strong_foe():
+#     random_class = str(random.randint(1, 3))
+#     if random_class == "1":
+#         return STRONG_FOE_1()
+#     elif random_class == "2":
+#         return STRONG_FOE_2()
+#     elif random_class == "3":
+#         return STRONG_FOE_3()
 
 
 def summon_epic_foe():
