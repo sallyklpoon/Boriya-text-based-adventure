@@ -1637,7 +1637,7 @@ def final_boss_encounter(character: dict, boss: dict) -> None:
           "entirely of unending nothingness. Are you ready to die?")
     enter_combat(character=character, foe=boss)
     if boss["HP"] <= 0:
-        print(f"\nGod is dead.")
+        print(f"\n{foe['name']} is dead.")
     elif character['HP'] > 0 and boss['HP'] > 0:
         boss_flee(character, boss)
 
@@ -1712,11 +1712,12 @@ def end_game(character: dict) -> None:
               f"༺═────────────────────────────────────────────────────────────────────────────═༻\n")
     elif (character["x-location"], character["y-location"]) == GOAL_LOCATION():
         print(f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n"
-              f"As you look down at Erebus' lifeless body, you see an inkling of light appear through \n"
-              f"the clouds. You feel the blight slowly leave the forest, as the moonlight begins to \n"
-              f"pour in through the shadows. Your journey has finally come to an end.\n"
-              f"May you rest easy, {character['name']}.\n"
-              f"༺═────────────────────────────────────────────────────────────────────────────═༻\n")
+              f"\nAs you look down at Erebus' lifeless body, you see an inkling of light appear through \n"
+              f"the darkened clouds above. You feel the blight slowly leave the forest, as the moonlight\n"
+              f" egins to pour in through the shadows. Your journey has finally come to an end.\n"
+              f"\nMay you rest easy now, {character['name']}, the Forest of Bóriya is finally rid of its.\n"
+              f"blight.\n"
+              f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n")
     else:   # quit ending
         print(f"\n༺═──────────────────────────────────────────────────═༻\n"
               f"The Forest of Bóriya has taken it's toll on your soul.\n"
