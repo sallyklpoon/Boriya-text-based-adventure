@@ -110,7 +110,7 @@ horizons they can explore will grow.
 | goal_attained                                |   Y   |   Y   |
 | summon_god                                   |   Y   |   Y   |
 | final_boss_encounter                         |   Y   |   N   |
-| flee_boss                                    |   N   |   N   |
+| flee_boss                                    |   Y   |   N   |
 | end_game                                     |   N   |   N   |
 
 
