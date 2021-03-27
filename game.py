@@ -1371,6 +1371,9 @@ def flee(character: dict, foe: dict) -> None:
     :param character: a dictionary containing character stats
     :param foe: a dictionary containing foe stats
     :precondition: character contains the key "HP"
+    :precondition: foe contains the keys, 'name', 'attacks', and 'boss'
+    :precondition: the value of foe['name'] is a string and the value of foe['attacks'] is a list of strings
+    :precondition: the value of foe['boss'] is a boolean, determining if the foe is a boss
     :precondition: the value of character["HP"] is an integer > 0, representing the character's current health points
     :postcondition: accurately modify the current character's 'HP' if they are unsuccessful fleeing
     :postcondition: informative messages are printed to confirm if character can successfully flee or has taken damage
@@ -1393,7 +1396,6 @@ def flee(character: dict, foe: dict) -> None:
         else:
             print(f"\nQuickly evading your foe, you leave the {foe['name']}'s view range.\n"
                   f"You've escaped violence this time.\n")
-
     time.sleep(0.5)
 
 

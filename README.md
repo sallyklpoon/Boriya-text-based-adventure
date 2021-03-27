@@ -95,10 +95,10 @@ horizons they can explore will grow.
 | heal                                         |   Y   |   N   |
 | format_foe                                   |   Y   |   N   |
 | summon_foe                                   |   Y   |   N   |
-| select_foe                                   |   N   |   N   |
-| check_for_foe                                |   N   |   N   |
-| engage                                       |   N   |   N   |
-| flee                                         |   N   |   N   |
+| select_foe                                   |   Y   |   N   |
+| check_for_foe                                |   Y   |   N   |
+| engage                                       |   Y   |   N   |
+| flee                                         |   Y   |   N   |
 | foe_flee                                     |   N   |   N   |
 | initiative                                   |   N   |   N   |
 | combat_round                                 |   N   |   N   |
@@ -141,7 +141,7 @@ horizons they can explore will grow.
 | summon_foe                                   |   Y   |   N   |
 | select_foe                                   |   Y   |   N   |
 | check_for_foe                                |   Y   |   N   |
-| engage                                       |   Y   |   N   |
+| engage                                       |   YEP   |   N   |
 | flee                                         |   YEP   |   N   |
 | foe_flee                                     |   YEP   |   N   |
 | initiative                                   |   YEP   |   N   |
