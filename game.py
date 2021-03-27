@@ -1661,7 +1661,7 @@ def boss_flee(character: dict, boss: dict) -> None:
         time.sleep(0.5)
         print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
 
-    print(f"\n{boss['name']}' blank eyes follow you as you cower away in fear."
+    print(f"{boss['name']}' blank eyes follow you as you cower away in fear."
           f"\nYou will never rid the blight from this land as long as he lives.\n"
           f"\nYou have successfully evaded violence for now, but the truth remains\n"
           f"that you must defeat this darkness at some point.")
