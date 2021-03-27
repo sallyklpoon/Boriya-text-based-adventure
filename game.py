@@ -85,6 +85,13 @@ def MAP_SCRIPTS() -> tuple:
     return map_scripts
 
 
+def MAP_FILLERS() -> tuple:
+    """Return a tuple of map fillers for print_map.
+
+    :return: tuple"""
+    return " ,✾◞", " ⁕. ", " ◟'〟", " ⋄ ☨", " ⚘⚘ ", " `⁂ ", " ✼. ", "♮`, ", " ~'.", "〟❈ "
+
+
 # ===== START GAME CONSTANTS ===========================================================================================
 
 def START_X() -> int:
@@ -929,8 +936,12 @@ def print_map(character: dict, board: dict) -> None:
     print("")
     for row in range(board['max-y']):
         for column in range(board['max-x']):
-            print(f"[{hero_colour('웃')}]", end="") \
-                if (column, row) == (character["x-location"], character["y-location"]) else print("[  ]", end="")
+            if (column, row) == (character["x-location"], character["y-location"]):
+                print(f"({hero_colour('웃')})", end="")
+            elif (column, row) == GOAL_LOCATION():
+                print("\033[31m( ☩ )\033[0m", end="")
+            else:
+                print(random.choice(MAP_FILLERS()), end="")
         print("")
 
 
