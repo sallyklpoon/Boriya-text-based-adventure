@@ -189,11 +189,11 @@ def CLASS_INFO() -> str:
            "but a god-like late game.\n" \
            "STATS: \033[32mArmour Class (AC): 14}\033[0m  | " \
            "\033[34m Maximum HP: 10\033[0m  | " \
-           "\033[36m Damage Die: (1, 8) \033[0m\n" \
+           "\033[36m Damage Die: (1, 8) \033[0m\n"\
            "\n" \
            "\033[1m<< ROGUE >>\033[0m The Rogue is a versatile character, capable of sneaky combat and nimble \n" \
            "tricks. Utilizing their stealth and dexterity, Rogues sacrifice brute strength for a nimble dodging \n" \
-           "ability, and a consistent output of damage. This class has a neutral early and late game.\n" \
+           "ability, and a consistent output of damage. This class has a neutral early and late game.\n"\
            "STATS: " \
            "\033[32mArmour Class (AC): 16\033[0m  | " \
            "\033[34m Maximum HP: 10\033[0m  | " \
@@ -214,7 +214,7 @@ def CLASS_INFO() -> str:
            "STATS: " \
            "\033[32mArmour Class (AC): 15\033[0m  | " \
            "\033[34m Maximum HP: 12\033[0m  | " \
-           "\033[36m Damage Die: (1, 8) \033[0m\n"
+           "\033[36m Damage Die: (1, 8) \033[0m\n" \
 
 
 # ===== MENU CONSTANTS =================================================================================================
@@ -259,7 +259,7 @@ def ILLUSIONIST_STATS_LVL2() -> dict:
     """Return Illusionist class level 2 stats.
 
     :return: a dictionary of Illusionist level 2 stats"""
-    return {"level_name": "Mesmer", "AC": 15, "max-HP": 18, "hit_dice": (1, 6),
+    return {"level_name": "Mesmer", "AC": 15,  "max-HP": 18, "hit_dice": (1, 6),
             "attacks": ["Hypnotic Pattern", "Shatter", "Mind Spike"],
             "atk_modifier": 4, "damage": (2, 10), "dmg_modifier": 10, "crit_chance": [20],
             "crit_modifier": 2, "initiative_modifier": 1}
@@ -269,7 +269,7 @@ def ILLUSIONIST_STATS_LVL3() -> dict:
     """Return Illusionist class level 3 stats.
 
     :return: a dictionary of Illusionist level 3 stats"""
-    return {"level_name": "Creator", "AC": 22, "max-HP": 48, "hit_dice": (1, 8),
+    return {"level_name": "Creator", "AC": 22,  "max-HP": 48, "hit_dice": (1, 8),
             "attacks": ["Psychic Scream", "Mental Prison", "Ravenous Void"],
             "atk_modifier": 12, "damage": (2, 16), "dmg_modifier": 12,
             "crit_chance": [19, 20], "crit_modifier": 4, "initiative_modifier": 2}
@@ -309,10 +309,10 @@ def ROGUE_STATS_LVL3() -> dict:
     """Return Rogue class level 3 stats.
 
     :return: a dictionary of Rogue level 3 stats"""
-    return {"level_name": "Assassin", "AC": 18, "max-HP": 20, "hit_dice": (1, 6),
-            "attacks": ["a cheap-shot", "their Double Blade", "Smoke Bomb"],
-            "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
-            "crit_modifier": 2, "initiative_modifier": 5}
+    return {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48, "hit_dice": (1, 8),
+            "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
+            "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8, "crit_chance": [19, 20],
+            "crit_modifier": 2, "initiative_modifier": 6}
 
 
 def ROGUE_LVL_UP() -> tuple:
