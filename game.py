@@ -556,49 +556,41 @@ def EPIC_FOES() -> tuple:
 # ===== COMBAT CONSTANTS ===============================================================================================
 
 
-def INITIATIVE_DIE() -> tuple:
-    """Return the initiative die, 1d100 = (1, 100)
+def ONE_D100() -> tuple:
+    """Return 1d100 as a tuple.
 
-    :return: an initiative die as a tuple (rolls, number_of_sides)
-    """
+    :return: a tuple (rolls, number_of_sides)"""
     return 1, 100
 
 
-def ENCOUNTER_FOE_DIE() -> tuple:
-    """Return the summon foe die, 1d10 = (1, 10)
-
-    :return: an encounter foe die as a tuple (rolls, number_of_sides)"""
-    return 1, 10
-
-
 def ENCOUNTER_CHANCE() -> int:
+    """Return the percent chance that an encounter with foe will occur.
+
+    :return: an integer """
+    return 20
+
+
+def HARD_FOE_CHANCE() -> int:
+    """Return the percent chance that an encounter with more difficult foe will occur.
+
+    :return: an integer """
+    return 70
+
+
+def FLEE_CHANCE() -> int:
+    """Return the percent chance that an encounter with foe will occur.
+
+    :return: an integer """
+    return 20
+
+
+def FOE_FLEE_CHANCE() -> int:
     """Return the chance that an encounter with foe will occur.
 
     Value must be based on the the percent chance divided by 10
 
     :return: an integer """
-    return 3
-
-
-def FLEE_SUCCESS_DIE() -> tuple:
-    """Return the flee success die, 1d10 = (1, 10)
-
-    :return: a die to determine flee success as a tuple (rolls, number_of_sides)"""
-    return 1, 10
-
-
-def FOE_LVL_DIE() -> tuple:
-    """Return the foe difficulty die, 1d10 = (1, 10)
-
-    :return: a foe difficulty die as a tuple (rolls, number_of_sides)"""
-    return 1, 10
-
-
-def FOE_CLASS_DIE() -> tuple:
-    """Return the die to determine foe class, 1d3 (1, 3)
-
-    :return: a foe class die as a tuple (rolls, number_of_sides)"""
-    return 1, 3
+    return 20
 
 
 def FLEE_DAMAGE_DIE() -> tuple:
@@ -607,6 +599,13 @@ def FLEE_DAMAGE_DIE() -> tuple:
     :return: a foe's damage die when a character flees unsuccessfully as a tuple (rolls, number_of_sides)
     """
     return 1, 4
+
+
+def FOE_CLASS_DIE() -> tuple:
+    """Return the die to determine foe class, 1d3 (1, 3)
+
+    :return: a foe class die as a tuple (rolls, number_of_sides)"""
+    return 1, 3
 
 
 def ATTACK_DIE() -> tuple:
@@ -1195,15 +1194,15 @@ def summon_foe(character: dict) -> dict:
     """
     foe = {}
     if character["level"] == 1:
-        return summon_foe_class(WEAK_FOES())
+        return select_foe(WEAK_FOES())
     if character["level"] == 2:
-        foe = summon_foe_class(STRONG_FOES()) if roll(FOE_LVL_DIE()) > 4 else summon_foe_class(WEAK_FOES())
+        foe = select_foe(STRONG_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(WEAK_FOES())
     if character["level"] == 3:
-        foe = summon_foe_class(EPIC_FOES()) if roll(FOE_LVL_DIE()) > 4 else summon_foe_class(STRONG_FOES())
+        foe = select_foe(EPIC_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(STRONG_FOES())
     return foe
 
 
-def summon_foe_class(foe_selection: tuple) -> dict:
+def select_foe(foe_selection: tuple) -> dict:
     """Return a foe from a certain selection of foes by chance.
 
     :param foe_selection: a tuple
@@ -1264,7 +1263,7 @@ def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     No doctest, called roll() uses random module
     """
     if not achieved_goal:
-        if roll(ENCOUNTER_FOE_DIE()) <= ENCOUNTER_CHANCE():
+        if roll(ONE_D100()) <= ENCOUNTER_CHANCE():
             encounter(character, summon_foe(character), board)
         else:
             heal(character)
@@ -1311,7 +1310,7 @@ def flee(character: dict, foe: dict) -> None:
     if foe['boss']:
         pass
     else:
-        if roll(FLEE_SUCCESS_DIE()) in range(1, 3):
+        if roll(ONE_D100()) <= FLEE_CHANCE():
             damage = roll(FLEE_DAMAGE_DIE())
             character["HP"] -= damage
             print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
@@ -1337,7 +1336,7 @@ def foe_flee(foe: dict) -> None:
 
     No doctests, random module required
     """
-    foe["flee"] = True if roll((1, 10)) <= 2 else False
+    foe["flee"] = True if roll(ONE_D100()) <= FOE_FLEE_CHANCE() else False
 
 
 def initiative(character, foe) -> bool:
@@ -1347,8 +1346,8 @@ def initiative(character, foe) -> bool:
     :param foe: a dictionary representing the foes stats
     :postcondition: determine if character has initiative first in a combat round by comparing character
                     and foe rolls for initiative
-    :postcondition: returns True if character initiative roll > foe's initiative roll using INITIATIVE_DIE()
-    :postcondition: returns False if character initiative roll < foe's initiative roll using INITIATIVE_DIE()
+    :postcondition: returns True if character initiative roll > foe's initiative roll using ONE_D100()
+    :postcondition: returns False if character initiative roll < foe's initiative roll using ONE_D100()
     :return: a Boolean of whether or not character has initiative
 
     No doctests, random module used
@@ -1356,8 +1355,8 @@ def initiative(character, foe) -> bool:
     initiative_roll = {}
     draw = True
     while draw:
-        initiative_roll["character"] = roll(INITIATIVE_DIE()) + character["initiative_modifier"]
-        initiative_roll["foe"] = roll(INITIATIVE_DIE()) + foe["initiative_modifier"]
+        initiative_roll["character"] = roll(ONE_D100()) + character["initiative_modifier"]
+        initiative_roll["foe"] = roll(ONE_D100()) + foe["initiative_modifier"]
         if initiative_roll["character"] != initiative_roll["foe"]:
             draw = False
     return initiative_roll["character"] > initiative_roll["foe"]
@@ -1642,7 +1641,7 @@ def final_boss_encounter(character: dict, boss: dict) -> None:
 
 
 def boss_flee(character: dict, boss: dict) -> None:
-    if roll(FLEE_SUCCESS_DIE()) in range(1, 3):
+    if roll(ONE_D100()) <= FLEE_CHANCE():
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage
         print(f"As you attempt to flee from {boss['name']}, he crawls towards you\n"
