@@ -174,7 +174,7 @@ def PROLOGUE() -> str:
            "\n" \
            "You must grow more powerful, for the void that lays ahead of you will tear apart weak souls. It would \n" \
            "be wise to approach carefully, for the closer you get to the heart of the abyss, the stronger your \n" \
-           "enemies will become. You must reach the great temple where the old Prirod druids used worship the  \n" \
+           "enemies will become. You must reach the great temple where the old Prirod druids used to worship the  \n" \
            "night, for it is there that Erebus spreads his deep darkness.\n" \
            "\n༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n"
 
