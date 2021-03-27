@@ -141,7 +141,7 @@ horizons they can explore will grow.
 | summon_foe                                   |   Y   |   N   |
 | select_foe                                   |   Y   |   N   |
 | check_for_foe                                |   Y   |   N   |
-| engage                                       |   YEP   |   N   |
+| engage                                       |   Y   |   N   |
 | flee                                         |   YEP   |   N   |
 | foe_flee                                     |   YEP   |   N   |
 | initiative                                   |   YEP   |   N   |
