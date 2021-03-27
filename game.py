@@ -656,7 +656,7 @@ def HARD_FOE_CHANCE() -> int:
     return 70
 
 
-def FLEE_CHANCE() -> int:
+def FLEE_SUCCEED_CHANCE() -> int:
     """Return the percent chance that an encounter with foe will occur.
 
     :return: an integer """
@@ -1401,7 +1401,7 @@ def flee(character: dict, foe: dict) -> None:
     if foe['boss']:
         return
     else:
-        if roll(ONE_D100()) <= FLEE_CHANCE():
+        if roll(ONE_D100()) <= FLEE_SUCCEED_CHANCE():
             damage = roll(FLEE_DAMAGE_DIE())
             character["HP"] -= damage
             print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
@@ -1788,7 +1788,7 @@ def flee_boss(character: dict, boss: dict) -> None:
 
     No doctests, uses random module
     """
-    if roll(ONE_D100()) <= FLEE_CHANCE():
+    if roll(ONE_D100()) <= FLEE_SUCCEED_CHANCE():
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage
         print(f"As you attempt to flee from {boss['name']}, he crawls towards you\n"

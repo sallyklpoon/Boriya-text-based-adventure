@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-from game import final_boss_encounter, GOD, FLEE_CHANCE
+from game import final_boss_encounter, GOD, FLEE_SUCCEED_CHANCE
 
 
 class TestFinalBossEncounter(TestCase):
@@ -29,7 +29,7 @@ class TestFinalBossEncounter(TestCase):
         self.assertTrue(hero["HP"] <= 0 < boss["HP"])   # hero dead, boss alive
 
     @patch('builtins.input', side_effect=["1", "2"])    # User chooses to fight, then flee
-    @patch('random.randint', side_effect=[23, 30, 12, 1, FLEE_CHANCE(), 3])
+    @patch('random.randint', side_effect=[23, 30, 12, 1, FLEE_SUCCEED_CHANCE(), 3])
     def test_final_boss_encounter_combat_character_chooses_to_flee(self, mock_randint, mock_input):
         boss = GOD()
         boss["HP"] = GOD()["max-HP"]

@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-from game import goal_attained, GOAL_LOCATION, GOD, FLEE_CHANCE
+from game import goal_attained, GOAL_LOCATION, GOD, FLEE_SUCCEED_CHANCE
 
 
 class TestGoalAttained(TestCase):
@@ -35,7 +35,7 @@ class TestGoalAttained(TestCase):
         self.assertFalse(goal_attained(character))
 
     @patch("builtins.input", return_value="2")     # User chooses to flee / does not engage boss
-    @patch("random.randint", return_value=FLEE_CHANCE() + 1)
+    @patch("random.randint", return_value=FLEE_SUCCEED_CHANCE() + 1)
     def test_goal_attained_False_if_at_goal_location_character_flee(self, mock_randint, mock_input):
         character = {"name": "Pepe", "HP": 32,
                      "max-HP": 35, "damage": (1, 10),

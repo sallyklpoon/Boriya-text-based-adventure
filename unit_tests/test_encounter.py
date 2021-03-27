@@ -1,13 +1,13 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-from game import encounter, FOE_FLEE_CHANCE, FLEE_CHANCE
+from game import encounter, FOE_FLEE_CHANCE, FLEE_SUCCEED_CHANCE
 
 
 class TestEncounter(TestCase):
 
     @patch('builtins.input', side_effect=["1", "2"])  # User chooses to engage, then flee
-    @patch('random.randint', side_effect=[86, 62, 15, 2, 17, FOE_FLEE_CHANCE()+1, FLEE_CHANCE(), 2])
+    @patch('random.randint', side_effect=[86, 62, 15, 2, 17, FOE_FLEE_CHANCE() + 1, FLEE_SUCCEED_CHANCE(), 2])
     def test_encounter_runs_full_combat_round_character_no_EXP_gain_HP_modified(self, mock_randint, mock_input):
         character = {"name": "Nao", "HP": 10, "max-HP": 10, "damage": (1, 10), "level": 1,
                      "atk_modifier": 0, "attacks": ["Stab"], "EXP": 0, "initiative_modifier": 0,
