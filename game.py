@@ -1643,6 +1643,29 @@ def summon_god() -> dict:
 
 
 def final_boss_encounter(character: dict, boss: dict) -> None:
+    """Send character into an encounter with boss.
+
+    Encounter ends by character's choice to flee or by character and boss' fight to the death
+    (either character or boss' "HP" key value is 0).
+
+    :param character: a dictionary containing character stats
+    :param boss: a dictionary containing boss stats
+    :precondition: both character and boss dictionaries include keys-- "name", "attacks", "HP", and "damage"
+    :precondition: value of "name" is a string, the name of character or boss
+    :precondition: value of "attacks" is a list of string elements, attack types from character or boss
+    :precondition: value of "HP" is an integer, the current health points character or boss
+    :precondition: value of "damage" is a tuple, the damage die for character or boss
+    :precondition: board contains the keys "max-x" and "max-y" with integer values >= 0
+    :postcondition: character either engages in battle to the death or attempts to flee
+    :postcondition: character's "HP" key value may be affected by damage from flee or by entering combat
+    :postcondition: boss' "HP" key value may be affected by damage from combat
+    :postcondition: if boss has been defeated, print message to indicate end of encounter
+    :return: print message that character has met boss
+    :return: no value, but accurately modified "HP" of character depending on fight or flee decision and random rolls
+
+
+    No doctests, called enter_combat() and flee() uses random module
+    """
     print("\nYou arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
           "entirely of unending nothingness. Are you ready to die?")
     enter_combat(character=character, foe=boss)
@@ -1653,6 +1676,24 @@ def final_boss_encounter(character: dict, boss: dict) -> None:
 
 
 def boss_flee(character: dict, boss: dict) -> None:
+    """Determine if character takes damage when fleeing from boss.
+
+    If successful, print message will tell character they left the encounter successfully,
+    if unsuccessful, print message will show damage that character has taken.
+
+    :param character: a dictionary containing character stats
+    :param boss: a dictionary containing boss stats
+    :precondition: character contains the key "HP"
+    :precondition: the value of character["HP"] is an integer > 0, representing the character's current health points
+    :postcondition: accurately modify the current character's 'HP' if they are unsuccessful fleeing
+    :postcondition: informative messages are printed to confirm if character can successfully flee or has taken damage
+    :return: possible modified character["HP"]
+    :return: informative printed messages of flee success
+
+    No doctests, uses random module
+    """
+
+
     if roll(ONE_D100()) <= FLEE_CHANCE():
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage
