@@ -114,9 +114,9 @@ horizons they can explore will grow.
 | end_game                                     |   N   |   N   |
 
 
-### Marti Doc String Checklist
+### Doc String Checklist
 
-| In-game Function                             | Done? | Checked? |
+| In-game Function                             | MARTI |  |
 |       -----                                  | ---   |    ---|
 | hero_colour                                  |   Y   |   N   |
 | foe_colour                                   |   Y   |   N   |
@@ -148,12 +148,12 @@ horizons they can explore will grow.
 | combat_round                                 |   N   |   N   |
 | enter_combat                                 |   N   |   N   |
 | encounter                                    |   N   |   N   |
-| gain_exp                                     |   N   |   N   |
-| level_up                                     |   N   |   N   |
-| level_class                                  |   N   |   N   |
-| goal_attained                                |   N   |   N   |
-| summon_god                                   |   N   |   N   |
-| final_boss_encounter                         |   IP   |   N   |
+| gain_exp                                     |   YEP   |   N   |
+| level_up                                     |   YEP   |   N   |
+| level_class                                  |   YEP   |   N   |
+| goal_attained                                |   YEP   |   N   |
+| summon_god                                   |   YEP   |   N   |
+| final_boss_encounter                         |   YEP   |   N   |
 | boss_flee                                    |   YEP   |   N   |
 | end_game                                     |   YEP   |   N   |
 
