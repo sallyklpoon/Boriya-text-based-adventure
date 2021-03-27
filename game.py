@@ -302,10 +302,10 @@ def ROGUE_STATS_LVL3() -> dict:
     """Return Rogue class level 3 stats.
 
     :return: a dictionary of Rogue level 3 stats"""
-    return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
-            "attacks": ["a cheap-shot", "their Double Blade", "Smoke Bomb"],
-            "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
-            "crit_modifier": 2, "initiative_modifier": 5}
+    return {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48, "hit_dice": (1, 8),
+            "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
+            "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8, "crit_chance": [19, 20],
+            "crit_modifier": 2, "initiative_modifier": 6}
 
 
 def ROGUE_LVL_UP() -> tuple:
