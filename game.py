@@ -1583,6 +1583,12 @@ def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
     :return: nothing, character dictionary and board may be modified
 
     >>> sample_character = {"EXP": 0, "level": 1}
+    >>> sample_board = {"max-x": MAX_MAP_X_LVL1(), "max-y": MAX_MAP_Y_LVL1()}
+    >>> gain_exp(sample_character, 10, sample_board)
+    \033[36mYou've earned 10 experience points. Current EXP: 10\033[0m
+    >>> sample_character["EXP"]
+    10
+    >>> sample_character = {"EXP": 0, "level": 1}
     >>> sample_character.update(ILLUSIONIST_STATS_LVL1())
     >>> sample_board = {"max-x": MAX_MAP_X_LVL1(), "max-y": MAX_MAP_Y_LVL1()}
     >>> gain_exp(sample_character, LVL2_EXP_OUTSET(), sample_board)
@@ -1614,11 +1620,28 @@ def level_up(character: dict, board: dict) -> None:
 
     :param character: a dictionary of character stats
     :param board: a dictionary of map stats
-    :precondition: character is a dictionary of character stats containing the keys "EXP" and "level"
+    :precondition: character is a dictionary of character stats containing the keys "level", "class"
     :precondition: "level" value is an integer >= 1 indicating the current level character is at
     :precondition: board is a non-empty dictionary
     :postcondition: the game is leveled up (including the character and board map)
     :return: no return value, modifies the game and character dictionaries corresponding to new character level.
+
+    >>> sample_character = {"level": 1, "class": "Illusionist"}
+    >>> sample_board = {"max-x": MAX_MAP_X_LVL1(), "max-y": MAX_MAP_Y_LVL1()}
+    >>> level_up(sample_character, sample_board)
+    <BLANKLINE>
+    \033[35mYou feel your power grow, you've levelled up. You're now able to explore new horizons!\033[0m
+    You are now a \033[35mMesmer\033[0m.
+    >>> sample_character["level"]
+    2
+    >>> sample_character["level_name"] == ILLUSIONIST_STATS_LVL2()["level_name"]
+    True
+    >>> sample_character["max-HP"] == ILLUSIONIST_STATS_LVL2()["max-HP"]
+    True
+    >>> sample_board["max-x"] == MAX_MAP_X_LVL2()
+    True
+    >>> sample_board["max-y"] == MAX_MAP_Y_LVL2()
+    True
     """
     character["level"] += 1
     print(f"\n\033[35mYou feel your power grow, you've levelled up. You're now able to explore new horizons!\033[0m")
