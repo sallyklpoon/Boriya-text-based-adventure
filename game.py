@@ -1605,6 +1605,7 @@ def level_class(character: dict, class_lvl: tuple) -> None:
     elif character["level"] == 3:
         level_character = class_lvl[1]
     character.update(level_character)
+    character['attacks'] = list(map(hero_colour, character['attacks']))
     print(f"You are now a {character['level_name']}.")
 
 
