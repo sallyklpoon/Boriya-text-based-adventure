@@ -1443,17 +1443,15 @@ def combat_round(attacker: dict, opposition: dict) -> None:
     :param attacker: a dictionary of either character or foe stats
     :param opposition: a dictionary of either character or foe stats
     :precondition: both attacker and opposition dictionaries include keys-- "name", "attacks", "HP", and "damage"
+                   "crit_chance", "atk_modifier", "crit_modifier", and "dmg_modifier"
     :precondition: value of "name" is a string, the name of attacker or opposition
-    :precondition: value of "attacks" is a list of string elements, attack types from attacker or opposition
-    :precondition: value of "HP" is an integer, the current health points of attacker or opposition
+    :precondition: value of "attacks" is a list of string elements
+    :precondition: value of "HP", "atk_modifier", "crit_modifier", "dmg_modifier" is an integer
     :precondition: value of "damage" is a tuple, the damage die for attacker or opposition
+    :precondition: value of "crit_chance" is a list of integers
     :postcondition: amount of damage from attacker to foe is determined
     :postcondition: opposition takes damage from attacker["damage"] die, their HP will be modified to reflect the change
-    :postcondition: a message is printed with attacker name and attack type
-    :postcondition: a message is printed with opposition name, damage taken by opposition, and updated opposition HP
     :return: no value, but opposition's HP modified by damage from attacker
-    :return: printed message of attacker and attack
-    :return: printed message of opposition suffering damage
 
     No doctests, uses random module
     """
