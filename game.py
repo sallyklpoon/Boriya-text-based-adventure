@@ -1709,8 +1709,6 @@ def boss_flee(character: dict, boss: dict) -> None:
 
     No doctests, uses random module
     """
-
-
     if roll(ONE_D100()) <= FLEE_CHANCE():
         damage = roll(FLEE_DAMAGE_DIE())
         character["HP"] -= damage

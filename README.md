@@ -100,7 +100,7 @@ horizons they can explore will grow.
 | engage                                       |   Y   |   N   |
 | flee                                         |   Y   |   N   |
 | foe_flee                                     |   Y   |   N   |
-| initiative                                   |   N   |   N   |
+| initiative                                   |   Y   |   N   |
 | combat_round                                 |   N   |   N   |
 | enter_combat                                 |   N   |   N   |
 | encounter                                    |   N   |   N   |
