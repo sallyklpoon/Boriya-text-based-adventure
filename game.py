@@ -1518,10 +1518,8 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
     print(f"\nA {foe['name']} has showed up!")
     enter_combat(character, foe)
     if foe["HP"] <= 0:
-        print(f"\nFantastic, you've successfully defeated the {foe['name']},\n"
-              f"you triumph in glory as you watch their shoulders slump\n"
-              f"and they walk away with their head down in shame.\n"
-              f"Way to go, {character['name']}! (^◇^*)\n")
+        print(f"\nYou stand in triumph as you look down on the {foe['name']}'s slain body.\n"
+              f"There are yet more foes to encounter, {character['name']}. Your journey must continue.\n")
         gain_exp(character, foe["EXP"], board)
 
     if foe["flee"]:
