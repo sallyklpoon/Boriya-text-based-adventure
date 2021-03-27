@@ -114,6 +114,49 @@ horizons they can explore will grow.
 | end_game                                     |   N   |   N   |
 
 
+### Marti Doc String Checklist
+
+| In-game Function                             | Done? | Checked? |
+|       -----                                  | ---   |    ---|
+| hero_colour                                  |   Y   |   N   |
+| foe_colour                                   |   Y   |   N   |
+| roll                                         |   Y   |   N   |
+| get_menu                                     |   Y   |   N   |
+| get_user_choice                              |   Y   |   N   |
+| assign_hp                                    |   N   |   N   |
+| is_not_digit                                 |   Y   |   N   |
+| get_valid_input                              |   Y   |   N   |
+| lvl_board_max                                |   Y   |   N   |
+| make_board*                                  |   Y   |   N   |
+| print_map                                    |   Y   |   N   |
+| choose_class                                 |   Y   |   N   |
+| get_name                                     |   Y   |   N   |
+| make_character                               |   Y   |   N   |
+| start_game                                   |   Y   |   N   |
+| valid_move                                   |   Y   |   N   |
+| move_character                               |   Y   |   N   |
+| next_move                                    |   Y   |   N   |
+| heal                                         |   Y   |   N   |
+| format_foe                                   |   Y   |   N   |
+| summon_foe                                   |   N   |   N   |
+| select_foe                                   |   N   |   N   |
+| check_for_foe                                |   N   |   N   |
+| engage                                       |   N   |   N   |
+| flee                                         |   N   |   N   |
+| foe_flee                                     |   N   |   N   |
+| initiative                                   |   N   |   N   |
+| combat_round                                 |   N   |   N   |
+| enter_combat                                 |   N   |   N   |
+| encounter                                    |   N   |   N   |
+| gain_exp                                     |   N   |   N   |
+| level_up                                     |   N   |   N   |
+| level_class                                  |   N   |   N   |
+| goal_attained                                |   N   |   N   |
+| summon_god                                   |   N   |   N   |
+| final_boss_encounter                         |   IP   |   N   |
+| boss_flee                                    |   YEP   |   N   |
+| end_game                                     |   YEP   |   N   |
+
 
 
 #### ** Add any comments for me above this line **
