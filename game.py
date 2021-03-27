@@ -1544,10 +1544,10 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
 
 
 def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
-    """Increase the EXP of the character then check if they have levelled up
+    """Increase the EXP of the character and checks if character has levelled up
 
     :param character: a dictionary of the character's stats
-    :param experience_gain:
+    :param experience_gain: an EXP value gained from an encounter with a foe
     :param board: a dictionary representing the current board
     :precondition: character contains the key "EXP"
     :precondition: board is a non-empty dictionary containing coordinate keys and max-x/max-y values
@@ -1565,16 +1565,15 @@ def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
 def level_up(character: dict, board: dict) -> None:
     """Levels up the game!
 
-    Game board and character will level up
+    A function that levels up the game board and character
 
     :param character: a dictionary of character stats
     :param board: a dictionary of map stats
     :precondition: character is a dictionary of character stats containing the keys "EXP" and "level"
-    :precondition: EXP value is an integer >= 0, collection of experience points that character has
     :precondition: "level" value is an integer >= 1 indicating the current level character is at
     :precondition: board is a non-empty dictionary
     :postcondition: the game is leveled up (including the character and board map)
-    :return: levels up the game, not return value
+    :return: no return value, modifies the game and character dictionaries corresponding to new character level.
     """
     character["level"] += 1
     print(f"\n\033[35mYou feel your power grow, you've levelled up. You're now able to explore new horizons!\033[0m")
@@ -1596,9 +1595,9 @@ def level_class(character: dict, class_lvl: tuple) -> None:
     :param character: a dictionary of the character stats
     :param class_lvl: a tuple containing dictionaries of class level
     :precondition: the character dictionary is non-empty
-    :precondition: the value of the character's "class" key is "Illusionist"
+    :precondition: the value of the character's "class" key is either "Illusionist", "Rogue", "Ranger", "Paladin"
     :postcondition: the character stats are levelled up accurately in accordance to their current level
-    :return: nothing, character dictionary is updated
+    :return: no return value, character dictionary is updated
     """
     level_character = {}
     if character["level"] == 2:
@@ -1613,8 +1612,9 @@ def level_class(character: dict, class_lvl: tuple) -> None:
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
 
 def goal_attained(character: dict) -> bool:
-    """Check if character has arrived at goal location.
+    """Check if character has completed endgame requirements to win the game
 
+    :param character: a dictionary containing character stats
     :precondition: x_location is an integer representing character's current x-location
     :precondition: y_location is an integer representing character's current y-location
     :postcondition: accurately checks if a character's current x and y-location matches the goal location
@@ -1622,6 +1622,7 @@ def goal_attained(character: dict) -> bool:
                     and the boss has been defeated (i.e. boss['HP'] == 0)
     :postcondition: returns a Boolean False if character is not at the goal location based on GOAL_LOCATION()
                     or if character
+    :postcondition: returns a Boolean False if boss not killed, or character has fled or died
     :return: a Boolean value
 
     No doctests, final_boss_encounters uses random module
@@ -1638,6 +1639,15 @@ def goal_attained(character: dict) -> bool:
 
 
 def summon_god() -> dict:
+    """Summon the final boss of the game.
+
+    :postcondition: the return is a dictionary of the boss' stats
+    :postcondition: boss dictionary is properly formatted with colour_map
+    :postcondition: boss dictionary is assigned proper hp values
+    :return: a dictionary containing summoned foe's stats
+
+    No doctests, random used
+    """
     boss = GOD()
     format_foe(boss)
     assign_hp(boss)
