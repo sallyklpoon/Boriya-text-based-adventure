@@ -1414,6 +1414,7 @@ def initiative(character, foe) -> bool:
 
     :param character: a dictionary representing the character stats
     :param foe: a dictionary representing the foes stats
+    :precondition: foe and character dictionaries must contain initiative_modifier key
     :postcondition: determine if character has initiative first in a combat round by comparing character
                     and foe rolls for initiative
     :postcondition: returns True if character initiative roll > foe's initiative roll using ONE_D100()
@@ -1522,7 +1523,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
     :postcondition: character's "HP" key value may be affected by damage from flee or by entering combat
     :postcondition: foe's "HP" key value may be affected by damage from combat
     :postcondition: if foe has been defeated, print message to indicate end of encounter
-    :return: no value, but accurately modified "HP" of character depending on fight or flee decision and random rolls
+    :return: no value, but accurately modifies "HP" of character depending on fight or flee decision and random rolls
     :return: print message if foe has been defeated
 
     No doctests, called enter_combat() and flee() uses random module
