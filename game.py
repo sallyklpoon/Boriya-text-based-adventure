@@ -1318,19 +1318,21 @@ def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     :param board: a dictionary representing the game board
     :precondition: character is a dictionary of character's stats
     :precondition: character dictionary contains keys "name", "HP", "damage", "attacks", "x-location", "y-location"
+                   "atk_modifier", "dmg_modifier", "EXP", "initiative_modifier", "crit_chance", and "hit_dice"
     :precondition: value of "name" is a string input by the user in make_character() function
     :precondition: value of "HP" is an integer > 0
-    :precondition: value of "damage" is a tuple
-    :precondition: value of "attacks" is a list
-    :precondition: value of "x-location" is an integer >= 0
-    :precondition: value of "y-location" is an integer >= 0
+    :precondition: value of "damage" and "hit_dice" is a tuple
+    :precondition: value of "attacks" is a list of strings
+    :precondition: value of "crit_chance" is a list of integers
+    :precondition: value of "x-location" and "y-location" is an integer >= 0
+    :precondition: value of "atk-modifier", "dmg_modifier", "EXP", and "initiative modifier" is an integer
     :precondition: achieved_goal is a Boolean of whether or not goal was achieved; True means goal has been achieved
     :precondition: param board contains the keys "max-x" and "max-y" with integer values >= 0
     :postcondition: character's "HP" value will be appropriately be affected by either healing if there is no foe
                     or taking possible damage if they encounter a foe and fight to the death
     :return: character's HP modified by either damage or heal, no actual return value
 
-    No doctest, called roll() uses random module
+    No doctest, helper roll() uses random module
     """
     if not achieved_goal:
         if roll(ONE_D100()) <= ENCOUNTER_CHANCE():

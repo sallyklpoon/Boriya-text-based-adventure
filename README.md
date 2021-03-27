@@ -139,8 +139,8 @@ horizons they can explore will grow.
 | heal                                         |   Y   |   N   |
 | format_foe                                   |   Y   |   N   |
 | summon_foe                                   |   Y   |   N   |
-| select_foe                                   |   IP   |   N   |
-| check_for_foe                                |   N   |   N   |
+| select_foe                                   |   Y   |   N   |
+| check_for_foe                                |   Y   |   N   |
 | engage                                       |   YEP   |   N   |
 | flee                                         |   YEP   |   N   |
 | foe_flee                                     |   YEP   |   N   |
