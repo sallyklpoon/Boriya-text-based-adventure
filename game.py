@@ -1589,67 +1589,13 @@ def level_class(character: dict, class_lvl: tuple) -> None:
     :postcondition: the character stats are levelled up accurately in accordance to their current level
     :return: nothing, character dictionary is updated
     """
+    level_character = {}
     if character["level"] == 2:
         level_character = class_lvl[0]
-        character.update(level_character)
     elif character["level"] == 3:
         level_character = class_lvl[1]
-        character.update(level_character)
+    character.update(level_character)
     print(f"You are now a {character['level_name']}.")
-
-
-# def level_rogue(character: dict) -> None:
-#     """Level up a Rogue class.
-#
-#     :param character: a dictionary of the character stats
-#     :precondition: the character dictionary is non-empty
-#     :precondition: the value of the character's "class" key is "Rogue"
-#     :postcondition: the character stats are levelled up accurately in accordance to their current level
-#     :return: nothing, character dictionary is updated
-#     """
-#     if character["level"] == 2:
-#         level_character = ROGUE_STATS_LVL2()
-#         character.update(level_character)
-#     elif character["level"] == 3:
-#         level_character = ROGUE_STATS_LVL3()
-#         character.update(level_character)
-#     print(f"You are now a {character['level_name']}.")
-#
-#
-# def level_ranger(character: dict) -> None:
-#     """Level up a Ranger class.
-#
-#     :param character: a dictionary of the character stats
-#     :precondition: the character dictionary is non-empty
-#     :precondition: the value of the character's "class" key is "Ranger"
-#     :postcondition: the character stats are levelled up accurately in accordance to their current level
-#     :return: nothing, character dictionary is updated
-#     """
-#     if character["level"] == 2:
-#         level_character = RANGER_STATS_LVL2()
-#         character.update(level_character)
-#     elif character["level"] == 3:
-#         level_character = RANGER_STATS_LVL3()
-#         character.update(level_character)
-#     print(f"You are now a {character['level_name']}.")
-#
-#
-# def level_paladin(character: dict) -> None:
-#     """Level up an Paladin class.
-#
-#     :param character: a dictionary of the character stats
-#     :precondition: the character dictionary is non-empty
-#     :precondition: the value of the character's "class" key is "Paladin"
-#     :postcondition: the character stats are levelled up accurately in accordance to their current level
-#     :return: nothing, character dictionary is updated
-#     """
-#     if character["level"] == 2:
-#         level_character = PALADIN_STATS_LVL2()
-#         character.update(level_character)
-#     elif character["level"] == 3:
-#         level_character = PALADIN_STATS_LVL3()
-#         character.update(level_character)
-#     print(f"You are now a {character['level_name']}.")
 
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================

@@ -8,6 +8,10 @@
 
 ### Special Features from Comrades
 * healing takes place by each class' hit die rather than a constant value
+* our map is dynamic! The map overall is 25 x 25, but the player will start with a smaller map. As they level up, the
+horizons they can explore will grow.
+
+* 
 
 ### Code Requirements
 
@@ -88,14 +92,10 @@
 | valid_move                                   |   Y   |   N   |
 | move_character                               |   Y   |   N   |
 | next_move                                    |   Y   |   N   |
-| check_goal_attained                          |   N   |   N   |
 | heal                                         |   Y   |   N   |
 | format_foe                                   |   Y   |   N   |
 | summon_foe                                   |   N   |   N   |
-| summon_weak_foe                              |   N   |   N   |
-| summon_strong_foe                            |   N   |   N   |
-| summon_epic_foe                              |   N   |   N   |
-| summon_god                                   |   N   |   N   |
+| select_foe                                   |   N   |   N   |
 | check_for_foe                                |   N   |   N   |
 | engage                                       |   N   |   N   |
 | flee                                         |   N   |   N   |
@@ -106,10 +106,11 @@
 | encounter                                    |   N   |   N   |
 | gain_exp                                     |   N   |   N   |
 | level_up                                     |   N   |   N   |
-| level_illusionist                            |   N   |   N   |
-| level_rogue                                  |   N   |   N   |
-| level_ranger                                 |   N   |   N   |
-| level_paladin                                |   N   |   N   |
+| level_class                                  |   N   |   N   |
+| goal_attained                                |   N   |   N   |
+| summon_god                                   |   N   |   N   |
+| final_boss_encounter                         |   N   |   N   |
+| boss_flee                                    |   N   |   N   |
 | end_game                                     |   N   |   N   |
 
 
