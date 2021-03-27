@@ -13,6 +13,7 @@ import itertools
 import time
 from string import ascii_letters, punctuation, whitespace
 
+
 # ======================================================================================================================
 #                                                     CONSTANTS
 # ======================================================================================================================
@@ -134,12 +135,12 @@ def START_GAME_MSG() -> str:
 
     :return: a string, the start game message"""
     return "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
-            "\n" \
-            "\n" \
-            "                                   /_  _,_ ,_   .      __, \n" \
-            "                                 _/_)_(_/_/ (__/__(_/_(_/(_\n" \
-            "                                                  _/_      \n" \
-            "                                                 (/        \n" \
+           "\n" \
+           "\n" \
+           "                                   /_  _,_ ,_   .      __, \n" \
+           "                                 _/_)_(_/_/ (__/__(_/_(_/(_\n" \
+           "                                                  _/_      \n" \
+           "                                                 (/        \n" \
            "\n" \
            "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
            "\n" \
@@ -159,8 +160,7 @@ def START_GAME_MSG() -> str:
            "powerful being named Erebus is said to be the creator of this blight; a being so powerful, some \n" \
            "consider a god. If one were to kill Erebus, perhaps the land would feel peace once more. \n" \
            "\n" \
-           "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
-
+           "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n"
 
 
 def PROLOGUE() -> str:
@@ -168,7 +168,7 @@ def PROLOGUE() -> str:
 
     :return: a string, the prologue of the game"""
     return "\n༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
-            "\n" \
+           "\n" \
            "Your journey has finally brought you back to the source of it all. As you look forward, the \n" \
            "void that has taken over the Forest of Bóriya stares you right in the eyes. Will this be the end? \n" \
            "\n" \
@@ -299,7 +299,7 @@ def ROGUE_STATS_LVL2() -> dict:
     """Return Rogue class level 2 stats.
 
     :return: a dictionary of Rogue level 2 stats"""
-    return {"level_name": "Assassin", "AC": 18,  "max-HP": 20, "hit_dice": (1, 6),
+    return {"level_name": "Assassin", "AC": 18, "max-HP": 20, "hit_dice": (1, 6),
             "attacks": ["a cheap-shot", "their Double Blade", "Smoke Bomb"],
             "atk_modifier": 6, "damage": (2, 8), "dmg_modifier": 6, "crit_chance": [19, 20],
             "crit_modifier": 2, "initiative_modifier": 4}
@@ -339,7 +339,7 @@ def RANGER_STATS_LVL2() -> dict:
     """Return Ranger class level 2 stats.
 
     :return: a dictionary of Ranger level 2 stats"""
-    return {"level_name": "Pathfinder", "AC": 18,  "max-HP": 24, "hit_dice": (1, 8),
+    return {"level_name": "Pathfinder", "AC": 18, "max-HP": 24, "hit_dice": (1, 8),
             "attacks": ["Flame Arrows", "Conjure Barrage", "Grasping Vine"],
             "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
             "crit_modifier": 2, "initiative_modifier": 3}
@@ -379,7 +379,7 @@ def PALADIN_STATS_LVL2() -> dict:
     """Return Paladin class level 2 stats.
 
     :return: a dictionary of Paladin level 2 stats"""
-    return {"level_name": "Guardian", "AC": 18,  "max-HP": 24, "hit_dice": (1, 6),
+    return {"level_name": "Guardian", "AC": 18, "max-HP": 24, "hit_dice": (1, 6),
             "attacks": ["Divine Word", "Forbiddance", "Staggering Smite"],
             "atk_modifier": 6, "damage": (2, 12), "dmg_modifier": 6, "crit_chance": [20],
             "crit_modifier": 2, "initiative_modifier": 2}
@@ -389,7 +389,7 @@ def PALADIN_STATS_LVL3() -> dict:
     """Return Paladin class level 3 stats.
 
     :return: a dictionary of Paladin level 3 stats"""
-    return {"level_name": "Justiciar", "AC": 22,  "max-HP": 62, "hit_dice": (1, 10),
+    return {"level_name": "Justiciar", "AC": 22, "max-HP": 62, "hit_dice": (1, 10),
             "attacks": ["Sunburst", "Divine Smite", "Banishing Smite"],
             "atk_modifier": 10, "damage": (3, 10), "dmg_modifier": 10, "crit_chance": [20],
             "crit_modifier": 3, "initiative_modifier": 3}
@@ -1538,6 +1538,7 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
         gain_exp(character, foe["EXP"] // 4, board)
     time.sleep(0.5)
 
+
 # ===== CHECK LEVELING UP ==============================================================================================
 
 
@@ -1604,7 +1605,7 @@ def level_class(character: dict, class_lvl: tuple) -> None:
     elif character["level"] == 3:
         level_character = class_lvl[1]
     character.update(level_character)
-    print(f"Your new subclass is {character['level_name']}.")
+    print(f"You are now a {character['level_name']}.")
 
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
@@ -1628,7 +1629,7 @@ def goal_attained(character: dict) -> bool:
         final_boss_encounter(character, boss)
         if boss["HP"] <= 0:
             return True
-        else:   # boss not killed, character either flee or died
+        else:  # boss not killed, character either flee or died
             return False
     else:
         return False
@@ -1727,7 +1728,7 @@ def end_game(character: dict) -> None:
               f"\nMay you rest easy now, {character['name']}, the Forest of Bóriya is finally rid of its.\n"
               f"blight.\n"
               f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n")
-    else:   # quit ending
+    else:  # quit ending
         print(f"\n༺═──────────────────────────────────────────────────═༻\n"
               f"The Forest of Bóriya has taken it's toll on your soul.\n"
               f"You can no longer continue. Goodbye, {character['name']}.\n"
