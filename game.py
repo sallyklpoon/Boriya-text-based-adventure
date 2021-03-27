@@ -1292,7 +1292,7 @@ def engage() -> bool:
 
 
 def flee(character: dict, foe: dict) -> None:
-    """Determine character takes damage when fleeing, print message to notify character if successful.
+    """Determine character takes damage when fleeing a normal foe.
 
     If successful, print message will tell character they left the encounter successfully,
     if unsuccessful, print message will show damage that character has taken.
