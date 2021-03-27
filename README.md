@@ -157,6 +157,24 @@ horizons they can explore will grow.
 | boss_flee                                    |   YEP   |   N   |
 | end_game                                     |   YEP   |   N   |
 
+### Unit Test 
+
+|                                              |CREATED?| TEST READY? |
+| engage                                       |   N  |   N   |
+| flee                                         |   N   |   N   |
+| foe_flee                                     |   N   |   N   |
+| initiative                                   |   N   |   N   |
+| combat_round                                 |   N   |   N   |
+| enter_combat                                 |   N   |   N   |
+| encounter                                    |   N   |   N   |
+| gain_exp                                     |   N   |   N   |
+| level_up                                     |   N   |   N   |
+| level_class                                  |   N   |   N   |
+| goal_attained                                |   N   |   N   |
+| summon_god                                   |   YEP   |   N   |
+| final_boss_encounter                         |   N   |   N   |
+| boss_flee                                    |   YEP  |   N   |
+| end_game                                     |   N   |   N   |
 
 
 #### ** Add any comments for me above this line **
