@@ -1769,10 +1769,10 @@ def final_boss_encounter(character: dict, boss: dict) -> None:
     if boss["HP"] <= 0:
         print(f"\n{boss['name']} is dead.")
     elif character['HP'] > 0 and boss['HP'] > 0:
-        boss_flee(character, boss)
+        flee_boss(character, boss)
 
 
-def boss_flee(character: dict, boss: dict) -> None:
+def flee_boss(character: dict, boss: dict) -> None:
     """Determine if character takes damage when fleeing from boss.
 
     If successful, print message will tell character they left the encounter successfully,

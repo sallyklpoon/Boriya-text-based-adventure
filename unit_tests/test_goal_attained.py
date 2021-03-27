@@ -1,43 +1,47 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-from game import goal_attained, GOAL_LOCATION, summon_god, final_boss_encounter
+from game import goal_attained, GOAL_LOCATION, GOD, FLEE_CHANCE
 
-"""
-    :postcondition: accurately checks if a character's current x and y-location matches the goal location
-    :postcondition: returns a Boolean True if character is at the goal location based on GOAL_LOCATION()
-                    and the boss has been defeated (i.e. boss['HP'] == 0)
-    :postcondition: returns a Boolean False if character is not at the goal location based on GOAL_LOCATION()
-                    or if character
-    :postcondition: returns a Boolean False if boss not killed, or character has fled or died
-
-def goal_attained(character: dict) -> bool:
-
-    if (character["x-location"], character["y-location"]) == GOAL_LOCATION():
-        boss = summon_god()
-        final_boss_encounter(character, boss)
-        if boss["HP"] <= 0:
-            return True
-        else:  # boss not killed, character either flee or died
-            return False
-    else:
-        return False
-"""
 
 class TestGoalAttained(TestCase):
-    def test_goal_attained_if_boss_defeated(self):
-        character = {"x-location": 24
 
-        }
+    def test_goal_attained_False_if_character_wrong_location(self):
+        character = {"x-location": GOAL_LOCATION()[0] - 2, "y-location": GOAL_LOCATION()[1] + 1}
+        self.assertFalse(goal_attained(character))
 
-    @patch('random.randint', side_effect=[38, 35, 66, 33])
-    def test_initiative_only_returns_if_no_initiative_draw(self, mock_randint):
-        character = {"initiative_modifier": 2}
-        foe = {"initiative_modifier": 5}
-        self.assertTrue(initiative(character, foe))
+    @patch("builtins.input", return_value="1")     # User chooses to engage
+    @patch("random.randint", side_effect=[100, 10, GOD()["AC"], GOD()["max-HP"]])
+    def test_goal_attained_True_if_at_goal_location_and_boss_defeated(self, mock_randint, mock_input):
+        character = {"name": "Merlin", "HP": 43,
+                     "max-HP": 43, "damage": (1, 20),
+                     "level": 3, "atk_modifier": 0,
+                     "attacks": ["Magic!", "Huzzah"], "EXP": 0,
+                     "initiative_modifier": 0, "dmg_modifier": 5,
+                     "crit_chance": [20], "AC": 19,
+                     "x-location": GOAL_LOCATION()[0], "y-location": GOAL_LOCATION()[1]}
+        self.assertTrue(goal_attained(character))
 
-    def test_goal_attained_if_character_dead_or_fled(self):
-        self.fail()
+    @patch("builtins.input", return_value="1")     # User chooses to engage
+    @patch("random.randint", side_effect=[2, 100, 33, 45])
+    def test_goal_attained_False_if_at_goal_location_boss_kills_character(self, mock_randint, mock_input):
+        character = {"name": "Monty", "HP": 43,
+                     "max-HP": 43, "damage": (1, 20),
+                     "level": 3, "atk_modifier": 0,
+                     "attacks": ["Slashing", "Ice"], "EXP": 100,
+                     "initiative_modifier": 0, "dmg_modifier": 5,
+                     "crit_chance": [20], "AC": 20,
+                     "x-location": GOAL_LOCATION()[0], "y-location": GOAL_LOCATION()[1]}
+        self.assertFalse(goal_attained(character))
 
-    def test_goal_attained_if_character_wrong_location(self):
-        self.fail()
+    @patch("builtins.input", return_value="2")     # User chooses to flee / does not engage boss
+    @patch("random.randint", return_value=FLEE_CHANCE() + 1)
+    def test_goal_attained_False_if_at_goal_location_character_flee(self, mock_randint, mock_input):
+        character = {"name": "Pepe", "HP": 32,
+                     "max-HP": 35, "damage": (1, 10),
+                     "level": 2, "atk_modifier": 2,
+                     "attacks": ["Frog Jump", "Okay"], "EXP": 200,
+                     "initiative_modifier": 1, "dmg_modifier": 5,
+                     "crit_chance": [20], "AC": 30,
+                     "x-location": GOAL_LOCATION()[0], "y-location": GOAL_LOCATION()[1]}
+        self.assertFalse(goal_attained(character))
