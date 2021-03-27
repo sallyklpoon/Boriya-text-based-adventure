@@ -1262,11 +1262,13 @@ def summon_foe(character: dict) -> dict:
     """
     foe = {}
     if character["level"] == 1:
-        return select_foe(WEAK_FOES())
+        foe = select_foe(WEAK_FOES())
     if character["level"] == 2:
         foe = select_foe(STRONG_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(WEAK_FOES())
     if character["level"] == 3:
         foe = select_foe(EPIC_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(STRONG_FOES())
+    format_foe(foe)
+    assign_hp(foe)
     return foe
 
 
@@ -1290,7 +1292,9 @@ def select_foe(foe_selection: tuple) -> dict:
     :postcondition: value of "initiative_modifier" is an integer
     :postcondition: value of "EXP" is an integer > 0, he EXP points that can be gained by defeating foe
     :postcondition: value of "flee" is False, indicator if foe has decided to flee
+    :return: a dictionary of foe statistics
 
+    No doctests, roll() helper uses random.randint
     """
     random_class = roll(FOE_CLASS_DIE())
     summoned = {}
@@ -1300,8 +1304,6 @@ def select_foe(foe_selection: tuple) -> dict:
         summoned = foe_selection[1]
     elif random_class == 3:
         summoned = foe_selection[2]
-    format_foe(summoned)
-    assign_hp(summoned)
     return summoned
 
 

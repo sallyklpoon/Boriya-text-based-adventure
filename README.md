@@ -138,8 +138,8 @@ horizons they can explore will grow.
 | next_move                                    |   Y   |   N   |
 | heal                                         |   Y   |   N   |
 | format_foe                                   |   Y   |   N   |
-| summon_foe                                   |   N   |   N   |
-| select_foe                                   |   N   |   N   |
+| summon_foe                                   |   Y   |   N   |
+| select_foe                                   |   IP   |   N   |
 | check_for_foe                                |   N   |   N   |
 | engage                                       |   N   |   N   |
 | flee                                         |   N   |   N   |
