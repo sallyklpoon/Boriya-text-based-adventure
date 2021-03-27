@@ -310,7 +310,7 @@ def ROGUE_STATS_LVL3() -> dict:
 
     :return: a dictionary of Rogue level 3 stats"""
     return {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48, "hit_dice": (1, 8),
-            "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
+            "attacks": ["Soul Blade", "Fan of Blades", "Culling"],
             "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8, "crit_chance": [19, 20],
             "crit_modifier": 2, "initiative_modifier": 6}
 
@@ -1646,7 +1646,7 @@ def final_boss_encounter(character: dict, boss: dict) -> None:
           "entirely of unending nothingness. Are you ready to die?")
     enter_combat(character=character, foe=boss)
     if boss["HP"] <= 0:
-        print(f"\n{foe['name']} is dead.")
+        print(f"\n{boss['name']} is dead.")
     elif character['HP'] > 0 and boss['HP'] > 0:
         boss_flee(character, boss)
 
