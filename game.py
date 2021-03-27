@@ -158,7 +158,7 @@ def START_GAME_MSG() -> str:
            "As a child, you lost your family to the blight, and swore to end it's dominion over the land. Over \n" \
            "the years, you gathered rumours and searched for wisdom in order to end the land's suffering. A \n" \
            "powerful being named Erebus is said to be the creator of this blight; a being so powerful, some \n" \
-           "consider a god. If one were to kill Erebus, perhaps the land would feel peace once more. \n" \
+           "consider a god. If one were to kill Erebus, perhaps the land would feel peace once more... \n" \
            "\n" \
            "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n"
 
@@ -174,7 +174,7 @@ def PROLOGUE() -> str:
            "\n" \
            "You must grow more powerful, for the void that lays ahead of you will tear apart weak souls. It would \n" \
            "be wise to approach carefully, for the closer you get to the heart of the abyss, the stronger your \n" \
-           "enemies will become. You must reach the great temple where the old Prirod druids used worship the  \n" \
+           "enemies will become. You must reach the great temple where the old Prirod druids used to worship the  \n" \
            "night, for it is there that Erebus spreads his deep darkness.\n" \
            "\n༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n"
 
@@ -1661,7 +1661,7 @@ def boss_flee(character: dict, boss: dict) -> None:
         time.sleep(0.5)
         print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
 
-    print(f"{boss['name']}' blank eyes follow you as you cower away in fear."
+    print(f"\n{boss['name']}' blank eyes follow you as you cower away in fear."
           f"\nYou will never rid the blight from this land as long as he lives.\n"
           f"\nYou have successfully evaded violence for now, but the truth remains\n"
           f"that you must defeat this darkness at some point.")
