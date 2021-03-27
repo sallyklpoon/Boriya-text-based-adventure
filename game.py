@@ -1200,7 +1200,7 @@ def heal(character: dict) -> None:
     No doctests, roll() uses random module
     """
     if character["HP"] == character["max-HP"]:
-        print("\nNothing happens.")
+        print("")
     else:
         heal_points = roll(character["hit_dice"])
         if character["HP"] + heal_points <= character["max-HP"]:
@@ -1566,7 +1566,7 @@ def level_up(character: dict, board: dict) -> None:
     :return: levels up the game, not return value
     """
     character["level"] += 1
-    print(f"\n\033[35mYou've level up, bless up fam. You're now able to explore new horizons!\033[0m")
+    print(f"\n\033[35mYou feel your power grow, you've levelled up. You're now able to explore new horizons!\033[0m")
 
     if character["class"] == "Illusionist":
         level_class(character, ILLUSIONIST_LVL_UP())
@@ -1637,7 +1637,7 @@ def final_boss_encounter(character: dict, boss: dict) -> None:
           "entirely of unending nothingness. Are you ready to die?")
     enter_combat(character=character, foe=boss)
     if boss["HP"] <= 0:
-        print(f"\nGod is dead.\n")
+        print(f"\nGod is dead.")
     elif character['HP'] > 0 and boss['HP'] > 0:
         boss_flee(character, boss)
 
@@ -1653,7 +1653,7 @@ def boss_flee(character: dict, boss: dict) -> None:
 
     print(f"\n{boss['name']}' blank eyes follow you as you cower away in fear."
           f"\nYou will never rid the blight from this land as long as he lives.\n"
-          f"You have successfully evaded violence for now, but the truth remains\n"
+          f"\nYou have successfully evaded violence for now, but the truth remains\n"
           f"that you must defeat this darkness at some point.")
     time.sleep(1)
 
@@ -1719,7 +1719,7 @@ def end_game(character: dict) -> None:
               f"༺═────────────────────────────────────────────────────────────────────────────═༻\n")
     else:   # quit ending
         print(f"\n༺═──────────────────────────────────────────────────═༻\n"
-              f"The Shadow above Bóriya has taken it's toll on your soul.\n"
+              f"The Forest of Bóriya has taken it's toll on your soul.\n"
               f"You can no longer continue. Goodbye, {character['name']}.\n"
               f"༺═──────────────────────────────────────────────────═༻\n")
     print(f"Thank you for playing, {character['name']}! - Marti & Sally")
@@ -1757,7 +1757,7 @@ def game() -> None:
         print(f"\nYou're now at ({character['x-location']}, {character['y-location']}),"
               f"\033[35m Level {character['level']}: {character['level_name']}\033[0m, "
               f"\033[34m HP: {character['HP']}/{character['max-HP']}\033[0m, "
-              f"\033[36m EXP: {character['EXP']}\033[0m \n"
+              f"\033[36m EXP: {character['EXP']}\033[0m \n\n"
               f"{board[(character['x-location'], character['y-location'])]} \n")
         next_move(character, board)
         if character["quit"]:
