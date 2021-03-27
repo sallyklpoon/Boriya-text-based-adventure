@@ -74,41 +74,41 @@ horizons they can explore will grow.
 
 | In-game Function                             | Done? | Checked? |
 |       -----                                  | ---   |    ---|
-| hero_colour                                  |   Y   |   N   |
-| foe_colour                                   |   Y   |   N   |
-| roll                                         |   Y   |   N   |
-| get_menu                                     |   Y   |   N   |
-| get_user_choice                              |   Y   |   N   |
-| assign_hp                                    |   N   |   N   |
-| is_not_digit                                 |   Y   |   N   |
-| get_valid_input                              |   Y   |   N   |
-| lvl_board_max                                |   Y   |   N   |
-| make_board*                                  |   Y   |   N   |
-| print_map                                    |   Y   |   N   |
-| choose_class                                 |   Y   |   N   |
-| get_name                                     |   Y   |   N   |
-| make_character                               |   Y   |   N   |
-| start_game                                   |   Y   |   N   |
-| valid_move                                   |   Y   |   N   |
-| move_character                               |   Y   |   N   |
-| next_move                                    |   Y   |   N   |
-| heal                                         |   Y   |   N   |
-| format_foe                                   |   Y   |   N   |
-| summon_foe                                   |   Y   |   N   |
-| select_foe                                   |   Y   |   N   |
-| check_for_foe                                |   Y   |   N   |
-| engage                                       |   Y   |   N   |
-| flee                                         |   Y   |   N   |
-| foe_flee                                     |   Y   |   N   |
-| initiative                                   |   Y   |   N   |
-| combat_round                                 |   Y   |   N   |
-| enter_combat                                 |   Y   |   N   |
-| encounter                                    |   Y   |   N   |
-| gain_exp                                     |   Y   |   N   |
-| level_up                                     |   Y   |   N   |
-| level_class                                  |   Y   |   N   |
-| goal_attained                                |   Y   |   N   |
-| summon_god                                   |   Y   |   N   |
+| hero_colour                                  |   Y   |   Y   |
+| foe_colour                                   |   Y   |   Y   |
+| roll                                         |   Y   |   Y   |
+| get_menu                                     |   Y   |   Y   |
+| get_user_choice                              |   Y   |   Y   |
+| assign_hp                                    |   N   |   N   | <-- not created
+| is_not_digit                                 |   Y   |   Y   |
+| get_valid_input                              |   Y   |   Y   |
+| lvl_board_max                                |   Y   |   Y   |
+| make_board*                                  |   Y   |   Y   |
+| print_map                                    |   Y   |   Y   |
+| choose_class                                 |   Y   |   N   | <-- 1 test failed
+| get_name                                     |   Y   |   Y   |
+| make_character                               |   Y   |   N   | <-- not titled with test_ + 2 test failed
+| start_game                                   |   Y   |   Y   |
+| valid_move                                   |   Y   |   Y   |
+| move_character                               |   Y   |   Y   |
+| next_move                                    |   Y   |   Y   |
+| heal                                         |   Y   |   Y   | <-- need to change messaging, tests run fine
+| format_foe                                   |   Y   |   Y   |
+| summon_foe                                   |   Y   |   Y   |
+| select_foe                                   |   Y   |   Y   |
+| check_for_foe                                |   Y   |   Y   |
+| engage                                       |   Y   |   Y   |
+| flee                                         |   Y   |   Y   |
+| foe_flee                                     |   Y   |   Y   |
+| initiative                                   |   Y   |   Y   |
+| combat_round                                 |   Y   |   Y   |
+| enter_combat                                 |   Y   |   Y   |
+| encounter                                    |   Y   |   Y   |
+| gain_exp                                     |   Y   |   Y   |
+| level_up                                     |   Y   |   Y   |
+| level_class                                  |   Y   |   Y   |
+| goal_attained                                |   Y   |   Y   |
+| summon_god                                   |   Y   |   Y   |
 | final_boss_encounter                         |   Y   |   N   |
 | flee_boss                                    |   N   |   N   |
 | end_game                                     |   N   |   N   |
@@ -175,6 +175,9 @@ horizons they can explore will grow.
 | final_boss_encounter                         |   N   |   N   |
 | boss_flee                                    |   YEP  |   N   |
 | end_game                                     |   N   |   N   |
+
+
+
 
 
 #### ** Add any comments for me above this line **
