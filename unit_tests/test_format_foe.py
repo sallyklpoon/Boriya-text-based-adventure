@@ -16,4 +16,3 @@ class TestFormatFoe(TestCase):
         expected = {"name": "\033[33mSamir\033[0m", "attacks": ["\033[33mJump\033[0m", "\033[33mDance\033[0m"]}
         format_foe(foe)
         self.assertEqual(expected, foe)
-

@@ -27,4 +27,3 @@ class TestGetMenu(TestCase):
         expected_output = "\n[1] Illusionist\n[2] Rogue\n[3] Ranger\n[4] Paladin\n"
         actual_output = mock_output.getvalue()
         self.assertEqual(expected_output, actual_output)
-

@@ -33,4 +33,3 @@ class TestLvlBoardMax(TestCase):
         expected = (MAX_MAP_X_LVL3(), MAX_MAP_Y_LVL3())
         actual = lvl_board_max(3)
         self.assertEqual(expected, actual)
-
