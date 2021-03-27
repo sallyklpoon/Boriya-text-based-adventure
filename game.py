@@ -310,7 +310,7 @@ def ROGUE_STATS_LVL3() -> dict:
 
     :return: a dictionary of Rogue level 3 stats"""
     return {"level_name": "Shadow Master", "AC": 20,  "max-HP": 48, "hit_dice": (1, 8),
-            "attacks": ["Shadow Blade", "Fan of Blades", "Culling"],
+            "attacks": ["Soul Blade", "Fan of Blades", "Culling"],
             "atk_modifier": 8, "damage": (3, 10), "dmg_modifier": 8, "crit_chance": [19, 20],
             "crit_modifier": 2, "initiative_modifier": 6}
 
@@ -1662,7 +1662,7 @@ def boss_flee(character: dict, boss: dict) -> None:
         time.sleep(0.5)
         print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
 
-    print(f"\n{boss['name']}' blank eyes follow you as you cower away in fear."
+    print(f"{boss['name']}' blank eyes follow you as you cower away in fear."
           f"\nYou will never rid the blight from this land as long as he lives.\n"
           f"\nYou have successfully evaded violence for now, but the truth remains\n"
           f"that you must defeat this darkness at some point.")
@@ -1725,8 +1725,8 @@ def end_game(character: dict) -> None:
         print(f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n"
               f"\nAs you look down at Erebus' lifeless body, you see an inkling of light appear through \n"
               f"the darkened clouds above. You feel the blight slowly leave the forest, as the moonlight\n"
-              f" egins to pour in through the shadows. Your journey has finally come to an end.\n"
-              f"\nMay you rest easy now, {character['name']}, the Forest of Bóriya is finally rid of its.\n"
+              f"begins to pour in through the shadows. Your journey has finally come to an end.\n"
+              f"\nMay you rest easy now, {character['name']}, the Forest of Bóriya is finally rid of its\n"
               f"blight.\n"
               f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n")
     else:  # quit ending
