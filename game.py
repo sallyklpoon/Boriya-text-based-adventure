@@ -630,7 +630,7 @@ def ENCOUNTER_CHANCE() -> int:
     """Return the percent chance that an encounter with foe will occur.
 
     :return: an integer """
-    return 20
+    return 35
 
 
 def HARD_FOE_CHANCE() -> int:
@@ -1649,7 +1649,7 @@ def summon_god() -> dict:
     :postcondition: boss dictionary is assigned proper hp values
     :return: a dictionary containing summoned foe's stats
 
-    No doctests, random used
+
     """
     boss = GOD()
     format_foe(boss)
