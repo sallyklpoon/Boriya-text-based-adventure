@@ -1233,7 +1233,7 @@ def heal(character: dict) -> None:
             character["HP"] += heal_points
         else:
             character["HP"] = character["max-HP"]
-        print("\n\033[32m.✣ As you venture through the forest, you take a moment to rest your weary soul. ✣\n"
+        print("\n\033[32m✣ As you venture through the darkeness, you take a moment to rest your weary soul. ✣\n"
               f"✣ Your health has been healed to {character['HP']} points. ✣\n\033[0m")
     time.sleep(0.5)
 
