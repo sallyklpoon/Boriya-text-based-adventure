@@ -104,7 +104,7 @@ horizons they can explore will grow.
 | combat_round                                 |   Y   |   N   |
 | enter_combat                                 |   Y   |   N   |
 | encounter                                    |   Y   |   N   |
-| gain_exp                                     |   N   |   N   |
+| gain_exp                                     |   Y   |   N   |
 | level_up                                     |   N   |   N   |
 | level_class                                  |   N   |   N   |
 | goal_attained                                |   N   |   N   |

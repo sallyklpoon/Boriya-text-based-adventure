@@ -240,6 +240,22 @@ def CLASS_OPTIONS() -> tuple:
     :return: tuple of class options """
     return "Illusionist", "Rogue", "Ranger", "Paladin"
 
+# ===== LEVEL-UP CONSTANTS =============================================================================================
+
+
+def LVL2_EXP_OUTSET() -> int:
+    """Return the EXP threshold for Level 2 level up.
+
+    :return: an integer"""
+    return 200
+
+
+def LVL3_EXP_OUTSET() -> int:
+    """Return the minimum EXP for Level 3 level up.
+
+    :return: an integer"""
+    return 1000
+
 
 # ===== CLASS CONSTANTS ================================================================================================
 # ----- ILLUSIONIST ----------------------------------------------------------------------------------------------------
@@ -1556,21 +1572,38 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
 
 
 def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
-    """Increase the EXP of the character and checks if character has levelled up
+    """Increase the EXP of the character, sends character to level up levelled up if threshold achieved
 
     :param character: a dictionary of the character's stats
     :param experience_gain: an EXP value gained from an encounter with a foe
     :param board: a dictionary representing the current board
-    :precondition: character contains the key "EXP"
-    :precondition: board is a non-empty dictionary containing coordinate keys and max-x/max-y values
+    :precondition: character contains the key "EXP" and "level"
+    :precondition: board is a non-empty dictionary containing coordinate keys and "max-x"/"max-y" values
     :postcondition: character gains exp, leveling up if they meet a level-up threshold
     :return: nothing, character dictionary and board may be modified
+
+    >>> sample_character = {"EXP": 0, "level": 1}
+    >>> sample_character.update(ILLUSIONIST_STATS_LVL1())
+    >>> sample_board = {"max-x": MAX_MAP_X_LVL1(), "max-y": MAX_MAP_Y_LVL1()}
+    >>> gain_exp(sample_character, LVL2_EXP_OUTSET(), sample_board)
+    \033[36mYou've earned 200 experience points. Current EXP: 200\033[0m
+    <BLANKLINE>
+    \033[35mYou feel your power grow, you've levelled up. You're now able to explore new horizons!\033[0m
+    You are now a \033[35mMesmer\033[0m.
+    >>> sample_character["EXP"]
+    200
+    >>> sample_character["level"]
+    2
+    >>> sample_board["max-x"] == MAX_MAP_X_LVL2()
+    True
+    >>> sample_board["max-y"] == MAX_MAP_Y_LVL2()
+    True
     """
     character["EXP"] += experience_gain
     print(hero_colour(f"You've earned {experience_gain} experience points. Current EXP: {character['EXP']}"))
-    if character["EXP"] >= 200 and character['level'] == 1:
+    if character["EXP"] >= LVL2_EXP_OUTSET() and character['level'] == 1:
         level_up(character, board)
-    if character["EXP"] >= 1000 and character['level'] == 2:
+    if character["EXP"] >= LVL3_EXP_OUTSET() and character['level'] == 2:
         level_up(character, board)
 
 
@@ -1618,7 +1651,7 @@ def level_class(character: dict, class_lvl: tuple) -> None:
         level_character = class_lvl[1]
     character.update(level_character)
     character['attacks'] = list(map(hero_colour, character['attacks']))
-    print(f"You are now a {character['level_name']}.")
+    print(f"You are now a \033[35m{character['level_name']}\033[0m.")
 
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
