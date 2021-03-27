@@ -870,11 +870,11 @@ def print_map(character: dict, board: dict) -> None:
     [  ][  ][  ]
     [  ][  ][  ]
     """
+    print("")
     for row in range(board['max-y']):
         for column in range(board['max-x']):
             print(f"[{hero_colour('웃')}]", end="") \
-                if (column, row) == (character["x-location"], character["y-location"])\
-                else print("[  ]", end="")
+                if (column, row) == (character["x-location"], character["y-location"]) else print("[  ]", end="")
         print("")
 
 
