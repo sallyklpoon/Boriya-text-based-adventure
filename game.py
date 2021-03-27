@@ -133,6 +133,7 @@ def START_GAME_MSG() -> str:
            "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
 
 
+
 def PROLOGUE() -> str:
     """Return the prologue of the game.
 
@@ -338,6 +339,22 @@ def PALADIN_STATS_LVL3() -> dict:
 
 
 # ===== FOE CONSTANTS ==================================================================================================
+
+def GOD() -> dict:
+    return {"name": foe_colour("Erebus"),
+            "AC": 16,
+            "max-HP": 100,
+            "attacks": list(map(foe_colour, ["Time Ravage", "Imprisonment", "Power Word: Kill", "Tear Soul"])),
+            "atk_modifier": 6,
+            "damage": (3, 6),
+            "dmg_modifier": 4,
+            "crit_chance": [20],
+            "crit_modifier": 2,
+            "initiative_modifier": 4,
+            "EXP": 500,
+            "flee": False,
+            "boss": True}
+
 
 def WEAK_FOE_1() -> dict:
     """Return the statistics of a weak foe.
@@ -551,6 +568,22 @@ def ENCOUNTER_FOE_DIE() -> tuple:
     """Return the summon foe die, 1d10 = (1, 10)
 
     :return: an encounter foe die as a tuple (rolls, number_of_sides)"""
+    return 1, 10
+
+
+def ENCOUNTER_CHANCE() -> int:
+    """Return the chance that an encounter with foe will occur.
+
+    Value must be based on the the percent chance divided by 10
+
+    :return: an integer """
+    return 3
+
+
+def FLEE_SUCCESS_DIE() -> tuple:
+    """Return the flee success die, 1d10 = (1, 10)
+
+    :return: a die to determine flee success as a tuple (rolls, number_of_sides)"""
     return 1, 10
 
 
@@ -1086,40 +1119,6 @@ def next_move(character: dict, board: dict) -> None:
                 print("\nYou've reached the limits of the map, adventurer...")
 
 
-# ===== CHECK IF GOAL ATTAINED =========================================================================================
-
-def check_goal_attained(character: dict) -> bool:
-    """Check if character has arrived at goal location.
-
-    :precondition: x_location is an integer representing character's current x-location
-    :precondition: y_location is an integer representing character's current y-location
-    :postcondition: accurately checks if a character's current x and y-location matches the goal location
-    :postcondition: returns a Boolean True if character is at the goal location based on GOAL_LOCATION()
-    :postcondition: returns a Boolean False if character is not at the goal location based on GOAL_LOCATION()
-    :return: a Boolean value
-
-    >>> check_goal_attained(0, 0)
-    False
-    >>> check_goal_attained(7, 1)
-    False
-    >>> check_goal_attained(GOAL_LOCATION()[0], GOAL_LOCATION()[1])
-    True
-    """
-    if (character["x-location"], character["y-location"]) == GOAL_LOCATION():
-        boss = summon_god()
-        if final_boss_encounter(character, boss):
-            time.sleep(0.5)
-            if boss["HP"] <= 0:
-                print(f"\nGod is dead.\n")
-                character["boss_defeat"] = True
-                return True
-            elif character["HP"] <= 0:
-                print(f"You are dead.")
-                return True
-    else:
-        return False
-
-
 # ===== CHECK FOR MONSTERS =============================================================================================
 
 
@@ -1167,6 +1166,15 @@ def format_foe(foe: dict) -> None:
     :precondition: value of "attacks" is a list of strings
     :postcondition: all strings from "name" and "attacks" are formatted to foe_colour()
     :return: nothing, foe dictionary values changed
+
+    >>> sample_foe = {"name": "Sarah", "attacks": ["Jump", "Crawl"]}
+    >>> format_foe(sample_foe)
+    >>> print(sample_foe['name'])
+    \033[33mSarah\033[0m
+    >>> print(sample_foe['attacks'][0])
+    \033[33mJump\033[0m
+    >>> print(sample_foe['attacks'][1])
+    \033[33mCrawl\033[0m
     """
     foe["name"] = foe_colour(foe["name"])
     foe["attacks"] = list(map(foe_colour, foe["attacks"]))
@@ -1230,23 +1238,6 @@ def summon_foe_class(foe_selection: tuple) -> dict:
     return summoned
 
 
-def summon_god():
-    return {"name": foe_colour("Erebus"),
-            "AC": 16,
-            "HP": 100,
-            "max-HP": 100,
-            "attacks": list(map(foe_colour, ["Time Ravage", "Imprisonment", "Power Word: Kill", "Tear Soul"])),
-            "atk_modifier": 6,
-            "damage": (3, 6),
-            "dmg_modifier": 4,
-            "crit_chance": [20],
-            "crit_modifier": 2,
-            "initiative_modifier": 4,
-            "EXP": 500,
-            "flee": False,
-            "boss": True}
-
-
 def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
 
@@ -1273,7 +1264,7 @@ def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
     No doctest, called roll() uses random module
     """
     if not achieved_goal:
-        if roll(ENCOUNTER_FOE_DIE()) in range(1, 5):
+        if roll(ENCOUNTER_FOE_DIE()) <= ENCOUNTER_CHANCE():
             encounter(character, summon_foe(character), board)
         else:
             heal(character)
@@ -1317,30 +1308,21 @@ def flee(character: dict, foe: dict) -> None:
 
     No doctests, uses random module
     """
-    if roll(ENCOUNTER_FOE_DIE()) in range(1, 3):
-        damage = roll(FLEE_DAMAGE_DIE())
-        character["HP"] -= damage
-
-        if foe['boss']:
-            print(f"As you attempt to flee from {foe['name']}, he crawls towards you\n"
-                  f"using {random.choice(foe['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
-            time.sleep(0.5)
-            print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n"
-                  f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
-                  f"\nYou will never rid the blight from this land as long as he lives.\n")
-        else:
+    if foe['boss']:
+        pass
+    else:
+        if roll(FLEE_SUCCESS_DIE()) in range(1, 3):
+            damage = roll(FLEE_DAMAGE_DIE())
+            character["HP"] -= damage
             print(f"As you attempt to flee from the {foe['name']}, they catch up to you,\n"
                   f"using {random.choice(foe['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
             time.sleep(0.5)
             print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
 
-    else:
-        if foe['boss']:
-            print(f"\n{foe['name']}' blank eyes follow you as you cower away in fear."
-                  f"\nYou will never rid the blight from this land as long as he lives.")
         else:
             print(f"\nQuickly evading your foe, you leave the {foe['name']}'s view range.\n"
                   f"You've escaped violence this time.\n")
+
     time.sleep(0.5)
 
 
@@ -1449,13 +1431,7 @@ def enter_combat(character: dict, foe: dict) -> None:
             if opposition["HP"] > 0 and attacker["HP"] > 0 and not foe["boss"]:
                 foe_flee(foe)
         else:
-            if foe['boss']:
-                flee(character, foe)
-                return False
-            else:
-                return flee(character, foe)
-
-    return True
+            return flee(character, foe)
 
 
 def encounter(character: dict, foe: dict, board: dict) -> None:
@@ -1618,17 +1594,70 @@ def level_paladin(character: dict) -> None:
     print(f"You are now a {character['level_name']}.")
 
 
-# ===== END GAME =======================================================================================================
+# ===== CHECK IF GOAL ATTAINED =========================================================================================
+
+def check_goal_attained(character: dict) -> bool:
+    """Check if character has arrived at goal location.
+
+    :precondition: x_location is an integer representing character's current x-location
+    :precondition: y_location is an integer representing character's current y-location
+    :postcondition: accurately checks if a character's current x and y-location matches the goal location
+    :postcondition: returns a Boolean True if character is at the goal location based on GOAL_LOCATION()
+    :postcondition: returns a Boolean False if character is not at the goal location based on GOAL_LOCATION()
+    :return: a Boolean value
+
+    >>> check_goal_attained(0, 0)
+    False
+    >>> check_goal_attained(7, 1)
+    False
+    >>> check_goal_attained(GOAL_LOCATION()[0], GOAL_LOCATION()[1])
+    True
+    """
+    if (character["x-location"], character["y-location"]) == GOAL_LOCATION():
+        boss = summon_god()
+        final_boss_encounter(character, boss)
+        if boss["HP"] <= 0:
+            return True
+        elif character['HP'] > 0 and boss['HP'] > 0:
+            return False
+    else:
+        return False
 
 
-def final_boss_encounter(character: dict, foe: dict):
+def summon_god() -> dict:
+    boss = GOD()
+    format_foe(boss)
+    assign_hp(boss)
+    return boss
+
+
+def final_boss_encounter(character: dict, boss: dict) -> None:
     print("\nYou arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
           "entirely of unending nothingness. Are you ready to die?")
+    enter_combat(character=character, foe=boss)
+    if boss["HP"] <= 0:
+        print(f"\nGod is dead.\n")
+    elif character['HP'] > 0 and boss['HP'] > 0:
+        boss_flee(character, boss)
 
-    if not enter_combat(character, foe):
-        return False
-    else:
-        return True
+
+def boss_flee(character: dict, boss: dict) -> None:
+    if roll(FLEE_SUCCESS_DIE()) in range(1, 3):
+        damage = roll(FLEE_DAMAGE_DIE())
+        character["HP"] -= damage
+        print(f"As you attempt to flee from {boss['name']}, he crawls towards you\n"
+              f"using {random.choice(boss['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
+        time.sleep(0.5)
+        print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
+
+    print(f"\n{boss['name']}' blank eyes follow you as you cower away in fear."
+          f"\nYou will never rid the blight from this land as long as he lives.\n"
+          f"You have successfully evaded violence for now, but the truth remains\n"
+          f"that you must defeat this darkness at some point.")
+    time.sleep(1)
+
+
+# ===== END GAME =======================================================================================================
 
 
 def end_game(character: dict) -> None:
@@ -1723,12 +1752,12 @@ def game() -> None:
     board, character = start_game()
     achieved_goal = False
     while not achieved_goal and character["HP"] > 0:
+        print_map(character, board)
         print(f"\nYou're now at ({character['x-location']}, {character['y-location']}),"
               f"\033[35m Level {character['level']}: {character['level_name']}\033[0m, "
               f"\033[34m HP: {character['HP']}/{character['max-HP']}\033[0m, "
               f"\033[36m EXP: {character['EXP']}\033[0m \n"
               f"{board[(character['x-location'], character['y-location'])]} \n")
-        print_map(character, board)
         next_move(character, board)
         if character["quit"]:
             achieved_goal = True
