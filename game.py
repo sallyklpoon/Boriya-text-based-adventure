@@ -158,7 +158,7 @@ def START_GAME_MSG() -> str:
            "As a child, you lost your family to the blight, and swore to end it's dominion over the land. Over \n" \
            "the years, you gathered rumours and searched for wisdom in order to end the land's suffering. A \n" \
            "powerful being named Erebus is said to be the creator of this blight; a being so powerful, some \n" \
-           "consider a god. If one were to kill Erebus, perhaps the land would feel peace once more. \n" \
+           "consider a god. If one were to kill Erebus, perhaps the land would feel peace once more... \n" \
            "\n" \
            "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n"
 
