@@ -1512,7 +1512,7 @@ def enter_combat(character: dict, foe: dict) -> None:
 
 
 def encounter(character: dict, foe: dict, board: dict) -> None:
-    """Send character into an encounter with foe.
+    """Send character into an encounter with foe, including EXP gain.
 
     Encounter ends by character's choice to flee or by character and foe's fight to death
     (either character or foe's "HP" key value is 0).
@@ -1521,17 +1521,21 @@ def encounter(character: dict, foe: dict, board: dict) -> None:
     :param foe: a dictionary containing foe stats
     :param board: a dictionary, representing the current game map
     :precondition: both character and foe dictionaries include keys-- "name", "attacks", "HP", and "damage"
-    :precondition: value of "name" is a string, the name of character or foe
-    :precondition: value of "attacks" is a list of string elements, attack types from character or foe
-    :precondition: value of "HP" is an integer, the current health points character or foe
-    :precondition: value of "damage" is a tuple, the damage die for character or foe
+                   "crit_chance", "atk_modifier", "crit_modifier", "dmg_modifier", "max-HP", "AC",
+                   "initiative_modifier", and "EXP"
+    :precondition: value of "name" is a string, the name of attacker or opposition
+    :precondition: value of "attacks" is a list of string elements
+    :precondition: value of "max-HP", "AC", "HP", "atk_modifier", "initiative_modifier", "crit_modifier",
+                   "dmg_modifier" is an integer
+    :precondition: value of "damage" is a tuple, the damage die for attacker or opposition
+    :precondition: value of "crit_chance" is a list of positive integers
+    :precondition: value of "EXP is a positive integer >= 0
     :precondition: board contains the keys "max-x" and "max-y" with integer values >= 0
     :postcondition: character either engages in battle to the death or attempts to flee
     :postcondition: character's "HP" key value may be affected by damage from flee or by entering combat
     :postcondition: foe's "HP" key value may be affected by damage from combat
-    :postcondition: if foe has been defeated, print message to indicate end of encounter
+    :postcondition: character may gain "EXP" from encounter if foe chooses to flee or foe is killed
     :return: no value, but accurately modifies "HP" of character depending on fight or flee decision and random rolls
-    :return: print message if foe has been defeated
 
     No doctests, called enter_combat() and flee() uses random module
     """

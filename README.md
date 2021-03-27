@@ -103,7 +103,7 @@ horizons they can explore will grow.
 | initiative                                   |   Y   |   N   |
 | combat_round                                 |   Y   |   N   |
 | enter_combat                                 |   Y   |   N   |
-| encounter                                    |   N   |   N   |
+| encounter                                    |   Y   |   N   |
 | gain_exp                                     |   N   |   N   |
 | level_up                                     |   N   |   N   |
 | level_class                                  |   N   |   N   |
