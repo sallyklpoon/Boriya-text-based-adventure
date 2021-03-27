@@ -102,7 +102,7 @@ horizons they can explore will grow.
 | foe_flee                                     |   Y   |   N   |
 | initiative                                   |   Y   |   N   |
 | combat_round                                 |   Y   |   N   |
-| enter_combat                                 |   N   |   N   |
+| enter_combat                                 |   Y   |   N   |
 | encounter                                    |   N   |   N   |
 | gain_exp                                     |   N   |   N   |
 | level_up                                     |   N   |   N   |

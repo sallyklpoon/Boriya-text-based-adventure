@@ -1419,6 +1419,7 @@ def initiative(character, foe) -> bool:
     :param character: a dictionary representing the character stats
     :param foe: a dictionary representing the foes stats
     :precondition: foe and character dictionaries must contain initiative_modifier key
+    :precondition: the value of "initiative_modifier" key is an integer
     :postcondition: determine if character has initiative first in a combat round by comparing character
                     and foe rolls for initiative
     :postcondition: returns True if character initiative roll > foe's initiative roll using ONE_D100()
@@ -1475,23 +1476,27 @@ def combat_round(attacker: dict, opposition: dict) -> None:
 
 
 def enter_combat(character: dict, foe: dict) -> None:
-    """Battle character and foe in combat until character or foe dies (HP == 0).
+    """Battle character and foe in combat until character or foe dies (HP == 0),
+    or foe flees, or user chooses to disengage.
 
     :param character: a dictionary containing character stats
     :param foe: a dictionary containing foe stats
     :precondition: both character and foe dictionaries include keys-- "name", "attacks", "HP", and "damage"
-    :precondition: value of "name" is a string, the name of character or foe
-    :precondition: value of "attacks" is a list of string elements, attack types from character or foe
-    :precondition: value of "HP" is an integer, the current health points character or foe
-    :precondition: value of "damage" is a tuple, the damage die for character or foe
-    :postcondition: both character and foe's HP will be sent to combat based on rolled initiative order
+                   "crit_chance", "atk_modifier", "crit_modifier", "dmg_modifier", "max-HP", "AC", "initiative_modifier"
+    :precondition: value of "name" is a string, the name of attacker or opposition
+    :precondition: value of "attacks" is a list of string elements
+    :precondition: value of "max-HP", "AC", "HP", "atk_modifier", "initiative_modifier", "crit_modifier",
+                   "dmg_modifier" is an integer
+    :precondition: value of "damage" is a tuple, the damage die for attacker or opposition
+    :precondition: value of "crit_chance" is a list of integers
     :postcondition: both character and foe may take damage to their "HP" key value
-    :postcondition: combat will continue until either character or foe has "HP" == 0
+    :postcondition: combat will continue until either character or foe has "HP" = 0, or if foe flees, or if
+                    user chooses to disengage/flee
     :return: no value, but modified effects of key value "HP" for both character and foe after end of combat
 
     No doctests, called functions, combat_round() and initiative() uses random module
     """
-    while character["HP"] > 0 and foe["HP"] > 0 and not foe["flee"]:
+    while not foe["flee"] and character["HP"] > 0 and foe["HP"] > 0:
         if engage():
             if initiative(character, foe):
                 attacker, opposition = character, foe
@@ -1500,7 +1505,7 @@ def enter_combat(character: dict, foe: dict) -> None:
             combat_round(attacker, opposition)
             if opposition["HP"] > 0:
                 combat_round(opposition, attacker)
-            if opposition["HP"] > 0 and attacker["HP"] > 0 and not foe["boss"]:
+            if not foe["boss"] and opposition["HP"] > 0 and attacker["HP"] > 0:
                 foe_flee(foe)
         else:
             return flee(character, foe)
