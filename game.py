@@ -6,7 +6,7 @@ This module includes code to run the game, 'Avocado Toast'.
 
 """
 # import doctest
-# import pprint
+import pprint
 
 import random
 import itertools
@@ -1714,7 +1714,12 @@ def summon_god() -> dict:
     :postcondition: boss dictionary is assigned proper hp values
     :return: a dictionary containing summoned foe's stats
 
-
+    >>> expected = GOD()
+    >>> expected["name"] = foe_colour(GOD()["name"])
+    >>> expected["attacks"] = list(map(foe_colour, expected["attacks"]))
+    >>> expected["HP"] = GOD()["max-HP"]
+    >>> expected == summon_god()
+    True
     """
     boss = GOD()
     format_foe(boss)
