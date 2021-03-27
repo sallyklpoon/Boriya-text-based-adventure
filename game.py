@@ -127,8 +127,43 @@ def START_GAME_MSG() -> str:
 
     :return: a string, the start game message"""
     return "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
+            "\n" \
+            "\n" \
+            "                                   /_  _,_ ,_   .      __, \n" \
+            "                                 _/_)_(_/_/ (__/__(_/_(_/(_\n" \
+            "                                                  _/_      \n" \
+            "                                                 (/        \n" \
+           "\n" \
+           "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
+           "\n" \
+           "Many, many years ago, the Forest of Bóriya was home to an order of druids known as the Prirod. \n" \
+           "Protectors of the forest and worshippers of the night, the Prirod watched over the land with \n" \
+           "the help of the nearby town of Cakopone. Their efforts ensured that the people and the land \n" \
+           "could both prosper, and for many years the peace was upheld.\n" \
+           "\n" \
+           "However, a century ago, the Prirod vanished completely, and with their disappearance a blight \n" \
+           "spread across Bóriya. As the years passed, the darkness and plague expanded further and further  \n" \
+           "until nearly the entire kingdom was effected. In response to the expanding blight, a new religion \n" \
+           "appeared who's followers worshipped the void that had taken over Bóriya, their cult members flocking \n" \
+           "in droves back to the blight's source. None ever returned. \n" \
+           "\n" \
+           "As a child, you lost your family to the blight, and swore to end it's dominion over the land. Over \n" \
+           "the years, your quest to stop the land brought you wisdom of a way to end the land's suffering. A \n" \
+           "powerful being named Erebus is said to be the creator of this blight; a being so powerful, some \n" \
+           "consider a god. If one were to kill Erebus, perhaps the land would feel peace once more. \n" \
+           "\n" \
+           "\n" \
+           "Your journey has finally brought you back to the source of it all. As you look forward, the \n" \
+           "void that has taken over the Forest of Bóriya stares you right in the eyes. An abyss \n" \
+           "\n" \
+           "\n" \
+           "\n" \
+           "\n" \
+           "\n" \
+           "\n" \
+           "\n" \
            "Your journey has brought you deep into the heartland of Vosynia as you reach the entrance of \n"\
-           "the Forest of Bória.\n" \
+           "the Forest of Bóriya.\n" \
            "You've just completed a 7-hour hackathon and you've spent the last\n"\
            "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
 
@@ -1743,7 +1778,7 @@ def end_game(character: dict) -> None:
               f"༺═────────────────────────────────────────────────────────────────────────────═༻\n")
     else:   # quit ending
         print(f"\n༺═──────────────────────────────────────────────────═༻\n"
-              f"The Shadow above Bória has taken it's toll on your soul.\n"
+              f"The Shadow above Bóriya has taken it's toll on your soul.\n"
               f"You can no longer continue. Goodbye, {character['name']}.\n"
               f"༺═──────────────────────────────────────────────────═༻\n")
     print(f"Thank you for playing, {character['name']}! - Marti & Sally")
