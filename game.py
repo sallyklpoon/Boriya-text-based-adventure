@@ -180,34 +180,34 @@ def CLASS_INFO() -> str:
            "light, and shadows. Utilizing spells of great power, they create figments and phantasms to deceive, \n" \
            "influence, and trick their foes in mind-altering ways. This class has a very weak early game, \n" \
            "but a god-like late game.\n" \
-           "STATS: \033[32mArmour Class (AC): XXX\033[0m  | " \
-           "\033[34m Maximum HP: XXX\033[0m  | " \
-           "\033[36m Damage Die: XXX \033[0m\n"\
+           "STATS: \033[32mArmour Class (AC): 14}\033[0m  | " \
+           "\033[34m Maximum HP: 10\033[0m  | " \
+           "\033[36m Damage Die: (1, 8) \033[0m\n"\
            "\n" \
            "\033[1m<< ROGUE >>\033[0m The Rogue is a versatile character, capable of sneaky combat and nimble \n" \
            "tricks. Utilizing their stealth and dexterity, Rogues sacrifice brute strength for a nimble dodging \n" \
            "ability, and a consistent output of damage. This class has a neutral early and late game.\n"\
            "STATS: " \
-           "\033[32mArmour Class (AC): XXX\033[0m  | " \
-           "\033[34m Maximum HP: XXX\033[0m  | " \
-           "\033[36m Damage Die: XXX \033[0m\n" \
+           "\033[32mArmour Class (AC): 16\033[0m  | " \
+           "\033[34m Maximum HP: 10\033[0m  | " \
+           "\033[36m Damage Die: (2, 4) \033[0m\n" \
            "\n" \
            "\033[1m<< RANGER >>\033[0m The Ranger is a hunter and woodsman who lives by not only their sword, \n" \
            "but also their wits. Utilizing an assortment of weapons, poisons, and magic, Rangers relentlessly \n" \
            "chase down their prey in order to secure a kill. This class has a strong early game, and a \n" \
            "weak late game.\n" \
            "STATS: " \
-           "\033[32mArmour Class (AC): XXX\033[0m  | " \
-           "\033[34m Maximum HP: XXX\033[0m  | " \
-           "\033[36m Damage Die: XXX \033[0m\n" \
+           "\033[32mArmour Class (AC): 16\033[0m  | " \
+           "\033[34m Maximum HP: 12\033[0m  | " \
+           "\033[36m Damage Die: (1, 12) \033[0m\n" \
            "\n" \
            "\033[1m<< PALADIN >>\033[0m The Paladin swears to uphold justice and righteousness above all else. \n" \
            "They are proficient with heavy arms and armor, while also using divine powers to augment their combat \n" \
            "capabilities. This class has a weak early game, and a strong late game.\n" \
            "STATS: " \
-           "\033[32mArmour Class (AC): XXX\033[0m  | " \
-           "\033[34m Maximum HP: XXX\033[0m  | " \
-           "\033[36m Damage Die: XXX \033[0m\n" \
+           "\033[32mArmour Class (AC): 15\033[0m  | " \
+           "\033[34m Maximum HP: 12\033[0m  | " \
+           "\033[36m Damage Die: (1, 8) \033[0m\n" \
 
 
 # ===== MENU CONSTANTS =================================================================================================
@@ -1162,7 +1162,7 @@ def next_move(character: dict, board: dict) -> None:
     No doctests, requires user input
     """
     move_valid = False
-    print("\n\033[1mWhich direction would you like to go?\033[0m")
+    print("\033[1mWhich direction would you like to go?\033[0m")
     get_menu("move")
     while not move_valid:
         direction = get_valid_input('direction', MOVE_OPTIONS())
