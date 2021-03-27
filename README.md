@@ -54,18 +54,16 @@
 | Elaborate foe/god summoning                  |   Y   |
 | Elaborate class healing                      |   Y   |
 | Damage character does increases at lvl-up    |   Y   |
-| Print critical hit messaging                 |   N   |
-| Fix attack messaging                         |   N   |
+| Print critical hit messaging                 |   Y   |
+| Fix attack messaging                         |   Y   |
 | Foes become more challenging to defeat       |   Y   |
 | Game ends if character dies                  |   Y   |
-| Elaborate storyline                          |   N   |
+| Elaborate storyline                          |   IP  |
 | Change sleep timing to run the game faster   |   Y   |
-| Implement color for foe and god. Use make_character    |   N   |
+| Implement color for foe and god. Use make_character    |   Y   |
 | Change chance of encountering foes           |   Y   |
 | Change EXP gain and level up values          |   Y   |
-| Double check to quit game                    |   N   |
 | Make input loops to check validity           |   Y   |
-| Can foes flee?                               |   ?   |
 
 
 ### Unit Test Checklist
