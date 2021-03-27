@@ -1443,10 +1443,10 @@ def combat_round(attacker: dict, opposition: dict) -> None:
     :param attacker: a dictionary of either character or foe stats
     :param opposition: a dictionary of either character or foe stats
     :precondition: both attacker and opposition dictionaries include keys-- "name", "attacks", "HP", and "damage"
-                   "crit_chance", "atk_modifier", "crit_modifier", and "dmg_modifier"
+                   "crit_chance", "atk_modifier", "crit_modifier", "dmg_modifier", "max-HP", "AC"
     :precondition: value of "name" is a string, the name of attacker or opposition
     :precondition: value of "attacks" is a list of string elements
-    :precondition: value of "HP", "atk_modifier", "crit_modifier", "dmg_modifier" is an integer
+    :precondition: value of "max-HP", "AC", "HP", "atk_modifier", "crit_modifier", "dmg_modifier" is an integer
     :precondition: value of "damage" is a tuple, the damage die for attacker or opposition
     :precondition: value of "crit_chance" is a list of integers
     :postcondition: amount of damage from attacker to foe is determined
