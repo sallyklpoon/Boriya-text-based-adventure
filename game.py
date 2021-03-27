@@ -1725,7 +1725,7 @@ def end_game(character: dict) -> None:
               f"\nAs you look down at Erebus' lifeless body, you see an inkling of light appear through \n"
               f"the darkened clouds above. You feel the blight slowly leave the forest, as the moonlight\n"
               f"begins to pour in through the shadows. Your journey has finally come to an end.\n"
-              f"\nMay you rest easy now, {character['name']}, the Forest of Bóriya is finally rid of its.\n"
+              f"\nMay you rest easy now, {character['name']}, the Forest of Bóriya is finally rid of its\n"
               f"blight.\n"
               f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n")
     else:  # quit ending
