@@ -1595,7 +1595,7 @@ def level_paladin(character: dict) -> None:
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
 
-def check_goal_attained(character: dict) -> bool:
+def goal_attained(character: dict) -> bool:
     """Check if character has arrived at goal location.
 
     :precondition: x_location is an integer representing character's current x-location
@@ -1758,7 +1758,7 @@ def game() -> None:
         if character["quit"]:
             achieved_goal = True
         else:
-            achieved_goal = check_goal_attained(character)
+            achieved_goal = goal_attained(character)
             if (character["x-location"], character["y-location"]) != GOAL_LOCATION():
                 check_for_foe(character, achieved_goal, board)
     end_game(character)
