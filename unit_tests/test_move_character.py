@@ -28,5 +28,3 @@ class TestMoveCharacter(TestCase):
         expected = {"x-location": 1, "y-location": 8}
         move_character("4", character)
         self.assertEqual(character, expected)
-
-

@@ -37,4 +37,3 @@ class TestNextMove(TestCase):
         expected = {"x-location": 70, "y-location": 101}
         next_move(character, board)
         self.assertEqual(character, expected)
-
