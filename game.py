@@ -148,23 +148,10 @@ def START_GAME_MSG() -> str:
            "in droves back to the blight's source. None ever returned. \n" \
            "\n" \
            "As a child, you lost your family to the blight, and swore to end it's dominion over the land. Over \n" \
-           "the years, your quest to stop the land brought you wisdom of a way to end the land's suffering. A \n" \
+           "the years, you gathered rumours and searched for wisdom in order to end the land's suffering. A \n" \
            "powerful being named Erebus is said to be the creator of this blight; a being so powerful, some \n" \
            "consider a god. If one were to kill Erebus, perhaps the land would feel peace once more. \n" \
            "\n" \
-           "\n" \
-           "Your journey has finally brought you back to the source of it all. As you look forward, the \n" \
-           "void that has taken over the Forest of Bóriya stares you right in the eyes. An abyss \n" \
-           "\n" \
-           "\n" \
-           "\n" \
-           "\n" \
-           "\n" \
-           "\n" \
-           "\n" \
-           "Your journey has brought you deep into the heartland of Vosynia as you reach the entrance of \n"\
-           "the Forest of Bóriya.\n" \
-           "You've just completed a 7-hour hackathon and you've spent the last\n"\
            "༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
 
 
@@ -174,7 +161,14 @@ def PROLOGUE() -> str:
 
     :return: a string, the prologue of the game"""
     return "\n༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n" \
-           "PROLOGUE SPACE." \
+            "\n" \
+           "Your journey has finally brought you back to the source of it all. As you look forward, the \n" \
+           "void that has taken over the Forest of Bóriya stares you right in the eyes. Will this be the end? \n" \
+           "\n" \
+           "You must grow more powerful, for the void that lays ahead of you will tear apart weak souls. It would \n" \
+           "be wise to approach carefully, for the closer you get to the heart of the abyss, the stronger your \n" \
+           "enemies will become. You must reach the great temple where the old Prirod druids used worship the  \n" \
+           "night, for it is there that Erebus spreads his deep darkness.\n" \
            "\n༺═─────────────────────────────────────────────────────────────────────────────────────────═༻\n"
 
 
@@ -1049,7 +1043,8 @@ def start_game() -> tuple:
     """
     print(START_GAME_MSG())
     character = make_character()
-    print(f"\nWELCOME TO VOSYNIA, {character['name']}" + PROLOGUE())
+    print(PROLOGUE())
+    time.sleep(5)
     return make_board(character['level']), character
 
 
