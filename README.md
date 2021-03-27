@@ -106,7 +106,7 @@ horizons they can explore will grow.
 | encounter                                    |   Y   |   N   |
 | gain_exp                                     |   Y   |   N   |
 | level_up                                     |   Y   |   N   |
-| level_class                                  |   N   |   N   |
+| level_class                                  |   Y   |   N   |
 | goal_attained                                |   N   |   N   |
 | summon_god                                   |   Y   |   N   |
 | final_boss_encounter                         |   N   |   N   |

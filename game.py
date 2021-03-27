@@ -291,7 +291,7 @@ def ILLUSIONIST_STATS_LVL3() -> dict:
             "crit_chance": [19, 20], "crit_modifier": 4, "initiative_modifier": 2}
 
 
-def ILLUSIONIST_LVL_UP() -> tuple:
+def ILLUSIONIST_LEVELS() -> tuple:
     """Return a tuple of Illusionist level-up starting from lvl 2.
 
     :return: tuple"""
@@ -331,7 +331,7 @@ def ROGUE_STATS_LVL3() -> dict:
             "crit_modifier": 2, "initiative_modifier": 6}
 
 
-def ROGUE_LVL_UP() -> tuple:
+def ROGUE_LEVELS() -> tuple:
     """Return a tuple of Rogue level-up starting from lvl 2.
 
     :return: tuple"""
@@ -371,7 +371,7 @@ def RANGER_STATS_LVL3() -> dict:
             "crit_modifier": 2, "initiative_modifier": 4}
 
 
-def RANGER_LVL_UP() -> tuple:
+def RANGER_LEVELS() -> tuple:
     """Return a tuple of Ranger level-up starting from lvl 2.
 
     :return: tuple"""
@@ -411,7 +411,7 @@ def PALADIN_STATS_LVL3() -> dict:
             "crit_modifier": 3, "initiative_modifier": 3}
 
 
-def PALADIN_LVL_UP() -> tuple:
+def PALADIN_LEVELS() -> tuple:
     """Return a tuple of Paladin level-up starting from lvl 2.
 
     :return: tuple"""
@@ -1647,25 +1647,37 @@ def level_up(character: dict, board: dict) -> None:
     print(f"\n\033[35mYou feel your power grow, you've levelled up. You're now able to explore new horizons!\033[0m")
 
     if character["class"] == "Illusionist":
-        level_class(character, ILLUSIONIST_LVL_UP())
+        level_class(character, ILLUSIONIST_LEVELS())
     elif character["class"] == "Rogue":
-        level_class(character, ROGUE_LVL_UP())
+        level_class(character, ROGUE_LEVELS())
     elif character["class"] == "Ranger":
-        level_class(character, RANGER_LVL_UP())
+        level_class(character, RANGER_LEVELS())
     elif character["class"] == "Paladin":
-        level_class(character, PALADIN_LVL_UP())
+        level_class(character, PALADIN_LEVELS())
     board.update(make_board(character['level']))
 
 
 def level_class(character: dict, class_lvl: tuple) -> None:
-    """Level up the character by its given class class.
+    """Update the character's class stats based on the class_lvl collections passed and character level.
 
     :param character: a dictionary of the character stats
     :param class_lvl: a tuple containing dictionaries of class level
-    :precondition: the character dictionary is non-empty
+    :precondition: the character dictionary contains the key, "level", an integer [2, 3]
+    :precondition: the correct class_lvl selection is passed based on the character's class (i.e. a character
+                   of the Rogue class would be passed with ROGUE_LEVELS() set of class dictionaries
+    :precondition: class_lvl is a tuple of dictionaries for each class level in a specific class, in order
     :precondition: the value of the character's "class" key is either "Illusionist", "Rogue", "Ranger", "Paladin"
     :postcondition: the character stats are levelled up accurately in accordance to their current level
     :return: no return value, character dictionary is updated
+
+    >>> sample_hero = {"level": 2}
+    >>> expected = {"level": 2}
+    >>> expected.update(ILLUSIONIST_STATS_LVL2())
+    >>> expected["attacks"] = list(map(hero_colour, expected["attacks"]))
+    >>> level_class(sample_hero, ILLUSIONIST_LEVELS())
+    You are now a \033[35mMesmer\033[0m.
+    >>> expected == sample_hero
+    True
     """
     level_character = {}
     if character["level"] == 2:
