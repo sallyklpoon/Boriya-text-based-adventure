@@ -99,7 +99,7 @@ horizons they can explore will grow.
 | check_for_foe                                |   Y   |   N   |
 | engage                                       |   Y   |   N   |
 | flee                                         |   Y   |   N   |
-| foe_flee                                     |   N   |   N   |
+| foe_flee                                     |   Y   |   N   |
 | initiative                                   |   N   |   N   |
 | combat_round                                 |   N   |   N   |
 | enter_combat                                 |   N   |   N   |
