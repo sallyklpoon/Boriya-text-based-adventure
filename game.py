@@ -490,10 +490,10 @@ def STRONG_FOE_1() -> dict:
     """Return the statistics of a strong foe.
 
     :return: a dictionary"""
-    return {"name": foe_colour("Wraith"),
+    return {"name": "Wraith",
             "AC": 14,
             "max-HP": 18,
-            "attacks": list(map(foe_colour, ["Ray of Sickness", "Ray of Enfeeblement"])),
+            "attacks": ["Ray of Sickness", "Ray of Enfeeblement"],
             "atk_modifier": 2,
             "damage": (2, 4),
             "dmg_modifier": 4,
@@ -509,10 +509,10 @@ def STRONG_FOE_2() -> dict:
     """Return the statistics of a strong foe.
 
     :return: a dictionary"""
-    return {"name": foe_colour("Shadow"),
+    return {"name": "Shadow",
             "AC": 15,
             "max-HP": 16,
-            "attacks": list(map(foe_colour, ["Life Drain", "Curse"])),
+            "attacks": ["Life Drain", "Curse"],
             "atk_modifier": 3,
             "damage": (2, 6),
             "dmg_modifier": 2,
@@ -528,11 +528,10 @@ def STRONG_FOE_3() -> dict:
     """Return the statistics of a strong foe.
 
     :return: a dictionary"""
-    return {"name": foe_colour("Zealot"),
+    return {"name": "Zealot",
             "AC": 16,
-            "HP": 12,
             "max-HP": 12,
-            "attacks": list(map(foe_colour, ["Necrotic Touch", "Inflict Wounds"])),
+            "attacks": ["Necrotic Touch", "Inflict Wounds"],
             "atk_modifier": 2,
             "damage": (2, 8),
             "dmg_modifier": 2,
@@ -576,10 +575,10 @@ def EPIC_FOE_2() -> dict:
     """Return the statistics of a epic foe.
 
     :return: a dictionary"""
-    return {"name": foe_colour("Devourer"),
+    return {"name": "Devourer",
             "AC": 18,
             "max-HP": 20,
-            "attacks": list(map(foe_colour, ["Devour", "Blight", "Enervation"])),
+            "attacks": ["Devour", "Blight", "Enervation"],
             "atk_modifier": 8,
             "damage": (2, 6),
             "dmg_modifier": 2,
@@ -595,10 +594,10 @@ def EPIC_FOE_3() -> dict:
     """Return the statistics of a epic foe.
 
     :return: a dictionary"""
-    return {"name": foe_colour("Nightwalker"),
+    return {"name": "Nightwalker",
             "AC": 20,
             "max-HP": 24,
-            "attacks": list(map(foe_colour, ["Annihilating Aura", "Touch of Death", "Circle of Death"])),
+            "attacks": ["Annihilating Aura", "Touch of Death", "Circle of Death"],
             "atk_modifier": 4,
             "damage": (3, 6),
             "dmg_modifier": 4,
