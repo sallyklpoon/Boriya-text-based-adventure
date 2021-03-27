@@ -1704,12 +1704,12 @@ def end_game(character: dict) -> None:
     """
 
     if character["HP"] <= 0:
-        print(f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n"
+        print(f"\n༺═────────────────────────────────────────────────────────────────────────────────────────═༻\n\n"
               "Falling down to the cold ground, you feel your soul slowly being devoured by the darkness around you.\n"
               f"As you breathe your last breath, you see a sliver of moonlight appear in the sky above you, \n"
               f"but it only lasts for an instant, before being swallowed by the infinite nothingness around you.\n"
               f"\nGoodbye, {character['name']}.\n "
-              f"༺═────────────────────────────────────────────────────────────────────────────═༻\n")
+              f"\n༺═────────────────────────────────────────────────────────────────────────────────────────═༻\n")
     elif (character["x-location"], character["y-location"]) == GOAL_LOCATION():
         print(f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n"
               f"\nAs you look down at Erebus' lifeless body, you see an inkling of light appear through \n"
