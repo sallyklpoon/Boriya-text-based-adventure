@@ -1775,15 +1775,14 @@ def final_boss_encounter(character: dict, boss: dict) -> None:
 def flee_boss(character: dict, boss: dict) -> None:
     """Determine if character takes damage when fleeing from boss.
 
-    If successful, print message will tell character they left the encounter successfully,
-    if unsuccessful, print message will show damage that character has taken.
+    If successful, character will not take damage,
+    if unsuccessful, character will take damage of rolled FLEE_DAMAGE_DIE().
 
     :param character: a dictionary containing character stats
     :param boss: a dictionary containing boss stats
     :precondition: character contains the key "HP"
     :precondition: the value of character["HP"] is an integer > 0, representing the character's current health points
     :postcondition: accurately modify the current character's 'HP' if they are unsuccessful fleeing
-    :postcondition: informative messages are printed to confirm if character can successfully flee or has taken damage
     :return: possible modified character["HP"]
     :return: informative printed messages of flee success
 
