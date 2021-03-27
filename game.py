@@ -1602,22 +1602,19 @@ def check_goal_attained(character: dict) -> bool:
     :precondition: y_location is an integer representing character's current y-location
     :postcondition: accurately checks if a character's current x and y-location matches the goal location
     :postcondition: returns a Boolean True if character is at the goal location based on GOAL_LOCATION()
+                    and the boss has been defeated (i.e. boss['HP'] == 0)
     :postcondition: returns a Boolean False if character is not at the goal location based on GOAL_LOCATION()
+                    or if character
     :return: a Boolean value
 
-    >>> check_goal_attained(0, 0)
-    False
-    >>> check_goal_attained(7, 1)
-    False
-    >>> check_goal_attained(GOAL_LOCATION()[0], GOAL_LOCATION()[1])
-    True
+    No doctests, final_boss_encounters uses random module
     """
     if (character["x-location"], character["y-location"]) == GOAL_LOCATION():
         boss = summon_god()
         final_boss_encounter(character, boss)
         if boss["HP"] <= 0:
             return True
-        elif character['HP'] > 0 and boss['HP'] > 0:
+        else:   # boss not killed, character either flee or died
             return False
     else:
         return False
