@@ -60,7 +60,15 @@ in a south-easterly direction.
 * The game has been balanced to be relatively easy to win with all classes, but if you find yourself struggling, we 
 recommend opting for the Paladin class as it seems to perform the most consistently.
 
-
+### Code Stats
+| Stat                | Total |
+| ---                 | :---: |
+| Defined Constants   | 57  |
+| Unit Tests          | 158 |
+| Functions           | 38  |
+| Coded Lines (*excl. white spaces, constants, docstrings, and doctests*) | 291 |
+| Total Lines         | 2056 |
+**for lines of code per function, go to Unit Test Checklist table*
 
 ### Code Requirements
 
@@ -125,47 +133,47 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 
 ### Unit Test Checklist
 
-| In-game Function                             | Done? | Checked? |
-|       -----                                  | :---:   |  :---: |
-| ALL DOCTESTS RUNNING?                        |YES!   |   YES!   |
-| hero_colour                                  |   Y   |   Y   |
-| foe_colour                                   |   Y   |   Y   |
-| roll                                         |   Y   |   Y   |
-| get_menu                                     |   Y   |   Y   |
-| get_user_choice                              |   Y   |   Y   |
-| assign_hp                                    |   Y   |   Y   |
-| is_not_digit                                 |   Y   |   Y   |
-| get_valid_input                              |   Y   |   Y   |
-| lvl_board_max                                |   Y   |   Y   |
-| make_board                                   |   Y   |   Y   |
-| print_map                                    |   Y   |   Y   |
-| choose_class                                 |   Y   |   Y   | <-- 1 test failed -M/ DEBUGGED -S
-| get_name                                     |   Y   |   Y   |
-| make_character                               |   Y   |   y   | <-- title with test_ + 2 test failed -M/ DEBUGGED -S
-| start_game                                   |   Y   |   Y   |
-| valid_move                                   |   Y   |   Y   |
-| move_character                               |   Y   |   Y   |
-| next_move                                    |   Y   |   Y   |
-| heal                                         |   Y   |   Y   | <-- need to change messaging, tests run fine -M
-| format_foe                                   |   Y   |   Y   |
-| summon_foe                                   |   Y   |   Y   |
-| select_foe                                   |   Y   |   Y   |
-| check_for_foe                                |   Y   |   Y   |
-| engage                                       |   Y   |   Y   |
-| flee                                         |   Y   |   Y   |
-| foe_flee                                     |   Y   |   Y   |
-| initiative                                   |   Y   |   Y   |
-| combat_round                                 |   Y   |   Y   |
-| enter_combat                                 |   Y   |   Y   |
-| encounter                                    |   Y   |   Y   |
-| gain_exp                                     |   Y   |   Y   |
-| level_up                                     |   Y   |   Y   |
-| level_class                                  |   Y   |   Y   |
-| goal_attained                                |   Y   |   Y   |
-| summon_god                                   |   Y   |   Y   |
-| final_boss_encounter                         |   Y   |   Y   |
-| flee_boss                                    |   Y   |   Y   |
-| end_game                                     |   Y   |   Y   |
+| In-game Function                             | Done? | Checked? | # of lines |
+|       -----                                  | :---:   |  :---: |  :---: |
+| ALL DOCTESTS RUNNING?                        |YES!   |   YES!   |    -   |
+| hero_colour                                  |   Y   |   Y   | 1 |
+| foe_colour                                   |   Y   |   Y   | 1 |
+| format_foe                                   |   Y   |   Y   | 2 |
+| roll                                         |   Y   |   Y   | 2 |
+| get_menu                                     |   Y   |   Y   | 9 |
+| get_user_choice                              |   Y   |   Y   | 1 |
+| assign_hp                                    |   Y   |   Y   | 1 |
+| is_not_digit                                 |   Y   |   Y   | 4 |
+| get_valid_input                              |   Y   |   Y   | 5 |
+| lvl_board_max                                |   Y   |   Y   | 6 |
+| make_board                                   |   Y   |   Y   | 5 |
+| choose_class                                 |   Y   |   Y   | 11 |
+| get_name                                     |   Y   |   Y   | 1 |
+| make_character                               |   Y   |   y   | 5 |
+| start_game                                   |   Y   |   Y   | 5 |
+| print_map                                    |   Y   |   Y   | 10 |
+| valid_move                                   |   Y   |   Y   | 9 |
+| move_character                               |   Y   |   Y   | 8 |
+| next_move                                    |   Y   |   Y   | 13 |
+| heal                                         |   Y   |   Y   | 8 |
+| summon_foe                                   |   Y   |   Y   | 10 |
+| check_for_foe                                |   Y   |   Y   | 5 |
+| engage                                       |   Y   |   Y   | 4 |
+| flee                                         |   Y   |   Y   | 12 |
+| foe_flee                                     |   Y   |   Y   | 1 |
+| initiative                                   |   Y   |   Y   | 8 |
+| combat_round                                 |   Y   |   Y   | 15 |
+| enter_combat                                 |   Y   |   Y   | 13 |
+| encounter                                    |   Y   |   Y   | 9 |
+| gain_exp                                     |   Y   |   Y   | 5 |
+| level_up                                     |   Y   |   Y   | 9 |
+| level_class                                  |   Y   |   Y   | 8 |
+| goal_attained                                |   Y   |   Y   | 9 |
+| summon_god                                   |   Y   |   Y   | 4 |
+| final_boss_encounter                         |   Y   |   Y   | 6 |
+| flee_boss                                    |   Y   |   Y   | 8 |
+| end_game                                     |   Y   |   Y   | 7 |
+| game                                         |   -   |  -    | 9 |
 
 
 #### ** Add any comments for me above this line **
