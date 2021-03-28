@@ -7,11 +7,44 @@
 #### ** Add any comments for me below this line **
 
 ### Special Features from Comrades
-* healing takes place by each class' hit die rather than a constant value
-* our map is dynamic! The map overall is 25 x 25, but the player will start with a smaller map. As they level up, the
+
+* Our map is dynamic! The map overall is 25 x 25, but the player will start with a smaller map. As they level up, the
 horizons they can explore will grow.
 
-* 
+* ASCII art implementation for the map, in order tto increase immersion for the player.
+  
+* Colour coded print statements that increase readability of the game. 
+
+* We have added additional combat statistics to the game:
+    * **Armor Class** stat that dictates how likely a character is able to block/dodge an attack from a foe.
+    * **Initiative modifier** that will add bonuses to the initiative roll of a character.
+    * **Attack modifier** that increases the chance a character will land a hit on a foe.
+    * **Damage modifier** that acts as a source of consistent damage, in case a character/foe rolls poorly.
+    * **Critical Hit** mechanic:
+      * / Critical Hit modifiers
+    
+* Healing takes into account a class' hit die rather than a constant value. This was implemented to increase variety 
+in classes, as well as to help with game balance.
+  
+
+### Special Notes
+
+* Although it may seem that the map is not 25x25 at first, this was a conscious decision in order give the player's
+a reward for levelling up. Similar to how RPGs have areas on a map that you are not able to enter until you have 
+  reached a certain level.
+  
+* If you'd like to beat the game the fastest way possible, we suggest following the class guidelines. The Illusionist
+ for example has a very weak early game, so any time you take damage it is probably a good idea to flee and restore 
+  your health in order to prepare for the next battle. Likewise, in the endgame, the Ranger class is weaker than the 
+  other classes, so it is important to take note of your health as you travel through the map.
+  
+* The final boss is located at 24, 24: so if you would like to finish the game as fast as possible, we suggest moving 
+in a south-easterly direction.
+  
+* The game has been balanced to be relatively easy to win with all classes, but if you find yourself struggling, we 
+recommend opting for the Paladin class as it seems to perform the most consistently.
+
+
 
 ### Code Requirements
 
@@ -109,8 +142,8 @@ horizons they can explore will grow.
 | level_class                                  |   Y   |   Y   |
 | goal_attained                                |   Y   |   Y   |
 | summon_god                                   |   Y   |   Y   |
-| final_boss_encounter                         |   Y   |   N   |
-| flee_boss                                    |   Y   |   N   |
+| final_boss_encounter                         |   Y   |   Y   |
+| flee_boss                                    |   Y   |   Y   |
 | end_game                                     |   N   |   N   |
 
 
