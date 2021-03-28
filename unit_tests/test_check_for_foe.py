@@ -51,4 +51,3 @@ class TestCheckForFoe(TestCase):
                     "y-location": GOAL_LOCATION()[1]}
         check_for_foe(character, achieved_goal, board)
         self.assertEqual(expected, character)
-
