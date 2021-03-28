@@ -11,7 +11,7 @@ class TestEndGame(TestCase):
     def test_end_game_prints_message_if_character_dead(self, mock_output):
         character = {"name": "James", "HP": 0, "x-location": 2, "y-location": 4, "quit": False}
         expected = f"\n༺═────────────────────────────────────────────────────────────────────────────────────────═༻\n"\
-                   f"\n" \
+                   f"\n"\
                    f"Falling down to the cold ground, you feel your soul slowly being devoured by the darkness " \
                    f"around you.\nAs you breathe your last breath, you see a sliver of moonlight appear in the sky " \
                    f"above you, \nbut it only lasts for an instant, before being swallowed by the infinite " \
@@ -33,7 +33,7 @@ class TestEndGame(TestCase):
                    f"\nMay you rest easy now, {character['name']}, the Forest of Bóriya is finally rid of its\n"\
                    f"blight.\n"\
                    f"\n༺═────────────────────────────────────────────────────────────────────────────═༻\n" \
-                   f"\n\nThank you for playing, {character['name']}! - Marti & Sally\n"
+                   f"\nThank you for playing, {character['name']}! - Marti & Sally\n"
         end_game(character)
         actual_output = mock_output.getvalue()
         self.assertEqual(expected, actual_output)
