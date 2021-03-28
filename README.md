@@ -29,6 +29,9 @@ horizons they can explore will grow.
 * Healing takes into account a class' hit die rather than a constant value. This was implemented to increase variety 
 in classes, as well as to help with game balance.
   
+* EXP gain has also been altereted to allow characters to gain at least some EXP if the foe's flee. This was 
+implemented to be more in line with mainstream RPG games, as well as to speed up the game.
+  
 * Improved input validation not only verifies if you have inputted a valid direction to travel, but also that
   checks if you may have inputted something other than a valid menu choice 
   (i.e. if you didn't enter a valid number choice by accident, we got you!)
