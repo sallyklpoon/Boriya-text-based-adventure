@@ -1806,9 +1806,8 @@ def gain_exp(character: dict, experience_gain: int, board: dict) -> None:
     """
     character["EXP"] += experience_gain
     print(hero_colour(f"You've earned {experience_gain} experience points. Current EXP: {character['EXP']}"))
-    if character["EXP"] >= LVL2_EXP_OUTSET() and character['level'] == 1:
-        level_up(character, board)
-    if character["EXP"] >= LVL3_EXP_OUTSET() and character['level'] == 2:
+    if (character["EXP"] >= LVL2_EXP_OUTSET() and character['level'] == 1) \
+            or (character["EXP"] >= LVL3_EXP_OUTSET() and character['level'] == 2):
         level_up(character, board)
 
 
@@ -1890,10 +1889,10 @@ def level_class(character: dict, class_lvl: tuple) -> None:
 
 # ===== CHECK IF GOAL ATTAINED =========================================================================================
 
-def goal_attained(character: dict) -> bool:
+def goal_attained(hero: dict) -> bool:
     """Check if character has completed endgame requirements to win the game
 
-    :param character: a dictionary containing character stats
+    :param hero: a dictionary containing character stats
     :precondition: x_location is an integer representing character's current x-location
     :precondition: y_location is an integer representing character's current y-location
     :postcondition: accurately checks if a character's current x and y-location matches the goal location
@@ -1906,12 +1905,12 @@ def goal_attained(character: dict) -> bool:
 
     No doctests, final_boss_encounters uses random module
     """
-    if (character["x-location"], character["y-location"]) == GOAL_LOCATION():
+    if (hero["x-location"], hero["y-location"]) == GOAL_LOCATION():
         boss = summon_god()
-        final_boss_encounter(character, boss)
+        final_boss_encounter(hero, boss)
         if boss["HP"] <= 0:
             return True
-        else:  # boss not killed, character either flee or died
+        else:  # boss not killed, hero either flee or died
             return False
     else:
         return False
@@ -1938,13 +1937,13 @@ def summon_god() -> dict:
     return boss
 
 
-def final_boss_encounter(character: dict, boss: dict) -> None:
+def final_boss_encounter(hero: dict, boss: dict) -> None:
     """Send character into an encounter with boss.
 
     Encounter ends by character's choice to flee or by character and boss' fight to the death
     (either character or boss' "HP" key value is 0).
 
-    :param character: a dictionary containing character stats
+    :param hero: a dictionary containing character stats
     :param boss: a dictionary containing boss stats
     :precondition: both character and boss dictionaries include keys-- "name", "attacks", "HP", and "damage"
     :precondition: value of "name" is a string, the name of character or boss
@@ -1964,20 +1963,20 @@ def final_boss_encounter(character: dict, boss: dict) -> None:
     """
     print("\nYou arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
           "entirely of unending nothingness. Are you ready to die?")
-    enter_combat(character=character, foe=boss)
+    enter_combat(character=hero, foe=boss)
     if boss["HP"] <= 0:
         print(f"\n{boss['name']} is dead.")
-    elif character['HP'] > 0:
-        flee_boss(character, boss)
+    elif hero['HP'] > 0:
+        flee_boss(hero, boss)
 
 
-def flee_boss(character: dict, boss: dict) -> None:
+def flee_boss(hero: dict, boss: dict) -> None:
     """Determine if character takes damage when fleeing from boss.
 
     If successful, character will not take damage,
     if unsuccessful, character will take damage of rolled FLEE_DAMAGE_DIE().
 
-    :param character: a dictionary containing character stats
+    :param hero: a dictionary containing character stats
     :param boss: a dictionary containing boss stats
     :precondition: character contains the key "HP"
     :precondition: the value of character["HP"] is an integer > 0, representing the character's current health points
@@ -1989,11 +1988,11 @@ def flee_boss(character: dict, boss: dict) -> None:
     """
     if roll(ONE_D100()) <= FLEE_SUCCEED_CHANCE():
         damage = roll(FLEE_DAMAGE_DIE())
-        character["HP"] -= damage
+        hero["HP"] -= damage
         print(f"As you attempt to flee from {boss['name']}, he crawls towards you\n"
               f"using {random.choice(boss['attacks'])} to deal \033[31m{damage}\033[0m damage.\n")
         time.sleep(0.5)
-        print(f"Your health is now at \033[34m{character['HP']}\033[0m points.\n")
+        print(f"Your health is now at \033[34m{hero['HP']}\033[0m points.\n")
 
     print(f"\n{boss['name']}' blank eyes follow you as you cower away in fear."
           f"\nYou will never rid the blight from this land as long as he lives.\n"
