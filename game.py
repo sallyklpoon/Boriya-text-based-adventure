@@ -884,7 +884,7 @@ def get_valid_input(decision_type: str, menu_type: tuple) -> str:
     user_choice = get_user_choice(decision_type)
     while user_choice == "" or list(filter(is_not_digit, user_choice)) \
             or int(user_choice) not in range(1, len(menu_type) + 1):
-        print('\nChoice is invalid, adventurer...\nPlease input a number within the menu selection.')
+        print(f"\nChoice is invalid, adventurer...\nPlease input a number within the menu selection.")
         user_choice = get_user_choice(decision_type)
     return user_choice
 
@@ -1176,7 +1176,7 @@ def choose_class() -> dict:
 
     No doctest, get_valid_input calls upon another helper function that requires input
     """
-    print("\n\033[1mWhat kind of adventurer are you?\033[0m\n\n" + CLASS_INFO())
+    print(f"\n\033[1mWhat kind of adventurer are you?\033[0m\n\n" + CLASS_INFO())
     get_menu("class")
     chosen_class = get_valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
@@ -1287,7 +1287,7 @@ def print_map(hero: dict, board: dict) -> None:
             if (column, row) == (hero["x-location"], hero["y-location"]):
                 print(f"({hero_colour('웃')})", end="")
             elif (column, row) == GOAL_LOCATION():
-                print("\033[31m( ☩ )\033[0m", end="")
+                print(f"\033[31m( ☩ )\033[0m", end="")
             else:
                 print(random.choice(MAP_FILLERS()), end="")
         print("")
@@ -1407,7 +1407,7 @@ def next_move(character: dict, board: dict) -> None:
     No doctests, requires user input
     """
     move_valid = False
-    print("\033[1mWhich direction would you like to go?\033[0m")
+    print(f"\033[1mWhich direction would you like to go?\033[0m")
     get_menu("move")
     while not move_valid:
         direction = get_valid_input('direction', MOVE_OPTIONS())
@@ -1418,7 +1418,7 @@ def next_move(character: dict, board: dict) -> None:
                 move_valid = True
                 move_character(direction, character)
             else:
-                print("\nYou've reached the limits of the map, adventurer...")
+                print(f"\nYou've reached the limits of the map, adventurer...")
 
 
 # ===== CHECK FOR MONSTERS =============================================================================================
@@ -1450,7 +1450,7 @@ def heal(character: dict) -> None:
             character["HP"] += heal_points
         else:
             character["HP"] = character["max-HP"]
-        print("\n\033[32m✣ As you venture through the darkness, you take a moment to rest your weary soul. ✣\n"
+        print(f"\n\033[32m✣ As you venture through the darkness, you take a moment to rest your weary soul. ✣\n"
               f"✣ Your health has been healed to {character['HP']} points. ✣\n\033[0m")
     time.sleep(0.5)
 
@@ -1527,7 +1527,7 @@ def engage() -> bool:
 
     No doctests, user input required
     """
-    print("\n\033[1mWhat will you do next, adventurer?\033[0m")
+    print(f"\n\033[1mWhat will you do next, adventurer?\033[0m")
     get_menu("engage")
     engage_choice = get_valid_input('engage', ENGAGE_OPTIONS())
     return engage_choice == "1"
@@ -1917,8 +1917,8 @@ def final_boss_encounter(hero: dict, boss: dict) -> None:
 
     No doctests, called enter_combat() and flee() uses random module
     """
-    print("\nYou arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
-          "entirely of unending nothingness. Are you ready to die?")
+    print(f"\nYou arrive at the source of the darkness. Standing before you is an incomprehensible being made \n"
+          f"entirely of unending nothingness. Are you ready to die?")
     enter_combat(character=hero, foe=boss)
     if boss["HP"] <= 0:
         print(f"\n{boss['name']} is dead.")
