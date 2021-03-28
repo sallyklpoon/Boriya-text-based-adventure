@@ -21,7 +21,10 @@ horizons they can explore will grow.
     * **Attack modifier** that increases the chance a character will land a hit on a foe.
     * **Damage modifier** that acts as a source of consistent damage, in case a character/foe rolls poorly.
     * **Critical Hit** mechanic:
-      * / Critical Hit modifiers
+      * The critical hit mechanic works by checking a character's attack roll and comparing it to their critical 
+        hit chance. Some classes such as the Rogue have higher chances to critical hit.
+      * Once a critical hit has been established, a characters critical hit modifier is used to calculate the 
+    total damage they inflicted.
     
 * Healing takes into account a class' hit die rather than a constant value. This was implemented to increase variety 
 in classes, as well as to help with game balance.
