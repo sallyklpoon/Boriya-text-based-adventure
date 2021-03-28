@@ -1176,7 +1176,7 @@ def choose_class() -> dict:
 
     No doctest, get_valid_input calls upon another helper function that requires input
     """
-    print(f"\n\033[1mWhat kind of adventurer are you?\033[0m\n\n" + CLASS_INFO())
+    print(f"\n\033[1mWhat kind of an adventurer are you?\033[0m\n\n" + CLASS_INFO())
     get_menu("class")
     chosen_class = get_valid_input('class', CLASS_OPTIONS())
     if chosen_class == "1":
