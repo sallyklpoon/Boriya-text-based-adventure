@@ -385,7 +385,7 @@ def PALADIN_STATS_LVL1() -> dict:
 
     :return: a dictionary of Paladin level 1 stats"""
     return {"class": "Paladin", "level_name": "Protector",
-            "AC": 15, "HP": 12, "max-HP": 12, "hit_dice": (1, 4),
+            "AC": 15, "max-HP": 12, "hit_dice": (1, 4),
             "attacks": ["Branding Smite", "Thunderous Smite", "Shield Bash"],
             "atk_modifier": 3, "damage": (1, 8), "dmg_modifier": 2,
             "crit_chance": [20], "crit_modifier": 2, "initiative_modifier": 1}

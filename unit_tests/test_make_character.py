@@ -24,7 +24,7 @@ class TestMakeCharacter(TestCase):
                                "\033[36mPhantasmal Force\033[0m",
                                "\033[36mShadow Blade\033[0m"]
         actual = make_character()
-        self.assertEqual(actual, expected)
+        self.assertEqual(expected, actual)
 
     @patch('builtins.input', side_effect=["Sally! !", "2"])
     def test_make_character_dictionary_some_name_class_option_2(self, mock_input):
@@ -35,8 +35,9 @@ class TestMakeCharacter(TestCase):
         expected['attacks'] = ["\033[36mSneak Attack\033[0m",
                                "\033[36mtheir Dagger\033[0m",
                                "\033[36mtheir Hand-Crossbow\033[0m"]
+        expected['HP'] = expected['max-HP']
         actual = make_character()
-        self.assertEqual(actual, expected)
+        self.assertEqual(expected, actual)
 
     @patch('builtins.input', side_effect=["Marti", "3"])
     def test_make_character_dictionary_some_name_class_option_3(self, mock_input):
@@ -47,8 +48,9 @@ class TestMakeCharacter(TestCase):
         expected['attacks'] = ["\033[36mEnsnaring Strike\033[0m",
                                "\033[36mHail of Thorns\033[0m",
                                "\033[36mThorn Whip\033[0m"]
+        expected['HP'] = expected['max-HP']
         actual = make_character()
-        self.assertEqual(actual, expected)
+        self.assertEqual(expected, actual)
 
     @patch('builtins.input', side_effect=["~~Jake", "4"])
     def test_make_character_dictionary_some_name_class_option_4(self, mock_input):
@@ -59,5 +61,6 @@ class TestMakeCharacter(TestCase):
         expected['attacks'] = ["\033[36mBranding Smite\033[0m",
                                "\033[36mThunderous Smite\033[0m",
                                "\033[36mShield Bash\033[0m"]
+        expected['HP'] = expected['max-HP']
         actual = make_character()
-        self.assertEqual(actual, expected)
+        self.assertEqual(expected, actual)

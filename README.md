@@ -69,7 +69,7 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 
 ### Game Specifications
 
-| Modification Requirement                     | Done? |
+| Modification Checklist                       | Done? |
 |       -----                                  | ---   |
 | game.pdf Flowchart                           |   N   |
 | 25 x 25 grid environment                     |   Y   |
@@ -98,7 +98,7 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | Fix attack messaging                         |   Y   |
 | Foes become more challenging to defeat       |   Y   |
 | Game ends if character dies                  |   Y   |
-| Elaborate storyline                          |   IP  |
+| Elaborate storyline                          |   Y  |
 | Change sleep timing to run the game faster   |   Y   |
 | Implement color for foe and god. Use make_character    |   Y   |
 | Change chance of encountering foes           |   Y   |
@@ -121,14 +121,14 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | lvl_board_max                                |   Y   |   Y   |
 | make_board*                                  |   Y   |   Y   |
 | print_map                                    |   Y   |   Y   |
-| choose_class                                 |   Y   |   N   | <-- 1 test failed
+| choose_class                                 |   Y   |   Y   | <-- 1 test failed -M/ DEBUGGED -S
 | get_name                                     |   Y   |   Y   |
-| make_character                               |   Y   |   N   | <-- not titled with test_ + 2 test failed
+| make_character                               |   Y   |   y   | <-- title with test_ + 2 test failed -M/ DEBUGGED -S
 | start_game                                   |   Y   |   Y   |
 | valid_move                                   |   Y   |   Y   |
 | move_character                               |   Y   |   Y   |
 | next_move                                    |   Y   |   Y   |
-| heal                                         |   Y   |   Y   | <-- need to change messaging, tests run fine
+| heal                                         |   Y   |   Y   | <-- need to change messaging, tests run fine -M
 | format_foe                                   |   Y   |   Y   |
 | summon_foe                                   |   Y   |   Y   |
 | select_foe                                   |   Y   |   Y   |
@@ -192,26 +192,6 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | final_boss_encounter                         |   YEP   |   N   |
 | boss_flee                                    |   YEP   |   N   |
 | end_game                                     |   YEP   |   N   |
-
-### Unit Test 
-
-|                                              |CREATED?| TEST READY? |
-| engage                                       |   N  |   N   |
-| flee                                         |   N   |   N   |
-| foe_flee                                     |   N   |   N   |
-| initiative                                   |   N   |   N   |
-| combat_round                                 |   N   |   N   |
-| enter_combat                                 |   N   |   N   |
-| encounter                                    |   N   |   N   |
-| gain_exp                                     |   N   |   N   |
-| level_up                                     |   N   |   N   |
-| level_class                                  |   YEP   |   N   |
-| goal_attained                                |   YEP   |   N   |
-| summon_god                                   |   YEP   |   N   |
-| final_boss_encounter                         |   N   |   N   |
-| boss_flee                                    |   YEP  |   N   |
-| end_game                                     |   N   |   N   |
-
 
 
 
