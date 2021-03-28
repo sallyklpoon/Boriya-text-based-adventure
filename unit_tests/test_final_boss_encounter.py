@@ -14,7 +14,7 @@ class TestFinalBossEncounter(TestCase):
         hero = {"name": "Donald", "HP": 10, "max-HP": 10, "damage": (1, 20), "level": 3,
                 "atk_modifier": 0, "attacks": ["Move1", "Move2"], "EXP": 80, "initiative_modifier": 1,
                 "dmg_modifier": 5, "crit_chance": [20], "AC": 19}
-        final_boss_encounter(character=hero, boss=boss)
+        final_boss_encounter(hero=hero, boss=boss)
         self.assertTrue(boss["HP"] <= 0 < hero["HP"])   # boss dead, hero alive
 
     @patch('builtins.input', side_effect=["1", "1"])    # User chooses to continue attack, 2 rounds
@@ -25,7 +25,7 @@ class TestFinalBossEncounter(TestCase):
         hero = {"name": "Jackson", "HP": 20, "max-HP": 20, "damage": (1, 20), "level": 1,
                 "atk_modifier": 0, "attacks": ["Move1", "Move2"], "EXP": 60, "initiative_modifier": 2,
                 "dmg_modifier": 5, "crit_chance": [20], "AC": 19}
-        final_boss_encounter(character=hero, boss=boss)
+        final_boss_encounter(hero=hero, boss=boss)
         self.assertTrue(hero["HP"] <= 0 < boss["HP"])   # hero dead, boss alive
 
     @patch('builtins.input', side_effect=["1", "2"])    # User chooses to fight, then flee
@@ -36,5 +36,5 @@ class TestFinalBossEncounter(TestCase):
         hero = {"name": "April", "HP": 50, "max-HP": 50, "damage": (1, 50), "level": 10,
                 "atk_modifier": 1, "attacks": ["Move1", "Move2"], "EXP": 1000, "initiative_modifier": 10,
                 "dmg_modifier": 5, "crit_chance": [20], "AC": 19}
-        final_boss_encounter(character=hero, boss=boss)
+        final_boss_encounter(hero=hero, boss=boss)
         self.assertTrue(hero["HP"] > 0 < boss["HP"])    # both hero and boss survived, but user chose to flee
