@@ -730,6 +730,31 @@ def foe_colour(text: str) -> str:
     return f"\033[33m{text}\033[0m"
 
 
+def format_character(format_style: "a function", character: dict) -> None:
+    """Format a character properly with the given format style.
+
+    :param character: a dictionary
+    :param format_style: a function for colour formatting
+    :precondition: format_style is a defined colour styling such as hero_colour or foe_colour
+    :precondition: character is a dictionary containing the keys "name" and "attacks"
+    :precondition: value of "name" is a string
+    :precondition: value of "attacks" is a list of strings
+    :postcondition: all strings from "name" and "attacks" are formatted with the passed format_style
+    :return: nothing, a character's dictionary is modified
+
+    >>> sample_foe = {"name": "Sarah", "attacks": ["Jump", "Crawl"]}
+    >>> format_character(foe_colour, sample_foe)
+    >>> print(sample_foe['name'])
+    \033[33mSarah\033[0m
+    >>> print(sample_foe['attacks'][0])
+    \033[33mJump\033[0m
+    >>> print(sample_foe['attacks'][1])
+    \033[33mCrawl\033[0m
+    """
+    character["name"] = format_style(character["name"])
+    character["attacks"] = list(map(format_style, character["attacks"]))
+
+
 def roll(die: tuple) -> int:
     """Roll a die with the specified number of sides the specified number of times.
 
@@ -1211,7 +1236,7 @@ def get_name() -> str:
 
 
 def make_character() -> dict:
-    """Create a hero dictionary with hero details
+    """Create a hero dictionary with hero details.
 
     :postcondition: returns a complete hero dictionary
     :postcondition: hero dictionary contains keys "name", "x-location", "y-location", "EXP", "level", "quit",
@@ -1439,30 +1464,6 @@ def heal(character: dict) -> None:
     time.sleep(0.5)
 
 
-def format_foe(foe: dict) -> None:
-    """Format the foe dictionary by foe_colour.
-
-    :param foe: a dictionary
-    :precondition: foe is a dictionary
-    :precondition: foe contains the keys "name" and "attacks"
-    :precondition: value of "name" is a string
-    :precondition: value of "attacks" is a list of strings
-    :postcondition: all strings from "name" and "attacks" are formatted to foe_colour()
-    :return: nothing, foe dictionary values changed
-
-    >>> sample_foe = {"name": "Sarah", "attacks": ["Jump", "Crawl"]}
-    >>> format_foe(sample_foe)
-    >>> print(sample_foe['name'])
-    \033[33mSarah\033[0m
-    >>> print(sample_foe['attacks'][0])
-    \033[33mJump\033[0m
-    >>> print(sample_foe['attacks'][1])
-    \033[33mCrawl\033[0m
-    """
-    foe["name"] = foe_colour(foe["name"])
-    foe["attacks"] = list(map(foe_colour, foe["attacks"]))
-
-
 def summon_foe(character: dict) -> dict:
     """Summon a random foe.
 
@@ -1483,7 +1484,7 @@ def summon_foe(character: dict) -> dict:
         foe = select_foe(STRONG_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(WEAK_FOES())
     if character["level"] == 3:
         foe = select_foe(EPIC_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(STRONG_FOES())
-    format_foe(foe)
+    format_character(foe)
     assign_hp(foe)
     return foe
 
@@ -1932,7 +1933,7 @@ def summon_god() -> dict:
     True
     """
     boss = GOD()
-    format_foe(boss)
+    format_character(boss)
     assign_hp(boss)
     return boss
 
