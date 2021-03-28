@@ -6,12 +6,12 @@
 
 #### ** Add any comments for me below this line **
 
-### Special Features from *Comrades Studio*
+### ✨ Special Features "Bóriya" from *Comrades Studio* 🤝🏻
 
 * Our map is dynamic! The map overall is 25 x 25, but the player will start with a smaller map. As they level up, the
 horizons they can explore will grow.
 
-* ASCII art implementation for the map, in order tto increase immersion for the player.
+* ASCII art implementation for the map, in order to increase immersion for the player.
   
 * Colour coded print statements that increase readability of the game. 
 
@@ -29,15 +29,18 @@ horizons they can explore will grow.
 * Healing takes into account a class' hit die rather than a constant value. This was implemented to increase variety 
 in classes, as well as to help with game balance.
   
-* EXP gain has also been altereted to allow characters to gain at least some EXP if the foe's flee. This was 
+* EXP gain has also been altered to allow characters to gain at least some EXP if the foe's flee. This was 
 implemented to be more in line with mainstream RPG games, as well as to speed up the game.
   
-* Improved input validation not only verifies if you have inputted a valid direction to travel, but also that
+* Improved input validation not only verifies if you have input a valid direction to travel, but also it
   checks if you may have inputted something other than a valid menu choice 
-  (i.e. if you didn't enter a valid number choice by accident, we got you!)
+  (i.e. if you didn't enter a valid number choice by accident, we got you!).
+  
+* We have a complex set of foes in the level of weak, strong, and epic. Each foe has unique statistics and only certain
+foes may appear during a player's level.
   
 
-### Special Notes
+### 📝 Special Notes
 
 * Although it may seem that the map is not 25x25 at first, this was a conscious decision in order give the player's
 a reward for levelling up. Similar to how RPGs have areas on a map that you are not able to enter until you have 
@@ -63,29 +66,29 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 
 | Required Element                                   | Location (line #) |
 |       -----                                        | ---   |
-| Tuple                                              |   751 (roll) / 270 (damage die)   |
-| List                                               |   269 (attacks)  |
-| An example of dictionary or list comprehension     |   1147 (make_board)   |
-| Selection using if-statement                       |   1803 (level_up), 915 (lvl_board_max), 1332 (valid_move)  |
-| Clever use of repetition with the for/while loop   |   2036 (game), 1604 (initiative)  |
-| The membership operator (in) where it makes sense  |   1340 (valid_move), 804 (get_menu), 886(get_valid_input)  |
-| The range function                                 |   1340 (valid_move), 886(get_valid_input), 1285 (print_map)  |
-| One or more functions from itertools module        |   1145 (make_board)   |
-| The enumerate function                             |   804 (get_menu)   |
-| The filter or map function                         |   885 (get_valid_input)   |
-| The random module                                  |   1473 (summon_foe), 764 (roll)  |
+| Tuple                                              |   751 / 270 , 1265  |
+| List                                               |   269 |
+| An example of dictionary or list comprehension     |   1147 |
+| Selection using if-statement                       |   1803, 915, 1332, 2044 |
+| Clever use of repetition with the for/while loop   |   2036, 1604  |
+| The membership operator (in) where it makes sense  |   1340, 804 |
+| The range function                                 |   1340, 886, 1285 |
+| One or more functions from itertools module        |   1145   |
+| The enumerate function                             |   804   |
+| The filter or map function                         |   748 (map), 885 (filter)   |
+| The random module                                  |   1473, 764, 1632 |
 | Function annotations                               |   Y   |
-| Unit Tests for all necessary functions             |   Y   |
+| Unit Tests for all necessary functions             |   Y (game() excluded)  |
 | Doc Tests for all necessary functions              |   Y   |
 | All output must be formatted strings               |   Y   |
-| Functions no longer than 15 lines                  |      |
+| Functions no longer than 15 lines                  |   Y   |
 
 
 ### Game Specifications
 
-| Modification Checklist                       | Done? |
-|       -----                                  | ---   |
-| game.pdf Flowchart                           |   N   |
+| Modification Checklist                       | Implemented? |
+|       -----                                  | :---:   |
+| game.pdf Flowchart                           |   Y   |
 | 25 x 25 grid environment                     |   Y   |
 | character has **name**                       |   Y   |
 | character has **HP**                         |   Y   |
@@ -123,7 +126,8 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 ### Unit Test Checklist
 
 | In-game Function                             | Done? | Checked? |
-|       -----                                  | ---   |    ---|
+|       -----                                  | :---:   |  :---: |
+| ALL DOCTESTS RUNNING?                        |YES!   |   YES!   |
 | hero_colour                                  |   Y   |   Y   |
 | foe_colour                                   |   Y   |   Y   |
 | roll                                         |   Y   |   Y   |
@@ -133,7 +137,7 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | is_not_digit                                 |   Y   |   Y   |
 | get_valid_input                              |   Y   |   Y   |
 | lvl_board_max                                |   Y   |   Y   |
-| make_board*                                  |   Y   |   Y   |
+| make_board                                   |   Y   |   Y   |
 | print_map                                    |   Y   |   Y   |
 | choose_class                                 |   Y   |   Y   | <-- 1 test failed -M/ DEBUGGED -S
 | get_name                                     |   Y   |   Y   |
