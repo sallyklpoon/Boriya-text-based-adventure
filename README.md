@@ -60,14 +60,14 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | Tuple                                              |   751 (roll) / 270 (damage die)   |
 | List                                               |   269 (attacks)  |
 | An example of dictionary or list comprehension     |   1147 (make_board)   |
-| Selection using if-statement                       |   1803 (level_up)  |
-| Clever use of repetition with the for/while loop   |   2036 (game)  |
-| The membership operator (in) where it makes sense  |   1340 (valid_move)   |
-| The range function                                 |   1340 (valid_move)   |
+| Selection using if-statement                       |   1803 (level_up), 915 (lvl_board_max), 1332 (valid_move)  |
+| Clever use of repetition with the for/while loop   |   2036 (game), 1604 (initiative)  |
+| The membership operator (in) where it makes sense  |   1340 (valid_move), 804 (get_menu), 886(get_valid_input)  |
+| The range function                                 |   1340 (valid_move), 886(get_valid_input), 1285 (print_map)  |
 | One or more functions from itertools module        |   1145 (make_board)   |
 | The enumerate function                             |   804 (get_menu)   |
 | The filter or map function                         |   885 (get_valid_input)   |
-| The random module                                  |   1473 (summon_foe)   |
+| The random module                                  |   1473 (summon_foe), 764 (roll)  |
 | Function annotations                               |   Y   |
 | Unit Tests for all necessary functions             |   Y   |
 | Doc Tests for all necessary functions              |   Y   |
