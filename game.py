@@ -90,7 +90,7 @@ def MAP_FILLERS() -> tuple:
     """Return a tuple of map fillers for print_map.
 
     :return: tuple"""
-    return " ,✾◞", " ⁕. ", " ◟'〟", " ⋄ ☨", " ⚘⚘ ", " `⁂ ", " ✼. ", "♮`, ", " ~'.", "〟❈ "
+    return " ,✾◞", " ⁕. ⋄", " ◟'〟", " ⋄ ☨`", ". ⚘⚘〟", " `⁂ ", " ✼.`", " ♮`, ", " ~'. ", "〟❈〟"
 
 
 # ===== START GAME CONSTANTS ===========================================================================================
@@ -730,7 +730,7 @@ def foe_colour(text: str) -> str:
     return f"\033[33m{text}\033[0m"
 
 
-def format_character(format_style: "a function", character: dict) -> None:
+def format_character(format_style: "a string formatting function", character: dict) -> None:
     """Format a character properly with the given format style.
 
     :param character: a dictionary
@@ -1158,34 +1158,6 @@ def make_board(level: int) -> dict:
     return board
 
 
-def print_map(character: dict, board: dict) -> None:
-    """Print a map of where the character is located on a board.
-
-    :param character: a dictionary of character stats
-    :param board: a dictionary of the board
-    :precondition: board is a dictionary that contains a 'max-x' and 'max-y' key
-    :precondition: the board values of the 'max-x' and 'max-y' key are integers that are >= 1, representing the
-                   maximum x and y value of the board (i.e. the dimensions)
-    :precondition: character is a dictionary of stats with keys, "x-location" and "y-location"
-    :precondition: the values of "x-location" and "y-location" are both integers that are >= 0
-                   and less than the board['max-x'] and board['max-y'] values, respectively
-    :postcondition: print out a visual map with the correct location as to where the character is on a board
-    :return: printed map
-
-    No doctest, print_map uses random module
-    """
-    print("")
-    for row in range(board['max-y']):
-        for column in range(board['max-x']):
-            if (column, row) == (character["x-location"], character["y-location"]):
-                print(f"({hero_colour('웃')})", end="")
-            elif (column, row) == GOAL_LOCATION():
-                print("\033[31m( ☩ )\033[0m", end="")
-            else:
-                print(random.choice(MAP_FILLERS()), end="")
-        print("")
-
-
 def choose_class() -> dict:
     """Return the character class statistics selected by the user.
 
@@ -1270,14 +1242,14 @@ def make_character() -> dict:
 
     No doctests, input is required
     """
-    hero = {"name": hero_colour(get_name()),
+    hero = {"name": get_name(),
             "x-location": START_X(),
             "y-location": START_Y(),
             "EXP": HERO_START_EXP(),
             "level": HERO_START_LEVEL(),
             "quit": False}
     hero.update(choose_class())
-    hero["attacks"] = list(map(hero_colour, hero['attacks']))
+    format_character(format_style=hero_colour, character=hero)
     assign_hp(hero)
     return hero
 
@@ -1298,6 +1270,34 @@ def start_game() -> tuple:
     print(PROLOGUE())
     time.sleep(5)
     return make_board(hero['level']), hero
+
+
+def print_map(hero: dict, board: dict) -> None:
+    """Print a map of where the character is located on a board.
+
+    :param hero: a dictionary of character stats
+    :param board: a dictionary of the board
+    :precondition: board is a dictionary that contains a 'max-x' and 'max-y' key
+    :precondition: the board values of the 'max-x' and 'max-y' key are integers that are >= 1, representing the
+                   maximum x and y value of the board (i.e. the dimensions)
+    :precondition: character is a dictionary of stats with keys, "x-location" and "y-location"
+    :precondition: the values of "x-location" and "y-location" are both integers that are >= 0
+                   and less than the board['max-x'] and board['max-y'] values, respectively
+    :postcondition: print out a visual map with the correct location as to where the character is on a board
+    :return: printed map
+
+    No doctest, print_map uses random module
+    """
+    print("")
+    for row in range(board['max-y']):
+        for column in range(board['max-x']):
+            if (column, row) == (hero["x-location"], hero["y-location"]):
+                print(f"({hero_colour('웃')})", end="")
+            elif (column, row) == GOAL_LOCATION():
+                print("\033[31m( ☩ )\033[0m", end="")
+            else:
+                print(random.choice(MAP_FILLERS()), end="")
+        print("")
 
 
 # ===== NEXT MOVE (VALIDATE AND MOVE) ==================================================================================
@@ -1484,7 +1484,7 @@ def summon_foe(character: dict) -> dict:
         foe = select_foe(STRONG_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(WEAK_FOES())
     if character["level"] == 3:
         foe = select_foe(EPIC_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(STRONG_FOES())
-    format_character(foe)
+    format_character(format_style=foe_colour, character=foe)
     assign_hp(foe)
     return foe
 
@@ -1933,7 +1933,7 @@ def summon_god() -> dict:
     True
     """
     boss = GOD()
-    format_character(boss)
+    format_character(format_style=foe_colour, character=boss)
     assign_hp(boss)
     return boss
 
@@ -1967,7 +1967,7 @@ def final_boss_encounter(character: dict, boss: dict) -> None:
     enter_combat(character=character, foe=boss)
     if boss["HP"] <= 0:
         print(f"\n{boss['name']} is dead.")
-    elif character['HP'] > 0 and boss['HP'] > 0:
+    elif character['HP'] > 0:
         flee_boss(character, boss)
 
 
