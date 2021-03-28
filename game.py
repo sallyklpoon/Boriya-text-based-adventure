@@ -109,14 +109,14 @@ def START_Y() -> int:
     return 0
 
 
-def CHARACTER_START_EXP() -> int:
+def HERO_START_EXP() -> int:
     """Return character's starting EXP as an integer.
 
     :return: an integer"""
     return 0
 
 
-def CHARACTER_START_LEVEL() -> int:
+def HERO_START_LEVEL() -> int:
     """Return the character's starting level = 1.
 
     :return: an integer, representing the starting level of a character as defined above"""
@@ -887,7 +887,7 @@ def lvl_board_max(level: int) -> tuple:
                     an integer, representing the level number
     :return: a tuple of the current level's board dimensions
 
-    >>> lvl_board_max(CHARACTER_START_LEVEL())
+    >>> lvl_board_max(HERO_START_LEVEL())
     (10, 10)
     >>> lvl_board_max(2)
     (17, 17)
@@ -1211,10 +1211,10 @@ def get_name() -> str:
 
 
 def make_character() -> dict:
-    """Create a character dictionary with character details
+    """Create a hero dictionary with hero details
 
-    :postcondition: returns a complete character dictionary
-    :postcondition: character dictionary contains keys "name", "x-location", "y-location", "EXP", "level", "quit",
+    :postcondition: returns a complete hero dictionary
+    :postcondition: hero dictionary contains keys "name", "x-location", "y-location", "EXP", "level", "quit",
                     "class", "level_name", "AC", "HP", "max-HP", "hit_dice", "attacks", "atk_modifier", "damage",
                     "dmg_modifier", "crit_chance", "crit_modifier"
     :postcondition: value of "name" is a string input by the user
@@ -1223,16 +1223,16 @@ def make_character() -> dict:
     :postcondition: value of "EXP" is 0
     :postcondition: value of "level" is integer, determined by CHARACTER_START_LEVEL()
     :postcondition: value of "quit" is False
-    :postcondition: value of "AC" is an integer, the character's armour class
+    :postcondition: value of "AC" is an integer, the hero's armour class
     :postcondition: value of "HP" is an integer > 0
     :postcondition: value of "max-HP" is an integer > 0
     :postcondition: value of "damage" is a tuple, the damage die
-    :postcondition: value of "attacks" is a list, determined by character's chosen
+    :postcondition: value of "attacks" is a list, determined by hero's chosen
     :postcondition: value of "class" key with string value
     :postcondition: value of "level_name" with string value
     :postcondition: value of "AC" key with with integer value for Armour Class
     :postcondition: value of "HP" key with with integer value for current HP
-    :postcondition: value of "max-HP" key with with integer value for character's maximum HP
+    :postcondition: value of "max-HP" key with with integer value for hero's maximum HP
     :postcondition: value of "hit_dice" key with with tuple value two integers for hit dice
     :postcondition: value of "attacks" key with with list value of attacks
     :postcondition: value of "atk_modifier" key with with integer value for attack modifier
@@ -1241,20 +1241,20 @@ def make_character() -> dict:
     :postcondition: value of "crit_chance" key with with list value of critical roll chances
     :postcondition: value of "crit_modifier" key with with integer value for critical roll modifier
     :postcondition: value of "initiative_modifier" is an integer
-    :return: a complete character dictionary
+    :return: a complete hero dictionary
 
     No doctests, input is required
     """
-    character = {"name": hero_colour(get_name()),
-                 "x-location": START_X(),
-                 "y-location": START_Y(),
-                 "EXP": CHARACTER_START_EXP(),
-                 "level": CHARACTER_START_LEVEL(),
-                 "quit": False}
-    character.update(choose_class())
-    character["attacks"] = list(map(hero_colour, character['attacks']))
-    assign_hp(character)
-    return character
+    hero = {"name": hero_colour(get_name()),
+            "x-location": START_X(),
+            "y-location": START_Y(),
+            "EXP": HERO_START_EXP(),
+            "level": HERO_START_LEVEL(),
+            "quit": False}
+    hero.update(choose_class())
+    hero["attacks"] = list(map(hero_colour, hero['attacks']))
+    assign_hp(hero)
+    return hero
 
 
 def start_game() -> tuple:
@@ -1269,10 +1269,10 @@ def start_game() -> tuple:
     No doctests. Calls make_character(), which requires user input.
     """
     print(START_GAME_MSG())
-    character = make_character()
+    hero = make_character()
     print(PROLOGUE())
     time.sleep(5)
-    return make_board(character['level']), character
+    return make_board(hero['level']), hero
 
 
 # ===== NEXT MOVE (VALIDATE AND MOVE) ==================================================================================
