@@ -59,12 +59,6 @@ class TestChooseClass(TestCase):
         actual = choose_class()
         self.assertIsInstance(actual["AC"], expected_instance)
 
-    @patch("builtins.input", side_effect=["3"])
-    def test_choose_class_dict_HP_is_integer(self, mock_chosen_class):
-        expected_instance = int
-        actual = choose_class()
-        self.assertIsInstance(actual["HP"], expected_instance)
-
     @patch("builtins.input", side_effect=["2"])
     def test_choose_class_dict_max_HP_is_integer(self, mock_chosen_class):
         expected_instance = int
