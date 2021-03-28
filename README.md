@@ -115,7 +115,7 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | roll                                         |   Y   |   Y   |
 | get_menu                                     |   Y   |   Y   |
 | get_user_choice                              |   Y   |   Y   |
-| assign_hp                                    |   N   |   N   | <-- not created
+| assign_hp                                    |   Y   |   Y   |
 | is_not_digit                                 |   Y   |   Y   |
 | get_valid_input                              |   Y   |   Y   |
 | lvl_board_max                                |   Y   |   Y   |

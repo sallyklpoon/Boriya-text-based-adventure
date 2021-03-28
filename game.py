@@ -6,6 +6,7 @@ This module includes code to run the game, 'Avocado Toast'.
 
 """
 import doctest
+import pprint
 
 import random
 import itertools
@@ -808,6 +809,11 @@ def assign_hp(creature: dict) -> None:
     :postcondition: an ['HP'] key will be added to the creature's dictionary
     :postcondition: creature['HP'] == creature['max-HP']
     :return: nothing, the creature dictionary passed will have a new 'HP' key
+
+    >>> hero = {"max-HP": 12}
+    >>> assign_hp(hero)
+    >>> hero
+    {'max-HP': 12, 'HP': 12}
     """
     creature['HP'] = creature['max-HP']
 
@@ -911,11 +917,213 @@ def make_board(level: int) -> dict:
                     the maximum x-coordinate and maximum y-coordinate of the board as integers, respectively
     :return: a dictionary of the game board
 
-    # >>> board = make_board()
-    # >>> type(board)
-    # <class 'dict'>
-    # >>> pp = pprint.PrettyPrinter()
-    # >>> pp.pprint(board)
+    >>> sample_board = make_board(1)
+    >>> type(sample_board)
+    <class 'dict'>
+    >>> pp = pprint.PrettyPrinter()
+    >>> pp.pprint(sample_board)
+    {'max-x': 10,
+     'max-y': 10,
+     (0, 0): 'You sense a horrid presence around you, but you see nothing with '
+             'your eyes.',
+     (0, 1): 'A fresh corpse lays in front of you, as the sound of giggling fills '
+             'the air.',
+     (0, 2): 'Walking through a shroud of darkness, you smell a deep and stagnant '
+             'stench.',
+     (0, 3): 'Ancient trees stand before you like castles, their magnanimity '
+             'giving you the strength to continue.',
+     (0, 4): "All around you sway disoriented shadows, each one whispering, 'Death "
+             "will offer you no peace'.",
+     (0, 5): 'Searching through the sky you see no sign on light, only a velvety '
+             'pool of darkness.',
+     (0, 6): 'A bed of feathery moss lays before you, offering you a moment of '
+             'peace in this abyss.',
+     (0, 7): 'An inescapable power calls out to you, beckoning you to give in to '
+             "it's influence. How much longer before you give in?",
+     (0, 8): 'Nothing stirs, nothing shines, and nothing sings. You only hear a '
+             'hollow echoing, like the hushed tones of a great, slabbed cathedral.',
+     (0, 9): 'Coils of vaporous void writhe around you like a smoke from a fire, '
+             'stealing the warmth from your body.',
+     (1, 0): "A small pond appears before you, it's shore gurgling as water meets "
+             'stone; a swish, a clunk, a swell and a clop.',
+     (1, 1): 'A pair of black dogs eye you as you make your way through the '
+             'forest. Will they ever leave you?',
+     (1, 2): 'You sense a horrid presence around you, but you see nothing with '
+             'your eyes.',
+     (1, 3): 'A fresh corpse lays in front of you, as the sound of giggling fills '
+             'the air.',
+     (1, 4): 'Walking through a shroud of darkness, you smell a deep and stagnant '
+             'stench.',
+     (1, 5): 'Ancient trees stand before you like castles, their magnanimity '
+             'giving you the strength to continue.',
+     (1, 6): "All around you sway disoriented shadows, each one whispering, 'Death "
+             "will offer you no peace'.",
+     (1, 7): 'Searching through the sky you see no sign on light, only a velvety '
+             'pool of darkness.',
+     (1, 8): 'A bed of feathery moss lays before you, offering you a moment of '
+             'peace in this abyss.',
+     (1, 9): 'An inescapable power calls out to you, beckoning you to give in to '
+             "it's influence. How much longer before you give in?",
+     (2, 0): 'Nothing stirs, nothing shines, and nothing sings. You only hear a '
+             'hollow echoing, like the hushed tones of a great, slabbed cathedral.',
+     (2, 1): 'Coils of vaporous void writhe around you like a smoke from a fire, '
+             'stealing the warmth from your body.',
+     (2, 2): "A small pond appears before you, it's shore gurgling as water meets "
+             'stone; a swish, a clunk, a swell and a clop.',
+     (2, 3): 'A pair of black dogs eye you as you make your way through the '
+             'forest. Will they ever leave you?',
+     (2, 4): 'You sense a horrid presence around you, but you see nothing with '
+             'your eyes.',
+     (2, 5): 'A fresh corpse lays in front of you, as the sound of giggling fills '
+             'the air.',
+     (2, 6): 'Walking through a shroud of darkness, you smell a deep and stagnant '
+             'stench.',
+     (2, 7): 'Ancient trees stand before you like castles, their magnanimity '
+             'giving you the strength to continue.',
+     (2, 8): "All around you sway disoriented shadows, each one whispering, 'Death "
+             "will offer you no peace'.",
+     (2, 9): 'Searching through the sky you see no sign on light, only a velvety '
+             'pool of darkness.',
+     (3, 0): 'A bed of feathery moss lays before you, offering you a moment of '
+             'peace in this abyss.',
+     (3, 1): 'An inescapable power calls out to you, beckoning you to give in to '
+             "it's influence. How much longer before you give in?",
+     (3, 2): 'Nothing stirs, nothing shines, and nothing sings. You only hear a '
+             'hollow echoing, like the hushed tones of a great, slabbed cathedral.',
+     (3, 3): 'Coils of vaporous void writhe around you like a smoke from a fire, '
+             'stealing the warmth from your body.',
+     (3, 4): "A small pond appears before you, it's shore gurgling as water meets "
+             'stone; a swish, a clunk, a swell and a clop.',
+     (3, 5): 'A pair of black dogs eye you as you make your way through the '
+             'forest. Will they ever leave you?',
+     (3, 6): 'You sense a horrid presence around you, but you see nothing with '
+             'your eyes.',
+     (3, 7): 'A fresh corpse lays in front of you, as the sound of giggling fills '
+             'the air.',
+     (3, 8): 'Walking through a shroud of darkness, you smell a deep and stagnant '
+             'stench.',
+     (3, 9): 'Ancient trees stand before you like castles, their magnanimity '
+             'giving you the strength to continue.',
+     (4, 0): "All around you sway disoriented shadows, each one whispering, 'Death "
+             "will offer you no peace'.",
+     (4, 1): 'Searching through the sky you see no sign on light, only a velvety '
+             'pool of darkness.',
+     (4, 2): 'A bed of feathery moss lays before you, offering you a moment of '
+             'peace in this abyss.',
+     (4, 3): 'An inescapable power calls out to you, beckoning you to give in to '
+             "it's influence. How much longer before you give in?",
+     (4, 4): 'Nothing stirs, nothing shines, and nothing sings. You only hear a '
+             'hollow echoing, like the hushed tones of a great, slabbed cathedral.',
+     (4, 5): 'Coils of vaporous void writhe around you like a smoke from a fire, '
+             'stealing the warmth from your body.',
+     (4, 6): "A small pond appears before you, it's shore gurgling as water meets "
+             'stone; a swish, a clunk, a swell and a clop.',
+     (4, 7): 'A pair of black dogs eye you as you make your way through the '
+             'forest. Will they ever leave you?',
+     (4, 8): 'You sense a horrid presence around you, but you see nothing with '
+             'your eyes.',
+     (4, 9): 'A fresh corpse lays in front of you, as the sound of giggling fills '
+             'the air.',
+     (5, 0): 'Walking through a shroud of darkness, you smell a deep and stagnant '
+             'stench.',
+     (5, 1): 'Ancient trees stand before you like castles, their magnanimity '
+             'giving you the strength to continue.',
+     (5, 2): "All around you sway disoriented shadows, each one whispering, 'Death "
+             "will offer you no peace'.",
+     (5, 3): 'Searching through the sky you see no sign on light, only a velvety '
+             'pool of darkness.',
+     (5, 4): 'A bed of feathery moss lays before you, offering you a moment of '
+             'peace in this abyss.',
+     (5, 5): 'An inescapable power calls out to you, beckoning you to give in to '
+             "it's influence. How much longer before you give in?",
+     (5, 6): 'Nothing stirs, nothing shines, and nothing sings. You only hear a '
+             'hollow echoing, like the hushed tones of a great, slabbed cathedral.',
+     (5, 7): 'Coils of vaporous void writhe around you like a smoke from a fire, '
+             'stealing the warmth from your body.',
+     (5, 8): "A small pond appears before you, it's shore gurgling as water meets "
+             'stone; a swish, a clunk, a swell and a clop.',
+     (5, 9): 'A pair of black dogs eye you as you make your way through the '
+             'forest. Will they ever leave you?',
+     (6, 0): 'You sense a horrid presence around you, but you see nothing with '
+             'your eyes.',
+     (6, 1): 'A fresh corpse lays in front of you, as the sound of giggling fills '
+             'the air.',
+     (6, 2): 'Walking through a shroud of darkness, you smell a deep and stagnant '
+             'stench.',
+     (6, 3): 'Ancient trees stand before you like castles, their magnanimity '
+             'giving you the strength to continue.',
+     (6, 4): "All around you sway disoriented shadows, each one whispering, 'Death "
+             "will offer you no peace'.",
+     (6, 5): 'Searching through the sky you see no sign on light, only a velvety '
+             'pool of darkness.',
+     (6, 6): 'A bed of feathery moss lays before you, offering you a moment of '
+             'peace in this abyss.',
+     (6, 7): 'An inescapable power calls out to you, beckoning you to give in to '
+             "it's influence. How much longer before you give in?",
+     (6, 8): 'Nothing stirs, nothing shines, and nothing sings. You only hear a '
+             'hollow echoing, like the hushed tones of a great, slabbed cathedral.',
+     (6, 9): 'Coils of vaporous void writhe around you like a smoke from a fire, '
+             'stealing the warmth from your body.',
+     (7, 0): "A small pond appears before you, it's shore gurgling as water meets "
+             'stone; a swish, a clunk, a swell and a clop.',
+     (7, 1): 'A pair of black dogs eye you as you make your way through the '
+             'forest. Will they ever leave you?',
+     (7, 2): 'You sense a horrid presence around you, but you see nothing with '
+             'your eyes.',
+     (7, 3): 'A fresh corpse lays in front of you, as the sound of giggling fills '
+             'the air.',
+     (7, 4): 'Walking through a shroud of darkness, you smell a deep and stagnant '
+             'stench.',
+     (7, 5): 'Ancient trees stand before you like castles, their magnanimity '
+             'giving you the strength to continue.',
+     (7, 6): "All around you sway disoriented shadows, each one whispering, 'Death "
+             "will offer you no peace'.",
+     (7, 7): 'Searching through the sky you see no sign on light, only a velvety '
+             'pool of darkness.',
+     (7, 8): 'A bed of feathery moss lays before you, offering you a moment of '
+             'peace in this abyss.',
+     (7, 9): 'An inescapable power calls out to you, beckoning you to give in to '
+             "it's influence. How much longer before you give in?",
+     (8, 0): 'Nothing stirs, nothing shines, and nothing sings. You only hear a '
+             'hollow echoing, like the hushed tones of a great, slabbed cathedral.',
+     (8, 1): 'Coils of vaporous void writhe around you like a smoke from a fire, '
+             'stealing the warmth from your body.',
+     (8, 2): "A small pond appears before you, it's shore gurgling as water meets "
+             'stone; a swish, a clunk, a swell and a clop.',
+     (8, 3): 'A pair of black dogs eye you as you make your way through the '
+             'forest. Will they ever leave you?',
+     (8, 4): 'You sense a horrid presence around you, but you see nothing with '
+             'your eyes.',
+     (8, 5): 'A fresh corpse lays in front of you, as the sound of giggling fills '
+             'the air.',
+     (8, 6): 'Walking through a shroud of darkness, you smell a deep and stagnant '
+             'stench.',
+     (8, 7): 'Ancient trees stand before you like castles, their magnanimity '
+             'giving you the strength to continue.',
+     (8, 8): "All around you sway disoriented shadows, each one whispering, 'Death "
+             "will offer you no peace'.",
+     (8, 9): 'Searching through the sky you see no sign on light, only a velvety '
+             'pool of darkness.',
+     (9, 0): 'A bed of feathery moss lays before you, offering you a moment of '
+             'peace in this abyss.',
+     (9, 1): 'An inescapable power calls out to you, beckoning you to give in to '
+             "it's influence. How much longer before you give in?",
+     (9, 2): 'Nothing stirs, nothing shines, and nothing sings. You only hear a '
+             'hollow echoing, like the hushed tones of a great, slabbed cathedral.',
+     (9, 3): 'Coils of vaporous void writhe around you like a smoke from a fire, '
+             'stealing the warmth from your body.',
+     (9, 4): "A small pond appears before you, it's shore gurgling as water meets "
+             'stone; a swish, a clunk, a swell and a clop.',
+     (9, 5): 'A pair of black dogs eye you as you make your way through the '
+             'forest. Will they ever leave you?',
+     (9, 6): 'You sense a horrid presence around you, but you see nothing with '
+             'your eyes.',
+     (9, 7): 'A fresh corpse lays in front of you, as the sound of giggling fills '
+             'the air.',
+     (9, 8): 'Walking through a shroud of darkness, you smell a deep and stagnant '
+             'stench.',
+     (9, 9): 'Ancient trees stand before you like castles, their magnanimity '
+             'giving you the strength to continue.'}
     """
     map_script = itertools.cycle(MAP_SCRIPTS())
     lvl_max_x, lvl_max_y = lvl_board_max(level)
@@ -1227,7 +1435,7 @@ def heal(character: dict) -> None:
             character["HP"] += heal_points
         else:
             character["HP"] = character["max-HP"]
-        print("\n\033[32m✣ As you venture through the darkeness, you take a moment to rest your weary soul. ✣\n"
+        print("\n\033[32m✣ As you venture through the darkness, you take a moment to rest your weary soul. ✣\n"
               f"✣ Your health has been healed to {character['HP']} points. ✣\n\033[0m")
     time.sleep(0.5)
 
