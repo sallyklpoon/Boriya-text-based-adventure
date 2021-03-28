@@ -2,7 +2,7 @@
 Your name: Marti Gatchev & Sally Poon
 Your student number: A01232177
 
-This module includes code to run the game, 'Avocado Toast'.
+This module includes code to run the game, 'Bóriya'. All imported modules are available in the Python library.
 
 """
 import doctest
