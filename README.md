@@ -66,7 +66,7 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | Defined Constants   | 57  |
 | Unit Tests          | 158 |
 | Functions           | 38  |
-| Coded Lines (*excl. white spaces, constants, docstrings, and doctests*) | 291 |
+| Coded Lines (*excl. white spaces, encapsulating func, docstrings, and doctests*) | 291 |
 | Total Lines         | 2056 |
 **for lines of code per function, go to Unit Test Checklist table*
 
