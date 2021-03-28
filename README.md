@@ -29,6 +29,9 @@ horizons they can explore will grow.
 * Healing takes into account a class' hit die rather than a constant value. This was implemented to increase variety 
 in classes, as well as to help with game balance.
   
+* EXP gain has also been altereted to allow characters to gain at least some EXP if the foe's flee. This was 
+implemented to be more in line with mainstream RPG games, as well as to speed up the game.
+  
 * Improved input validation not only verifies if you have inputted a valid direction to travel, but also that
   checks if you may have inputted something other than a valid menu choice 
   (i.e. if you didn't enter a valid number choice by accident, we got you!)
@@ -44,6 +47,9 @@ a reward for levelling up. Similar to how RPGs have areas on a map that you are 
  for example has a very weak early game, so any time you take damage it is probably a good idea to flee and restore 
   your health in order to prepare for the next battle. Likewise, in the endgame, the Ranger class is weaker than the 
   other classes, so it is important to take note of your health as you travel through the map.
+  
+* In addition, HP is only gained when moving through the map. If you were to gain a level, your MAX HP increases, 
+however that still means you will have to move around to heal your current health to your MAX HP levels.
   
 * The final boss is located at 24, 24: so if you would like to finish the game as fast as possible, we suggest moving 
 in a south-easterly direction.
