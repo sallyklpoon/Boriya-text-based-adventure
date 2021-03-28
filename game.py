@@ -680,13 +680,6 @@ def FLEE_DAMAGE_DIE() -> tuple:
     return 1, 4
 
 
-def FOE_CLASS_DIE() -> tuple:
-    """Return the die to determine foe class, 1d3 (1, 3)
-
-    :return: a foe class die as a tuple (rolls, number_of_sides)"""
-    return 1, 3
-
-
 def ATTACK_DIE() -> tuple:
     """Return the attack roll die, 1d20 = (1, 20)
 
@@ -1451,9 +1444,7 @@ def heal(character: dict) -> None:
 
     No doctests, roll() uses random module
     """
-    if character["HP"] == character["max-HP"]:
-        print("")
-    else:
+    if character["HP"] != character["max-HP"]:
         heal_points = roll(character["hit_dice"])
         if character["HP"] + heal_points <= character["max-HP"]:
             character["HP"] += heal_points
