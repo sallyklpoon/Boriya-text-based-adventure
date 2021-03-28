@@ -163,9 +163,9 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | level_class                                  |   Y   |   Y   |
 | goal_attained                                |   Y   |   Y   |
 | summon_god                                   |   Y   |   Y   |
-| final_boss_encounter                         |   Y   |   N   |
-| flee_boss                                    |   Y   |   N   |
-| end_game                                     |   Y   |   N   |
+| final_boss_encounter                         |   Y   |   Y   |
+| flee_boss                                    |   Y   |   Y   |
+| end_game                                     |   Y   |   Y   |
 
 
 #### ** Add any comments for me above this line **
