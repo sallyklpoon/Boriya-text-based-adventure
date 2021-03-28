@@ -1523,14 +1523,14 @@ def select_foe(foe_selection: tuple) -> dict:
     return summoned
 
 
-def check_for_foe(character: dict, end_game: bool, board: dict) -> None:
+def check_for_foe(character: dict, game_end: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
 
     Character will either encounter a foe or, if they do not encounter a foe,
     heal HP at CHARACTER_HEAL() amount. If character has reached their goal, they will not encounter a foe
 
     :param character: a dictionary of the character's stats
-    :param end_game: a Boolean of whether or not goal was achieved
+    :param game_end: a Boolean of whether or not goal was achieved
     :param board: a dictionary representing the game board
     :precondition: character is a dictionary of character's stats
     :precondition: character dictionary contains keys "name", "HP", "damage", "attacks", "x-location", "y-location"
@@ -1550,7 +1550,7 @@ def check_for_foe(character: dict, end_game: bool, board: dict) -> None:
 
     No doctest, helper roll() uses random module
     """
-    if not end_game:
+    if not game_end:
         if roll(ONE_D100()) <= ENCOUNTER_CHANCE():
             encounter(character, summon_foe(character), board)
         else:
