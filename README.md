@@ -111,7 +111,7 @@ horizons they can explore will grow.
 | summon_god                                   |   Y   |   Y   |
 | final_boss_encounter                         |   Y   |   N   |
 | flee_boss                                    |   Y   |   N   |
-| end_game                                     |   N   |   N   |
+| end_game                                     |   Y   |   N   |
 
 
 ### Doc String Checklist
