@@ -13,7 +13,7 @@ class TestGetValidInput(TestCase):
         self.assertEqual(actual, "3")
 
     @patch('builtins.input', side_effect=["", "a", "Z", "#", "Hello!", "[4]", " 3 ", "2"])
-    def test_get_valid_input_eventual_valid_input(self, mock_input):
+    def test_get_valid_input_returns_eventual_valid_input(self, mock_input):
         sample_menu = ("Orange", "Apple", "Peach")
         actual = get_valid_input('fruit', sample_menu)
         self.assertEqual(actual, "2")
