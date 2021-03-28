@@ -1507,7 +1507,7 @@ def check_for_foe(character: dict, game_end: bool, board: dict) -> None:
 
     No doctest, helper roll() uses random module
     """
-    if not game_end:
+    if not game_end and (character["x-location"], character['y-location']) != GOAL_LOCATION():
         if roll(ONE_D100()) <= ENCOUNTER_CHANCE():
             encounter(character, summon_foe(character), board)
         else:
