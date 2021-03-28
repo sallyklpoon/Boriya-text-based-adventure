@@ -2088,12 +2088,9 @@ def game() -> None:
               f"\033[36m EXP: {character['EXP']}\033[0m \n\n"
               f"{board[(character['x-location'], character['y-location'])]} \n")
         next_move(character, board)
-        if character["quit"]:
-            achieved_goal = True
-        else:
-            achieved_goal = goal_attained(character)
-            if (character["x-location"], character["y-location"]) != GOAL_LOCATION():
-                check_for_foe(character, achieved_goal, board)
+        achieved_goal = True if character["quit"] else goal_attained(character)
+        if not achieved_goal:
+            check_for_foe(character, achieved_goal, board)
     end_game(character)
 
 
