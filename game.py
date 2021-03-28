@@ -5,8 +5,7 @@ Your student number: A01232177
 This module includes code to run the game, 'Avocado Toast'.
 
 """
-# import doctest
-import pprint
+import doctest
 
 import random
 import itertools
@@ -886,7 +885,7 @@ def lvl_board_max(level: int) -> tuple:
     >>> lvl_board_max(CHARACTER_START_LEVEL())
     (10, 10)
     >>> lvl_board_max(2)
-    (25, 20)
+    (17, 17)
     >>> lvl_board_max(3)
     (25, 25)
     """
@@ -941,12 +940,7 @@ def print_map(character: dict, board: dict) -> None:
     :postcondition: print out a visual map with the correct location as to where the character is on a board
     :return: printed map
 
-    >>> sample_character = {"x-location": 0, "y-location": 0}
-    >>> sample_board = {"max-x": 3, "max-y": 3}
-    >>> print_map(sample_character, sample_board)
-    [\033[36m웃\033[0m][  ][  ]
-    [  ][  ][  ]
-    [  ][  ][  ]
+    No doctest, print_map uses random module
     """
     print("")
     for row in range(board['max-y']):
@@ -1818,35 +1812,16 @@ def end_game(character: dict) -> None:
     :postcondition: print appropriate quit-came message if neither of above two postconditions are true
     :return: printed end-game message
 
-    >>> sample_character = {"name": "Bob", "HP": 0, "x-location": 1, "y-location": 2}
-    >>> end_game(sample_character)
-    =======================================================
-    Today just isn't your day, eh? You've been defeated.
-    You're tired and your optimism level has gone down to 0.
-    That's alright, we'll get them another time, Bob.
-     =======================================================
-    <BLANKLINE>
-    Thank you for playing, Bob! - Marti & Sally
-    >>> x, y = GOAL_LOCATION()
-    >>> sample_character = {"name": "Suzie", "HP": 1, "x-location": x, "y-location": y}
-    >>> end_game(sample_character)
-    ｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆
-    Can we get a HIP-HIP (hip-hip) HOORAY?
-    Suzie, you slayed the day and managed to get to the grocery store!
-    Now you can head home, bake some cinnamon buns, and relax.
-    ｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆
-    <BLANKLINE>
-    Thank you for playing, Suzie! - Marti & Sally
     >>> sample_character = {"name": "Suzie", "HP": 2, "x-location": 0, "y-location": 1}
     >>> end_game(sample_character)
-    =======================================================
-    You have successfully quit the game.
-    We hope to see you again soon!
-    =======================================================
+    <BLANKLINE>
+    ༺═──────────────────────────────────────────────────═༻
+    The Forest of Bóriya has taken it's toll on your soul.
+    You can no longer continue. Goodbye, Suzie.
+    ༺═──────────────────────────────────────────────────═༻
     <BLANKLINE>
     Thank you for playing, Suzie! - Marti & Sally
     """
-
     if character["HP"] <= 0:
         print(f"\n༺═────────────────────────────────────────────────────────────────────────────────────────═༻\n\n"
               "Falling down to the cold ground, you feel your soul slowly being devoured by the darkness around you.\n"
@@ -1916,7 +1891,7 @@ def game() -> None:
 
 def main():
     """Execute doctest."""
-    game()
+    doctest.testmod(verbose=True)
 
 
 if __name__ == '__main__':
