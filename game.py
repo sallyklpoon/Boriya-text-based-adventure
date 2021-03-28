@@ -864,8 +864,7 @@ def get_valid_input(decision_type: str, menu_type: tuple) -> str:
     No doctests, get_user_choice() uses input function
     """
     user_choice = get_user_choice(decision_type)
-    while user_choice == "" \
-            or list(filter(is_not_digit, user_choice)) \
+    while user_choice == "" or list(filter(is_not_digit, user_choice)) \
             or int(user_choice) not in range(1, len(menu_type) + 1):
         print('\nChoice is invalid, adventurer...\nPlease input a number within the menu selection.')
         user_choice = get_user_choice(decision_type)
@@ -1524,14 +1523,14 @@ def select_foe(foe_selection: tuple) -> dict:
     return summoned
 
 
-def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
+def check_for_foe(character: dict, end_game: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
 
     Character will either encounter a foe or, if they do not encounter a foe,
     heal HP at CHARACTER_HEAL() amount. If character has reached their goal, they will not encounter a foe
 
     :param character: a dictionary of the character's stats
-    :param achieved_goal: a Boolean of whether or not goal was achieved
+    :param end_game: a Boolean of whether or not goal was achieved
     :param board: a dictionary representing the game board
     :precondition: character is a dictionary of character's stats
     :precondition: character dictionary contains keys "name", "HP", "damage", "attacks", "x-location", "y-location"
@@ -1551,13 +1550,11 @@ def check_for_foe(character: dict, achieved_goal: bool, board: dict) -> None:
 
     No doctest, helper roll() uses random module
     """
-    if not achieved_goal:
+    if not end_game:
         if roll(ONE_D100()) <= ENCOUNTER_CHANCE():
             encounter(character, summon_foe(character), board)
         else:
             heal(character)
-    else:
-        heal(character)
 
 
 # ===== FOE ENCOUNTER ==================================================================================================
@@ -2078,20 +2075,19 @@ def game() -> None:
     :return: printed statements throughout the game informing the user's decisions, actions, location,
              battle progress, and end-game message
     """
-    board, character = start_game()
-    achieved_goal = False
-    while not achieved_goal and character["HP"] > 0:
-        print_map(character, board)
-        print(f"\nYou're now at ({character['x-location']}, {character['y-location']}),"
-              f"\033[35m Level {character['level']}: {character['level_name']}\033[0m, "
-              f"\033[34m HP: {character['HP']}/{character['max-HP']}\033[0m, "
-              f"\033[36m EXP: {character['EXP']}\033[0m \n\n"
-              f"{board[(character['x-location'], character['y-location'])]} \n")
-        next_move(character, board)
-        achieved_goal = True if character["quit"] else goal_attained(character)
-        if not achieved_goal:
-            check_for_foe(character, achieved_goal, board)
-    end_game(character)
+    board, hero = start_game()
+    end = False
+    while not end and hero["HP"] > 0:
+        print_map(hero, board)
+        print(f"\nYou're now at ({hero['x-location']}, {hero['y-location']}),"
+              f"\033[35m Level {hero['level']}: {hero['level_name']}\033[0m, "
+              f"\033[34m HP: {hero['HP']}/{hero['max-HP']}\033[0m, "
+              f"\033[36m EXP: {hero['EXP']}\033[0m \n\n"
+              f"{board[(hero['x-location'], hero['y-location'])]} \n")
+        next_move(hero, board)
+        end = True if hero["quit"] else goal_attained(hero)
+        check_for_foe(hero, end, board)
+    end_game(hero)
 
 
 def main():
