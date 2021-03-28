@@ -6,7 +6,7 @@
 
 #### ** Add any comments for me below this line **
 
-### Special Features from Comrades
+### Special Features from *Comrades Studio*
 
 * Our map is dynamic! The map overall is 25 x 25, but the player will start with a smaller map. As they level up, the
 horizons they can explore will grow.
