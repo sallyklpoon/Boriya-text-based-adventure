@@ -69,6 +69,10 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | The filter or map function                         |   885 (get_valid_input)   |
 | The random module                                  |   1473 (summon_foe)   |
 | Function annotations                               |   Y   |
+| Unit Tests for all necessary functions             |   Y   |
+| Doc Tests for all necessary functions              |   Y   |
+| All output must be formatted strings               |   Y   |
+| Functions no longer than 15 lines                  |      |
 
 
 ### Game Specifications
