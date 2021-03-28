@@ -55,19 +55,19 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 
 ### Code Requirements
 
-| Required Element                             | Location (line #) |
+| Required Element                                   | Location (line #) |
 |       -----                                        | ---   |
-| Tuple                                              |   N   |
-| List                                               |   N   |
-| An example of dictionary or list comprehension     |   N   |
-| Selection using if-statement                       |   N   |
-| Clever use of repetition with the for/while loop   |   N   |
-| The membership operator (in) where it makes sense  |   N   |
-| The range function                                 |   N   |
-| One or more functions from itertools module        |   N   |
-| The enumerate function                             |   N   |
-| The filter or map function                         |   N   |
-| The random module                                  |   N   |
+| Tuple                                              |   751 (roll) / 270 (damage die)   |
+| List                                               |   269 (attacks)  |
+| An example of dictionary or list comprehension     |   1147 (make_board)   |
+| Selection using if-statement                       |   1803 (level_up)  |
+| Clever use of repetition with the for/while loop   |   2036 (game)  |
+| The membership operator (in) where it makes sense  |   1340 (valid_move)   |
+| The range function                                 |   1340 (valid_move)   |
+| One or more functions from itertools module        |   1145 (make_board)   |
+| The enumerate function                             |   804 (get_menu)   |
+| The filter or map function                         |   885 (get_valid_input)   |
+| The random module                                  |   1473 (summon_foe)   |
 | Function annotations                               |   Y   |
 
 
