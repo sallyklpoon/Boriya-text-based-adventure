@@ -1489,41 +1489,6 @@ def summon_foe(character: dict) -> dict:
     return foe
 
 
-def select_foe(foe_selection: tuple) -> dict:
-    """Return a foe from a certain selection of foes by chance.
-
-    :param foe_selection: a tuple
-    :precondition: foe_selection is a tuple containing dictionaries of possible foes to select from by chance
-    :postcondition: the return dictionary includes keys-- "name", "AC", "attacks", "atk_modifier", "HP", "max-HP",
-                    "damage", "dmg_modifier", "crit_chance", "crit_modifier", "initiative_modifier", "EXP", "flee"
-    :postcondition: value of "name" is a string
-    :postcondition: value of "AC" is an integer, the character's armour class
-    :postcondition: value of "HP" is an integer > 0
-    :postcondition: value of "max-HP" is an integer > 0
-    :postcondition: value of "attacks" key with with list value of attacks
-    :postcondition: value of "atk_modifier" key with with integer value for attack modifier
-    :postcondition: value of "damage" key with with tuple value of two integers for damage dice
-    :postcondition: value of "dmg_modifier" key with with integer for damage modifier
-    :postcondition: value of "crit_chance" key with with list value of critical roll chances
-    :postcondition: value of "crit_modifier" key with with integer value for critical roll modifier
-    :postcondition: value of "initiative_modifier" is an integer
-    :postcondition: value of "EXP" is an integer > 0, he EXP points that can be gained by defeating foe
-    :postcondition: value of "flee" is False, indicator if foe has decided to flee
-    :return: a dictionary of foe statistics
-
-    No doctests, roll() helper uses random.randint
-    """
-    random_class = roll(FOE_CLASS_DIE())
-    summoned = {}
-    if random_class == 1:
-        summoned = foe_selection[0]
-    elif random_class == 2:
-        summoned = foe_selection[1]
-    elif random_class == 3:
-        summoned = foe_selection[2]
-    return summoned
-
-
 def check_for_foe(character: dict, game_end: bool, board: dict) -> None:
     """Check if character meets a foe or heals.
 
