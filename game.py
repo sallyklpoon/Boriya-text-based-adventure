@@ -186,7 +186,7 @@ def CLASS_INFO() -> str:
            "light, and shadows. Utilizing spells of great power, they create figments and phantasms to deceive, \n" \
            "influence, and trick their foes in mind-altering ways. This class has a very weak early game, \n" \
            "but a god-like late game.\n" \
-           "STATS: \033[32mArmour Class (AC): 14}\033[0m  | " \
+           "STATS: \033[32mArmour Class (AC): 14\033[0m  | " \
            "\033[34m Maximum HP: 10\033[0m  | " \
            "\033[36m Damage Die: (1, 8) \033[0m\n"\
            "\n" \
