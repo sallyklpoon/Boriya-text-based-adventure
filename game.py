@@ -1479,11 +1479,11 @@ def summon_foe(character: dict) -> dict:
     """
     foe = {}
     if character["level"] == 1:
-        foe = select_foe(WEAK_FOES())
+        foe = random.choice(WEAK_FOES())
     if character["level"] == 2:
-        foe = select_foe(STRONG_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(WEAK_FOES())
+        foe = random.choice(STRONG_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else random.choice(WEAK_FOES())
     if character["level"] == 3:
-        foe = select_foe(EPIC_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else select_foe(STRONG_FOES())
+        foe = random.choice(EPIC_FOES()) if roll(ONE_D100()) <= HARD_FOE_CHANCE() else random.choice(STRONG_FOES())
     format_character(format_style=foe_colour, character=foe)
     assign_hp(foe)
     return foe
