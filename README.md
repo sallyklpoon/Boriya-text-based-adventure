@@ -64,7 +64,7 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | The enumerate function                             |   N   |
 | The filter or map function                         |   N   |
 | The random module                                  |   N   |
-| Function annotations                               |       |
+| Function annotations                               |   Y   |
 
 
 ### Game Specifications
@@ -98,9 +98,9 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | Fix attack messaging                         |   Y   |
 | Foes become more challenging to defeat       |   Y   |
 | Game ends if character dies                  |   Y   |
-| Elaborate storyline                          |   Y  |
+| Elaborate storyline                          |   Y   |
 | Change sleep timing to run the game faster   |   Y   |
-| Implement color for foe and god. Use make_character    |   Y   |
+| Implement color for foe and god.             |   Y   |
 | Change chance of encountering foes           |   Y   |
 | Change EXP gain and level up values          |   Y   |
 | Make input loops to check validity           |   Y   |
@@ -148,52 +148,6 @@ recommend opting for the Paladin class as it seems to perform the most consisten
 | final_boss_encounter                         |   Y   |   N   |
 | flee_boss                                    |   Y   |   N   |
 | end_game                                     |   Y   |   N   |
-
-
-### Doc String Checklist
-
-| In-game Function                             | MARTI |  |
-|       -----                                  | ---   |    ---|
-| hero_colour                                  |   Y   |   N   |
-| foe_colour                                   |   Y   |   N   |
-| roll                                         |   Y   |   N   |
-| get_menu                                     |   Y   |   N   |
-| get_user_choice                              |   Y   |   N   |
-| assign_hp                                    |   N   |   N   |
-| is_not_digit                                 |   Y   |   N   |
-| get_valid_input                              |   Y   |   N   |
-| lvl_board_max                                |   Y   |   N   |
-| make_board*                                  |   Y   |   N   |
-| print_map                                    |   Y   |   N   |
-| choose_class                                 |   Y   |   N   |
-| get_name                                     |   Y   |   N   |
-| make_character                               |   Y   |   N   |
-| start_game                                   |   Y   |   N   |
-| valid_move                                   |   Y   |   N   |
-| move_character                               |   Y   |   N   |
-| next_move                                    |   Y   |   N   |
-| heal                                         |   Y   |   N   |
-| format_foe                                   |   Y   |   N   |
-| summon_foe                                   |   Y   |   N   |
-| select_foe                                   |   Y   |   N   |
-| check_for_foe                                |   Y   |   N   |
-| engage                                       |   YEP   |   N   |
-| flee                                         |   YEP   |   N   |
-| foe_flee                                     |   YEP   |   N   |
-| initiative                                   |   YEP   |   N   |
-| combat_round                                 |   YEP   |   N   |
-| enter_combat                                 |   YEP   |   N   |
-| encounter                                    |   YEP   |   N   |
-| gain_exp                                     |   YEP   |   N   |
-| level_up                                     |   YEP   |   N   |
-| level_class                                  |   YEP   |   N   |
-| goal_attained                                |   YEP   |   N   |
-| summon_god                                   |   YEP   |   N   |
-| final_boss_encounter                         |   YEP   |   N   |
-| boss_flee                                    |   YEP   |   N   |
-| end_game                                     |   YEP   |   N   |
-
-
 
 
 #### ** Add any comments for me above this line **
