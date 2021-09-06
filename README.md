@@ -1,8 +1,6 @@
-# 1510-A4-Text-based-adventure-game
+# Bóriya: a text-based adventure game in Python 3
 
-### Your names: Martin Gatchev & Sally Poon
-
-### Your student numbers: A01257811 & A01232177
+### Game Creators: Martin Gatchev & Sally Poon
 
 #### ** Add any comments for me below this line **
 
