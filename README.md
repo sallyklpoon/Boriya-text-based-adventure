@@ -55,7 +55,7 @@ in a south-easterly direction.
   
 * The game has been balanced to be relatively easy to win with all classes, but if you find yourself struggling, we 
 recommend opting for the Paladin class as it seems to perform the most consistently.
-
+  
 ### Code Stats
 | Stat                | Total |
 | ---                 | :---: |
